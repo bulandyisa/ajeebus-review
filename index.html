@@ -14,78 +14,99 @@
     --clay:#D2603C; --ok:#3FB871; --r:14px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Rubik',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding:20px 22px 60px}
+  body{font-family:'Rubik',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding:18px 20px 40px}
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-  button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--saffron);outline-offset:2px}
-  input,textarea{font-family:inherit;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:13px;width:100%}
-  textarea{resize:vertical;min-height:52px;line-height:1.45}
+  button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--saffron);outline-offset:2px}
+  input,textarea,select{font-family:inherit;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:13px;width:100%}
+  textarea{resize:vertical;min-height:48px;line-height:1.45}
 
-  header{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:16px}
-  .brand{font-family:'Unbounded',sans-serif;font-weight:800;font-size:20px}
+  header{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+  .brand{font-family:'Unbounded',sans-serif;font-weight:800;font-size:19px}
   .brand span{color:var(--emerald)}
   .sub{font-size:12.5px;color:var(--dim);margin-top:3px}
-  .stats{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
-  .stat{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:7px 13px;min-width:78px}
-  .stat b{display:block;font-family:'Unbounded',sans-serif;font-size:17px;line-height:1.2}
-  .stat i{font-style:normal;font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em}
+  .stats{display:flex;gap:7px;margin-left:auto;flex-wrap:wrap}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:6px 12px;min-width:74px}
+  .stat b{display:block;font-family:'Unbounded',sans-serif;font-size:16px;line-height:1.2}
+  .stat i{font-style:normal;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em}
   .stat.ok b{color:var(--ok)} .stat.no b{color:var(--clay)} .stat.canon b{color:var(--saffron)}
 
-  .bar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
-  .btn{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 15px;font-size:13px;font-weight:500;transition:.15s;display:inline-flex;align-items:center;gap:7px}
+  .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+  .btn{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:500;transition:.15s;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
   .btn:hover{background:var(--panel-2);border-color:#4A4132}
   .btn.primary{background:var(--emerald);border-color:var(--emerald);color:#08221C;font-weight:700}
   .btn.primary:hover{background:#2BC0A1}
+  .btn.gold{background:var(--saffron);border-color:var(--saffron);color:#2E1E02;font-weight:700}
+  .btn.gold:hover{background:#F5B94F}
   .btn.ghost{color:var(--dim)}
-  .filters{display:flex;gap:5px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px}
-  .filters button{padding:6px 12px;border-radius:7px;font-size:12.5px;color:var(--dim);font-weight:500}
-  .filters button[aria-pressed="true"]{background:var(--panel-2);color:var(--ink)}
-  .search{max-width:220px}
+  .btn:disabled{opacity:.4;cursor:default}
+  .seg{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px}
+  .seg button{padding:6px 11px;border-radius:7px;font-size:12.5px;color:var(--dim);font-weight:500;white-space:nowrap}
+  .seg button[aria-pressed="true"]{background:var(--panel-2);color:var(--ink)}
+  .search{max-width:200px}
+  .spacer{flex:1}
 
-  .drop{border:2px dashed var(--line);border-radius:var(--r);padding:26px;text-align:center;color:var(--dim);font-size:13.5px;margin-bottom:18px;transition:.18s}
-  .drop.hot{border-color:var(--saffron);background:rgba(235,168,58,.06);color:var(--ink)}
-  .drop b{display:block;font-size:15px;color:var(--ink);margin-bottom:5px;font-weight:600}
+  .folder{display:flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 15px;margin-bottom:14px;font-size:13px;flex-wrap:wrap}
+  .folder b{color:var(--emerald);font-weight:600}
+  .folder .path{color:var(--dim);font-size:12.5px}
+  .folder.warn{border-color:rgba(235,168,58,.5);background:rgba(235,168,58,.07)}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.15s}
   .card:hover{border-color:#4A4132}
   .card.s-accepted{border-color:rgba(63,184,113,.55)}
-  .card.s-rejected{opacity:.5}
+  .card.s-rejected{opacity:.45}
   .card.s-canon{border-color:var(--saffron);box-shadow:0 0 0 1px rgba(235,168,58,.35)}
   .thumb{position:relative;aspect-ratio:3/4;background:#0D0B08;display:grid;place-items:center;cursor:zoom-in;overflow:hidden}
   .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-  .badge{position:absolute;top:7px;left:7px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:6px;background:rgba(0,0,0,.65)}
+  .badge{position:absolute;top:6px;left:6px;font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:6px;background:rgba(0,0,0,.68)}
   .badge.vid{color:var(--saffron)} .badge.img{color:var(--emerald)}
-  .mark{position:absolute;top:7px;right:7px;width:24px;height:24px;border-radius:50%;display:none;place-items:center;font-size:13px;font-weight:700}
+  .mark{position:absolute;top:6px;right:6px;width:23px;height:23px;border-radius:50%;display:none;place-items:center;font-size:12px;font-weight:700}
   .card.s-accepted .mark{display:grid;background:var(--ok);color:#062514}
   .card.s-rejected .mark{display:grid;background:var(--clay);color:#2A0D05}
   .card.s-canon .mark{display:grid;background:var(--saffron);color:#2E1E02}
-  .body{padding:11px 12px;display:flex;flex-direction:column;gap:8px;flex:1}
-  .name{font-size:13px;font-weight:600;line-height:1.35;word-break:break-word}
-  .meta{font-size:11px;color:var(--dim);display:flex;gap:8px;flex-wrap:wrap}
-  .actions{display:flex;gap:6px;margin-top:auto}
-  .act{flex:1;border:1px solid var(--line);border-radius:9px;padding:8px 4px;font-size:15px;line-height:1;transition:.15s;background:var(--panel-2)}
+  .body{padding:10px 11px;display:flex;flex-direction:column;gap:7px;flex:1}
+  .name{font-size:12.5px;font-weight:600;line-height:1.35;word-break:break-word}
+  .meta{font-size:10.5px;color:var(--dim);display:flex;gap:7px;flex-wrap:wrap}
+  .actions{display:flex;gap:5px;margin-top:auto}
+  .act{flex:1;border:1px solid var(--line);border-radius:9px;padding:7px 4px;font-size:14px;line-height:1;transition:.12s;background:var(--panel-2)}
   .act:hover{transform:translateY(-1px)}
-  .act.a:hover{border-color:var(--ok);color:var(--ok)}
-  .act.r:hover{border-color:var(--clay);color:var(--clay)}
-  .act.c:hover{border-color:var(--saffron);color:var(--saffron)}
-  .act[aria-pressed="true"].a{border-color:var(--ok);color:var(--ok);background:rgba(63,184,113,.12)}
-  .act[aria-pressed="true"].r{border-color:var(--clay);color:var(--clay);background:rgba(210,96,60,.12)}
-  .act[aria-pressed="true"].c{border-color:var(--saffron);color:var(--saffron);background:rgba(235,168,58,.12)}
-  .more{font-size:11.5px;color:var(--dim);text-align:left;padding:2px 0}
+  .act.a:hover,.act[aria-pressed="true"].a{border-color:var(--ok);color:var(--ok)}
+  .act.r:hover,.act[aria-pressed="true"].r{border-color:var(--clay);color:var(--clay)}
+  .act.c:hover,.act[aria-pressed="true"].c{border-color:var(--saffron);color:var(--saffron)}
+  .act[aria-pressed="true"].a{background:rgba(63,184,113,.12)}
+  .act[aria-pressed="true"].r{background:rgba(210,96,60,.12)}
+  .act[aria-pressed="true"].c{background:rgba(235,168,58,.12)}
+  .more{font-size:11px;color:var(--dim);text-align:left;padding:1px 0}
   .more:hover{color:var(--ink)}
-  .fields{display:none;flex-direction:column;gap:7px;padding-top:3px}
+  .fields{display:none;flex-direction:column;gap:6px;padding-top:2px}
   .fields.open{display:flex}
-  .fields label{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:3px}
-  .empty{text-align:center;color:var(--dim);padding:50px 20px;font-size:14px;grid-column:1/-1}
+  .fields label{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:3px}
+  .empty{text-align:center;color:var(--dim);padding:60px 20px;font-size:14px;grid-column:1/-1;line-height:1.6}
 
-  .lb{position:fixed;inset:0;background:rgba(8,7,5,.94);display:none;place-items:center;z-index:100;padding:34px}
-  .lb.open{display:grid}
-  .lb img,.lb video{max-width:92vw;max-height:88vh;border-radius:10px;display:block}
-  .lb-close{position:absolute;top:18px;right:22px;font-size:26px;color:var(--dim)}
-  .lb-note{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:12.5px;color:var(--dim);text-align:center}
-  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--panel-2);border:1px solid var(--line);padding:11px 18px;border-radius:11px;font-size:13px;opacity:0;pointer-events:none;transition:.22s;z-index:200}
+  /* Фокус-режим */
+  .focus{position:fixed;inset:0;background:#0A0906;display:none;z-index:120;flex-direction:column}
+  .focus.open{display:flex}
+  .f-top{display:flex;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .f-count{font-family:'Unbounded',sans-serif;font-size:15px}
+  .f-name{font-size:13px;color:var(--dim);flex:1;min-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .f-stage{flex:1;display:grid;place-items:center;padding:16px;overflow:hidden;position:relative}
+  .f-stage img,.f-stage video{max-width:100%;max-height:100%;border-radius:10px;display:block;object-fit:contain}
+  .f-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(36,32,25,.9);border:1px solid var(--line);display:grid;place-items:center;font-size:20px}
+  .f-nav:hover{background:var(--panel-2)}
+  .f-nav.prev{left:16px} .f-nav.next{right:16px}
+  .f-bottom{padding:14px 20px 20px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .f-btn{border:1px solid var(--line);border-radius:12px;padding:12px 22px;font-size:14px;font-weight:600;background:var(--panel);display:flex;align-items:center;gap:9px;transition:.15s}
+  .f-btn kbd{font-family:'Rubik';font-size:10.5px;background:var(--panel-2);border:1px solid var(--line);border-radius:5px;padding:2px 6px;color:var(--dim)}
+  .f-btn.a:hover,.f-btn.a.on{border-color:var(--ok);color:var(--ok);background:rgba(63,184,113,.12)}
+  .f-btn.c:hover,.f-btn.c.on{border-color:var(--saffron);color:var(--saffron);background:rgba(235,168,58,.12)}
+  .f-btn.r:hover,.f-btn.r.on{border-color:var(--clay);color:var(--clay);background:rgba(210,96,60,.12)}
+  .f-note{max-width:420px}
+
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--panel-2);border:1px solid var(--line);padding:11px 18px;border-radius:11px;font-size:13px;opacity:0;pointer-events:none;transition:.22s;z-index:200}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-  .warn{background:rgba(210,96,60,.14);border:1px solid rgba(210,96,60,.4);border-radius:10px;padding:9px 13px;font-size:12.5px;margin-bottom:14px;display:none}
+  .progress{height:3px;background:var(--panel-2);border-radius:99px;overflow:hidden;margin-bottom:12px;display:none}
+  .progress.on{display:block}
+  .progress i{display:block;height:100%;background:var(--emerald);width:0;transition:width .2s}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -94,216 +115,382 @@
 <header>
   <div>
     <div class="brand">Аджибус · <span>приёмка материалов</span></div>
-    <div class="sub">Отбор генераций из Google Flow — принять, отклонить или отправить в канон</div>
+    <div class="sub">Генерации читаются прямо из папки на вашем компьютере</div>
   </div>
   <div class="stats">
     <div class="stat"><b id="stTotal">0</b><i>всего</i></div>
     <div class="stat ok"><b id="stOk">0</b><i>принято</i></div>
-    <div class="stat no"><b id="stNo">0</b><i>отклонено</i></div>
     <div class="stat canon"><b id="stCanon">0</b><i>канон</i></div>
+    <div class="stat no"><b id="stNo">0</b><i>отклонено</i></div>
   </div>
 </header>
 
-<div class="warn" id="warn"></div>
+<div class="folder" id="folderBar">
+  <span id="folderText">Папка не подключена</span>
+  <span class="spacer"></span>
+  <button class="btn primary" id="pickBtn">Подключить папку</button>
+  <button class="btn" id="rescanBtn" disabled>⟳ Обновить</button>
+</div>
+
+<div class="progress" id="prog"><i></i></div>
 
 <div class="bar">
-  <button class="btn primary" id="addBtn">＋ Добавить файлы</button>
-  <input type="file" id="fileInput" multiple accept="image/*,video/*" hidden>
-  <div class="filters" id="filters">
+  <button class="btn gold" id="focusBtn">▶ Быстрый отбор</button>
+  <div class="seg" id="filters">
     <button data-f="all" aria-pressed="true">Все</button>
     <button data-f="new" aria-pressed="false">Без решения</button>
     <button data-f="accepted" aria-pressed="false">Принятые</button>
     <button data-f="canon" aria-pressed="false">Канон</button>
     <button data-f="rejected" aria-pressed="false">Отклонённые</button>
   </div>
+  <div class="seg" id="kinds">
+    <button data-k="all" aria-pressed="true">Всё</button>
+    <button data-k="image" aria-pressed="false">Фото</button>
+    <button data-k="video" aria-pressed="false">Видео</button>
+  </div>
   <input class="search" id="search" placeholder="Поиск…">
-  <button class="btn" id="exportBtn">⧉ Отчёт в буфер</button>
+  <span class="spacer"></span>
+  <button class="btn ghost" id="exportBtn">⧉ Отчёт</button>
   <button class="btn ghost" id="backupBtn">↓ Бэкап</button>
   <button class="btn ghost" id="restoreBtn">↑ Восстановить</button>
   <input type="file" id="restoreInput" accept="application/json" hidden>
-  <button class="btn ghost" id="clearBtn">Очистить</button>
-</div>
-
-<div class="drop" id="drop">
-  <b>Перетащите сюда фото и видео из папки загрузок</b>
-  Файлы остаются у вас на диске — здесь сохраняются превью, статусы и заметки
 </div>
 
 <div class="grid" id="grid"></div>
 
-<div class="lb" id="lb">
-  <button class="lb-close" id="lbClose" aria-label="Закрыть">✕</button>
-  <div id="lbBody"></div>
-  <div class="lb-note" id="lbNote"></div>
+<div class="focus" id="focus">
+  <div class="f-top">
+    <span class="f-count" id="fCount">0 / 0</span>
+    <span class="f-name" id="fName"></span>
+    <button class="btn ghost" id="fClose">Закрыть · Esc</button>
+  </div>
+  <div class="f-stage" id="fStage">
+    <button class="f-nav prev" id="fPrev" aria-label="Назад">‹</button>
+    <div id="fMedia"></div>
+    <button class="f-nav next" id="fNext" aria-label="Вперёд">›</button>
+  </div>
+  <div class="f-bottom">
+    <button class="f-btn a" id="fA">✓ Принять <kbd>1</kbd></button>
+    <button class="f-btn c" id="fC">★ В канон <kbd>2</kbd></button>
+    <button class="f-btn r" id="fR">✕ Отклонить <kbd>3</kbd></button>
+    <input class="f-note" id="fNote" placeholder="Заметка — что править">
+  </div>
 </div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-const KEY = 'ajeebus_review_v2';
-let index = [], live = {}, filter = 'all', query = '';
+/* ---------- IndexedDB ---------- */
+const DBN = 'ajeebus_v3';
+let db;
+function openDB(){
+  return new Promise((res,rej)=>{
+    const r = indexedDB.open(DBN, 1);
+    r.onupgradeneeded = ()=>{
+      const d = r.result;
+      if(!d.objectStoreNames.contains('assets')) d.createObjectStore('assets', {keyPath:'key'});
+      if(!d.objectStoreNames.contains('meta'))   d.createObjectStore('meta');
+    };
+    r.onsuccess = ()=>res(r.result);
+    r.onerror   = ()=>rej(r.error);
+  });
+}
+const tx = (store, mode) => db.transaction(store, mode).objectStore(store);
+const dbGet = (store, key) => new Promise((res,rej)=>{ const q = tx(store,'readonly').get(key); q.onsuccess=()=>res(q.result); q.onerror=()=>rej(q.error); });
+const dbAll = (store) => new Promise((res,rej)=>{ const q = tx(store,'readonly').getAll(); q.onsuccess=()=>res(q.result||[]); q.onerror=()=>rej(q.error); });
+const dbPut = (store, val, key) => new Promise((res,rej)=>{ const q = key!==undefined ? tx(store,'readwrite').put(val,key) : tx(store,'readwrite').put(val); q.onsuccess=()=>res(); q.onerror=()=>rej(q.error); });
+const dbDel = (store, key) => new Promise((res,rej)=>{ const q = tx(store,'readwrite').delete(key); q.onsuccess=()=>res(); q.onerror=()=>rej(q.error); });
+
+/* ---------- состояние ---------- */
+let dirHandle = null;
+let items = [];                 // {key,name,type,thumb,status,note,tags,model,prompt,mtime,handle}
+let filter = 'all', kind = 'all', query = '';
+let focusList = [], focusIdx = 0;
 const $ = s => document.querySelector(s);
 const grid = $('#grid');
+const esc = s => (s||'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-/* ---- хранилище: localStorage, с запасным вариантом на window.storage ---- */
-const store = {
-  async load(){
-    try{
-      const raw = localStorage.getItem(KEY);
-      if(raw) return JSON.parse(raw);
-    }catch(e){}
-    if(window.storage){
-      try{ const r = await window.storage.get(KEY); if(r) return JSON.parse(r.value); }catch(e){}
-    }
-    return [];
-  },
-  async save(data){
-    const raw = JSON.stringify(data);
-    try{ localStorage.setItem(KEY, raw); return true; }
-    catch(e){
-      if(window.storage){
-        try{ await window.storage.set(KEY, raw); return true; }catch(e2){}
-      }
-      warn('Не удалось сохранить: закончилось место в браузере. Сделайте бэкап и удалите старые карточки.');
-      return false;
-    }
-  }
-};
-function warn(msg){ const w = $('#warn'); w.textContent = msg; w.style.display = 'block'; }
-
-/* ---- превью ---- */
-function shrink(src, w, h, max=380, q=.7){
+/* ---------- превью ---------- */
+function shrink(src,w,h,max=420,q=.72){
   const k = Math.min(max/w, max/h, 1);
   const c = document.createElement('canvas');
   c.width = Math.round(w*k); c.height = Math.round(h*k);
-  c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
-  return c.toDataURL('image/jpeg', q);
+  c.getContext('2d').drawImage(src,0,0,c.width,c.height);
+  return c.toDataURL('image/jpeg',q);
 }
-const imageThumb = file => new Promise((res,rej)=>{
-  const img = new Image();
-  img.onload = ()=>{ try{ res(shrink(img, img.naturalWidth, img.naturalHeight)); }catch(e){ rej(e); } };
-  img.onerror = rej;
-  img.src = URL.createObjectURL(file);
+const imgThumb = file => new Promise((res,rej)=>{
+  const u = URL.createObjectURL(file), im = new Image();
+  im.onload = ()=>{ try{ res(shrink(im, im.naturalWidth, im.naturalHeight)); }catch(e){ rej(e); } finally{ URL.revokeObjectURL(u); } };
+  im.onerror = ()=>{ URL.revokeObjectURL(u); rej(); };
+  im.src = u;
 });
-const videoThumb = file => new Promise((res,rej)=>{
-  const v = document.createElement('video');
+const vidThumb = file => new Promise((res,rej)=>{
+  const u = URL.createObjectURL(file), v = document.createElement('video');
   v.muted = true; v.preload = 'metadata';
   v.onloadeddata = ()=>{ v.currentTime = Math.min(1,(v.duration||2)/3); };
-  v.onseeked = ()=>{ try{ res(shrink(v, v.videoWidth, v.videoHeight)); }catch(e){ rej(e); } };
-  v.onerror = rej;
-  v.src = URL.createObjectURL(file);
+  v.onseeked = ()=>{ try{ res(shrink(v, v.videoWidth, v.videoHeight)); }catch(e){ rej(e); } finally{ URL.revokeObjectURL(u); } };
+  v.onerror = ()=>{ URL.revokeObjectURL(u); rej(); };
+  v.src = u;
 });
 
-async function addFiles(files){
-  const list = [...files].filter(f => f.type.startsWith('image/') || f.type.startsWith('video/'));
-  if(!list.length) return;
-  toast('Обрабатываю ' + list.length + '…');
-  for(const f of list){
-    if(index.some(i => i.name === f.name && i.size === f.size)) continue;
-    const isVid = f.type.startsWith('video/');
-    const id = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
-    let thumb = '';
-    try{ thumb = isVid ? await videoThumb(f) : await imageThumb(f); }catch(e){}
-    live[id] = URL.createObjectURL(f);
-    index.unshift({id, name:f.name, size:f.size, type:isVid?'video':'image', thumb,
-                   status:'new', note:'', tags:'', model:'', prompt:'', added:Date.now()});
+/* ---------- папка ---------- */
+async function pickFolder(){
+  if(!window.showDirectoryPicker){
+    toast('Браузер не умеет читать папки. Нужен Chrome или Edge.');
+    return;
   }
-  await store.save(index); render(); toast('Готово');
+  try{
+    dirHandle = await window.showDirectoryPicker({mode:'read'});
+    await dbPut('meta', dirHandle, 'dir');
+    await scan();
+  }catch(e){ /* пользователь отменил */ }
+}
+async function restoreFolder(){
+  try{
+    const h = await dbGet('meta','dir');
+    if(!h) return false;
+    const p = await h.queryPermission({mode:'read'});
+    if(p === 'granted'){ dirHandle = h; return true; }
+    dirHandle = h;
+    setFolderBar(true);
+    return false;
+  }catch(e){ return false; }
+}
+async function ensurePermission(){
+  if(!dirHandle) return false;
+  const p = await dirHandle.queryPermission({mode:'read'});
+  if(p === 'granted') return true;
+  const r = await dirHandle.requestPermission({mode:'read'});
+  return r === 'granted';
+}
+function setFolderBar(needsClick){
+  const bar = $('#folderBar'), t = $('#folderText'), pick = $('#pickBtn');
+  $('#rescanBtn').disabled = !dirHandle;
+  if(!dirHandle){
+    bar.classList.remove('warn');
+    t.innerHTML = 'Папка не подключена';
+    pick.textContent = 'Подключить папку';
+  } else if(needsClick){
+    bar.classList.add('warn');
+    t.innerHTML = `Папка <b>${esc(dirHandle.name)}</b> <span class="path">— нужно подтвердить доступ</span>`;
+    pick.textContent = 'Разрешить доступ';
+  } else {
+    bar.classList.remove('warn');
+    t.innerHTML = `Папка <b>${esc(dirHandle.name)}</b> <span class="path">— ${items.length} файлов</span>`;
+    pick.textContent = 'Сменить папку';
+  }
 }
 
-/* ---- рендер ---- */
+async function scan(){
+  if(!dirHandle) return;
+  if(!await ensurePermission()){ setFolderBar(true); return; }
+  const prog = $('#prog'); prog.classList.add('on');
+  const bar = prog.firstElementChild;
+
+  const files = [];
+  for await (const [name, h] of dirHandle.entries()){
+    if(h.kind !== 'file') continue;
+    if(!/\.(png|jpe?g|webp|gif|mp4|webm|mov|m4v)$/i.test(name)) continue;
+    files.push(h);
+  }
+  const cached = await dbAll('assets');
+  const byKey = new Map(cached.map(a=>[a.key,a]));
+  const next = [];
+  let done = 0, fresh = 0;
+
+  for(const h of files){
+    let f;
+    try{ f = await h.getFile(); }catch(e){ continue; }
+    const key = `${f.name}|${f.size}|${f.lastModified}`;
+    const isVid = /\.(mp4|webm|mov|m4v)$/i.test(f.name);
+    let rec = byKey.get(key);
+    if(!rec){
+      let thumb = '';
+      try{ thumb = isVid ? await vidThumb(f) : await imgThumb(f); }catch(e){}
+      rec = {key, name:f.name, type:isVid?'video':'image', thumb, status:'new',
+             note:'', tags:'', model:'', prompt:'', mtime:f.lastModified};
+      await dbPut('assets', rec);
+      fresh++;
+    }
+    next.push({...rec, handle:h});
+    done++;
+    bar.style.width = Math.round(done/files.length*100) + '%';
+  }
+  items = next.sort((a,b)=>b.mtime - a.mtime);
+  prog.classList.remove('on'); bar.style.width = '0';
+  setFolderBar(false);
+  render();
+  toast(fresh ? `Новых файлов: ${fresh}` : `В папке ${items.length} файлов`);
+}
+
+/* ---------- рендер ---------- */
 function visible(){
-  return index.filter(it=>{
+  return items.filter(it=>{
     if(filter !== 'all' && it.status !== filter) return false;
+    if(kind !== 'all' && it.type !== kind) return false;
     if(!query) return true;
     return (it.name+' '+it.note+' '+it.tags+' '+it.model+' '+it.prompt).toLowerCase().includes(query.toLowerCase());
   });
 }
 function render(){
-  $('#stTotal').textContent = index.length;
-  $('#stOk').textContent    = index.filter(i=>i.status==='accepted').length;
-  $('#stNo').textContent    = index.filter(i=>i.status==='rejected').length;
-  $('#stCanon').textContent = index.filter(i=>i.status==='canon').length;
+  $('#stTotal').textContent = items.length;
+  $('#stOk').textContent    = items.filter(i=>i.status==='accepted').length;
+  $('#stNo').textContent    = items.filter(i=>i.status==='rejected').length;
+  $('#stCanon').textContent = items.filter(i=>i.status==='canon').length;
 
-  const items = visible();
-  if(!items.length){
-    grid.innerHTML = '<div class="empty">' + (index.length ? 'Ничего не найдено' : 'Пусто — перетащите генерации из папки загрузок') + '</div>';
+  const list = visible();
+  if(!list.length){
+    grid.innerHTML = '<div class="empty">' +
+      (items.length ? 'Ничего не найдено по этому фильтру'
+       : (dirHandle ? 'В папке нет фото и видео' : 'Подключите папку, куда Chrome скачивает генерации из Flow')) +
+      '</div>';
     return;
   }
-  grid.innerHTML = items.map(it=>`
-    <div class="card s-${it.status}" data-id="${it.id}">
+  grid.innerHTML = list.map(it=>`
+    <div class="card s-${it.status}" data-key="${esc(it.key)}">
       <div class="thumb" data-act="open">
-        ${it.thumb ? `<img src="${it.thumb}" alt="${esc(it.name)}" loading="lazy">` : '<span style="color:#6A5B45;font-size:12px">нет превью</span>'}
+        ${it.thumb ? `<img src="${it.thumb}" alt="" loading="lazy">` : '<span style="color:#6A5B45;font-size:12px">нет превью</span>'}
         <span class="badge ${it.type==='video'?'vid':'img'}">${it.type==='video'?'видео':'фото'}</span>
         <span class="mark">${it.status==='accepted'?'✓':it.status==='rejected'?'✕':'★'}</span>
       </div>
       <div class="body">
         <div class="name">${esc(it.name)}</div>
-        <div class="meta"><span>${new Date(it.added).toLocaleDateString('ru-RU',{day:'numeric',month:'short'})}</span>${it.model?`<span>${esc(it.model)}</span>`:''}${it.tags?`<span>#${esc(it.tags)}</span>`:''}</div>
-        <button class="more" data-act="toggle">Детали и заметка ▾</button>
+        <div class="meta"><span>${new Date(it.mtime).toLocaleString('ru-RU',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>${it.tags?`<span>#${esc(it.tags)}</span>`:''}</div>
+        <button class="more" data-act="toggle">Детали ▾</button>
         <div class="fields">
           <div><label>Сцена / урок</label><input data-field="tags" value="${esc(it.tags)}" placeholder="урок 1, шот 3"></div>
-          <div><label>Модель и настройки</label><input data-field="model" value="${esc(it.model)}" placeholder="Veo 3.1 Fast · 8s · 9:16"></div>
-          <div><label>Промпт</label><textarea data-field="prompt">${esc(it.prompt)}</textarea></div>
-          <div><label>Заметка / что править</label><textarea data-field="note">${esc(it.note)}</textarea></div>
+          <div><label>Модель</label><input data-field="model" value="${esc(it.model)}" placeholder="Veo 3.1 Fast · 8s"></div>
+          <div><label>Заметка</label><textarea data-field="note">${esc(it.note)}</textarea></div>
         </div>
         <div class="actions">
-          <button class="act a" data-act="accepted" aria-pressed="${it.status==='accepted'}" title="Принять">✓</button>
-          <button class="act c" data-act="canon" aria-pressed="${it.status==='canon'}" title="В канон">★</button>
-          <button class="act r" data-act="rejected" aria-pressed="${it.status==='rejected'}" title="Отклонить">✕</button>
-          <button class="act d" data-act="delete" title="Удалить">🗑</button>
+          <button class="act a" data-act="accepted" aria-pressed="${it.status==='accepted'}">✓</button>
+          <button class="act c" data-act="canon"    aria-pressed="${it.status==='canon'}">★</button>
+          <button class="act r" data-act="rejected" aria-pressed="${it.status==='rejected'}">✕</button>
         </div>
       </div>
     </div>`).join('');
 }
-const esc = s => (s||'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-/* ---- события ---- */
+async function setStatus(it, st){
+  it.status = (it.status === st) ? 'new' : st;
+  await dbPut('assets', strip(it));
+}
+const strip = it => ({key:it.key,name:it.name,type:it.type,thumb:it.thumb,status:it.status,
+                      note:it.note,tags:it.tags,model:it.model,prompt:it.prompt,mtime:it.mtime});
+
 grid.addEventListener('click', async e=>{
   const card = e.target.closest('.card'); if(!card) return;
   const act = e.target.closest('[data-act]')?.dataset.act; if(!act) return;
-  const it = index.find(x=>x.id===card.dataset.id); if(!it) return;
-  if(act === 'open')  return openLb(it);
-  if(act === 'toggle')return card.querySelector('.fields').classList.toggle('open');
-  if(act === 'delete'){ index = index.filter(x=>x.id!==it.id); await store.save(index); render(); return; }
-  it.status = (it.status === act) ? 'new' : act;
-  await store.save(index); render();
+  const it = items.find(x=>x.key === card.dataset.key); if(!it) return;
+  if(act === 'open'){ openFocus(it); return; }
+  if(act === 'toggle'){ card.querySelector('.fields').classList.toggle('open'); return; }
+  await setStatus(it, act); render();
 });
 grid.addEventListener('change', async e=>{
   const f = e.target.dataset.field; if(!f) return;
-  const it = index.find(x=>x.id===e.target.closest('.card').dataset.id); if(!it) return;
-  it[f] = e.target.value; await store.save(index);
-  if(f==='tags'||f==='model') render();
+  const it = items.find(x=>x.key === e.target.closest('.card').dataset.key); if(!it) return;
+  it[f] = e.target.value; await dbPut('assets', strip(it));
+  if(f === 'tags') render();
 });
 
-$('#addBtn').onclick = ()=> $('#fileInput').click();
-$('#fileInput').onchange = e=>{ addFiles(e.target.files); e.target.value=''; };
-const drop = $('#drop');
-['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('hot')}));
-['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('hot')}));
-drop.addEventListener('drop', e=> addFiles(e.dataTransfer.files));
-document.addEventListener('dragover', e=>e.preventDefault());
-document.addEventListener('drop', e=>e.preventDefault());
+/* ---------- фокус-режим ---------- */
+async function openFocus(startItem){
+  focusList = visible();
+  if(!focusList.length) return;
+  focusIdx = startItem ? Math.max(0, focusList.findIndex(x=>x.key === startItem.key)) : 0;
+  $('#focus').classList.add('open');
+  await showFocus();
+}
+async function showFocus(){
+  const it = focusList[focusIdx];
+  if(!it) return;
+  $('#fCount').textContent = `${focusIdx+1} / ${focusList.length}`;
+  $('#fName').textContent = it.name;
+  $('#fNote').value = it.note || '';
+  ['fA','fC','fR'].forEach(id=>$('#'+id).classList.remove('on'));
+  if(it.status === 'accepted') $('#fA').classList.add('on');
+  if(it.status === 'canon')    $('#fC').classList.add('on');
+  if(it.status === 'rejected') $('#fR').classList.add('on');
 
+  const media = $('#fMedia');
+  media.innerHTML = it.thumb ? `<img src="${it.thumb}" alt="">` : '';
+  try{
+    const f = await it.handle.getFile();
+    const url = URL.createObjectURL(f);
+    media.innerHTML = it.type === 'video'
+      ? `<video src="${url}" controls autoplay loop></video>`
+      : `<img src="${url}" alt="">`;
+  }catch(e){}
+}
+function moveFocus(d){
+  focusIdx = (focusIdx + d + focusList.length) % focusList.length;
+  showFocus();
+}
+async function focusStatus(st){
+  const it = focusList[focusIdx];
+  await setStatus(it, st);
+  render();
+  if(focusIdx < focusList.length - 1) moveFocus(1); else showFocus();
+}
+$('#focusBtn').onclick = ()=> openFocus(null);
+$('#fClose').onclick = ()=>{ $('#focus').classList.remove('open'); $('#fMedia').innerHTML=''; };
+$('#fPrev').onclick = ()=> moveFocus(-1);
+$('#fNext').onclick = ()=> moveFocus(1);
+$('#fA').onclick = ()=> focusStatus('accepted');
+$('#fC').onclick = ()=> focusStatus('canon');
+$('#fR').onclick = ()=> focusStatus('rejected');
+$('#fNote').onchange = async e=>{
+  const it = focusList[focusIdx]; if(!it) return;
+  it.note = e.target.value; await dbPut('assets', strip(it)); render();
+};
+document.addEventListener('keydown', e=>{
+  if(!$('#focus').classList.contains('open')) return;
+  if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA'){
+    if(e.key === 'Escape') e.target.blur();
+    return;
+  }
+  if(e.key === 'Escape'){ $('#fClose').click(); }
+  else if(e.key === 'ArrowLeft')  moveFocus(-1);
+  else if(e.key === 'ArrowRight') moveFocus(1);
+  else if(e.key === '1') focusStatus('accepted');
+  else if(e.key === '2') focusStatus('canon');
+  else if(e.key === '3') focusStatus('rejected');
+});
+
+/* ---------- панель ---------- */
+$('#pickBtn').onclick = async ()=>{
+  if(dirHandle && await dirHandle.queryPermission({mode:'read'}) !== 'granted'){
+    if(await ensurePermission()){ await scan(); return; }
+  }
+  pickFolder();
+};
+$('#rescanBtn').onclick = ()=> scan();
 $('#filters').onclick = e=>{
   const b = e.target.closest('button'); if(!b) return;
   [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed','false'));
   b.setAttribute('aria-pressed','true'); filter = b.dataset.f; render();
 };
+$('#kinds').onclick = e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true'); kind = b.dataset.k; render();
+};
 $('#search').oninput = e=>{ query = e.target.value.trim(); render(); };
 
 $('#exportBtn').onclick = ()=>{
-  const g = s => index.filter(i=>i.status===s);
+  const g = s => items.filter(i=>i.status===s);
   const line = i => `• ${i.name}${i.tags?` [${i.tags}]`:''}${i.model?` — ${i.model}`:''}${i.note?`\n   заметка: ${i.note}`:''}`;
-  let out = `ПРИЁМКА · Аджибус\n${new Date().toLocaleString('ru-RU')}\nВсего ${index.length} · принято ${g('accepted').length} · канон ${g('canon').length} · отклонено ${g('rejected').length}\n`;
+  let out = `ПРИЁМКА · Аджибус\n${new Date().toLocaleString('ru-RU')}\nВсего ${items.length} · принято ${g('accepted').length} · канон ${g('canon').length} · отклонено ${g('rejected').length}\n`;
   [['★ В КАНОН','canon'],['✓ ПРИНЯТО','accepted'],['✕ ОТКЛОНЕНО','rejected'],['… БЕЗ РЕШЕНИЯ','new']].forEach(([t,k])=>{
-    const arr = g(k); if(arr.length) out += `\n${t} (${arr.length})\n` + arr.map(line).join('\n') + '\n';
+    const a = g(k); if(a.length) out += `\n${t} (${a.length})\n` + a.map(line).join('\n') + '\n';
   });
-  navigator.clipboard.writeText(out).then(()=>toast('Скопировано — вставьте в чат')).catch(()=>{console.log(out);toast('Отчёт в консоли')});
+  navigator.clipboard.writeText(out).then(()=>toast('Отчёт скопирован')).catch(()=>{console.log(out);toast('Отчёт в консоли')});
 };
 $('#backupBtn').onclick = ()=>{
-  const blob = new Blob([JSON.stringify(index)], {type:'application/json'});
+  const data = items.map(strip);
+  const b = new Blob([JSON.stringify(data)], {type:'application/json'});
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
+  a.href = URL.createObjectURL(b);
   a.download = `ajeebus-priemka-${new Date().toISOString().slice(0,10)}.json`;
   a.click(); toast('Бэкап сохранён');
 };
@@ -312,61 +499,23 @@ $('#restoreInput').onchange = async e=>{
   const f = e.target.files[0]; if(!f) return;
   try{
     const data = JSON.parse(await f.text());
-    if(Array.isArray(data)){ index = data; await store.save(index); render(); toast('Восстановлено: ' + data.length); }
+    for(const rec of data) await dbPut('assets', rec);
+    await scan();
+    toast('Восстановлено: ' + data.length);
   }catch(err){ toast('Не удалось прочитать файл'); }
   e.target.value = '';
 };
-$('#clearBtn').onclick = async ()=>{
-  if(!confirm('Удалить все карточки и статусы? Файлы на диске не пострадают.')) return;
-  index = []; live = {}; await store.save(index); render(); toast('Очищено');
-};
 
-function openLb(it){
-  const src = live[it.id];
-  $('#lbBody').innerHTML = src
-    ? (it.type==='video' ? `<video src="${src}" controls autoplay loop></video>` : `<img src="${src}" alt="">`)
-    : (it.thumb ? `<img src="${it.thumb}" alt="">` : '');
-  $('#lbNote').textContent = src ? it.name : it.name + ' — превью. Для оригинала перетащите файл заново.';
-  $('#lb').classList.add('open');
-}
-const closeLb = ()=>{ $('#lb').classList.remove('open'); $('#lbBody').innerHTML=''; };
-$('#lbClose').onclick = closeLb;
-$('#lb').onclick = e=>{ if(e.target.id==='lb') closeLb(); };
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
+let tt; function toast(m){ const el=$('#toast'); el.textContent=m; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),2400); }
 
-let tt; function toast(m){ const el=$('#toast'); el.textContent=m; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),2300); }
-
-async function boot(){
-  index = await store.load();
-  render();
-  try{
-    const r = await fetch('./gallery.json?t=' + Date.now());
-    if(!r.ok) return;
-    const remote = await r.json();
-    if(!Array.isArray(remote) || !remote.length) return;
-    const mine = new Map(index.map(i=>[i.id, i]));
-    let added = 0;
-    const merged = remote.map(g=>{
-      const own = mine.get(g.id);
-      mine.delete(g.id);
-      if(!own) added++;
-      return {
-        id:g.id, name:g.name, size:0, type:g.type||'image', thumb:g.thumb,
-        status: own ? own.status : 'new',
-        note:   own ? own.note   : '',
-        tags:   own && own.tags ? own.tags : (g.tags||''),
-        model:  own && own.model ? own.model : (g.model||''),
-        prompt: own && own.prompt ? own.prompt : (g.prompt||''),
-        added:  g.added || Date.now()
-      };
-    });
-    index = [...merged, ...mine.values()];
-    await store.save(index);
-    render();
-    if(added) toast('Загружено из галереи: ' + added);
-  }catch(e){}
-}
-boot();
+/* ---------- старт ---------- */
+(async ()=>{
+  db = await openDB();
+  const cached = await dbAll('assets');
+  if(cached.length){ items = cached.sort((a,b)=>b.mtime-a.mtime); render(); }
+  const ok = await restoreFolder();
+  if(ok) await scan(); else { setFolderBar(!!dirHandle); render(); }
+})();
 </script>
 </body>
 </html>
