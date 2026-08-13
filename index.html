@@ -3,125 +3,201 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Аджибус · Приёмка материалов</title>
+<title>Аджибус · производственный дашборд</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#13110D; --panel:#1C1915; --panel-2:#242019; --line:#332D23;
-    --ink:#F2EADB; --dim:#9C907A; --emerald:#22A98D; --saffron:#EBA83A;
-    --clay:#D2603C; --ok:#3FB871; --r:14px;
+    --bg:#13110D; --panel:#1C1915; --panel-2:#242019; --line:#332D23; --line-2:#4A4132;
+    --ink:#F2EADB; --dim:#9C907A; --faint:#6A5B45;
+    --emerald:#22A98D; --saffron:#EBA83A; --clay:#D2603C; --ok:#3FB871;
+    --r:14px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Rubik',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding:18px 20px 40px}
+  body{font-family:'Rubik',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding:16px 20px 60px;font-size:14px}
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
   button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--saffron);outline-offset:2px}
   input,textarea,select{font-family:inherit;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:13px;width:100%}
-  textarea{resize:vertical;min-height:48px;line-height:1.45}
+  textarea{resize:vertical;min-height:46px;line-height:1.45}
+  a{color:var(--emerald)}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
 
-  header{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+  header{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:12px}
   .brand{font-family:'Unbounded',sans-serif;font-weight:800;font-size:19px}
   .brand span{color:var(--emerald)}
   .sub{font-size:12.5px;color:var(--dim);margin-top:3px}
   .stats{display:flex;gap:7px;margin-left:auto;flex-wrap:wrap}
-  .stat{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:6px 12px;min-width:74px}
-  .stat b{display:block;font-family:'Unbounded',sans-serif;font-size:16px;line-height:1.2}
-  .stat i{font-style:normal;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em}
-  .stat.ok b{color:var(--ok)} .stat.no b{color:var(--clay)} .stat.canon b{color:var(--saffron)}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:7px 13px;min-width:80px}
+  .stat b{display:block;font-weight:600;font-size:17px;line-height:1.2}
+  .stat i{font-style:normal;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;gap:4px}
+  .dotm{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
 
-  .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+  .tabs{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:14px;flex-wrap:wrap}
+  .tabs button{padding:9px 16px;border-radius:9px;font-size:13.5px;color:var(--dim);font-weight:500}
+  .tabs button[aria-selected="true"]{background:var(--panel-2);color:var(--ink);font-weight:600}
+  .page{display:none} .page.on{display:block}
+
   .btn{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:500;transition:.15s;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
-  .btn:hover{background:var(--panel-2);border-color:#4A4132}
+  .btn:hover{background:var(--panel-2);border-color:var(--line-2)}
   .btn.primary{background:var(--emerald);border-color:var(--emerald);color:#08221C;font-weight:700}
   .btn.primary:hover{background:#2BC0A1}
   .btn.gold{background:var(--saffron);border-color:var(--saffron);color:#2E1E02;font-weight:700}
   .btn.gold:hover{background:#F5B94F}
   .btn.ghost{color:var(--dim)}
   .btn:disabled{opacity:.4;cursor:default}
+  .btn.sm{padding:6px 10px;font-size:12px}
   .seg{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px}
-  .seg button{padding:6px 11px;border-radius:7px;font-size:12.5px;color:var(--dim);font-weight:500;white-space:nowrap}
+  .seg button{padding:6px 11px;border-radius:7px;font-size:12.5px;color:var(--dim);font-weight:500;white-space:nowrap;display:flex;align-items:center;gap:5px}
   .seg button[aria-pressed="true"]{background:var(--panel-2);color:var(--ink)}
-  .search{max-width:200px}
+  .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+  .search{max-width:190px} .mini{max-width:150px;width:auto}
   .spacer{flex:1}
 
-  .folder{display:flex;align-items:center;gap:9px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 15px;margin-bottom:14px;font-size:13px;flex-wrap:wrap}
+  .folder{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 15px;margin-bottom:14px;font-size:13px;flex-wrap:wrap}
   .folder b{color:var(--emerald);font-weight:600}
   .folder .path{color:var(--dim);font-size:12.5px}
   .folder.warn{border-color:rgba(235,168,58,.5);background:rgba(235,168,58,.07)}
+  .hintline{font-size:12px;color:var(--dim);margin:-6px 0 14px;line-height:1.5}
+  .hintline code{background:var(--panel-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:11.5px}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px}
+  /* карточки приёмки */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:13px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.15s}
-  .card:hover{border-color:#4A4132}
+  .card:hover{border-color:var(--line-2)}
   .card.s-accepted{border-color:rgba(63,184,113,.55)}
-  .card.s-rejected{opacity:.45}
-  .card.s-canon{border-color:var(--saffron);box-shadow:0 0 0 1px rgba(235,168,58,.35)}
+  .card.s-canon{border-color:var(--saffron);box-shadow:inset 0 0 0 1px var(--saffron)}
+  .card.s-rejected{opacity:.42}
   .thumb{position:relative;aspect-ratio:3/4;background:#0D0B08;display:grid;place-items:center;cursor:zoom-in;overflow:hidden}
   .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-  .badge{position:absolute;top:6px;left:6px;font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:6px;background:rgba(0,0,0,.68)}
-  .badge.vid{color:var(--saffron)} .badge.img{color:var(--emerald)}
-  .mark{position:absolute;top:6px;right:6px;width:23px;height:23px;border-radius:50%;display:none;place-items:center;font-size:12px;font-weight:700}
-  .card.s-accepted .mark{display:grid;background:var(--ok);color:#062514}
-  .card.s-rejected .mark{display:grid;background:var(--clay);color:#2A0D05}
-  .card.s-canon .mark{display:grid;background:var(--saffron);color:#2E1E02}
+  .badge{position:absolute;top:6px;left:6px;font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:6px;background:rgba(0,0,0,.7);color:var(--ink)}
+  .mark{position:absolute;top:6px;right:6px;min-width:23px;height:23px;padding:0 6px;border-radius:12px;display:none;align-items:center;gap:4px;font-size:11px;font-weight:700}
+  .card.s-accepted .mark,.card.s-rejected .mark,.card.s-canon .mark{display:flex}
+  .card.s-accepted .mark{background:var(--ok);color:#062514}
+  .card.s-rejected .mark{background:var(--clay);color:#2A0D05}
+  .card.s-canon .mark{background:var(--saffron);color:#2E1E02}
   .body{padding:10px 11px;display:flex;flex-direction:column;gap:7px;flex:1}
   .name{font-size:12.5px;font-weight:600;line-height:1.35;word-break:break-word}
-  .meta{font-size:10.5px;color:var(--dim);display:flex;gap:7px;flex-wrap:wrap}
+  .meta{font-size:10.5px;color:var(--dim);display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .chip{background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-size:10px;color:var(--dim)}
+  .chip.hi{color:var(--saffron);border-color:rgba(235,168,58,.4)}
   .actions{display:flex;gap:5px;margin-top:auto}
-  .act{flex:1;border:1px solid var(--line);border-radius:9px;padding:7px 4px;font-size:14px;line-height:1;transition:.12s;background:var(--panel-2)}
+  .act{flex:1;border:1px solid var(--line);border-radius:9px;padding:7px 4px;font-size:13px;line-height:1;transition:.12s;background:var(--panel-2);display:flex;align-items:center;justify-content:center;gap:4px}
+  .act span{font-size:10px;font-weight:600}
+  .act.a[aria-pressed="true"]{border-color:var(--ok);color:var(--ok);background:rgba(63,184,113,.14)}
+  .act.c[aria-pressed="true"]{border-color:var(--saffron);color:var(--saffron);background:rgba(235,168,58,.14)}
+  .act.r[aria-pressed="true"]{border-color:var(--clay);color:var(--clay);background:rgba(210,96,60,.14)}
   .act:hover{transform:translateY(-1px)}
-  .act.a:hover,.act[aria-pressed="true"].a{border-color:var(--ok);color:var(--ok)}
-  .act.r:hover,.act[aria-pressed="true"].r{border-color:var(--clay);color:var(--clay)}
-  .act.c:hover,.act[aria-pressed="true"].c{border-color:var(--saffron);color:var(--saffron)}
-  .act[aria-pressed="true"].a{background:rgba(63,184,113,.12)}
-  .act[aria-pressed="true"].r{background:rgba(210,96,60,.12)}
-  .act[aria-pressed="true"].c{background:rgba(235,168,58,.12)}
-  .more{font-size:11px;color:var(--dim);text-align:left;padding:1px 0}
+  .more{font-size:11px;color:var(--dim);text-align:left}
   .more:hover{color:var(--ink)}
-  .fields{display:none;flex-direction:column;gap:6px;padding-top:2px}
+  .fields{display:none;flex-direction:column;gap:6px}
   .fields.open{display:flex}
-  .fields label{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:3px}
-  .empty{text-align:center;color:var(--dim);padding:60px 20px;font-size:14px;grid-column:1/-1;line-height:1.6}
+  .fields label{font-size:9.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:3px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .empty{text-align:center;color:var(--dim);padding:56px 20px;font-size:14px;grid-column:1/-1;line-height:1.7}
 
-  /* Фокус-режим */
+  /* сезон */
+  .lesson{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:14px}
+  .lhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .lnum{font-family:'Unbounded',sans-serif;font-size:13px;color:var(--saffron)}
+  .ltitle{font-size:17px;font-weight:600}
+  .lskill{font-size:12.5px;color:var(--dim);line-height:1.55;margin-bottom:10px;max-width:78ch}
+  .cores{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+  .core{background:rgba(34,169,141,.12);border:1px solid rgba(34,169,141,.4);color:#7FD9C4;border-radius:7px;padding:4px 9px;font-size:13px;direction:rtl}
+  .seed{background:var(--panel-2);border:1px solid var(--line);color:var(--dim);border-radius:7px;padding:4px 9px;font-size:11.5px}
+  .meter{height:8px;border-radius:99px;background:rgba(63,184,113,.10);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden;margin:2px 0 4px;max-width:420px}
+  .meter i{display:block;height:100%;background:var(--ok);border-radius:99px;transition:width .3s}
+  .mlabel{font-size:11.5px;color:var(--dim);margin-bottom:12px}
+  .shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+  .shot{background:var(--panel-2);border:1px solid var(--line);border-radius:11px;padding:11px 12px;display:flex;flex-direction:column;gap:7px}
+  .shot.has{border-color:rgba(63,184,113,.5)}
+  .shot.canon{border-color:rgba(235,168,58,.6)}
+  .shead{display:flex;align-items:center;gap:8px}
+  .sn{font-family:'Unbounded',sans-serif;font-size:11px;color:var(--faint);flex:none}
+  .sru{font-size:12.5px;line-height:1.5;color:var(--ink)}
+  .sar{direction:rtl;text-align:right;font-size:14px;color:var(--saffron);line-height:1.9}
+  .sfoot{display:flex;gap:6px;align-items:center;margin-top:auto;flex-wrap:wrap}
+  .hookline{color:var(--clay);font-weight:600;font-size:10px;letter-spacing:.06em}
+
+  /* канон */
+  .charcard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:12px}
+  .anch{display:grid;grid-template-columns:130px 1fr;gap:6px 14px;font-size:12.5px;line-height:1.6;margin:10px 0}
+  .anch dt{color:var(--saffron);font-weight:500}
+  .anch dd{color:var(--dim)}
+  .lock{background:#0F0D0A;border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:11.5px;line-height:1.65;color:#C9BCA4;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;margin-top:8px}
+  .strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .strip img{width:76px;height:101px;object-fit:cover;border-radius:8px;border:1px solid var(--saffron)}
+
+  /* решения */
+  .blk{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:15px 16px;margin-bottom:11px}
+  .blk.done{border-color:rgba(63,184,113,.5)}
+  .bq{font-size:15px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .bwhy{font-size:12.5px;color:var(--dim);line-height:1.55;margin-bottom:9px}
+  .bopts{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:8px}
+  .bopt{border:1px solid var(--line);background:var(--panel-2);border-radius:9px;padding:8px 13px;font-size:12.5px}
+  .bopt[aria-pressed="true"]{border-color:var(--ok);background:rgba(63,184,113,.14);color:var(--ok);font-weight:600}
+  .bhint{font-size:11.5px;color:var(--faint);line-height:1.5}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--dim);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+  tr.no td{color:var(--clay)}
+  .sect{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin:20px 0 9px}
+  ul.plain{list-style:none;display:flex;flex-direction:column;gap:7px}
+  ul.plain li{font-size:12.5px;line-height:1.55;color:var(--dim);padding-left:16px;position:relative}
+  ul.plain li:before{content:'·';position:absolute;left:5px;color:var(--saffron)}
+  .mist{background:var(--panel);border:1px solid rgba(210,96,60,.35);border-radius:11px;padding:11px 13px;margin-bottom:8px;font-size:12.5px;line-height:1.55}
+  .mist b{color:var(--clay)}
+
+  /* фокус */
   .focus{position:fixed;inset:0;background:#0A0906;display:none;z-index:120;flex-direction:column}
   .focus.open{display:flex}
-  .f-top{display:flex;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-  .f-count{font-family:'Unbounded',sans-serif;font-size:15px}
+  .f-top{display:flex;align-items:center;gap:14px;padding:13px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .f-count{font-family:'Unbounded',sans-serif;font-size:14px}
   .f-name{font-size:13px;color:var(--dim);flex:1;min-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .f-stage{flex:1;display:grid;place-items:center;padding:16px;overflow:hidden;position:relative}
+  .f-stage{flex:1;display:grid;place-items:center;padding:14px;overflow:hidden;position:relative}
   .f-stage img,.f-stage video{max-width:100%;max-height:100%;border-radius:10px;display:block;object-fit:contain}
-  .f-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(36,32,25,.9);border:1px solid var(--line);display:grid;place-items:center;font-size:20px}
-  .f-nav:hover{background:var(--panel-2)}
+  .f-nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;background:rgba(36,32,25,.9);border:1px solid var(--line);display:grid;place-items:center;font-size:20px}
   .f-nav.prev{left:16px} .f-nav.next{right:16px}
-  .f-bottom{padding:14px 20px 20px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}
-  .f-btn{border:1px solid var(--line);border-radius:12px;padding:12px 22px;font-size:14px;font-weight:600;background:var(--panel);display:flex;align-items:center;gap:9px;transition:.15s}
+  .f-bottom{padding:12px 20px 18px;border-top:1px solid var(--line);display:flex;gap:9px;align-items:center;justify-content:center;flex-wrap:wrap}
+  .f-btn{border:1px solid var(--line);border-radius:12px;padding:11px 20px;font-size:13.5px;font-weight:600;background:var(--panel);display:flex;align-items:center;gap:8px}
   .f-btn kbd{font-family:'Rubik';font-size:10.5px;background:var(--panel-2);border:1px solid var(--line);border-radius:5px;padding:2px 6px;color:var(--dim)}
-  .f-btn.a:hover,.f-btn.a.on{border-color:var(--ok);color:var(--ok);background:rgba(63,184,113,.12)}
-  .f-btn.c:hover,.f-btn.c.on{border-color:var(--saffron);color:var(--saffron);background:rgba(235,168,58,.12)}
-  .f-btn.r:hover,.f-btn.r.on{border-color:var(--clay);color:var(--clay);background:rgba(210,96,60,.12)}
-  .f-note{max-width:420px}
+  .f-btn.a.on,.f-btn.a:hover{border-color:var(--ok);color:var(--ok);background:rgba(63,184,113,.14)}
+  .f-btn.c.on,.f-btn.c:hover{border-color:var(--saffron);color:var(--saffron);background:rgba(235,168,58,.14)}
+  .f-btn.r.on,.f-btn.r:hover{border-color:var(--clay);color:var(--clay);background:rgba(210,96,60,.14)}
+  .f-note{max-width:340px}
 
-  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--panel-2);border:1px solid var(--line);padding:11px 18px;border-radius:11px;font-size:13px;opacity:0;pointer-events:none;transition:.22s;z-index:200}
+  /* модалка промпта */
+  .modal{position:fixed;inset:0;background:rgba(6,5,4,.82);display:none;z-index:150;padding:30px 18px;overflow:auto}
+  .modal.open{display:block}
+  .msheet{max-width:780px;margin:0 auto;background:var(--panel);border:1px solid var(--line-2);border-radius:16px;padding:20px 22px}
+  .mhead{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+  .mhead h3{font-size:16px;font-weight:600}
+  .ptext{background:#0F0D0A;border:1px solid var(--line);border-radius:11px;padding:14px 15px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.7;white-space:pre-wrap;color:#D6C9B1;max-height:52vh;overflow:auto}
+
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--panel-2);border:1px solid var(--line-2);padding:11px 18px;border-radius:11px;font-size:13px;opacity:0;pointer-events:none;transition:.22s;z-index:200}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   .progress{height:3px;background:var(--panel-2);border-radius:99px;overflow:hidden;margin-bottom:12px;display:none}
   .progress.on{display:block}
   .progress i{display:block;height:100%;background:var(--emerald);width:0;transition:width .2s}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media (max-width:640px){ .anch{grid-template-columns:1fr} body{padding:14px 13px 50px} }
 </style>
 </head>
 <body>
 
 <header>
   <div>
-    <div class="brand">Аджибус · <span>приёмка материалов</span></div>
-    <div class="sub">Генерации читаются прямо из папки на вашем компьютере</div>
+    <div class="brand">Аджибус · <span>производственный дашборд</span></div>
+    <div class="sub">Приёмка генераций + карта сезона. Файлы читаются прямо из папки на этом компьютере.</div>
   </div>
   <div class="stats">
     <div class="stat"><b id="stTotal">0</b><i>всего</i></div>
-    <div class="stat ok"><b id="stOk">0</b><i>принято</i></div>
-    <div class="stat canon"><b id="stCanon">0</b><i>канон</i></div>
-    <div class="stat no"><b id="stNo">0</b><i>отклонено</i></div>
+    <div class="stat"><b id="stOk" style="color:var(--ok)">0</b><i><span class="dotm" style="background:var(--ok)"></span>✓ принято</i></div>
+    <div class="stat"><b id="stCanon" style="color:var(--saffron)">0</b><i><span class="dotm" style="background:var(--saffron)"></span>★ канон</i></div>
+    <div class="stat"><b id="stNo" style="color:var(--clay)">0</b><i><span class="dotm" style="background:var(--clay)"></span>✕ отклонено</i></div>
+    <div class="stat"><b id="stShots">0<span style="color:var(--faint);font-size:12px">/54</span></b><i>шотов снято</i></div>
   </div>
 </header>
 
@@ -131,32 +207,55 @@
   <button class="btn primary" id="pickBtn">Подключить папку</button>
   <button class="btn" id="rescanBtn" disabled>⟳ Обновить</button>
 </div>
+<div class="hintline" id="folderHint">
+  Нужный путь: <code>~/Projects/Ajeebus/generations</code> — внутри уже разложены подпапки <code>урок-01…05</code>, <code>01-канон-аджибус</code>, <code>06-тесты-видео</code>.
+  Дашборд читает их рекурсивно и сам проставляет урок и персонажа по имени подпапки. Работает в Chrome и Edge.
+</div>
 
 <div class="progress" id="prog"><i></i></div>
 
-<div class="bar">
-  <button class="btn gold" id="focusBtn">▶ Быстрый отбор</button>
-  <div class="seg" id="filters">
-    <button data-f="all" aria-pressed="true">Все</button>
-    <button data-f="new" aria-pressed="false">Без решения</button>
-    <button data-f="accepted" aria-pressed="false">Принятые</button>
-    <button data-f="canon" aria-pressed="false">Канон</button>
-    <button data-f="rejected" aria-pressed="false">Отклонённые</button>
-  </div>
-  <div class="seg" id="kinds">
-    <button data-k="all" aria-pressed="true">Всё</button>
-    <button data-k="image" aria-pressed="false">Фото</button>
-    <button data-k="video" aria-pressed="false">Видео</button>
-  </div>
-  <input class="search" id="search" placeholder="Поиск…">
-  <span class="spacer"></span>
-  <button class="btn ghost" id="exportBtn">⧉ Отчёт</button>
-  <button class="btn ghost" id="backupBtn">↓ Бэкап</button>
-  <button class="btn ghost" id="restoreBtn">↑ Восстановить</button>
-  <input type="file" id="restoreInput" accept="application/json" hidden>
+<div class="tabs" id="tabs" role="tablist">
+  <button role="tab" data-p="review" aria-selected="true">Приёмка</button>
+  <button role="tab" data-p="season" aria-selected="false">Сезон</button>
+  <button role="tab" data-p="canon"  aria-selected="false">Канон</button>
+  <button role="tab" data-p="calls"  aria-selected="false">Решения и правила</button>
 </div>
 
-<div class="grid" id="grid"></div>
+<!-- ================= ПРИЁМКА ================= -->
+<section class="page on" id="p-review">
+  <div class="bar">
+    <button class="btn gold" id="focusBtn">▶ Быстрый отбор</button>
+    <div class="seg" id="filters">
+      <button data-f="all" aria-pressed="true">Все</button>
+      <button data-f="new" aria-pressed="false">Без решения</button>
+      <button data-f="accepted" aria-pressed="false"><span class="dotm" style="background:var(--ok)"></span>✓ принятые</button>
+      <button data-f="canon" aria-pressed="false"><span class="dotm" style="background:var(--saffron)"></span>★ канон</button>
+      <button data-f="rejected" aria-pressed="false"><span class="dotm" style="background:var(--clay)"></span>✕ отклонённые</button>
+    </div>
+    <div class="seg" id="kinds">
+      <button data-k="all" aria-pressed="true">Всё</button>
+      <button data-k="image" aria-pressed="false">Фото</button>
+      <button data-k="video" aria-pressed="false">Видео</button>
+    </div>
+    <select class="mini" id="lessonFilter"><option value="">Все уроки</option></select>
+    <input class="search" id="search" placeholder="Поиск…">
+    <span class="spacer"></span>
+    <button class="btn ghost" id="exportBtn">⧉ Отчёт</button>
+    <button class="btn ghost" id="backupBtn">↓ Бэкап</button>
+    <button class="btn ghost" id="restoreBtn">↑ Восстановить</button>
+    <input type="file" id="restoreInput" accept="application/json" hidden>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- ================= СЕЗОН ================= -->
+<section class="page" id="p-season"></section>
+
+<!-- ================= КАНОН ================= -->
+<section class="page" id="p-canon"></section>
+
+<!-- ================= РЕШЕНИЯ ================= -->
+<section class="page" id="p-calls"></section>
 
 <div class="focus" id="focus">
   <div class="f-top">
@@ -177,344 +276,462 @@
   </div>
 </div>
 
+<div class="modal" id="modal">
+  <div class="msheet">
+    <div class="mhead">
+      <h3 id="mTitle">Промпт</h3>
+      <span class="spacer"></span>
+      <button class="btn primary sm" id="mCopy">Скопировать</button>
+      <button class="btn ghost sm" id="mClose">Закрыть</button>
+    </div>
+    <div class="ptext" id="mText"></div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
+<script src="data.js"></script>
 <script>
-/* ---------- IndexedDB ---------- */
-const DBN = 'ajeebus_v3';
+/* ================= IndexedDB ================= */
+const DBN='ajeebus_v4';
 let db;
-function openDB(){
-  return new Promise((res,rej)=>{
-    const r = indexedDB.open(DBN, 1);
-    r.onupgradeneeded = ()=>{
-      const d = r.result;
-      if(!d.objectStoreNames.contains('assets')) d.createObjectStore('assets', {keyPath:'key'});
-      if(!d.objectStoreNames.contains('meta'))   d.createObjectStore('meta');
-    };
-    r.onsuccess = ()=>res(r.result);
-    r.onerror   = ()=>rej(r.error);
-  });
-}
-const tx = (store, mode) => db.transaction(store, mode).objectStore(store);
-const dbGet = (store, key) => new Promise((res,rej)=>{ const q = tx(store,'readonly').get(key); q.onsuccess=()=>res(q.result); q.onerror=()=>rej(q.error); });
-const dbAll = (store) => new Promise((res,rej)=>{ const q = tx(store,'readonly').getAll(); q.onsuccess=()=>res(q.result||[]); q.onerror=()=>rej(q.error); });
-const dbPut = (store, val, key) => new Promise((res,rej)=>{ const q = key!==undefined ? tx(store,'readwrite').put(val,key) : tx(store,'readwrite').put(val); q.onsuccess=()=>res(); q.onerror=()=>rej(q.error); });
-const dbDel = (store, key) => new Promise((res,rej)=>{ const q = tx(store,'readwrite').delete(key); q.onsuccess=()=>res(); q.onerror=()=>rej(q.error); });
+function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open(DBN,1);
+  r.onupgradeneeded=()=>{const d=r.result;
+    if(!d.objectStoreNames.contains('assets'))d.createObjectStore('assets',{keyPath:'key'});
+    if(!d.objectStoreNames.contains('meta'))d.createObjectStore('meta');};
+  r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error);});}
+const tx=(s,m)=>db.transaction(s,m).objectStore(s);
+const dbGet=(s,k)=>new Promise((res,rej)=>{const q=tx(s,'readonly').get(k);q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error);});
+const dbAll=s=>new Promise((res,rej)=>{const q=tx(s,'readonly').getAll();q.onsuccess=()=>res(q.result||[]);q.onerror=()=>rej(q.error);});
+const dbPut=(s,v,k)=>new Promise((res,rej)=>{const q=k!==undefined?tx(s,'readwrite').put(v,k):tx(s,'readwrite').put(v);q.onsuccess=()=>res();q.onerror=()=>rej(q.error);});
 
-/* ---------- состояние ---------- */
-let dirHandle = null;
-let items = [];                 // {key,name,type,thumb,status,note,tags,model,prompt,mtime,handle}
-let filter = 'all', kind = 'all', query = '';
-let focusList = [], focusIdx = 0;
-const $ = s => document.querySelector(s);
-const grid = $('#grid');
-const esc = s => (s||'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* ================= состояние ================= */
+let dirHandle=null, items=[], decisions={};
+let filter='all', kind='all', lessonF='', query='';
+let focusList=[], focusIdx=0, lastScan=0;
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>(s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const strip=it=>({key:it.key,name:it.name,path:it.path,type:it.type,thumb:it.thumb,status:it.status,
+                  note:it.note,lesson:it.lesson,shot:it.shot,char:it.char,model:it.model,mtime:it.mtime});
+const TOTAL_SHOTS = AJ.lessons.reduce((a,l)=>a+l.shots.length,0);
 
-/* ---------- превью ---------- */
-function shrink(src,w,h,max=420,q=.72){
-  const k = Math.min(max/w, max/h, 1);
-  const c = document.createElement('canvas');
-  c.width = Math.round(w*k); c.height = Math.round(h*k);
+/* ================= превью ================= */
+function shrink(src,w,h,max=430,q=.74){
+  const k=Math.min(max/w,max/h,1), c=document.createElement('canvas');
+  c.width=Math.round(w*k); c.height=Math.round(h*k);
   c.getContext('2d').drawImage(src,0,0,c.width,c.height);
   return c.toDataURL('image/jpeg',q);
 }
-const imgThumb = file => new Promise((res,rej)=>{
-  const u = URL.createObjectURL(file), im = new Image();
-  im.onload = ()=>{ try{ res(shrink(im, im.naturalWidth, im.naturalHeight)); }catch(e){ rej(e); } finally{ URL.revokeObjectURL(u); } };
-  im.onerror = ()=>{ URL.revokeObjectURL(u); rej(); };
-  im.src = u;
-});
-const vidThumb = file => new Promise((res,rej)=>{
-  const u = URL.createObjectURL(file), v = document.createElement('video');
-  v.muted = true; v.preload = 'metadata';
-  v.onloadeddata = ()=>{ v.currentTime = Math.min(1,(v.duration||2)/3); };
-  v.onseeked = ()=>{ try{ res(shrink(v, v.videoWidth, v.videoHeight)); }catch(e){ rej(e); } finally{ URL.revokeObjectURL(u); } };
-  v.onerror = ()=>{ URL.revokeObjectURL(u); rej(); };
-  v.src = u;
-});
+const imgThumb=f=>new Promise((res,rej)=>{const u=URL.createObjectURL(f),im=new Image();
+  im.onload=()=>{try{res(shrink(im,im.naturalWidth,im.naturalHeight));}catch(e){rej(e);}finally{URL.revokeObjectURL(u);}};
+  im.onerror=()=>{URL.revokeObjectURL(u);rej();}; im.src=u;});
+const vidThumb=f=>new Promise((res,rej)=>{const u=URL.createObjectURL(f),v=document.createElement('video');
+  v.muted=true; v.preload='metadata';
+  v.onloadeddata=()=>{v.currentTime=Math.min(1,(v.duration||2)/3);};
+  v.onseeked=()=>{try{res(shrink(v,v.videoWidth,v.videoHeight));}catch(e){rej(e);}finally{URL.revokeObjectURL(u);}};
+  v.onerror=()=>{URL.revokeObjectURL(u);rej();}; v.src=u;});
 
-/* ---------- папка ---------- */
+/* ================= автотеги по пути ================= */
+function autoTag(path){
+  const p=path.toLowerCase();
+  let lesson='', ch='';
+  const m=p.match(/урок[-_ ]?0?(\d)/); if(m) lesson=m[1];
+  if(/аджибус|ajibus/.test(p)) ch='ajibus';
+  else if(/юнус|yunus/.test(p)) ch='yunus';
+  else if(/анза|коз|anza|кот|cat/.test(p)) ch='anza';
+  else if(/продав|vendor|рынок|market/.test(p)) ch='seller';
+  const sm=p.match(/шот[-_ ]?(\d{1,2})|_s(\d{1,2})[._]/);
+  const shot=sm?(sm[1]||sm[2]):'';
+  return {lesson, char:ch, shot};
+}
+
+/* ================= папка ================= */
 async function pickFolder(){
-  if(!window.showDirectoryPicker){
-    toast('Браузер не умеет читать папки. Нужен Chrome или Edge.');
-    return;
-  }
-  try{
-    dirHandle = await window.showDirectoryPicker({mode:'read'});
-    await dbPut('meta', dirHandle, 'dir');
-    await scan();
-  }catch(e){ /* пользователь отменил */ }
+  if(!window.showDirectoryPicker){toast('Нужен Chrome или Edge — Safari не умеет читать папки.');return;}
+  try{ dirHandle=await window.showDirectoryPicker({mode:'read'}); await dbPut('meta',dirHandle,'dir'); await scan(); }
+  catch(e){}
 }
 async function restoreFolder(){
-  try{
-    const h = await dbGet('meta','dir');
-    if(!h) return false;
-    const p = await h.queryPermission({mode:'read'});
-    if(p === 'granted'){ dirHandle = h; return true; }
-    dirHandle = h;
-    setFolderBar(true);
-    return false;
-  }catch(e){ return false; }
+  try{ const h=await dbGet('meta','dir'); if(!h) return false;
+    dirHandle=h;
+    const p=await h.queryPermission({mode:'read'});
+    if(p==='granted') return true;
+    setFolderBar(true); return false;
+  }catch(e){return false;}
 }
 async function ensurePermission(){
   if(!dirHandle) return false;
-  const p = await dirHandle.queryPermission({mode:'read'});
-  if(p === 'granted') return true;
-  const r = await dirHandle.requestPermission({mode:'read'});
-  return r === 'granted';
+  if(await dirHandle.queryPermission({mode:'read'})==='granted') return true;
+  return await dirHandle.requestPermission({mode:'read'})==='granted';
 }
 function setFolderBar(needsClick){
-  const bar = $('#folderBar'), t = $('#folderText'), pick = $('#pickBtn');
-  $('#rescanBtn').disabled = !dirHandle;
-  if(!dirHandle){
-    bar.classList.remove('warn');
-    t.innerHTML = 'Папка не подключена';
-    pick.textContent = 'Подключить папку';
-  } else if(needsClick){
-    bar.classList.add('warn');
-    t.innerHTML = `Папка <b>${esc(dirHandle.name)}</b> <span class="path">— нужно подтвердить доступ</span>`;
-    pick.textContent = 'Разрешить доступ';
-  } else {
-    bar.classList.remove('warn');
-    t.innerHTML = `Папка <b>${esc(dirHandle.name)}</b> <span class="path">— ${items.length} файлов</span>`;
-    pick.textContent = 'Сменить папку';
+  const bar=$('#folderBar'), t=$('#folderText'), pick=$('#pickBtn');
+  $('#rescanBtn').disabled=!dirHandle;
+  if(!dirHandle){ bar.classList.remove('warn'); t.innerHTML='Папка не подключена'; pick.textContent='Подключить папку'; }
+  else if(needsClick){ bar.classList.add('warn');
+    t.innerHTML=`Папка <b>${esc(dirHandle.name)}</b> <span class="path">— браузер просит подтвердить доступ (так после каждого перезапуска)</span>`;
+    pick.textContent='Разрешить доступ'; }
+  else { bar.classList.remove('warn');
+    const vids=items.filter(i=>i.type==='video').length;
+    t.innerHTML=`Папка <b>${esc(dirHandle.name)}</b> <span class="path">— ${items.length} файлов (${items.length-vids} фото, ${vids} видео)</span>`;
+    pick.textContent='Сменить папку'; }
+}
+async function walk(handle, prefix, out){
+  for await (const [name,h] of handle.entries()){
+    if(name.startsWith('.')||name==='_zip'||name==='_to_delete') continue;
+    const path=prefix?prefix+'/'+name:name;
+    if(h.kind==='directory'){ await walk(h,path,out); }
+    else if(/\.(png|jpe?g|webp|gif|mp4|webm|mov|m4v)$/i.test(name)){ out.push({h,path}); }
   }
 }
-
 async function scan(){
   if(!dirHandle) return;
   if(!await ensurePermission()){ setFolderBar(true); return; }
-  const prog = $('#prog'); prog.classList.add('on');
-  const bar = prog.firstElementChild;
-
-  const files = [];
-  for await (const [name, h] of dirHandle.entries()){
-    if(h.kind !== 'file') continue;
-    if(!/\.(png|jpe?g|webp|gif|mp4|webm|mov|m4v)$/i.test(name)) continue;
-    files.push(h);
-  }
-  const cached = await dbAll('assets');
-  const byKey = new Map(cached.map(a=>[a.key,a]));
-  const next = [];
-  let done = 0, fresh = 0;
-
-  for(const h of files){
-    let f;
-    try{ f = await h.getFile(); }catch(e){ continue; }
-    const key = `${f.name}|${f.size}|${f.lastModified}`;
-    const isVid = /\.(mp4|webm|mov|m4v)$/i.test(f.name);
-    let rec = byKey.get(key);
+  lastScan=Date.now();
+  const prog=$('#prog'); prog.classList.add('on'); const bar=prog.firstElementChild;
+  const found=[]; await walk(dirHandle,'',found);
+  const cached=await dbAll('assets'); const byKey=new Map(cached.map(a=>[a.key,a]));
+  const next=[]; let done=0, fresh=0;
+  for(const {h,path} of found){
+    let f; try{ f=await h.getFile(); }catch(e){ continue; }
+    const key=`${path}|${f.size}|${f.lastModified}`;
+    const isVid=/\.(mp4|webm|mov|m4v)$/i.test(f.name);
+    let rec=byKey.get(key);
     if(!rec){
-      let thumb = '';
-      try{ thumb = isVid ? await vidThumb(f) : await imgThumb(f); }catch(e){}
-      rec = {key, name:f.name, type:isVid?'video':'image', thumb, status:'new',
-             note:'', tags:'', model:'', prompt:'', mtime:f.lastModified};
-      await dbPut('assets', rec);
-      fresh++;
+      let thumb=''; try{ thumb=isVid?await vidThumb(f):await imgThumb(f); }catch(e){}
+      const t=autoTag(path);
+      rec={key,name:f.name,path,type:isVid?'video':'image',thumb,status:'new',note:'',
+           lesson:t.lesson,shot:t.shot,char:t.char,model:'',mtime:f.lastModified};
+      await dbPut('assets',rec); fresh++;
     }
-    next.push({...rec, handle:h});
-    done++;
-    bar.style.width = Math.round(done/files.length*100) + '%';
+    next.push({...rec,handle:h}); done++;
+    bar.style.width=Math.round(done/found.length*100)+'%';
   }
-  items = next.sort((a,b)=>b.mtime - a.mtime);
-  prog.classList.remove('on'); bar.style.width = '0';
-  setFolderBar(false);
-  render();
-  toast(fresh ? `Новых файлов: ${fresh}` : `В папке ${items.length} файлов`);
+  items=next.sort((a,b)=>b.mtime-a.mtime);
+  prog.classList.remove('on'); bar.style.width='0';
+  setFolderBar(false); renderAll();
+  if(fresh) toast(`Новых файлов: ${fresh}`);
 }
 
-/* ---------- рендер ---------- */
+/* ================= приёмка ================= */
 function visible(){
   return items.filter(it=>{
-    if(filter !== 'all' && it.status !== filter) return false;
-    if(kind !== 'all' && it.type !== kind) return false;
+    if(filter!=='all'&&it.status!==filter) return false;
+    if(kind!=='all'&&it.type!==kind) return false;
+    if(lessonF&&String(it.lesson)!==lessonF) return false;
     if(!query) return true;
-    return (it.name+' '+it.note+' '+it.tags+' '+it.model+' '+it.prompt).toLowerCase().includes(query.toLowerCase());
+    return (it.name+' '+it.path+' '+it.note+' '+it.model).toLowerCase().includes(query.toLowerCase());
   });
 }
-function render(){
-  $('#stTotal').textContent = items.length;
-  $('#stOk').textContent    = items.filter(i=>i.status==='accepted').length;
-  $('#stNo').textContent    = items.filter(i=>i.status==='rejected').length;
-  $('#stCanon').textContent = items.filter(i=>i.status==='canon').length;
-
-  const list = visible();
+const shotOpts=(lesson,sel)=>{
+  const L=AJ.lessons.find(l=>String(l.n)===String(lesson));
+  if(!L) return '<option value="">—</option>';
+  return '<option value="">—</option>'+L.shots.map(s=>`<option value="${s.n}"${String(sel)===String(s.n)?' selected':''}>${s.n}. ${esc(s.ru.slice(0,42))}…</option>`).join('');
+};
+function renderReview(){
+  const list=visible();
+  const grid=$('#grid');
   if(!list.length){
-    grid.innerHTML = '<div class="empty">' +
-      (items.length ? 'Ничего не найдено по этому фильтру'
-       : (dirHandle ? 'В папке нет фото и видео' : 'Подключите папку, куда Chrome скачивает генерации из Flow')) +
-      '</div>';
+    grid.innerHTML='<div class="empty">'+(items.length?'Ничего не найдено по этому фильтру'
+      :(dirHandle?'В папке нет фото и видео':'Подключите папку <b>~/Projects/Ajeebus/generations</b> — дальше дашборд читает её сам'))+'</div>';
     return;
   }
-  grid.innerHTML = list.map(it=>`
-    <div class="card s-${it.status}" data-key="${esc(it.key)}">
+  grid.innerHTML=list.map(it=>{
+    const folder=it.path.includes('/')?it.path.split('/').slice(0,-1).join('/'):'';
+    const L=AJ.lessons.find(l=>String(l.n)===String(it.lesson));
+    return `<div class="card s-${it.status}" data-key="${esc(it.key)}">
       <div class="thumb" data-act="open">
-        ${it.thumb ? `<img src="${it.thumb}" alt="" loading="lazy">` : '<span style="color:#6A5B45;font-size:12px">нет превью</span>'}
-        <span class="badge ${it.type==='video'?'vid':'img'}">${it.type==='video'?'видео':'фото'}</span>
-        <span class="mark">${it.status==='accepted'?'✓':it.status==='rejected'?'✕':'★'}</span>
+        ${it.thumb?`<img src="${it.thumb}" alt="" loading="lazy">`:'<span style="color:var(--faint);font-size:12px">нет превью</span>'}
+        <span class="badge">${it.type==='video'?'видео':'фото'}</span>
+        <span class="mark">${it.status==='accepted'?'✓ принято':it.status==='rejected'?'✕ откл.':'★ канон'}</span>
       </div>
       <div class="body">
         <div class="name">${esc(it.name)}</div>
-        <div class="meta"><span>${new Date(it.mtime).toLocaleString('ru-RU',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>${it.tags?`<span>#${esc(it.tags)}</span>`:''}</div>
+        <div class="meta">
+          ${folder?`<span class="chip">${esc(folder)}</span>`:''}
+          ${L?`<span class="chip hi">урок ${L.n}${it.shot?` · шот ${esc(it.shot)}`:''}</span>`:''}
+        </div>
         <button class="more" data-act="toggle">Детали ▾</button>
         <div class="fields">
-          <div><label>Сцена / урок</label><input data-field="tags" value="${esc(it.tags)}" placeholder="урок 1, шот 3"></div>
-          <div><label>Модель</label><input data-field="model" value="${esc(it.model)}" placeholder="Veo 3.1 Fast · 8s"></div>
+          <div class="row2">
+            <div><label>Урок</label><select data-field="lesson">
+              <option value="">—</option>${AJ.lessons.map(l=>`<option value="${l.n}"${String(it.lesson)===String(l.n)?' selected':''}>${l.n}. ${esc(l.title)}</option>`).join('')}
+            </select></div>
+            <div><label>Персонаж</label><select data-field="char">
+              <option value="">—</option>${AJ.chars.map(c=>`<option value="${c.id}"${it.char===c.id?' selected':''}>${esc(c.name)}</option>`).join('')}
+            </select></div>
+          </div>
+          <div><label>Шот</label><select data-field="shot">${shotOpts(it.lesson,it.shot)}</select></div>
+          <div><label>Модель</label><input data-field="model" value="${esc(it.model)}" placeholder="Nano Banana Pro · 3:4"></div>
           <div><label>Заметка</label><textarea data-field="note">${esc(it.note)}</textarea></div>
         </div>
         <div class="actions">
-          <button class="act a" data-act="accepted" aria-pressed="${it.status==='accepted'}">✓</button>
-          <button class="act c" data-act="canon"    aria-pressed="${it.status==='canon'}">★</button>
-          <button class="act r" data-act="rejected" aria-pressed="${it.status==='rejected'}">✕</button>
+          <button class="act a" data-act="accepted" aria-pressed="${it.status==='accepted'}">✓<span>принять</span></button>
+          <button class="act c" data-act="canon"    aria-pressed="${it.status==='canon'}">★<span>канон</span></button>
+          <button class="act r" data-act="rejected" aria-pressed="${it.status==='rejected'}">✕<span>откл.</span></button>
         </div>
       </div>
-    </div>`).join('');
+    </div>`;}).join('');
 }
+async function setStatus(it,st){ it.status=(it.status===st)?'new':st; await dbPut('assets',strip(it)); }
 
-async function setStatus(it, st){
-  it.status = (it.status === st) ? 'new' : st;
-  await dbPut('assets', strip(it));
-}
-const strip = it => ({key:it.key,name:it.name,type:it.type,thumb:it.thumb,status:it.status,
-                      note:it.note,tags:it.tags,model:it.model,prompt:it.prompt,mtime:it.mtime});
-
-grid.addEventListener('click', async e=>{
-  const card = e.target.closest('.card'); if(!card) return;
-  const act = e.target.closest('[data-act]')?.dataset.act; if(!act) return;
-  const it = items.find(x=>x.key === card.dataset.key); if(!it) return;
-  if(act === 'open'){ openFocus(it); return; }
-  if(act === 'toggle'){ card.querySelector('.fields').classList.toggle('open'); return; }
-  await setStatus(it, act); render();
+$('#grid').addEventListener('click',async e=>{
+  const card=e.target.closest('.card'); if(!card) return;
+  const act=e.target.closest('[data-act]')?.dataset.act; if(!act) return;
+  const it=items.find(x=>x.key===card.dataset.key); if(!it) return;
+  if(act==='open'){ openFocus(it); return; }
+  if(act==='toggle'){ card.querySelector('.fields').classList.toggle('open'); return; }
+  await setStatus(it,act); renderAll();
 });
-grid.addEventListener('change', async e=>{
-  const f = e.target.dataset.field; if(!f) return;
-  const it = items.find(x=>x.key === e.target.closest('.card').dataset.key); if(!it) return;
-  it[f] = e.target.value; await dbPut('assets', strip(it));
-  if(f === 'tags') render();
+$('#grid').addEventListener('change',async e=>{
+  const f=e.target.dataset.field; if(!f) return;
+  const it=items.find(x=>x.key===e.target.closest('.card').dataset.key); if(!it) return;
+  it[f]=e.target.value;
+  if(f==='lesson') it.shot='';
+  await dbPut('assets',strip(it));
+  if(f==='lesson'||f==='shot'||f==='char') renderAll();
 });
 
-/* ---------- фокус-режим ---------- */
+/* ================= сезон ================= */
+function assetsOfShot(l,s){ return items.filter(i=>String(i.lesson)===String(l)&&String(i.shot)===String(s)&&i.status!=='rejected'&&i.status!=='new'); }
+function renderSeason(){
+  $('#p-season').innerHTML=AJ.lessons.map(L=>{
+    const withMat=L.shots.filter(s=>assetsOfShot(L.n,s.n).length).length;
+    const pct=Math.round(withMat/L.shots.length*100);
+    return `<div class="lesson">
+      <div class="lhead"><span class="lnum">УРОК ${L.n}</span><span class="ltitle">${esc(L.title)}</span>
+        ${L.draft?`<span class="chip hi">раскадровка черновая — ${L.shots.length} битов вместо 12</span>`:''}</div>
+      <div class="lskill">${esc(L.skill)}</div>
+      <div class="cores">${L.core.map(c=>`<span class="core">${esc(c)}</span>`).join('')}${L.seeds.map(s=>`<span class="seed">посев: ${esc(s)}</span>`).join('')}</div>
+      <div class="meter"><i style="width:${pct}%"></i></div>
+      <div class="mlabel">${withMat} из ${L.shots.length} шотов со снятым материалом · ${pct}%</div>
+      <div class="shots">${L.shots.map(s=>{
+        const a=assetsOfShot(L.n,s.n), hasCanon=a.some(x=>x.status==='canon');
+        return `<div class="shot ${a.length?(hasCanon?'canon':'has'):''}">
+          <div class="shead"><span class="sn">ШОТ ${s.n}</span>
+            ${/КРЮЧОК|ФИНАЛ|ЧЕХОВСКОЕ/.test(s.ru)?'<span class="hookline">'+(s.ru.match(/КРЮЧОК|ФИНАЛ СЕЗОНА|ЧЕХОВСКОЕ РУЖЬЁ/)||[''])[0]+'</span>':''}
+            <span class="spacer"></span>
+            ${a.length?`<span class="chip ${hasCanon?'hi':''}">${hasCanon?'★':'✓'} ${a.length}</span>`:''}</div>
+          <div class="sru">${esc(s.ru.replace(/^(КРЮЧОК|ФИНАЛ СЕЗОНА|ЧЕХОВСКОЕ РУЖЬЁ):\s*/,''))}</div>
+          ${s.ar.length?`<div class="sar">${s.ar.map(esc).join(' · ')}</div>`:''}
+          <div class="sfoot"><button class="btn sm" data-prompt="${L.n}-${s.n}">⧉ Промпт</button></div>
+        </div>`;}).join('')}</div>
+    </div>`;}).join('');
+}
+
+/* ---- сборка промпта ---- */
+function buildPrompt(ln,sn){
+  const L=AJ.lessons.find(l=>l.n===+ln), S=L.shots.find(s=>s.n===+sn);
+  const who=[];
+  const t=(S.en+' '+S.ru).toLowerCase();
+  who.push(AJ.chars[0]);
+  if(/yunus|юнус/.test(t)) who.push(AJ.chars[1]);
+  if(/goat|коз|анза/.test(t)) who.push(AJ.chars[2]);
+  if(/vendor|продав/.test(t)) who.push(AJ.chars[3]);
+  if(/\bcat\b|кот/.test(t)) who.push(AJ.chars[4]);
+  const dial=S.ar.length?`\nDIALOGUE (Modern Standard Arabic, spoken exactly as written):\n${S.ar.map(a=>`  "${a}"`).join('\n')}\n`:'\nDIALOGUE: none — no speech in this shot.\n';
+  return `[УРОК ${L.n} · ${L.title} · ШОТ ${S.n}]  — Veo 3.1 Fast · 9:16 · 8s · x1 · 10 кредитов
+
+${who.map(c=>c.lock).join('\n\n')}
+
+SCENE: ${AJ.locs[S.loc]}.
+
+ACTION: ${S.en}.
+${dial}
+CAMERA: ${S.cam}.
+
+SOUND: ${S.snd}.
+
+STYLE: photoreal live-action comedy, warm sand-emerald-saffron palette, natural film grain, Mr-Bean-style physical comedy in a completely realistic world, animals behave like real animals.
+
+${AJ.tail}
+
+The shot ends on a held pause, not mid-movement.`;
+}
+
+/* ================= канон ================= */
+function renderCanon(){
+  $('#p-canon').innerHTML=AJ.chars.map(c=>{
+    const pics=items.filter(i=>i.char===c.id&&i.status==='canon'&&i.thumb).slice(0,12);
+    return `<div class="charcard">
+      <div class="lhead"><span class="ltitle">${esc(c.name)}</span>
+        <span class="chip ${/не /.test(c.status)?'':'hi'}">${esc(c.status)}</span>
+        <span class="spacer"></span>
+        <button class="btn sm" data-lock="${c.id}">⧉ Character lock</button></div>
+      <div class="lskill">${esc(c.role)}</div>
+      <dl class="anch">${c.anchors.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+      ${c.face?`<div class="lskill"><b>Лицо.</b> ${esc(c.face)}</div>`:''}
+      ${c.voice?`<div class="lskill"><b>Голос.</b> ${esc(c.voice)}</div>`:''}
+      <div class="lock">${esc(c.lock)}</div>
+      ${pics.length?`<div class="sect" style="margin:14px 0 6px">★ Принято в канон</div><div class="strip">${pics.map(p=>`<img src="${p.thumb}" title="${esc(p.name)}" alt="">`).join('')}</div>`
+        :`<div class="bhint" style="margin-top:10px">Ни одна генерация ещё не помечена ★ канон для этого персонажа.</div>`}
+    </div>`;}).join('');
+}
+
+/* ================= решения и правила ================= */
+function renderCalls(){
+  $('#p-calls').innerHTML=`
+    <div class="sect">Открытые решения — блокируют производство</div>
+    ${AJ.blockers.map(b=>{
+      const cur=decisions[b.id];
+      return `<div class="blk ${cur?'done':''}">
+        <div class="bq">${cur?'<span style="color:var(--ok)">✓</span>':'<span style="color:var(--saffron)">●</span>'} ${esc(b.q)}</div>
+        <div class="bwhy">${esc(b.why)}</div>
+        <div class="bopts">${b.opts.map(o=>`<button class="bopt" data-dec="${b.id}" data-val="${esc(o)}" aria-pressed="${cur===o}">${esc(o)}</button>`).join('')}</div>
+        <div class="bhint">${esc(b.hint)}</div>
+      </div>`;}).join('')}
+
+    <div class="sect">Модели Flow и цены — бюджетное правило: только 0 или ≤30 кредитов</div>
+    <table><thead><tr><th>Модель</th><th>Тип</th><th style="text-align:right">Кредиты</th><th>Комментарий</th></tr></thead><tbody>
+    ${AJ.models.map(m=>`<tr class="${m.price>30?'no':''}"><td>${esc(m.name)}</td><td>${esc(m.kind)}</td><td class="num">${m.price}</td><td style="color:var(--dim)">${esc(m.note)}</td></tr>`).join('')}
+    </tbody></table>
+    <div class="bhint" style="margin-top:8px">Цена не зависит от длительности — на платных моделях всегда берём максимальные 8 секунд. Множитель x2/x4 умножает цену линейно, поэтому видео гоним по x1.</div>
+
+    <div class="sect">Обязательные правила промптинга</div>
+    <ul class="plain">${AJ.rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
+
+    <div class="sect">Уже допущенные ошибки — не повторять</div>
+    ${AJ.mistakes.map(([a,b])=>`<div class="mist"><b>${esc(a)}</b> → ${esc(b)}</div>`).join('')}`;
+}
+
+/* ================= общий рендер ================= */
+function renderAll(){
+  $('#stTotal').textContent=items.length;
+  $('#stOk').textContent=items.filter(i=>i.status==='accepted').length;
+  $('#stNo').textContent=items.filter(i=>i.status==='rejected').length;
+  $('#stCanon').textContent=items.filter(i=>i.status==='canon').length;
+  const shotsDone=AJ.lessons.reduce((a,L)=>a+L.shots.filter(s=>assetsOfShot(L.n,s.n).length).length,0);
+  $('#stShots').innerHTML=`${shotsDone}<span style="color:var(--faint);font-size:12px">/${TOTAL_SHOTS}</span>`;
+  renderReview(); renderSeason(); renderCanon(); renderCalls();
+}
+
+/* ================= фокус-режим ================= */
 async function openFocus(startItem){
-  focusList = visible();
-  if(!focusList.length) return;
-  focusIdx = startItem ? Math.max(0, focusList.findIndex(x=>x.key === startItem.key)) : 0;
-  $('#focus').classList.add('open');
-  await showFocus();
+  focusList=visible(); if(!focusList.length) return;
+  focusIdx=startItem?Math.max(0,focusList.findIndex(x=>x.key===startItem.key)):0;
+  $('#focus').classList.add('open'); await showFocus();
 }
 async function showFocus(){
-  const it = focusList[focusIdx];
-  if(!it) return;
-  $('#fCount').textContent = `${focusIdx+1} / ${focusList.length}`;
-  $('#fName').textContent = it.name;
-  $('#fNote').value = it.note || '';
+  const it=focusList[focusIdx]; if(!it) return;
+  $('#fCount').textContent=`${focusIdx+1} / ${focusList.length}`;
+  $('#fName').textContent=it.path||it.name;
+  $('#fNote').value=it.note||'';
   ['fA','fC','fR'].forEach(id=>$('#'+id).classList.remove('on'));
-  if(it.status === 'accepted') $('#fA').classList.add('on');
-  if(it.status === 'canon')    $('#fC').classList.add('on');
-  if(it.status === 'rejected') $('#fR').classList.add('on');
-
-  const media = $('#fMedia');
-  media.innerHTML = it.thumb ? `<img src="${it.thumb}" alt="">` : '';
-  try{
-    const f = await it.handle.getFile();
-    const url = URL.createObjectURL(f);
-    media.innerHTML = it.type === 'video'
-      ? `<video src="${url}" controls autoplay loop></video>`
-      : `<img src="${url}" alt="">`;
+  if(it.status==='accepted')$('#fA').classList.add('on');
+  if(it.status==='canon')$('#fC').classList.add('on');
+  if(it.status==='rejected')$('#fR').classList.add('on');
+  const media=$('#fMedia');
+  media.innerHTML=it.thumb?`<img src="${it.thumb}" alt="">`:'';
+  try{ const f=await it.handle.getFile(); const url=URL.createObjectURL(f);
+    media.innerHTML=it.type==='video'?`<video src="${url}" controls autoplay loop></video>`:`<img src="${url}" alt="">`;
   }catch(e){}
 }
-function moveFocus(d){
-  focusIdx = (focusIdx + d + focusList.length) % focusList.length;
-  showFocus();
-}
+function moveFocus(d){ focusIdx=(focusIdx+d+focusList.length)%focusList.length; showFocus(); }
 async function focusStatus(st){
-  const it = focusList[focusIdx];
-  await setStatus(it, st);
-  render();
-  if(focusIdx < focusList.length - 1) moveFocus(1); else showFocus();
+  const it=focusList[focusIdx]; await setStatus(it,st); renderAll();
+  if(focusIdx<focusList.length-1) moveFocus(1); else showFocus();
 }
-$('#focusBtn').onclick = ()=> openFocus(null);
-$('#fClose').onclick = ()=>{ $('#focus').classList.remove('open'); $('#fMedia').innerHTML=''; };
-$('#fPrev').onclick = ()=> moveFocus(-1);
-$('#fNext').onclick = ()=> moveFocus(1);
-$('#fA').onclick = ()=> focusStatus('accepted');
-$('#fC').onclick = ()=> focusStatus('canon');
-$('#fR').onclick = ()=> focusStatus('rejected');
-$('#fNote').onchange = async e=>{
-  const it = focusList[focusIdx]; if(!it) return;
-  it.note = e.target.value; await dbPut('assets', strip(it)); render();
-};
-document.addEventListener('keydown', e=>{
+$('#focusBtn').onclick=()=>openFocus(null);
+$('#fClose').onclick=()=>{$('#focus').classList.remove('open');$('#fMedia').innerHTML='';};
+$('#fPrev').onclick=()=>moveFocus(-1);
+$('#fNext').onclick=()=>moveFocus(1);
+$('#fA').onclick=()=>focusStatus('accepted');
+$('#fC').onclick=()=>focusStatus('canon');
+$('#fR').onclick=()=>focusStatus('rejected');
+$('#fNote').onchange=async e=>{const it=focusList[focusIdx];if(!it)return;it.note=e.target.value;await dbPut('assets',strip(it));renderAll();};
+document.addEventListener('keydown',e=>{
+  if($('#modal').classList.contains('open')&&e.key==='Escape'){closeModal();return;}
   if(!$('#focus').classList.contains('open')) return;
-  if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA'){
-    if(e.key === 'Escape') e.target.blur();
-    return;
-  }
-  if(e.key === 'Escape'){ $('#fClose').click(); }
-  else if(e.key === 'ArrowLeft')  moveFocus(-1);
-  else if(e.key === 'ArrowRight') moveFocus(1);
-  else if(e.key === '1') focusStatus('accepted');
-  else if(e.key === '2') focusStatus('canon');
-  else if(e.key === '3') focusStatus('rejected');
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'){ if(e.key==='Escape')e.target.blur(); return; }
+  if(e.key==='Escape')$('#fClose').click();
+  else if(e.key==='ArrowLeft')moveFocus(-1);
+  else if(e.key==='ArrowRight')moveFocus(1);
+  else if(e.key==='1')focusStatus('accepted');
+  else if(e.key==='2')focusStatus('canon');
+  else if(e.key==='3')focusStatus('rejected');
 });
 
-/* ---------- панель ---------- */
-$('#pickBtn').onclick = async ()=>{
-  if(dirHandle && await dirHandle.queryPermission({mode:'read'}) !== 'granted'){
-    if(await ensurePermission()){ await scan(); return; }
-  }
-  pickFolder();
-};
-$('#rescanBtn').onclick = ()=> scan();
-$('#filters').onclick = e=>{
-  const b = e.target.closest('button'); if(!b) return;
-  [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed','false'));
-  b.setAttribute('aria-pressed','true'); filter = b.dataset.f; render();
-};
-$('#kinds').onclick = e=>{
-  const b = e.target.closest('button'); if(!b) return;
-  [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed','false'));
-  b.setAttribute('aria-pressed','true'); kind = b.dataset.k; render();
-};
-$('#search').oninput = e=>{ query = e.target.value.trim(); render(); };
+/* ================= модалка ================= */
+function openModal(title,text){ $('#mTitle').textContent=title; $('#mText').textContent=text; $('#modal').classList.add('open'); }
+function closeModal(){ $('#modal').classList.remove('open'); }
+$('#mClose').onclick=closeModal;
+$('#modal').addEventListener('click',e=>{ if(e.target.id==='modal') closeModal(); });
+$('#mCopy').onclick=()=>copy($('#mText').textContent,'Промпт скопирован');
+document.addEventListener('click',e=>{
+  const p=e.target.closest('[data-prompt]');
+  if(p){ const [l,s]=p.dataset.prompt.split('-'); openModal(`Промпт · урок ${l}, шот ${s}`, buildPrompt(l,s)); return; }
+  const lk=e.target.closest('[data-lock]');
+  if(lk){ const c=AJ.chars.find(x=>x.id===lk.dataset.lock); copy(c.lock,'Character lock скопирован'); return; }
+  const d=e.target.closest('[data-dec]');
+  if(d){ const id=d.dataset.dec, v=d.dataset.val;
+    decisions[id]=decisions[id]===v?'':v; dbPut('meta',decisions,'decisions'); renderCalls(); return; }
+});
 
-$('#exportBtn').onclick = ()=>{
-  const g = s => items.filter(i=>i.status===s);
-  const line = i => `• ${i.name}${i.tags?` [${i.tags}]`:''}${i.model?` — ${i.model}`:''}${i.note?`\n   заметка: ${i.note}`:''}`;
-  let out = `ПРИЁМКА · Аджибус\n${new Date().toLocaleString('ru-RU')}\nВсего ${items.length} · принято ${g('accepted').length} · канон ${g('canon').length} · отклонено ${g('rejected').length}\n`;
+/* ================= панель ================= */
+$('#tabs').onclick=e=>{ const b=e.target.closest('button'); if(!b) return;
+  $$('#tabs button').forEach(x=>x.setAttribute('aria-selected','false'));
+  b.setAttribute('aria-selected','true');
+  $$('.page').forEach(p=>p.classList.remove('on'));
+  $('#p-'+b.dataset.p).classList.add('on'); };
+$('#pickBtn').onclick=async()=>{
+  if(dirHandle&&await dirHandle.queryPermission({mode:'read'})!=='granted'){ if(await ensurePermission()){ await scan(); return; } }
+  pickFolder(); };
+$('#rescanBtn').onclick=()=>scan();
+$('#filters').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');filter=b.dataset.f;renderReview();};
+$('#kinds').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');kind=b.dataset.k;renderReview();};
+$('#lessonFilter').onchange=e=>{lessonF=e.target.value;renderReview();};
+$('#search').oninput=e=>{query=e.target.value.trim();renderReview();};
+
+function copy(text,msg){ navigator.clipboard.writeText(text).then(()=>toast(msg)).catch(()=>{console.log(text);toast('Скопировать не вышло — текст в консоли');}); }
+$('#exportBtn').onclick=()=>{
+  const g=s=>items.filter(i=>i.status===s);
+  const line=i=>{const L=AJ.lessons.find(l=>String(l.n)===String(i.lesson));
+    return `• ${i.path||i.name}${L?` [урок ${L.n}${i.shot?`, шот ${i.shot}`:''}]`:''}${i.model?` — ${i.model}`:''}${i.note?`\n   заметка: ${i.note}`:''}`;};
+  let out=`ПРИЁМКА · Аджибус\n${new Date().toLocaleString('ru-RU')}\nВсего ${items.length} · принято ${g('accepted').length} · канон ${g('canon').length} · отклонено ${g('rejected').length}\n`;
   [['★ В КАНОН','canon'],['✓ ПРИНЯТО','accepted'],['✕ ОТКЛОНЕНО','rejected'],['… БЕЗ РЕШЕНИЯ','new']].forEach(([t,k])=>{
-    const a = g(k); if(a.length) out += `\n${t} (${a.length})\n` + a.map(line).join('\n') + '\n';
-  });
-  navigator.clipboard.writeText(out).then(()=>toast('Отчёт скопирован')).catch(()=>{console.log(out);toast('Отчёт в консоли')});
+    const a=g(k); if(a.length) out+=`\n${t} (${a.length})\n`+a.map(line).join('\n')+'\n'; });
+  const dec=AJ.blockers.map(b=>`${b.q}: ${decisions[b.id]||'не решено'}`).join('\n');
+  out+=`\nРЕШЕНИЯ\n${dec}\n`;
+  copy(out,'Отчёт скопирован');
 };
-$('#backupBtn').onclick = ()=>{
-  const data = items.map(strip);
-  const b = new Blob([JSON.stringify(data)], {type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(b);
-  a.download = `ajeebus-priemka-${new Date().toISOString().slice(0,10)}.json`;
-  a.click(); toast('Бэкап сохранён');
+$('#backupBtn').onclick=()=>{
+  const b=new Blob([JSON.stringify({assets:items.map(strip),decisions})],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(b);
+  a.download=`ajeebus-${new Date().toISOString().slice(0,10)}.json`; a.click(); toast('Бэкап сохранён');
 };
-$('#restoreBtn').onclick = ()=> $('#restoreInput').click();
-$('#restoreInput').onchange = async e=>{
-  const f = e.target.files[0]; if(!f) return;
-  try{
-    const data = JSON.parse(await f.text());
-    for(const rec of data) await dbPut('assets', rec);
-    await scan();
-    toast('Восстановлено: ' + data.length);
+$('#restoreBtn').onclick=()=>$('#restoreInput').click();
+$('#restoreInput').onchange=async e=>{
+  const f=e.target.files[0]; if(!f) return;
+  try{ const raw=JSON.parse(await f.text());
+    const arr=Array.isArray(raw)?raw:raw.assets||[];
+    for(const rec of arr) await dbPut('assets',rec);
+    if(raw.decisions){ decisions=raw.decisions; await dbPut('meta',decisions,'decisions'); }
+    await scan(); toast('Восстановлено: '+arr.length);
   }catch(err){ toast('Не удалось прочитать файл'); }
-  e.target.value = '';
+  e.target.value='';
 };
+let tt; function toast(m){const el=$('#toast');el.textContent=m;el.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),2400);}
 
-let tt; function toast(m){ const el=$('#toast'); el.textContent=m; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),2400); }
+/* пересканировать при возврате на вкладку */
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible'&&dirHandle&&Date.now()-lastScan>8000) scan();
+});
 
-/* ---------- старт ---------- */
-(async ()=>{
-  db = await openDB();
-  const cached = await dbAll('assets');
-  if(cached.length){ items = cached.sort((a,b)=>b.mtime-a.mtime); render(); }
-  const ok = await restoreFolder();
-  if(ok) await scan(); else { setFolderBar(!!dirHandle); render(); }
+/* ================= старт ================= */
+(async()=>{
+  $('#lessonFilter').innerHTML='<option value="">Все уроки</option>'+AJ.lessons.map(l=>`<option value="${l.n}">Урок ${l.n} · ${l.title}</option>`).join('');
+  db=await openDB();
+  decisions=(await dbGet('meta','decisions'))||{};
+  const cached=await dbAll('assets');
+  if(cached.length) items=cached.sort((a,b)=>b.mtime-a.mtime);
+  renderAll();
+  const ok=await restoreFolder();
+  if(ok) await scan(); else setFolderBar(!!dirHandle);
 })();
 </script>
 </body>
