@@ -379,7 +379,7 @@ function setFolderBar(needsClick){
 }
 async function walk(handle, prefix, out){
   for await (const [name,h] of handle.entries()){
-    if(name.startsWith('.')||name==='_zip'||name==='_to_delete') continue;
+    if(name.startsWith('.')||name.startsWith('_')) continue;
     const path=prefix?prefix+'/'+name:name;
     if(h.kind==='directory'){ await walk(h,path,out); }
     else if(/\.(png|jpe?g|webp|gif|mp4|webm|mov|m4v)$/i.test(name)){ out.push({h,path}); }
