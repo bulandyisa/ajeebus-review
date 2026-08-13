@@ -336,7 +336,37 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
 
 let tt; function toast(m){ const el=$('#toast'); el.textContent=m; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),2300); }
 
-(async ()=>{ index = await store.load(); render(); })();
+async function boot(){
+  index = await store.load();
+  render();
+  try{
+    const r = await fetch('./gallery.json?t=' + Date.now());
+    if(!r.ok) return;
+    const remote = await r.json();
+    if(!Array.isArray(remote) || !remote.length) return;
+    const mine = new Map(index.map(i=>[i.id, i]));
+    let added = 0;
+    const merged = remote.map(g=>{
+      const own = mine.get(g.id);
+      mine.delete(g.id);
+      if(!own) added++;
+      return {
+        id:g.id, name:g.name, size:0, type:g.type||'image', thumb:g.thumb,
+        status: own ? own.status : 'new',
+        note:   own ? own.note   : '',
+        tags:   own && own.tags ? own.tags : (g.tags||''),
+        model:  own && own.model ? own.model : (g.model||''),
+        prompt: own && own.prompt ? own.prompt : (g.prompt||''),
+        added:  g.added || Date.now()
+      };
+    });
+    index = [...merged, ...mine.values()];
+    await store.save(index);
+    render();
+    if(added) toast('Загружено из галереи: ' + added);
+  }catch(e){}
+}
+boot();
 </script>
 </body>
 </html>
