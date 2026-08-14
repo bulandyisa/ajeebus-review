@@ -51,11 +51,11 @@ window.AJ = {
 
   /* ---------- локации для промптов ---------- */
   locs: {
-    alley:'a narrow sunlit alley in an old Middle Eastern medina, sand-coloured stone walls, potted mint by the door of a small antique shop, a carved wooden sign above it reading عجيبوس',
-    shop:'inside a cluttered antique shop: shelves crowded with brass globes, oil lamps, astrolabes, leather-bound books and wooden chests, dust motes floating in shafts of warm light',
-    tea:'the tea corner of the antique shop: a brass teapot on a small stove, a low table with tiny glasses, worn cushions on a rug',
-    yard:'a small sunlit inner courtyard behind the shop, clay pots, hanging laundry, a scruffy goat chewing something',
-    market:'a busy old-town market stall under a striped awning, crates of red apples and yellow bananas, a moustached vendor in a canvas apron'
+    alley:'a sunny modern city street, glass and concrete buildings, scooters and parked cars, a small contemporary café on the corner with potted plants by the door',
+    shop:'a bright contemporary apartment, floor-to-ceiling windows with a city skyline, pale wood floors, bookshelves, houseplants, a laptop and a phone on a wooden table',
+    tea:'the kitchen corner of the same modern apartment: induction hob, glass kettle, mugs and small tea glasses on a clean countertop, a bowl of dates',
+    yard:'a modern rooftop terrace above the city, potted plants, simple outdoor furniture, laundry drying on a line, skyline in the background',
+    market:'a modern grocery store aisle, bright LED lighting, crates of red apples and yellow bananas, price labels, a young shop assistant in a branded apron'
   },
 
   /* ---------- сезон ---------- */
