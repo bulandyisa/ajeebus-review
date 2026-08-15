@@ -121,6 +121,60 @@
   .shotlabel b{color:var(--saffron);font-weight:650}
   .miss{grid-column:1/-1;font-size:12px;color:var(--dim);background:rgba(210,96,60,.07);border:1px dashed rgba(210,96,60,.3);border-radius:9px;padding:8px 11px;line-height:1.5}
 
+  /* ---- вкладка «Уроки» ---- */
+  .lpick{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}
+  .lbtn{flex:1 1 170px;min-width:150px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:11px 13px;transition:.14s;position:relative;overflow:hidden}
+  .lbtn:hover{border-color:var(--line-2)}
+  .lbtn[aria-pressed="true"]{border-color:var(--saffron);background:var(--panel-2)}
+  .lbtn .ln{font-family:'Unbounded',sans-serif;font-size:11px;color:var(--saffron);letter-spacing:.04em}
+  .lbtn .lt{font-size:14px;font-weight:600;margin:3px 0 7px;line-height:1.25}
+  .lbtn .lc{font-size:11.5px;color:var(--dim);font-variant-numeric:tabular-nums}
+  .lbtn .lbar{position:absolute;left:0;right:0;bottom:0;height:3px;background:#241f18}
+  .lbtn .lbar i{display:block;height:100%;background:var(--saffron)}
+  .lbtn.draft .ln{color:var(--clay)}
+
+  .lhero{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px;margin-bottom:14px}
+  .lhero h2{font-size:19px;font-weight:650;margin-bottom:5px}
+  .lhero .lskill{color:var(--dim);font-size:13.5px;line-height:1.55;margin-bottom:9px}
+
+  .sfilters{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+
+  .srow{display:grid;grid-template-columns:150px 1fr;gap:15px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px;margin-bottom:11px;transition:.14s}
+  .srow:hover{border-color:var(--line-2)}
+  .srow.st-accepted{border-color:rgba(63,184,113,.5)}
+  .srow.st-canon{border-color:var(--saffron)}
+  .srow.st-rejected{opacity:.5}
+  .srow.st-none{border-style:dashed;border-color:rgba(210,96,60,.32);background:transparent}
+  .smedia{position:relative;aspect-ratio:9/16;background:#0D0B08;border-radius:10px;overflow:hidden;display:grid;place-items:center;cursor:pointer}
+  .smedia img,.smedia video{width:100%;height:100%;object-fit:cover;display:block}
+  .smedia video{object-fit:contain;background:#000}
+  .smedia .play{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.28);color:#fff;font-size:26px;pointer-events:none;transition:.15s}
+  .smedia:hover .play{background:rgba(0,0,0,.12)}
+  .smedia .none{color:var(--faint);font-size:11.5px;text-align:center;padding:0 10px;line-height:1.5;cursor:default}
+  .takes{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}
+  .takes button{width:34px;height:34px;border-radius:7px;overflow:hidden;border:1px solid var(--line);padding:0}
+  .takes button[aria-pressed="true"]{border-color:var(--saffron)}
+  .takes img{width:100%;height:100%;object-fit:cover;display:block}
+
+  .sinfo{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .shdr{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .sbadge{font-family:'Unbounded',sans-serif;font-size:11px;color:var(--saffron);letter-spacing:.05em}
+  .hooktag{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--clay);border:1px solid rgba(210,96,60,.45);border-radius:5px;padding:2px 6px}
+  .stext{font-size:14px;line-height:1.55}
+  .sarline{font-size:16px;color:var(--saffron);direction:rtl;text-align:right;line-height:1.9;font-family:'Noto Naskh Arabic',serif}
+  .smeta{font-size:11.5px;color:var(--faint);line-height:1.6}
+  .sfoot2{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+  .sfile{font-size:11px;color:var(--dim);background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:3px 8px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .snote{flex:1 1 190px;min-width:150px;background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:6px 9px;color:var(--ink);font-size:12px;font-family:inherit}
+  .snote:focus{outline:none;border-color:var(--saffron)}
+  .sact{display:flex;gap:5px}
+  .sact button{border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-size:12px;background:var(--panel-2);transition:.12s}
+  .sact button:hover{transform:translateY(-1px)}
+  .sact .a[aria-pressed="true"]{border-color:var(--ok);color:var(--ok);background:rgba(63,184,113,.14)}
+  .sact .c[aria-pressed="true"]{border-color:var(--saffron);color:var(--saffron);background:rgba(235,168,58,.14)}
+  .sact .r[aria-pressed="true"]{border-color:var(--clay);color:var(--clay);background:rgba(210,96,60,.14)}
+  @media (max-width:700px){ .srow{grid-template-columns:120px 1fr} }
+
   /* сезон */
   .lesson{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:14px}
   .lhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
@@ -240,14 +294,18 @@
 <div class="progress" id="prog"><i></i></div>
 
 <div class="tabs" id="tabs" role="tablist">
-  <button role="tab" data-p="review" aria-selected="true">Приёмка</button>
-  <button role="tab" data-p="season" aria-selected="false">Сезон</button>
+  <button role="tab" data-p="lessons" aria-selected="true">Уроки</button>
+  <button role="tab" data-p="review" aria-selected="false">Все файлы</button>
+  <button role="tab" data-p="season" aria-selected="false">Сезон целиком</button>
   <button role="tab" data-p="canon"  aria-selected="false">Канон</button>
   <button role="tab" data-p="calls"  aria-selected="false">Решения и правила</button>
 </div>
 
-<!-- ================= ПРИЁМКА ================= -->
-<section class="page on" id="p-review">
+<!-- ================= УРОКИ ================= -->
+<section class="page on" id="p-lessons"></section>
+
+<!-- ================= ВСЕ ФАЙЛЫ ================= -->
+<section class="page" id="p-review">
   <div class="bar">
     <button class="btn gold" id="focusBtn">▶ Быстрый отбор</button>
     <div class="seg" id="filters">
@@ -342,6 +400,9 @@ const dbPut=(s,v,k)=>new Promise((res,rej)=>{const q=k!==undefined?tx(s,'readwri
 let dirHandle=null, items=[], decisions={};
 let filter='all', kind='all', lessonF='', query='';
 let grouping=localStorage.getItem('aj_group')||'sect';
+let curLesson=+(localStorage.getItem('aj_lesson')||1);
+let shotFilter='all';
+let selTake={};
 let closedSections=new Set(JSON.parse(localStorage.getItem('aj_closed')||'[]'));
 const saveFold=()=>localStorage.setItem('aj_closed',JSON.stringify([...closedSections]));
 let focusList=[], focusIdx=0, lastScan=0;
@@ -378,9 +439,13 @@ function autoTag(path){
   else if(/анза|коз|anza|кот|cat/.test(p)) ch='anza';
   else if(/продав|vendor|рынок|market/.test(p)) ch='seller';
   const sm=p.match(/шот[-_ ]?(\d{1,2})|_s(\d{1,2})[._]/);
-  const shot=sm?(sm[1]||sm[2]):'';
+  const shot=sm?String(Number(sm[1]||sm[2])):'';
   return {lesson, char:ch, shot};
 }
+
+/* Номер шота в имени файла пишется с ведущим нулём («шот-07»), а в сценарии — числом (7).
+   Сравнивать строками нельзя: "07" !== "7". Везде сверяем числа. */
+const eqShot=(a,b)=>a!==''&&a!=null&&b!==''&&b!=null&&Number(a)===Number(b);
 
 /* ================= разделы ================= */
 /* Каждый файл попадает ровно в один раздел. Порядок = порядок работы над сериалом. */
@@ -482,7 +547,7 @@ function visible(){
 const shotOpts=(lesson,sel)=>{
   const L=AJ.lessons.find(l=>String(l.n)===String(lesson));
   if(!L) return '<option value="">—</option>';
-  return '<option value="">—</option>'+L.shots.map(s=>`<option value="${s.n}"${String(sel)===String(s.n)?' selected':''}>${s.n}. ${esc(s.ru.slice(0,42))}…</option>`).join('');
+  return '<option value="">—</option>'+L.shots.map(s=>`<option value="${s.n}"${eqShot(sel,s.n)?' selected':''}>${s.n}. ${esc(s.ru.slice(0,42))}…</option>`).join('');
 };
 function cardHTML(it){
   const folder=it.path.includes('/')?it.path.split('/').slice(0,-1).join('/'):'';
@@ -626,7 +691,7 @@ $('#grid').addEventListener('change',async e=>{
 });
 
 /* ================= сезон ================= */
-function assetsOfShot(l,s){ return items.filter(i=>String(i.lesson)===String(l)&&String(i.shot)===String(s)&&i.status!=='rejected'&&i.status!=='new'); }
+function assetsOfShot(l,s){ return items.filter(i=>String(i.lesson)===String(l)&&eqShot(i.shot,s)&&i.status!=='rejected'&&i.status!=='new'); }
 function renderSeason(){
   $('#p-season').innerHTML=AJ.lessons.map(L=>{
     const withMat=L.shots.filter(s=>assetsOfShot(L.n,s.n).length).length;
@@ -650,6 +715,108 @@ function renderSeason(){
           <div class="sfoot"><button class="btn sm" data-prompt="${L.n}-${s.n}">⧉ Промпт</button></div>
         </div>`;}).join('')}</div>
     </div>`;}).join('');
+}
+
+/* ================= вкладка «Уроки» ================= */
+/* все материалы шота, включая брак и неразобранное — в отличие от assetsOfShot */
+const TAKE_RANK={canon:0,accepted:1,new:2,rejected:3};
+function takesOfShot(l,s){
+  return items.filter(i=>String(i.lesson)===String(l)&&eqShot(i.shot,s))
+              .sort((a,b)=>(TAKE_RANK[a.status]-TAKE_RANK[b.status])||(b.mtime-a.mtime));
+}
+const HOOK=/^(КРЮЧОК|ФИНАЛ СЕЗОНА|ЧЕХОВСКОЕ РУЖЬЁ)/;
+
+function renderLessons(){
+  const el=$('#p-lessons');
+  const L=AJ.lessons.find(l=>l.n===curLesson)||AJ.lessons[0];
+
+  /* переключатель уроков */
+  const picker=AJ.lessons.map(x=>{
+    const done=x.shots.filter(s=>takesOfShot(x.n,s.n).length).length;
+    const ok=x.shots.filter(s=>takesOfShot(x.n,s.n).some(t=>t.status==='accepted'||t.status==='canon')).length;
+    const pct=Math.round(done/x.shots.length*100);
+    return `<button class="lbtn ${x.draft?'draft':''}" data-lesson="${x.n}" aria-pressed="${x.n===L.n}">
+      <div class="ln">УРОК ${x.n}${x.draft?' · черновик':''}</div>
+      <div class="lt">${esc(x.title)}</div>
+      <div class="lc">снято ${done} из ${x.shots.length}${ok?` · принято ${ok}`:''}</div>
+      <span class="lbar"><i style="width:${pct}%"></i></span>
+    </button>`;}).join('');
+
+  /* строки шотов */
+  const rows=L.shots.map(S=>{
+    const takes=takesOfShot(L.n,S.n);
+    const sel=takes.find(t=>t.key===selTake[`${L.n}-${S.n}`])||takes[0];
+    const st=sel?sel.status:'none';
+
+    if(shotFilter==='missing'&&takes.length) return '';
+    if(shotFilter==='bad'&&!(st==='rejected'||!takes.length)) return '';
+    if(shotFilter==='undecided'&&!(takes.length&&st==='new')) return '';
+
+    const hook=(S.ru.match(HOOK)||[''])[0];
+    const media=sel
+      ? `<div class="smedia" data-play="${esc(sel.key)}">
+           ${sel.thumb?`<img src="${sel.thumb}" alt="">`:''}
+           <span class="play">${sel.type==='video'?'▶':(sel.thumb?'⤢':'открыть')}</span>
+         </div>`
+      : `<div class="smedia"><span class="none">не снято</span></div>`;
+
+    const takesStrip=takes.length>1
+      ? `<div class="takes">${takes.map(t=>`<button data-take="${esc(t.key)}" data-slot="${L.n}-${S.n}" aria-pressed="${t.key===sel.key}" title="${esc(t.name)}">${t.thumb?`<img src="${t.thumb}" alt="">`:'·'}</button>`).join('')}</div>`
+      : '';
+
+    return `<div class="srow st-${takes.length?st:'none'}" data-slot="${L.n}-${S.n}">
+      <div>
+        ${media}
+        ${takesStrip}
+      </div>
+      <div class="sinfo">
+        <div class="shdr">
+          <span class="sbadge">ШОТ ${S.n}</span>
+          ${hook?`<span class="hooktag">${esc(hook)}</span>`:''}
+          ${takes.length>1?`<span class="chip">${takes.length} дубля</span>`:''}
+          <span class="spacer"></span>
+          ${sel?`<div class="sact">
+            <button class="a" data-act2="accepted" aria-pressed="${st==='accepted'}">✓ принять</button>
+            <button class="c" data-act2="canon"    aria-pressed="${st==='canon'}">★ канон</button>
+            <button class="r" data-act2="rejected" aria-pressed="${st==='rejected'}">✕ брак</button>
+          </div>`:'<span class="chip">материала нет</span>'}
+        </div>
+        <div class="stext">${esc(S.ru.replace(HOOK,'').replace(/^:\s*/,''))}</div>
+        ${S.ar.length?`<div class="sarline">${S.ar.map(esc).join(' · ')}</div>`:''}
+        <div class="smeta">Камера: ${esc(S.cam)}<br>Звук: ${esc(S.snd)}</div>
+        <div class="sfoot2">
+          <button class="btn sm" data-prompt="${L.n}-${S.n}">⧉ Промпт</button>
+          ${sel?`<span class="sfile" title="${esc(sel.path)}">${esc(sel.name)}</span>`:''}
+          ${sel?`<input class="snote" data-note="${esc(sel.key)}" value="${esc(sel.note)}" placeholder="Заметка — что править">`:''}
+        </div>
+      </div>
+    </div>`;}).join('');
+
+  const shotsWith=L.shots.filter(s=>takesOfShot(L.n,s.n).length).length;
+  const missing=L.shots.filter(s=>!takesOfShot(L.n,s.n).length).map(s=>s.n);
+
+  el.innerHTML=`
+    <div class="lpick">${picker}</div>
+    <div class="lhero">
+      <h2>Урок ${L.n}. ${esc(L.title)}</h2>
+      <div class="lskill">${esc(L.skill)}</div>
+      <div class="cores">${L.core.map(c=>`<span class="core">${esc(c)}</span>`).join('')}${L.seeds.map(s=>`<span class="seed">посев: ${esc(s)}</span>`).join('')}</div>
+      <div class="meter" style="margin-top:11px"><i style="width:${Math.round(shotsWith/L.shots.length*100)}%"></i></div>
+      <div class="mlabel">${shotsWith} из ${L.shots.length} шотов со снятым материалом${missing.length?` · не снято: ${missing.join(', ')}`:' · снято всё'}</div>
+      ${L.draft?`<div class="bhint" style="margin-top:8px;color:var(--clay)">Раскадровка черновая — ${L.shots.length} битов вместо 12 шотов.</div>`:''}
+    </div>
+    <div class="sfilters">
+      <div class="seg" id="shotSeg">
+        <button data-sf="all" aria-pressed="${shotFilter==='all'}">Все шоты</button>
+        <button data-sf="missing" aria-pressed="${shotFilter==='missing'}">Не снятые</button>
+        <button data-sf="undecided" aria-pressed="${shotFilter==='undecided'}">Без решения</button>
+        <button data-sf="bad" aria-pressed="${shotFilter==='bad'}">Брак и дыры</button>
+      </div>
+      <button class="btn gold" id="playLesson">▶ Смотреть урок подряд</button>
+      <span class="spacer"></span>
+      <button class="btn ghost sm" id="copyMissing">⧉ Список того, что снять</button>
+    </div>
+    ${rows||'<div class="empty">По этому фильтру шотов нет</div>'}`;
 }
 
 /* ---- сборка промпта ---- */
@@ -727,15 +894,75 @@ function renderCalls(){
     ${AJ.mistakes.map(([a,b])=>`<div class="mist"><b>${esc(a)}</b> → ${esc(b)}</div>`).join('')}`;
 }
 
+/* ---- события вкладки «Уроки» ---- */
+$('#p-lessons').addEventListener('click',async e=>{
+  const lb=e.target.closest('[data-lesson]');
+  if(lb){ curLesson=+lb.dataset.lesson; localStorage.setItem('aj_lesson',curLesson); renderLessons(); return; }
+
+  const sf=e.target.closest('[data-sf]');
+  if(sf){ shotFilter=sf.dataset.sf; renderLessons(); return; }
+
+  if(e.target.closest('#playLesson')){
+    const L=AJ.lessons.find(l=>l.n===curLesson);
+    const list=[];
+    L.shots.forEach(S=>{ const t=takesOfShot(L.n,S.n);
+      if(!t.length) return;
+      list.push(t.find(x=>x.key===selTake[`${L.n}-${S.n}`])||t[0]); });
+    if(!list.length){ toast('В этом уроке пока нечего смотреть'); return; }
+    focusList=list; focusIdx=0; $('#focus').classList.add('open'); showFocus(); return;
+  }
+
+  if(e.target.closest('#copyMissing')){
+    const L=AJ.lessons.find(l=>l.n===curLesson);
+    const miss=L.shots.filter(s=>!takesOfShot(L.n,s.n).length);
+    const bad=L.shots.filter(s=>{const t=takesOfShot(L.n,s.n);return t.length&&t.every(x=>x.status==='rejected');});
+    const txt=`УРОК ${L.n}. ${L.title}\n\nНЕ СНЯТО (${miss.length}):\n`
+      +(miss.map(s=>`  Шот ${s.n}. ${s.ru}`).join('\n')||'  —')
+      +`\n\nВЕСЬ МАТЕРИАЛ ОТКЛОНЁН (${bad.length}):\n`
+      +(bad.map(s=>`  Шот ${s.n}. ${s.ru}`).join('\n')||'  —');
+    copy(txt,'Список скопирован'); return;
+  }
+
+  const tk=e.target.closest('[data-take]');
+  if(tk){ selTake[tk.dataset.slot]=tk.dataset.take; renderLessons(); return; }
+
+  const pl=e.target.closest('[data-play]');
+  if(pl){
+    const it=items.find(x=>x.key===pl.dataset.play); if(!it) return;
+    try{
+      const f=await it.handle.getFile(), url=URL.createObjectURL(f);
+      pl.innerHTML=it.type==='video'
+        ? `<video src="${url}" controls autoplay loop playsinline></video>`
+        : `<img src="${url}" alt="">`;
+      pl.removeAttribute('data-play');
+    }catch(err){ toast('Файл недоступен — нажмите «Обновить»'); }
+    return;
+  }
+
+  const a2=e.target.closest('[data-act2]');
+  if(a2){
+    const row=a2.closest('.srow'), slot=row.dataset.slot;
+    const [ln,sn]=slot.split('-');
+    const takes=takesOfShot(ln,sn);
+    const it=takes.find(t=>t.key===selTake[slot])||takes[0]; if(!it) return;
+    await setStatus(it,a2.dataset.act2); renderAll(); return;
+  }
+});
+$('#p-lessons').addEventListener('change',async e=>{
+  const n=e.target.closest('[data-note]'); if(!n) return;
+  const it=items.find(x=>x.key===n.dataset.note); if(!it) return;
+  it.note=n.value; await dbPut('assets',strip(it)); toast('Заметка сохранена');
+});
+
 /* ================= общий рендер ================= */
 function renderAll(){
   $('#stTotal').textContent=items.length;
   $('#stOk').textContent=items.filter(i=>i.status==='accepted').length;
   $('#stNo').textContent=items.filter(i=>i.status==='rejected').length;
   $('#stCanon').textContent=items.filter(i=>i.status==='canon').length;
-  const shotsDone=AJ.lessons.reduce((a,L)=>a+L.shots.filter(s=>assetsOfShot(L.n,s.n).length).length,0);
+  const shotsDone=AJ.lessons.reduce((a,L)=>a+L.shots.filter(s=>takesOfShot(L.n,s.n).length).length,0);
   $('#stShots').innerHTML=`${shotsDone}<span style="color:var(--faint);font-size:12px">/${TOTAL_SHOTS}</span>`;
-  renderReview(); renderSeason(); renderCanon(); renderCalls();
+  renderLessons(); renderReview(); renderSeason(); renderCanon(); renderCalls();
 }
 
 /* ================= фокус-режим ================= */
