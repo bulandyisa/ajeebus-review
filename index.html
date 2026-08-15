@@ -119,6 +119,9 @@
   .shotlabel{grid-column:1/-1;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin:8px 0 -3px;padding-top:6px;border-top:1px dashed var(--line)}
   .shotlabel:first-child{border-top:0;padding-top:0;margin-top:0}
   .shotlabel b{color:var(--saffron);font-weight:650}
+  .subgrp{margin-bottom:16px}
+  .subgrp:last-child{margin-bottom:0}
+  .subhdr{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--saffron);margin:0 0 9px;padding-bottom:6px;border-bottom:1px solid var(--line)}
   .miss{grid-column:1/-1;font-size:12px;color:var(--dim);background:rgba(210,96,60,.07);border:1px dashed rgba(210,96,60,.3);border-radius:9px;padding:8px 11px;line-height:1.5}
 
   /* ---- вкладка «Уроки» ---- */
@@ -648,8 +651,45 @@ function renderReview(){
         inner+=`<div class="miss">Не снято ${missing.length} из ${total}: шоты ${missing.join(', ')}</div>`;
       }
       inner=`<div class="grid">${inner}</div>`;
+    } else if(s.id==='loc' && AJ.locplan){
+      /* локации: сверяем с планом — какие ракурсы уже есть, каких не хватает */
+      const has=id=>arr.some(it=>(it.path+'/'+it.name).toLowerCase().includes(id.toLowerCase()));
+      const done=AJ.locplan.reduce((a,g)=>a+g.items.filter(i=>has(i.id)).length,0);
+      const total=AJ.locplan.reduce((a,g)=>a+g.items.length,0);
+      meter=`<span class="smeter" title="${done} из ${total} ракурсов"><i style="width:${Math.round(done/total*100)}%"></i></span>`;
+      sub=`${done} из ${total} запланированных ракурсов · референсы обстановки держат кадр одинаковым`;
+      inner=AJ.locplan.map(g=>{
+        const mine=arr.filter(it=>(it.path||'').includes('/'+g.folder+'/'));
+        const miss=g.items.filter(i=>!has(i.id));
+        return `<div class="subgrp">
+          <div class="subhdr">${esc(g.group)} <span class="pill">${g.items.length-miss.length} / ${g.items.length}</span>
+            <span class="spacer"></span><span style="text-transform:none;letter-spacing:0;color:var(--dim);font-size:11px">${esc(g.use)}</span></div>
+          ${mine.length?`<div class="grid">${mine.sort((a,b)=>a.name.localeCompare(b.name,'ru')).map(cardHTML).join('')}</div>`:''}
+          ${miss.length?`<div class="miss" style="margin-top:${mine.length?'10px':'0'}">Не сгенерировано ${miss.length}: ${miss.map(i=>esc(i.id.split('_').slice(1).join(' '))).join(' · ')}</div>`:''}
+        </div>`;}).join('');
+      const orphan=arr.filter(it=>!AJ.locplan.some(g=>(it.path||'').includes('/'+g.folder+'/')));
+      if(orphan.length) inner+=`<div class="subgrp"><div class="subhdr">вне плана <span class="pill">${orphan.length}</span></div>
+        <div class="grid">${orphan.map(cardHTML).join('')}</div></div>`;
     } else {
-      inner=`<div class="grid">${arr.sort((a,b)=>b.mtime-a.mtime).map(cardHTML).join('')}</div>`;
+      /* внутри раздела дробим по подпапке — иначе полсотни плашек локаций сливаются в кашу */
+      const sub2=new Map();
+      const sub=sub2;
+      arr.forEach(it=>{
+        const parts=(it.path||'').split('/');
+        const k=parts.length>2?parts[parts.length-2]:'';
+        if(!sub.has(k)) sub.set(k,[]);
+        sub.get(k).push(it);
+      });
+      if(sub.size>1){
+        inner=[...sub.entries()]
+          .sort((a,b)=>a[0]===''?1:b[0]===''?-1:a[0].localeCompare(b[0],'ru'))
+          .map(([k,list2])=>`<div class="subgrp">
+             <div class="subhdr">${esc(k||'без подпапки')} <span class="pill">${list2.length}</span></div>
+             <div class="grid">${list2.sort((a,b)=>a.name.localeCompare(b.name,'ru')).map(cardHTML).join('')}</div>
+           </div>`).join('');
+      } else {
+        inner=`<div class="grid">${arr.sort((a,b)=>b.mtime-a.mtime).map(cardHTML).join('')}</div>`;
+      }
     }
 
     const open=closedSections.has(s.id)?'closed':'';

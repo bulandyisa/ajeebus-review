@@ -59,6 +59,76 @@ window.AJ = {
   },
 
   /* ---------- сезон ---------- */
+  /* ---------- план плашек локаций (50 шт., Nano Banana Pro, 0 кредитов) ---------- */
+  locplan: [
+    { group:"Гостиная", folder:"гостиная", use:"У1Ш9–10, У2Ш2–10, У2Ш12, У3Ш1, У4Ш1–5", items:[
+      { n:1, id:"гостиная_01_широкий-утро", en:"Wide establishing shot of the same bright modern living room as the reference image: floor-to-ceiling windows with a sunny city skyline, pale wood floor, low bookshelf, houseplants, a wooden table with a laptop. Morning light." },
+      { n:2, id:"гостиная_02_широкий-вечер", en:"The same living room in the evening: city lights in the windows, warm lamp light, the rest of the room in soft shadow." },
+      { n:3, id:"гостиная_03_обратный-ракурс", en:"Reverse angle of the same living room, shot from the windows back into the room: the doorway to the hallway, the bookshelf wall, an armchair." },
+      { n:4, id:"гостиная_04_стеллаж", en:"Medium shot of the bookshelf wall in the same living room: stacks of books, a few objects on the shelves, a plant. Soft daylight." },
+      { n:5, id:"гостиная_05_стол-крупно", en:"Close-up of the wooden table in the same living room: a laptop, a phone, a pen, a stack of books, a glass of water." },
+      { n:6, id:"гостиная_06_странный-гаджет", en:"Close-up of one shelf in the same living room with a strange unidentifiable gadget standing among the books." },
+      { n:7, id:"гостиная_07_кресло-у-окна", en:"Medium shot of a soft armchair by the window in the same living room, evening, city lights behind it." },
+      { n:8, id:"гостиная_08_низкий-ракурс", en:"Very low camera angle across the floor of the same living room, table legs and the bookshelf base in frame, the window light above." },
+      { n:9, id:"гостиная_09_проход-из-прихожей", en:"View from the hallway through the open doorway into the same bright living room, the room visible beyond." },
+      { n:10, id:"гостиная_10_вверх-дном", en:"The same living room turned upside down: books pulled off the shelves onto the floor, cushions thrown about, drawers open, chaos of a frantic search. Daylight." },
+    ]},
+    { group:"Кухонный угол", folder:"кухня", use:"У3Ш2–10, У4Ш9", items:[
+      { n:11, id:"кухня_11_широкий-утро", en:"Wide shot of the same modern kitchen corner as the reference image: white countertop, induction hob, a glass kettle, a window with morning light." },
+      { n:12, id:"кухня_12_у-плиты", en:"Medium shot of the working area of the same kitchen: the hob, the glass kettle on it, small tea glasses ready on the counter." },
+      { n:13, id:"кухня_13_столешница-крупно", en:"Close-up along the countertop of the same kitchen: a glass kettle, two small tea glasses, a bowl of dates, a jug of water." },
+      { n:14, id:"кухня_14_обратный-ракурс", en:"Reverse angle of the same kitchen corner, shot from the hob back toward the room and the doorway." },
+      { n:15, id:"кухня_15_дверь-на-террасу", en:"The same kitchen corner with the terrace door standing open behind the counter, daylight and plants visible outside." },
+      { n:16, id:"кухня_16_чайник-струя", en:"Extreme close-up of tea being poured in a thin stream from high above into a small glass on the counter of the same kitchen." },
+      { n:17, id:"кухня_17_вечер", en:"The same kitchen corner in the evening: warm lamp over the counter, dark window, city glow outside." },
+      { n:18, id:"кухня_18_низкий-ракурс", en:"Very low camera angle at countertop level in the same kitchen, the bowl of dates in the foreground, the open terrace door beyond." },
+    ]},
+    { group:"Прихожая", folder:"прихожая", use:"У1Ш8, У1Ш11, У2Ш1, У2Ш8, У3Ш12, У4Ш11", items:[
+      { n:19, id:"прихожая_19_дверь-закрыта", en:"Wide shot of the same modern apartment hallway as the reference image: a plain closed front door, a shoe rack, a coat hook, a mirror, pale wood floor." },
+      { n:20, id:"прихожая_20_дверь-открыта", en:"The same hallway with the front door standing wide open, light from the stairwell falling in." },
+      { n:21, id:"прихожая_21_ключ-на-крючке", en:"Close-up of a key on a red cord hanging on the hook by the door in the same hallway." },
+      { n:22, id:"прихожая_22_крючок-пустой", en:"Close-up of the same hook by the door, empty, only the mark on the wall where the key used to hang." },
+      { n:23, id:"прихожая_23_обратный-ракурс", en:"Reverse angle of the same hallway, shot from the front door back into the apartment." },
+      { n:24, id:"прихожая_24_вечер", en:"The same hallway in the evening, one warm lamp on, the rest in shadow." },
+    ]},
+    { group:"Крыша-терраса", folder:"крыша", use:"У1Ш12, У2Ш11, У3Ш11, У4Ш7–8", items:[
+      { n:25, id:"крыша_25_широкий-день", en:"Wide shot of the same modern rooftop terrace as the reference image: potted plants, simple outdoor furniture, laundry on a line, city skyline. Bright daylight." },
+      { n:26, id:"крыша_26_широкий-закат", en:"The same rooftop terrace at sunset, long warm light, the skyline glowing." },
+      { n:27, id:"крыша_27_выход-лестница", en:"The stair exit onto the same rooftop terrace: a small door or hatch, steps, plants beside it." },
+      { n:28, id:"крыша_28_растения", en:"Medium shot of the corner of the same terrace with big potted plants and a watering can." },
+      { n:29, id:"крыша_29_бельевая-верёвка", en:"Medium shot of the laundry line on the same terrace, sheets moving in the wind, skyline behind." },
+      { n:30, id:"крыша_30_стол-и-стулья", en:"Medium shot of the small outdoor table and two chairs on the same terrace, two empty tea glasses on the table." },
+      { n:31, id:"крыша_31_низкий-ракурс", en:"Very low camera angle across the floor of the same terrace, pots in the foreground, skyline above." },
+      { n:32, id:"крыша_32_вечер-огни", en:"The same rooftop terrace after dark, city lights below, a string of warm bulbs overhead." },
+    ]},
+    { group:"Улица", folder:"улица", use:"У1Ш1–2, У1Ш11", items:[
+      { n:33, id:"улица_33_широкий-утро", en:"Wide shot of the same sunny modern city street as the reference image: glass and concrete buildings, parked cars and scooters, clean pavement. Morning." },
+      { n:34, id:"улица_34_вход-в-дом", en:"The entrance of a modern apartment building on the same street: glass door, intercom panel, a couple of potted plants beside it." },
+      { n:35, id:"улица_35_кофейня", en:"The small contemporary cafe on the corner of the same street, potted plants by the door, empty outdoor tables." },
+      { n:36, id:"улица_36_тротуар", en:"Medium shot along the pavement of the same street, shop fronts on one side, parked scooters on the other." },
+      { n:37, id:"улица_37_вечер", en:"The same street in the evening, warm streetlights, lit windows, wet asphalt reflections." },
+      { n:38, id:"улица_38_дом-снизу-вверх", en:"Low angle looking up the facade of the modern apartment building on the same street, balconies and sky." },
+    ]},
+    { group:"Продуктовый магазин", folder:"магазин", use:"урок 5", items:[
+      { n:39, id:"магазин_39_ряд-широкий", en:"Wide shot of the same modern grocery store aisle as the reference image: bright LED lighting, crates of fruit, price labels, clean tiled floor." },
+      { n:40, id:"магазин_40_прилавок-фрукты", en:"Medium shot of the fruit counter in the same store: crates of red apples and yellow bananas, a small scale, price tags." },
+      { n:41, id:"магазин_41_от-продавца", en:"Reverse angle in the same store, shot from behind the counter looking out at the aisle." },
+      { n:42, id:"магазин_42_яблоки-крупно", en:"Close-up of a crate of red apples with a handwritten price label in the same store." },
+      { n:43, id:"магазин_43_бананы-крупно", en:"Close-up of a bunch of yellow bananas on the counter of the same store." },
+      { n:44, id:"магазин_44_касса", en:"Medium shot of the checkout counter in the same store: a till, paper bags, a basket." },
+      { n:45, id:"магазин_45_вход-снаружи", en:"The same grocery store seen from the street outside: glass front, crates of fruit by the entrance, an awning." },
+    ]},
+    { group:"Кладовая и шкаф", folder:"кладовая-и-шкаф", use:"У4Ш3, У4Ш12", items:[
+      { n:46, id:"кладовая_46_полная", en:"A small pantry cupboard in the same modern apartment, shelves full of jars, packets and tins, warm light from the room." },
+      { n:47, id:"кладовая_47_пустая", en:"The same pantry cupboard, completely bare: empty shelves, a little dust, one forgotten paper bag." },
+      { n:48, id:"шкаф_48_полки-с-одеждой", en:"A tall wardrobe in the same modern apartment with its doors open, folded clothes stacked high on the shelves, ready to avalanche." },
+    ]},
+    { group:"Коридор и зеркало", folder:"коридор", use:"У4Ш3–4", items:[
+      { n:49, id:"коридор_49_со-шкафом", en:"A narrow corridor in the same modern apartment with a tall wardrobe along one wall, doors slightly ajar." },
+      { n:50, id:"зеркало_50_угол", en:"A corner of the same apartment with a round wall mirror and a small console table under it, soft daylight." },
+    ]},
+  ],
+
   lessons: [
     {
       n:1, title:'Новый ученик',
