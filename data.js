@@ -6,46 +6,59 @@ window.AJ = {
   /* ---------- персонажи ---------- */
   chars: [
     {
-      id:'ajibus', name:'Шейх Аджибус', role:'Чудаковатый мудрец-антиквар, ~65 лет',
-      status:'не утверждён',
+      id:'ajibus', name:'Аджибус', role:'Чудаковатый восторженный араб ~65 лет, современная городская квартира',
+      status:'утверждён 14.08',
       anchors:[
-        ['Силуэт','ОТКРЫТО: вариант А (~160 см, круглый, пружинистый) или B (~190 см, сухопарый). Рекомендация паспорта — А: физическая комедия читается сильнее.'],
-        ['Борода','Пышная белая, подкрашенная хной в рыжину спереди. Утверждено. Модель держит отлично.'],
-        ['Чалма','Имама: гладкая белая ткань ровными горизонтальными витками вокруг невысокой шапочки, низко на лбу, конец через левое плечо, узкая шафрановая лента у основания.'],
-        ['Очки','Маленькие круглые латунные, почти всегда сдвинуты на лоб. Писать clearly visible — иначе теряются.'],
-        ['Одежда','Изумрудно-зелёный (deep jewel-emerald, НЕ травяной) расшитый жилет с кармашками поверх песочной галабеи, жёлтые бабуши с загнутыми носами.'],
-        ['Реквизит','Латунная лупа на шнурке — живёт в кармане жилета, не на шее. Кадр «глаз через лупу» — кандидат в иконку приложения.']
+        ['Борода','Пышная белая, подкрашенная хной в рыжину спереди. Единственный якорь, переживший все переделки — модель держит его отлично.'],
+        ['Очки','Маленькие круглые. В промпте писать round glasses.'],
+        ['Одежда','Вязаный бежевый кардиган поверх синей льняной рубашки, песочные чинос. Ни галабеи, ни жилета, ни бабушей, ни пояса.'],
+        ['Чалмы нет','Совсем. Голова непокрытая, седые волосы. Старый канон с имамой отменён вместе с пивотом в современность.'],
+        ['Реквизит','Лупа — опциональна. Кадр «глаз через лупу в камеру» остаётся кандидатом в иконку приложения, но в сериале не обязателен.'],
+        ['Пластика','Театральная, размашистая. Брови делают половину актёрской работы.']
       ],
-      face:'Густые белые брови-гусеницы — главный инструмент эмоций. Лучистые карие глаза в сетке морщинок. Круглый нос.',
-      voice:'Тёплый, с хрипотцой, чуть нараспев, раскатистое «р», медленный чёткий фусха.',
-      lock:"AJIBUS — CHARACTER LOCK: A short, round, spry Middle Eastern Muslim scholar in his mid-60s (about 160 cm), warm hazel eyes with deep laugh wrinkles, bushy expressive white eyebrows, a large fluffy white beard tinted henna-orange at the front, small round brass spectacles clearly visible pushed up onto his forehead. He wears a modest white Islamic imamah turban — smooth cloth wound in flat neat horizontal layers around a low white skullcap, sitting low on the forehead, with a short tail of fabric over his left shoulder and a narrow saffron band at the base — an embroidered deep jewel-emerald vest with many small pockets over a sand-beige galabeya, and yellow pointed leather babouches. He moves with bouncy, theatrical energy and speaks slow, clear Modern Standard Arabic in a warm, raspy, sing-song voice."
+      face:'Густые белые брови — главный инструмент эмоций. Лучистые тёмные глаза в сетке морщинок-смешинок.',
+      voice:'Algenib (male, gravelly, low). Во Flow сохранён как «Голос АджибусаAlgenib Custom»: тёплый, с хрипотцой, нараспев, раскатистое «р», длинные щедрые паузы. Взрывается ликующими возгласами, падает в возмущённый шёпот.',
+      lock:"the older man with the white henna-tipped beard, round glasses, linen shirt under a knitted cardigan"
     },
     {
-      id:'yunus', name:'Юнус', role:'Ученик, парень лет двадцати', status:'канон не собран',
+      id:'yunus', name:'Юнус', role:'Ученик, араб лет двадцати', status:'утверждён 14.08',
       anchors:[
         ['Железное правило','Знание Юнуса всегда равно знанию зрителя. Переспрашивает то, что не понял бы зритель, ошибается там, где ошибся бы зритель.'],
         ['Функция','Не персонаж, а аватар клиента. Его прогресс — главный продающий аргумент.'],
+        ['Внешность','Короткие тёмные волосы, лёгкая щетина, выразительные тревожные брови.'],
+        ['Одежда','Джинсовая куртка поверх серой футболки, холщовый рюкзак.'],
         ['Стартовый багаж','Знает по-арабски ровно одно слово: салям.']
       ],
-      lock:"YUNUS — CHARACTER LOCK: A shy, earnest young man of about twenty, short dark hair, sparse stubble, expressive worried eyebrows, wearing a simple grey long-sleeve shirt and dark trousers with a worn canvas backpack. He listens intently, repeats words carefully and lights up when he gets one right."
+      voice:'Achird (male, friendly, mid pitch).',
+      lock:"the young man in the denim jacket with a canvas backpack"
     },
     {
-      id:'anza', name:'Анза (коза)', role:'Коза-воровка', status:'канон не собран',
+      id:'anza', name:'Анза (коза)', role:'Коза-воровка, живёт на крыше-террасе', status:'канон не собран',
       anchors:[
-        ['Правило мира','Люди говорят — животные действуют. Не разговаривает.'],
-        ['Функция','Ворует еду и вещи — этим и смешна. В каждой серии. Имя получает в уроке 4.']
+        ['Правило мира','Люди говорят — животные действуют. Не разговаривает, ведёт себя как настоящая коза.'],
+        ['Функция','Ворует еду и вещи — этим и смешна. В каждой серии. Имя получает в уроке 4.'],
+        ['Современный сеттинг','Коза на крыше многоэтажки — абсурд, и он работает на комедию. Не объясняем, откуда она.'],
+        ['Что уже сняла','У1Ш12 жуёт рюкзак · У2Ш11 прощание по имени · У3Ш9 утаскивает миску фиников · У4Ш7–8 ключ на шее и погоня.']
       ],
-      lock:"ANZA — CHARACTER LOCK: A small scruffy tan-and-white nanny goat with amber rectangular pupils, one floppy ear and a frayed rope collar. She behaves like a real goat — never anthropomorphic, never speaking — and steals food with calm, unhurried confidence."
+      lock:"a small scruffy tan-and-white nanny goat with one floppy ear and a frayed rope collar, behaving like a real goat"
     },
     {
-      id:'seller', name:'Продавец на рынке', role:'Появляется в уроке 5', status:'канон не собран',
-      anchors:[['Характер','Усатый, невозмутимый, в фартуке. Улыбается ровно один раз — в финале сезона, когда Юнус сам делает заказ.']],
-      lock:"VENDOR — CHARACTER LOCK: A stocky moustached market vendor in his forties, deadpan expression, canvas apron over a striped shirt, sleeves rolled up, standing behind a stall piled with apples and bananas."
+      id:'cat', name:'Кот', role:'Спит на стопке книг в гостиной', status:'канон не собран',
+      anchors:[
+        ['Функция','Живой предмет для «ма хаза?» — единственное существо в кадре, которое можно назвать словом и потрогать.'],
+        ['Характер','Полное безразличие. Приоткрывает один глаз и спит дальше. В уроке 4 демонстративно спит на том, под чем ищут ключ.'],
+        ['Где снят','У2Ш7 — на стопке книг на деревянном столе.']
+      ],
+      lock:"a plump ginger-and-white cat with a torn ear, asleep on a stack of books, opening one eye and going back to sleep"
     },
     {
-      id:'cat', name:'Кот', role:'Спит на фолианте', status:'канон не собран',
-      anchors:[['Функция','Живой предмет для «ма хаза?». В уроке 4 демонстративно спит на сундуке и уходит из рук.']],
-      lock:"CAT — CHARACTER LOCK: A plump ginger-and-white shop cat with a torn ear, sleeping on an old leather-bound folio, opening one eye without moving."
+      id:'seller', name:'Продавец в магазине', role:'Эпизодический, урок 5', status:'канон не собран',
+      anchors:[
+        ['Характер','Невозмутимый, реагирует ровно ноль раз на театр Аджибуса. Улыбается один раз за весь сезон — когда Юнус сам делает заказ. Это и есть финальный кадр сезона.'],
+        ['Внешность','Молодой, в фирменном фартуке продуктового. Современный, не рыночный торговец.'],
+        ['Функция','Стена, о которую бьётся комедия Аджибуса, и свидетель победы Юнуса.']
+      ],
+      lock:"a young shop assistant in a branded apron, deadpan, standing behind the fruit counter of a modern grocery store"
     }
   ],
 
