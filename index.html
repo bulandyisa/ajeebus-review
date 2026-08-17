@@ -420,8 +420,14 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="data.js"></script>
-<script src="program.js"></script>
+<!-- GitHub Pages кэширует data.js и program.js агрессивно: после публикации браузер
+     показывал старые данные при свежем index.html. Метка времени с точностью до минуты
+     ломает кэш, но не заставляет качать файлы при каждом клике. -->
+<script>
+  (function(){ var v='?v='+Math.floor(Date.now()/60000);
+    document.write('<script src="data.js'+v+'"><\/script>');
+    document.write('<script src="program.js'+v+'"><\/script>'); })();
+</script>
 <script>
 /* ================= IndexedDB ================= */
 const DBN='ajeebus_v4';
