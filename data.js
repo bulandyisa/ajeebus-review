@@ -8,6 +8,7 @@ window.AJ = {
     {
       id:'ajibus', name:'Аджибус', role:'Чудаковатый восторженный араб ~65 лет, современная городская квартира',
       status:'утверждён 14.08',
+      folder:'01-канон-аджибус', match:'01-канон-аджибус|07-современн|аджибус|ajibus', not:'юнус|yunus',
       anchors:[
         ['Борода','Пышная белая, подкрашенная хной в рыжину спереди. Единственный якорь, переживший все переделки — модель держит его отлично.'],
         ['Очки','Маленькие круглые. В промпте писать round glasses.'],
@@ -22,6 +23,7 @@ window.AJ = {
     },
     {
       id:'yunus', name:'Юнус', role:'Ученик, араб лет двадцати', status:'утверждён 14.08',
+      folder:'02-канон-юнус', match:'02-канон-юнус|юнус|yunus',
       anchors:[
         ['Железное правило','Знание Юнуса всегда равно знанию зрителя. Переспрашивает то, что не понял бы зритель, ошибается там, где ошибся бы зритель.'],
         ['Функция','Не персонаж, а аватар клиента. Его прогресс — главный продающий аргумент.'],
@@ -33,7 +35,8 @@ window.AJ = {
       lock:"the young man in the denim jacket with a canvas backpack"
     },
     {
-      id:'anza', name:'Анза (коза)', role:'Коза-воровка, живёт на крыше-террасе', status:'канон не собран',
+      id:'anza', name:'Анза (коза)', role:'Коза-воровка, живёт на крыше-террасе', status:'кастинг 17.08',
+      folder:'03-канон-анза', match:'03-канон-анза|анза',
       anchors:[
         ['Правило мира','Люди говорят — животные действуют. Не разговаривает, ведёт себя как настоящая коза.'],
         ['Функция','Ворует еду и вещи — этим и смешна. В каждой серии. Имя получает в уроке 4.'],
@@ -43,7 +46,8 @@ window.AJ = {
       lock:"a small scruffy tan-and-white nanny goat with one floppy ear and a frayed rope collar, behaving like a real goat"
     },
     {
-      id:'cat', name:'Кот', role:'Спит на стопке книг в гостиной', status:'канон не собран',
+      id:'cat', name:'Кот', role:'Спит на стопке книг в гостиной', status:'кастинг 17.08',
+      folder:'08-канон-кот', match:'08-канон-кот|канон-кот',
       anchors:[
         ['Функция','Живой предмет для «ма хаза?» — единственное существо в кадре, которое можно назвать словом и потрогать.'],
         ['Характер','Полное безразличие. Приоткрывает один глаз и спит дальше. В уроке 4 демонстративно спит на том, под чем ищут ключ.'],
@@ -52,13 +56,49 @@ window.AJ = {
       lock:"a plump ginger-and-white cat with a torn ear, asleep on a stack of books, opening one eye and going back to sleep"
     },
     {
-      id:'seller', name:'Продавец в магазине', role:'Эпизодический, урок 5', status:'канон не собран',
+      id:'seller', name:'Продавец в магазине', role:'Эпизодический, урок 5', status:'кастинг 17.08',
+      folder:'04-канон-продавец', match:'04-канон-продавец|продавец',
       anchors:[
         ['Характер','Невозмутимый, реагирует ровно ноль раз на театр Аджибуса. Улыбается один раз за весь сезон — когда Юнус сам делает заказ. Это и есть финальный кадр сезона.'],
         ['Внешность','Молодой, в фирменном фартуке продуктового. Современный, не рыночный торговец.'],
         ['Функция','Стена, о которую бьётся комедия Аджибуса, и свидетель победы Юнуса.']
       ],
       lock:"a young shop assistant in a branded apron, deadpan, standing behind the fruit counter of a modern grocery store"
+    }    ,
+    {
+      id:'salma', name:'Сальма', role:'Соседская девочка лет шести', status:'кастинг 17.08',
+      folder:'09-канон-сальма', match:'09-канон-сальма|сальма',
+      anchors:[
+        ['Функция','Второе зеркало для зрителя и главный мотивирующий гэг сезона: шестилетка говорит по-арабски свободнее взрослого Юнуса. Это унижение каждый взрослый ученик переживал лично — поэтому смешно и подстёгивает.'],
+        ['Правило','Никогда не издевается и не умничает. Помогает искренне, не понимая, что помогает — от этого смешно и не обидно.'],
+        ['Имя','Сальма — созвучно с «салям», которое зритель уже знает с первой минуты. Первое женское имя в сериале запоминается само.'],
+        ['Внешность','Большие тёмные глаза, круглые щёки, мягкий пастельный платочек под подбородком, простое длинное платье с рукавом.'],
+        ['Когда вводить','Не раньше урока 4 — сперва пара Аджибус–Юнус должна устояться.']
+      ],
+      voice:'Не выбран. Нужен детский женский голос из библиотеки Flow.',
+      lock:"a cheerful Arab girl of about six with big dark eyes, a small pastel headscarf and a simple long-sleeved modest dress"
+    },
+    {
+      id:'amina', name:'Хаджа Амина', role:'Соседка сверху, около 75 лет', status:'кастинг 17.08',
+      folder:'10-канон-амина', match:'10-канон-амина|амина',
+      anchors:[
+        ['Функция','Взрослый доброжелательный свидетель. Приносит еду, хвалит, подкармливает козу. Даёт естественные поводы для «шукран», «лязиз» и «тафаддаль» без единой новой конструкции.'],
+        ['Правило приличия','Всегда в хиджабе и длинном платье. В кадре с мужчинами — на дистанции: через порог, за столом, с подносом в руках. Никаких прикосновений.'],
+        ['Зачем нужна','Женский голос в сериале. Половина аудитории наконец слышит себя — при этом ни одного решения, которое смутит консервативного зрителя.'],
+        ['Внешность','Глубокие морщинки-смешинки, добрые тёмные глаза, свободный пастельный хиджаб, длинное скромное платье.']
+      ],
+      voice:'Не выбран. Нужен пожилой женский голос.',
+      lock:"a warm Arab woman in her mid-seventies with deep laugh lines, a loose pastel hijab and a long modest dress"
+    },
+    {
+      id:'shopper', name:'Покупательница', role:'Фоновый персонаж магазина, урок 5', status:'кастинг 17.08',
+      folder:'11-канон-покупательница', match:'11-канон-покупательница|покупательница',
+      anchors:[
+        ['Функция','Без реплик. Делает современный арабский город достоверным — в кадре живут разные люди, а не только двое главных.'],
+        ['Правило съёмки','Только средние и общие планы, уважительная дистанция. Никаких крупных планов лица.'],
+        ['Внешность','Простая чёрная абайя и никаб, видны только спокойные тёмные глаза, корзина в руке.']
+      ],
+      lock:"a woman in a plain black abaya and black niqab, only her calm dark eyes visible, with a shopping basket"
     }
   ],
 
@@ -160,7 +200,7 @@ window.AJ = {
         {n:9, loc:'shop', ru:'Светлая квартира, стеллаж с книгами. Юнус хочет спросить про странную штуку на полке — слов нет. Мычит, тычет пальцем. Аджибус жестом «терпение».', ar:[], en:'Yunus stares at a brass astrolabe, opens his mouth to ask about it, finds no words, makes a helpless sound and just points; Ajibus raises a calm patient palm', cam:'slow crane down across the shelves, then close-up of the pointing hand', snd:'creaking floorboards, ticking clockwork'},
         {n:10, loc:'shop', ru:'Рекап-вспышки с жестами: салям ↔ ответ · «ана + имя» (рука к груди) · «уа анта?» (ладонь к собеседнику).', ar:['السلام عليكم','أنا عجيبوس','وأنت؟'], en:'Three quick recap beats: Ajibus performs each greeting gesture cleanly to camera, one after another, with a beat of stillness between them', cam:'medium close-up, static, straight to camera, hard cuts between beats', snd:'clear isolated phrases, silence between'},
         {n:11, loc:'alley', ru:'Вечер, дверь квартиры, город за спиной. Прощание. Оба машут и зрителю.', ar:['مع السلامة'], en:'Sunset in the alley: the two say goodbye, then both turn and wave at the camera', cam:'wide two-shot, golden hour backlight, static', snd:'evening street tone, distant call'},
-        {n:12, loc:'alley', ru:'КРЮЧОК: крыша-терраса, забытый рюкзак, лямку уже жуёт коза. «Ля! Ля!» Аджибус с рюкзаком в обнимку — взгляд в камеру.', ar:['لا! لا!'], en:'A forgotten backpack lies by the door with a goat already chewing its strap; Ajibus rushes in, hugs the backpack away from her and looks straight at the camera, alarmed', cam:'low wide shot, quick push-in to close-up on his face', snd:'goat bleat, fabric tearing, alarmed exclamation'}
+        {n:12, loc:'yard', ru:'КРЮЧОК: крыша-терраса, забытый рюкзак, лямку уже жуёт коза. «Ля! Ля!» Аджибус с рюкзаком в обнимку — взгляд в камеру.', ar:['لا! لا!'], en:'A forgotten backpack lies by the door with a goat already chewing its strap; Ajibus rushes in, hugs the backpack away from her and looks straight at the camera, alarmed', cam:'low wide shot, quick push-in to close-up on his face', snd:'goat bleat, fabric tearing, alarmed exclamation'}
       ]
     },
     {
@@ -176,11 +216,11 @@ window.AJ = {
         {n:5, loc:'shop', ru:'Циркуляция-дурачество: перекидывает ручку из руки в руку. «Хаза китаб? — Ля! Хаза калям? — На’ам! Китаб ау калям? — Калям!»', ar:['هذا كتاب؟ لا!','هذا قلم؟ نعم!','كتاب أو قلم؟ قلم!'], en:'Ajibus juggles the pen from hand to hand firing playful yes-and-no questions at Yunus, who laughs and joins in; the pace is fast and silly', cam:'medium shot, static, both fully in frame', snd:'rapid playful dialogue, laughter'},
         {n:6, loc:'shop', ru:'Ошибка и рекаст: Юнус говорит «кибат». Аджибус тепло, по слогам: «Ки-та-аб».', ar:['هذا... كِباب؟','كِ - تا - ب','كتاب!','عجيب'], en:'Yunus mispronounces the word; Ajibus never says wrong — he warmly repeats it syllable by syllable, Yunus gets it right and Ajibus beams', cam:'tight two-shot, eye level, warm', snd:'gentle syllabic correction, delighted praise'},
         {n:7, loc:'shop', ru:'Кот спит на стопке книг. Юнус спрашивает. Кот приоткрывает глаз и спит дальше.', ar:['ما هذا؟','هذا قطّ'], en:'A plump cat sleeps on a leather folio; Yunus asks what it is, Ajibus answers, and the cat opens one eye and goes back to sleep', cam:'close-up on the cat, then medium two-shot', snd:'clear dialogue, a single lazy purr'},
-        {n:8, loc:'shop', ru:'ЧЕХОВСКОЕ РУЖЬЁ: прихожая. Аджибус торжественно снимает с крючка ключ на красном шнурке, любовно протирает, вешает обратно. Камера задерживается на пустом крючке.', ar:['هذا مفتاح'], en:'Ajibus solemnly lifts a huge old iron key off its nail, names it, polishes it lovingly on his vest and hangs it back; the camera holds on the nail after he leaves frame', cam:'medium close-up on the key, then static hold on the empty nail', snd:'metal ring, cloth rub, then silence'},
+        {n:8, loc:'shop', ru:'ЧЕХОВСКОЕ РУЖЬЁ: прихожая. Аджибус торжественно снимает с крючка ключ на красном шнурке, любовно протирает, вешает обратно. Камера задерживается на пустом крючке.', ar:['هذا مفتاح'], en:'Ajibus solemnly lifts a key on a red cord off its hook, names it, polishes it lovingly on his cardigan sleeve and hangs it back; the camera holds on the hook after he leaves frame', cam:'medium close-up on the key, then static hold on the empty hook', snd:'metal ring, cloth rub, then silence'},
         {n:9, loc:'shop', ru:'Гэг: Юнус про странный гаджет на полке. Аджибус открывает рот… закрывает… разводит руками. Даже Аджибус не всё знает.', ar:['ما هذا؟'], en:'Yunus asks about the astrolabe; Ajibus opens his mouth, closes it, opens it again, then spreads both hands helplessly and shrugs', cam:'medium two-shot, static, comedic hold', snd:'clear question, then a long comic silence'},
         {n:10, loc:'shop', ru:'Рекап: четыре предмета вспышками, «на’ам/ля» большим пальцем.', ar:['كتاب','قلم','مفتاح','قطّ','نعم','لا'], en:'Four quick recap flashes of the objects, each named cleanly; Ajibus gives thumbs up and thumbs down for yes and no', cam:'close-ups, hard cuts, static', snd:'isolated words, silence between'},
-        {n:11, loc:'alley', ru:'Крыша-терраса. Прощание. Юнус, уходя, сам говорит козе: «Ма’а с-саляма, я анза!» (посев имени).', ar:['مع السلامة','مع السلامة يا عنزة'], en:'Leaving, Yunus turns and says goodbye to the goat by name all on his own; Ajibus in the doorway raises his eyebrows, impressed', cam:'medium wide, camera at goat height for her reaction', snd:'clear farewell, goat bleat'},
-        {n:12, loc:'tea', ru:'КРЮЧОК: вечер, Аджибус падает в кресло, обмахивается: «Уриду шай…» Юнус в дверях оборачивается: «???»', ar:['أريد شاي'], en:'Ajibus drops into his armchair, fans himself and says he wants tea; Yunus, already in the doorway, turns back with a puzzled look straight into the lens', cam:'medium shot on the chair, then quick cut to Yunus at the door', snd:'chair creak, tired sigh, clear phrase'}
+        {n:11, loc:'yard', ru:'Крыша-терраса. Прощание. Юнус, уходя, сам говорит козе: «Ма’а с-саляма, я анза!» (посев имени).', ar:['مع السلامة','مع السلامة يا عنزة'], en:'Leaving, Yunus turns and says goodbye to the goat by name all on his own; Ajibus in the doorway raises his eyebrows, impressed', cam:'medium wide, camera at goat height for her reaction', snd:'clear farewell, goat bleat'},
+        {n:12, loc:'shop', ru:'КРЮЧОК: вечер, Аджибус падает в кресло, обмахивается: «Уриду шай…» Юнус в дверях оборачивается: «???»', ar:['أريد شاي'], en:'Ajibus drops into his armchair, fans himself and says he wants tea; Yunus, already in the doorway, turns back with a puzzled look straight into the lens', cam:'medium shot on the chair, then quick cut to Yunus at the door', snd:'chair creak, tired sigh, clear phrase'}
       ]
     },
     {
@@ -199,8 +239,8 @@ window.AJ = {
         {n:8, loc:'tea', ru:'Юнус, осмелев, сам: «Уриду тамр!» — «Тафаддаль!» — «Шукран!» Первый полный диалог ученика.', ar:['أريد تمر','تفضّل','شكرًا'], en:'Emboldened, Yunus makes his own request, is served and thanks his teacher — his first complete exchange; Ajibus wipes away an imaginary tear', cam:'two-shot, static, let it play', snd:'clear three-beat dialogue'},
         {n:9, loc:'tea', ru:'Гэг: Анза через открытую дверь террасы утягивает миску фиников. «Ля! ЛЯ!.. — …тайиб». Вздох. Протягивает ей последний финик.', ar:['لا! لا!','...طيّب','تفضّل'], en:'The goat hooks the plate of dates through the open window and drags it away; Ajibus protests, deflates, sighs, and offers her the last date, which she accepts regally', cam:'wide shot catching window and table, then close-up on the goat', snd:'plate scraping, protest, resigned sigh, chewing'},
         {n:10, loc:'tea', ru:'Рекап жестами: уриду + [шай/кахва/ма’/тамр] · тафаддаль · шукран · лязиз.', ar:['أريد شاي','أريد ماء','تفضّل','شكرًا','لذيذ'], en:'Recap flashes: each phrase performed once with its signature gesture — offering palm, hand to heart, fingertips to lips', cam:'medium close-ups, hard cuts, static', snd:'isolated phrases, silence between'},
-        {n:11, loc:'tea', ru:'Крыша-терраса. Прощание чашками в камеру, как тостом.', ar:['مع السلامة'], en:'Both men raise their tea glasses toward the camera like a toast and say goodbye', cam:'two-shot, glasses into lens, static', snd:'glass clink, warm farewell'},
-        {n:12, loc:'alley', ru:'КРЮЧОК: вечер, прихожая. Аджибус тянется к крючку у двери — пусто. Хлопает по карманам. По всем. Ещё раз. Медленно поднимает глаза в камеру: «Айна мифтах?!»', ar:['أين المفتاح؟!'], en:'Evening: Ajibus reaches to lock the shop, pats one pocket, then every pocket, then all of them again, and slowly raises his eyes to the camera in horror', cam:'medium shot, slow push-in to close-up on his face', snd:'jingling cloth, rising panic in the voice'}
+        {n:11, loc:'yard', ru:'Крыша-терраса. Прощание чашками в камеру, как тостом.', ar:['مع السلامة'], en:'Both men raise their tea glasses toward the camera like a toast and say goodbye', cam:'two-shot, glasses into lens, static', snd:'glass clink, warm farewell'},
+        {n:12, loc:'shop', ru:'КРЮЧОК: вечер, прихожая. Аджибус тянется к крючку у двери — пусто. Хлопает по карманам. По всем. Ещё раз. Медленно поднимает глаза в камеру: «Айна мифтах?!»', ar:['أين المفتاح؟!'], en:'Evening: Ajibus reaches to lock the shop, pats one pocket, then every pocket, then all of them again, and slowly raises his eyes to the camera in horror', cam:'medium shot, slow push-in to close-up on his face', snd:'jingling cloth, rising panic in the voice'}
       ]
     },
     {
@@ -211,12 +251,12 @@ window.AJ = {
       shots:[
         {n:1, loc:'shop', ru:'Утро тревоги. Юнус приходит — Аджибус мечется, всё вверх дном. Конструкция схвачена из контекста.', ar:['أين المفتاح؟ أين المفتاح؟!'], en:'Yunus arrives to find the shop turned upside down and Ajibus darting between shelves repeating his question in rising panic', cam:'handheld follow, faster cutting than usual', snd:'clattering objects, agitated repeated phrase'},
         {n:2, loc:'shop', ru:'Юнус показывает под стол: «Хуна?» Там кот. «Ля! Хаза кытт!»', ar:['هنا؟','لا! هذا قطّ'], en:'Yunus points under the table and asks if it is here; Ajibus looks, finds only the cat and answers no', cam:'low angle under the table, then two-shot', snd:'clear short exchange, cat meow'},
-        {n:3, loc:'shop', ru:'Юнус на шкаф: «Хунак?» Аджибус лезет, сверху лавина чалм накрывает его с головой. Из-под кучи: «…ля».', ar:['هناك؟','...لا'], en:'Yunus points up at the wardrobe; Ajibus climbs, and an avalanche of folded turbans buries him; from under the pile comes a small muffled no', cam:'wide static shot to let the fall play in full frame', snd:'wooden creak, soft avalanche, muffled voice'},
+        {n:3, loc:'shop', ru:'Юнус на шкаф: «Хунак?» Аджибус лезет, сверху лавина сложенной одежды накрывает его с головой. Из-под кучи: «…ля».', ar:['هناك؟','...لا'], en:'Yunus points up at the wardrobe; Ajibus climbs, and an avalanche of folded clothes buries him; from under the pile comes a small muffled no', cam:'wide static shot to let the fall play in full frame', snd:'wooden creak, soft avalanche, muffled voice'},
         {n:4, loc:'shop', ru:'Гэг с очками: мечется, ища очки, чтобы искать ключ. Юнус молча показывает на лоб. «А!.. Альхамдулиллях».', ar:['أين نظّارتي؟!','آه... الحمد لله'], en:'Ajibus now hunts for his spectacles so he can hunt for the key; Yunus silently points at his forehead, where they sit; Ajibus deflates and thanks God', cam:'medium two-shot, static, comedic hold', snd:'flustered speech, then a relieved sigh'},
         {n:5, loc:'shop', ru:'Циркуляция в панике: «Мифтах хуна? Ля! Хунак? Ля! Айна? АЙНА?!» — четыре повтора, все мотивированы.', ar:['المفتاح هنا؟ لا!','هناك؟ لا!','أين؟ أين؟!'], en:'Ajibus fires the question at every corner of the room in turn, answering himself no each time and ending on a despairing shout', cam:'quick whip pans following his gaze', snd:'rapid repeated phrases, escalating'},
-        {n:6, loc:'shop', ru:'Кот демонстративно спит на сундуке. Переглядка. Аджибус на цыпочках поднимает кота… под ним пусто. Кот забирает себя из его рук и уходит.', ar:[], en:'The cat sleeps pointedly on a chest; the two men exchange a look; Ajibus tiptoes over and lifts the cat — nothing underneath — and the cat calmly removes itself from his hands and walks off', cam:'medium shot, slow tiptoe movement, static frame', snd:'floor creak, indignant meow, no dialogue'},
-        {n:7, loc:'yard', ru:'Через окно: во дворе Анза что-то жуёт, и у неё на шее болтается мифтах на верёвочке, как кулон. Юнус: «Хуна-а-ак!!»', ar:['هناك!'], en:'Through the window, in the courtyard, the goat chews placidly with the huge key dangling from her neck on a cord like a pendant; Yunus shouts that it is over there', cam:'over-shoulder through the window, then quick zoom onto the key', snd:'goat chewing, triumphant shout'},
-        {n:8, loc:'yard', ru:'Погоня по двору — чалма слетает, коза скачет, ключ спасён. «Альхамдулилля-я-ях!»', ar:['الحمد لله'], en:'A chase around the courtyard: the turban comes loose, the goat skips away, and at last Ajibus clutches the key to his chest in relief', cam:'wide handheld tracking, then close-up on the key against his chest', snd:'hooves, laughter, panting, heartfelt exclamation'},
+        {n:6, loc:'shop', ru:'Кот демонстративно спит на закрытом ящике для хранения. Переглядка. Аджибус на цыпочках поднимает кота… под ним пусто. Кот забирает себя из его рук и уходит.', ar:[], en:'The cat sleeps pointedly on a closed storage box; the two men exchange a look; Ajibus tiptoes over and lifts the cat — nothing underneath — and the cat calmly removes itself from his hands and walks off', cam:'medium shot, slow tiptoe movement, static frame', snd:'floor creak, indignant meow, no dialogue'},
+        {n:7, loc:'yard', ru:'Через окно: на террасе Анза что-то жуёт, и у неё на шее болтается мифтах на верёвочке, как кулон. Юнус: «Хуна-а-ак!!»', ar:['هناك!'], en:'Through the window, in the courtyard, the goat chews placidly with the huge key dangling from her neck on a cord like a pendant; Yunus shouts that it is over there', cam:'over-shoulder through the window, then quick zoom onto the key', snd:'goat chewing, triumphant shout'},
+        {n:8, loc:'yard', ru:'Погоня по террасе — очки слетают, коза скачет, ключ спасён. «Альхамдулилля-я-ях!»', ar:['الحمد لله'], en:'A chase across the rooftop terrace: his glasses fly off, the goat skips away, and at last Ajibus clutches the key to his chest in relief', cam:'wide handheld tracking, then close-up on the key against his chest', snd:'hooves, laughter, panting, heartfelt exclamation'},
         {n:9, loc:'tea', ru:'Игра со зрителем: прячет финик под одну из двух пиал, двигает их. «Айна тамр? Хуна… ау хунак?» Пауза. Поднимает пиалу — пусто: снизу кадра финик дожёвывает Анза.', ar:['أين التمر؟ هنا... أو هناك؟'], en:'Ajibus hides a date under one of two bowls, shuffles them, asks the camera which one and waits — then lifts a bowl to find it empty, while at the bottom of the frame the goat finishes chewing', cam:'close-up on the bowls from above, then tilt down to the goat', snd:'ceramic scraping, silence in the pause, quiet chewing'},
         {n:10, loc:'shop', ru:'Рекап: айна? (ладонь козырьком) · хуна (палец вниз) · хунак (палец вдаль).', ar:['أين؟','هنا','هناك'], en:'Recap flashes: hand shading the eyes for where, finger pointing down for here, finger pointing far away for there', cam:'medium close-ups, hard cuts, static', snd:'isolated words, silence between'},
         {n:11, loc:'alley', ru:'Прощание. Ключ теперь на шнурке на шее, он его демонстративно похлопывает.', ar:['مع السلامة'], en:'Farewell at the door: the key now hangs on a cord around his neck and he pats it twice, pointedly, for the camera', cam:'medium two-shot, then insert on the key', snd:'warm farewell, key tap'},
@@ -231,7 +271,7 @@ window.AJ = {
       shots:[
         {n:1, loc:'market', ru:'Приход на рынок, салям-пара с продавцом. Всё знакомое.', ar:['السلام عليكم','وعليكم السلام'], en:'The two arrive at the market stall and exchange greetings with the deadpan vendor', cam:'wide establishing, then two-shot at the stall', snd:'market crowd, clear greeting'},
         {n:2, loc:'market', ru:'Юнус: «Ма хаза?» про яблоки и бананы. Зритель угадывает ответ по паттерну раньше продавца.', ar:['ما هذا؟','هذا تفّاح','هذا موز'], en:'Yunus asks what things are, pointing at apples then bananas; the vendor answers flatly each time', cam:'close-ups on the produce, medium on Yunus', snd:'clear question-answer pairs'},
-        {n:3, loc:'market', ru:'Аджибус — театр торговли: «Бикам?.. ГАЛИ!!» Хватается за сердце, чалма съезжает.', ar:['بكم؟','غالي!'], en:'Ajibus asks the price, hears it, clutches his heart and cries that it is expensive; his turban slides sideways', cam:'medium shot, static, let the performance play', snd:'market noise, theatrical outcry'},
+        {n:3, loc:'market', ru:'Аджибус — театр торговли: «Бикам?.. ГАЛИ!!» Хватается за сердце, очки съезжают на нос.', ar:['بكم؟','غالي!'], en:'Ajibus asks the price, hears it, clutches his heart and cries that it is expensive; his glasses slide down his nose', cam:'medium shot, static, let the performance play', snd:'market noise, theatrical outcry'},
         {n:4, loc:'market', ru:'Щенячьи глаза: «Рахыс?..» Продавец невозмутим.', ar:['رخيص؟'], en:'Ajibus switches instantly to pleading puppy eyes and suggests a cheap price; the vendor does not move a muscle', cam:'tight two-shot, cut between the two faces', snd:'wheedling delivery, flat silence in reply'},
         {n:5, loc:'market', ru:'Анза ворует банан из корзины Юнуса.', ar:[], en:'While no one is watching, the goat lifts a banana out of the basket at Yunus feet and walks off with it', cam:'low angle on the basket, static', snd:'market noise, quiet theft'},
         {n:6, loc:'market', ru:'ФИНАЛ СЕЗОНА: Аджибус подталкивает Юнуса к прилавку — давай сам. Юнус, волнуясь: «Уриду мауз!.. Бикам?.. Шукран!» Продавец впервые улыбается. Аджибус за его спиной утирает слезу: «Аджи-и-иб!»', ar:['أريد موز','بكم؟','شكرًا','عجيب'], en:'Ajibus nudges Yunus forward to order for himself; nervous but clear, Yunus makes his request, asks the price and thanks the vendor, who smiles for the first time; behind him Ajibus wipes away a tear', cam:'over-shoulder on Yunus at the stall, then slow push-in on Ajibus proud face', snd:'market ambience drops away under the dialogue, warm swell at the end'}

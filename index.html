@@ -178,6 +178,42 @@
   .sact .r[aria-pressed="true"]{border-color:var(--clay);color:var(--clay);background:rgba(210,96,60,.14)}
   @media (max-width:700px){ .srow{grid-template-columns:120px 1fr} }
 
+  /* ---- сценарий целиком рядом с раскадровкой ---- */
+  .lsplit{display:grid;grid-template-columns:minmax(330px,400px) 1fr;gap:16px;align-items:start}
+  @media (max-width:1100px){ .lsplit{grid-template-columns:1fr} .script{position:static;max-height:none} }
+  .script{position:sticky;top:12px;max-height:calc(100vh - 28px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px}
+  .script .shd{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+  .script .shd b{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);font-weight:650}
+  .sc-b{padding:8px 10px;margin:0 -10px 2px;border-radius:9px;cursor:pointer;border-left:2px solid transparent}
+  .sc-b:hover{background:rgba(255,255,255,.035)}
+  .sc-b.hit{background:rgba(235,168,58,.10);border-left-color:var(--saffron)}
+  .sc-loc{font-size:11px;letter-spacing:.08em;color:var(--faint);margin:13px 0 4px;font-weight:650}
+  .sc-b:first-of-type .sc-loc{margin-top:0}
+  .sc-n{font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums;margin-right:6px}
+  .sc-a{font-size:13.5px;line-height:1.6;display:inline}
+  .sc-d{margin-top:6px;padding-left:9px;border-left:1px solid var(--line-2)}
+  .sc-d p{font-size:15.5px;direction:rtl;text-align:right;line-height:1.85;margin:0}
+  .sc-d i{display:block;font-size:11.5px;color:var(--dim);font-style:normal;direction:ltr;text-align:left;margin-bottom:4px}
+  .srow.hit{border-color:var(--saffron);box-shadow:0 0 0 1px rgba(235,168,58,.28)}
+
+  /* ---- программа урока ---- */
+  .prog{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:14px}
+  .prog h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:0 0 9px;font-weight:650}
+  .prog h3:not(:first-child){margin-top:15px}
+  .vocab{display:flex;flex-wrap:wrap;gap:7px}
+  .vw{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:6px 10px;line-height:1.3}
+  .vw.seed{opacity:.6;border-style:dashed}
+  .vw b{font-size:15px;font-weight:600;display:block;direction:rtl;text-align:right}
+  .vw span{font-size:11.5px;color:var(--dim)}
+  .thin{font-size:13.5px;line-height:1.62;color:var(--dim)}
+  .thin b{color:var(--ink);font-weight:600}
+  .drl{display:flex;flex-wrap:wrap;gap:6px}
+  .drl span{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 9px;font-size:12px;color:var(--dim)}
+  .steps{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .steps span{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:4px 11px;font-size:12px}
+  .steps span.vid{border-color:rgba(235,168,58,.45);color:var(--saffron)}
+  .steps em{color:var(--faint);font-style:normal}
+
   /* сезон */
   .lesson{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:14px}
   .lhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
@@ -385,6 +421,7 @@
 <div class="toast" id="toast"></div>
 
 <script src="data.js"></script>
+<script src="program.js"></script>
 <script>
 /* ================= IndexedDB ================= */
 const DBN='ajeebus_v4';
@@ -405,6 +442,7 @@ let filter='all', kind='all', lessonF='', query='';
 let grouping=localStorage.getItem('aj_group')||'sect';
 let curLesson=+(localStorage.getItem('aj_lesson')||1);
 let shotFilter='all';
+let lessonView=localStorage.getItem('aj_lview')||'split';   /* split | board | script */
 let selTake={};
 let closedSections=new Set(JSON.parse(localStorage.getItem('aj_closed')||'[]'));
 const saveFold=()=>localStorage.setItem('aj_closed',JSON.stringify([...closedSections]));
@@ -433,17 +471,22 @@ const vidThumb=f=>new Promise((res,rej)=>{const u=URL.createObjectURL(f),v=docum
   v.onerror=()=>{URL.revokeObjectURL(u);rej();}; v.src=u;});
 
 /* ================= автотеги по пути ================= */
+/* Кто на картинке — определяем по полям match/not из AJ.chars, а не хардкодом.
+   Добавили персонажа в data.js — он сразу и в автотегах, и в разделах. */
+const CHAR_RE=AJ.chars.map(c=>({
+  id:c.id, char:c,
+  yes:new RegExp(c.match||c.id,'i'),
+  no:c.not?new RegExp(c.not,'i'):null
+}));
+const charOf=p=>(CHAR_RE.find(r=>r.yes.test(p)&&!(r.no&&r.no.test(p)))||{}).id||'';
+
 function autoTag(path){
   const p=path.toLowerCase();
-  let lesson='', ch='';
+  let lesson='';
   const m=p.match(/урок[-_ ]?0?(\d)/); if(m) lesson=m[1];
-  if(/аджибус|ajibus/.test(p)) ch='ajibus';
-  else if(/юнус|yunus/.test(p)) ch='yunus';
-  else if(/анза|коз|anza|кот|cat/.test(p)) ch='anza';
-  else if(/продав|vendor|рынок|market/.test(p)) ch='seller';
   const sm=p.match(/шот[-_ ]?(\d{1,2})|_s(\d{1,2})[._]/);
   const shot=sm?String(Number(sm[1]||sm[2])):'';
-  return {lesson, char:ch, shot};
+  return {lesson, char:charOf(p), shot};
 }
 
 /* Номер шота в имени файла пишется с ведущим нулём («шот-07»), а в сценарии — числом (7).
@@ -452,14 +495,19 @@ const eqShot=(a,b)=>a!==''&&a!=null&&b!==''&&b!=null&&Number(a)===Number(b);
 
 /* ================= разделы ================= */
 /* Каждый файл попадает ровно в один раздел. Порядок = порядок работы над сериалом. */
+/* Разделы канона строятся из AJ.chars — по одному на персонажа, в порядке ростера.
+   Раньше это был хардкод, и новые персонажи проваливались в «Без раздела». */
 const SECTIONS=[
-  {id:'loc',    ord:60, title:'Локации',        sub:'референсы обстановки — держат кадр одинаковым между шотами', test:p=>/локац|location|05-/.test(p)},
-  {id:'ajibus', ord:70, title:'Канон · Аджибус',sub:'внешность, одежда, реквизит',                                test:p=>/канон[-_ ]?аджибус|01-|современн/.test(p)&&!/юнус|yunus/.test(p)},
-  {id:'yunus',  ord:71, title:'Канон · Юнус',   sub:'ученик — аватар зрителя',                                    test:p=>/канон[-_ ]?юнус|02-|юнус|yunus/.test(p)},
-  {id:'anza',   ord:72, title:'Канон · Анза и кот', sub:'животные не говорят — только действуют',                 test:p=>/03-|анза|коз|кот\b/.test(p)},
-  {id:'seller', ord:73, title:'Канон · Продавец',sub:'эпизодический персонаж урока 5',                            test:p=>/04-|продав/.test(p)},
-  {id:'tests',  ord:80, title:'Тесты видео',    sub:'пробы движения, голоса и монтажа',                           test:p=>/06-|тест/.test(p)},
-  {id:'arch',   ord:90, title:'Архив',          sub:'старые превью — не используются',                            test:p=>/00-|архив/.test(p)}
+  {id:'loc', ord:60, title:'Локации', sub:'референсы обстановки — держат кадр одинаковым между шотами', test:p=>/локац|location|05-/.test(p)},
+  ...CHAR_RE.map((r,i)=>({
+    id:'ch-'+r.id, ord:70+i,
+    title:'Канон · '+r.char.name,
+    sub:r.char.role||'',
+    status:r.char.status||'',
+    test:p=>r.yes.test(p)&&!(r.no&&r.no.test(p))
+  })),
+  {id:'tests', ord:88, title:'Тесты видео', sub:'пробы движения, голоса и монтажа', test:p=>/06-|тест/.test(p)},
+  {id:'arch',  ord:90, title:'Архив',       sub:'старые превью — не используются',  test:p=>/00-|архив/.test(p)}
 ];
 function sectionOf(it){
   const p=(it.path||'').toLowerCase();
@@ -835,6 +883,19 @@ function renderLessons(){
   const shotsWith=L.shots.filter(s=>takesOfShot(L.n,s.n).length).length;
   const missing=L.shots.filter(s=>!takesOfShot(L.n,s.n).length).map(s=>s.n);
 
+  const board=rows||'<div class="empty">По этому фильтру шотов нет</div>';
+  const body=
+    lessonView==='prog'  ? progHTML(L) :
+    lessonView==='board' ? board :
+    `<div class="lsplit">
+       <div class="script">
+         <div class="shd"><b>Сценарий целиком</b><span class="spacer"></span>
+           <button class="btn ghost sm" id="copyScript">⧉ Скопировать</button></div>
+         ${scriptHTML(L)}
+       </div>
+       <div>${board}</div>
+     </div>`;
+
   el.innerHTML=`
     <div class="lpick">${picker}</div>
     <div class="lhero">
@@ -846,6 +907,12 @@ function renderLessons(){
       ${L.draft?`<div class="bhint" style="margin-top:8px;color:var(--clay)">Раскадровка черновая — ${L.shots.length} битов вместо 12 шотов.</div>`:''}
     </div>
     <div class="sfilters">
+      <div class="seg" id="viewSeg">
+        <button data-lv="split" aria-pressed="${lessonView==='split'}">Сценарий и раскадровка</button>
+        <button data-lv="board" aria-pressed="${lessonView==='board'}">Только раскадровка</button>
+        <button data-lv="prog"  aria-pressed="${lessonView==='prog'}">Программа урока</button>
+      </div>
+      ${lessonView==='prog'?'':`
       <div class="seg" id="shotSeg">
         <button data-sf="all" aria-pressed="${shotFilter==='all'}">Все шоты</button>
         <button data-sf="missing" aria-pressed="${shotFilter==='missing'}">Не снятые</button>
@@ -854,21 +921,89 @@ function renderLessons(){
       </div>
       <button class="btn gold" id="playLesson">▶ Смотреть урок подряд</button>
       <span class="spacer"></span>
-      <button class="btn ghost sm" id="copyMissing">⧉ Список того, что снять</button>
+      <button class="btn ghost sm" id="copyMissing">⧉ Список того, что снять</button>`}
     </div>
-    ${rows||'<div class="empty">По этому фильтру шотов нет</div>'}`;
+    ${body}`;
+}
+
+/* ---- сценарий урока сплошным текстом ---- */
+const normAr=s=>String(s).replace(/[؟!.,،…؛]/g,'').replace(/\s+/g,' ').trim();
+const GLOSS=(()=>{ const m=new Map();
+  (AJ.program||[]).forEach(P=>P.vocab.forEach(v=>{ const k=normAr(v.ar).replace(/…$/,'').trim(); if(k) m.set(k,v.ru); }));
+  return m; })();
+function glossOf(line){
+  const n=normAr(line);
+  if(GLOSS.has(n)) return GLOSS.get(n);
+  const hits=[];
+  for(const [k,v] of GLOSS) if(k.length>2 && n.includes(k) && !hits.includes(v)) hits.push(v);
+  return hits.slice(0,3).join(' · ');
+}
+const timeOf=S=>/утро|утренн/i.test(S.ru)?' · УТРО':/вечер|ночь|закат/i.test(S.ru)?' · ВЕЧЕР':' · ДЕНЬ';
+
+function scriptHTML(L){
+  let lastHead=null; const out=[];
+  for(const S of L.shots){
+    const head=(AJ.locNames[S.loc]||S.loc)+timeOf(S);
+    if(head!==lastHead){ out.push(`<div class="sc-loc">${esc(head)}</div>`); lastHead=head; }
+    const dial=S.ar.length
+      ? `<div class="sc-d">${S.ar.map(a=>{const g=glossOf(a);return `${g?`<i>${esc(g)}</i>`:''}<p>${esc(a)}</p>`;}).join('')}</div>`
+      : '';
+    out.push(`<div class="sc-b" data-jump="${L.n}-${S.n}">
+      <span class="sc-n">${S.n}.</span><span class="sc-a">${esc(S.ru)}</span>${dial}</div>`);
+  }
+  return out.join('');
+}
+function scriptText(L){
+  let lastHead=null; const out=[`УРОК ${L.n}. ${L.title.toUpperCase()}`,''];
+  for(const S of L.shots){
+    const head=(AJ.locNames[S.loc]||S.loc)+timeOf(S);
+    if(head!==lastHead){ out.push('', head, ''); lastHead=head; }
+    out.push(`${S.n}. ${S.ru}`);
+    S.ar.forEach(a=>{ const g=glossOf(a); out.push(`      ${a}${g?'   — '+g:''}`); });
+  }
+  return out.join('\n');
+}
+
+/* ---- программа урока ---- */
+function progHTML(L){
+  const P=(AJ.program||[]).find(p=>p.n===L.n);
+  if(!P) return '<div class="empty">Программа этого урока ещё не написана</div>';
+  const core=P.vocab.filter(v=>v.kind==='core').length, seed=P.vocab.length-core;
+  return `<div class="prog">
+    <h3>Что ученик умеет в конце</h3>
+    <div class="thin">${esc(P.goal)}</div>
+    <h3>Зачем этот урок стоит здесь</h3>
+    <div class="thin">${esc(P.why)}</div>
+    <h3>Порядок блоков</h3>
+    <div class="steps">${AJ.structure.map((s,i)=>`${i?'<em>›</em>':''}<span class="${s[2]==='видео'?'vid':''}" title="${esc(s[1])}">${esc(s[0])}</span>`).join('')}</div>
+    <h3>Лексика — ${core} активных${seed?`, ${seed} на посев`:''}</h3>
+    <div class="vocab">${P.vocab.map(v=>`<span class="vw ${v.kind}"><b>${esc(v.ar)}</b><span>${esc(v.tr)} — ${esc(v.ru)}</span></span>`).join('')}</div>
+    <h3>Тренировка — ${P.drills.length} заданий</h3>
+    <div class="drl">${P.drills.map(d=>`<span>${esc((AJ.drillTypes[d.type]||[d.type])[0])} · ${esc(d.task)}</span>`).join('')}</div>
+    <h3>Теория — одно правило</h3>
+    <div class="thin"><b>${esc(P.theory.title)}</b><br><br>${P.theory.text.map(esc).join('<br><br>')}</div>
+    <h3>Тот же текст голосом Аджибуса</h3>
+    <div class="thin">${esc(P.theory.voice)}</div>
+    <h3>Итог урока</h3>
+    <div class="thin">${P.wrap.map(w=>'— '+esc(w)).join('<br>')}<br><br><b>Фраза дня.</b> ${esc(P.phrase)}</div>
+  </div>`;
 }
 
 /* ---- сборка промпта ---- */
 function buildPrompt(ln,sn){
   const L=AJ.lessons.find(l=>l.n===+ln), S=L.shots.find(s=>s.n===+sn);
-  const who=[];
+  /* Ищем персонажей по id, а не по индексу в массиве: ростер растёт, индексы съезжают. */
+  const ch=id=>AJ.chars.find(c=>c.id===id);
   const t=(S.en+' '+S.ru).toLowerCase();
-  who.push(AJ.chars[0]);
-  if(/yunus|юнус/.test(t)) who.push(AJ.chars[1]);
-  if(/goat|коз|анза/.test(t)) who.push(AJ.chars[2]);
-  if(/vendor|продав/.test(t)) who.push(AJ.chars[3]);
-  if(/\bcat\b|кот/.test(t)) who.push(AJ.chars[4]);
+  const who=[ch('ajibus')];
+  const add=(id,re)=>{ if(re.test(t)){ const c=ch(id); if(c) who.push(c); } };
+  add('yunus',  /yunus|юнус/);
+  add('anza',   /goat|коз|анза/);
+  add('cat',    /\bcat\b|кот[^о]|кота|коту/);
+  add('seller', /vendor|продав/);
+  add('salma',  /salma|сальма|девочк/);
+  add('amina',  /amina|амина|соседк|старушк/);
+  add('shopper',/niqab|никаб|покупательниц/);
   const dial=S.ar.length?`\nDIALOGUE (Modern Standard Arabic, spoken exactly as written):\n${S.ar.map(a=>`  "${a}"`).join('\n')}\n`:'\nDIALOGUE: none — no speech in this shot.\n';
   return `[УРОК ${L.n} · ${L.title} · ШОТ ${S.n}]  — Veo 3.1 Fast · 9:16 · 8s · x1 · 10 кредитов
 
@@ -934,6 +1069,16 @@ function renderCalls(){
     ${AJ.mistakes.map(([a,b])=>`<div class="mist"><b>${esc(a)}</b> → ${esc(b)}</div>`).join('')}`;
 }
 
+/* Сценарий и раскадровка — две проекции одного шота. Клик по любой подсвечивает обе. */
+function linkSlot(slot,scrollTo){
+  $$('#p-lessons .hit').forEach(x=>x.classList.remove('hit'));
+  const b=$(`#p-lessons [data-jump="${slot}"]`), r=$(`#p-lessons .srow[data-slot="${slot}"]`);
+  if(b) b.classList.add('hit');
+  if(r) r.classList.add('hit');
+  const t=scrollTo==='board'?r:b;
+  if(t) t.scrollIntoView({block:'center',behavior:'smooth'});
+}
+
 /* ---- события вкладки «Уроки» ---- */
 $('#p-lessons').addEventListener('click',async e=>{
   const lb=e.target.closest('[data-lesson]');
@@ -941,6 +1086,19 @@ $('#p-lessons').addEventListener('click',async e=>{
 
   const sf=e.target.closest('[data-sf]');
   if(sf){ shotFilter=sf.dataset.sf; renderLessons(); return; }
+
+  const lv=e.target.closest('[data-lv]');
+  if(lv){ lessonView=lv.dataset.lv; localStorage.setItem('aj_lview',lessonView); renderLessons(); return; }
+
+  /* клик по абзацу сценария — подсветить и подвести соответствующий шот раскадровки */
+  const jp=e.target.closest('[data-jump]');
+  if(jp){ linkSlot(jp.dataset.jump,'board'); return; }
+  const rw=e.target.closest('.srow[data-slot]');
+  if(rw&&!e.target.closest('button,input')){ linkSlot(rw.dataset.slot,'script'); return; }
+
+  if(e.target.closest('#copyScript')){
+    copy(scriptText(AJ.lessons.find(l=>l.n===curLesson)),'Сценарий урока скопирован'); return;
+  }
 
   if(e.target.closest('#playLesson')){
     const L=AJ.lessons.find(l=>l.n===curLesson);
