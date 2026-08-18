@@ -235,6 +235,10 @@
   .maptbl td.t{font-weight:600;white-space:nowrap;color:var(--ink)}
   .maptbl td.w{color:var(--dim)}
   .maptbl td.d{color:var(--dim);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .maptbl tr.main td{border-bottom:0;padding-bottom:2px}
+  .maptbl tr.goalrow td{padding-top:0;font-size:11.5px;color:var(--dim);line-height:1.5}
+  .maptbl tr.goalrow b{color:var(--faint);font-weight:600;text-transform:uppercase;font-size:10px;letter-spacing:.05em}
+  .maptbl tr.goalrow:last-child td{border-bottom:0}
   .maptbl tr:hover td{background:var(--hover)}
 
   /* ---- промпт прямо в строке шота ---- */
@@ -313,7 +317,7 @@
   th{color:var(--dim);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
   td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
   tr.no td{color:var(--clay)}
-  .sect{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin:20px 0 9px}
+  #p-calls .sect{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin:20px 0 9px;border:0;background:none;border-radius:0;overflow:visible}
   ul.plain{list-style:none;display:flex;flex-direction:column;gap:7px}
   ul.plain li{font-size:12.5px;line-height:1.55;color:var(--dim);padding-left:16px;position:relative}
   ul.plain li:before{content:'·';position:absolute;left:5px;color:var(--saffron)}
@@ -1135,10 +1139,11 @@ function renderMap(){
         <div class="thin" style="margin-bottom:12px"><b>Новые места.</b> ${se.places.map(esc).join(' · ')}</div>
         <table class="maptbl">
           <tr><th>#</th><th>Урок</th><th>Что научится говорить</th><th>Новое правило</th><th>Где</th><th>Снято</th></tr>
-          ${se.items.map(i=>{const d=done(i[0]);return `<tr>
+          ${se.items.map(i=>{const d=done(i[0]);return `<tr class="main">
             <td class="n">${i[0]}</td><td class="t">${esc(i[1])}</td><td>${esc(i[2])}</td>
             <td>${esc(i[3])}</td><td class="w">${esc(i[4])}</td>
-            <td class="d">${d?esc(d):'—'}</td></tr>`;}).join('')}
+            <td class="d">${d?esc(d):'—'}</td></tr>
+          <tr class="goalrow"><td></td><td colspan="5"><b>Цель:</b> ${esc(i[5]||'')}</td></tr>`;}).join('')}
         </table>
       </div>
     </div>`).join('');
