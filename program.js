@@ -1,7 +1,12 @@
 /* Аджибус — учебная программа уровня 2.
    Одно место, откуда берутся и приложение, и документ, и подписи в дашборде.
    Порядок блоков внутри урока: холодный вход → лексика → тренировка → сцена → разбор → теория → итог.
-   Правило: одно новое грамматическое правило на урок, не больше. */
+   Правило: одно новое грамматическое правило на урок, не больше.
+
+   Четвёртой стены нет (решение от 18.08). Персонажи не смотрят в камеру и не обращаются
+   к зрителю: сериал играется как кино, зритель подсматривает. Просьба повторить живёт в
+   приложении — автопауза плеера на стоп-карточке, — а внутри сцены Аджибус просит повторить
+   Юнуса. Юнус и есть аватар зрителя, так что адресат остался один, а не два. */
 
 window.AJ.locNames = {
   alley:  'УЛИЦА',
@@ -15,7 +20,7 @@ window.AJ.structure = [
   ['Холодный вход', '15–20 секунд из сцены урока. Без субтитров, без перевода. Задача блока — не научить, а поставить вопрос.', 'видео'],
   ['Лексика',       'Карточка: картинка из той же квартиры → арабская запись → транслитерация → звук. Перевод открывается вторым касанием, а не сразу.', 'картинки'],
   ['Тренировка',    'Шесть заданий: четыре на новое, два на повторение из прошлых уроков.', 'интерактив'],
-  ['Сцена',         'Полное видео урока. Субтитры переключаются: нет → арабские → арабские с переводом.', 'видео'],
+  ['Сцена',         'Полное видео урока. Субтитры переключаются: нет → арабские → арабские с переводом. Плеер сам встаёт на паузу на ключевой фразе и просит повторить — в кадре этого не просит никто.', 'видео'],
   ['Разбор',        'Два-три задания по фразам, которые прозвучали в сцене. Не по списку лексики, а по видео.', 'интерактив'],
   ['Теория',        'Одно правило. Текст плюс озвучка голосом Аджибуса плюс одна картинка. Блок необязательный — «почему так».', 'текст + голос'],
   ['Итог',          'Три строки и фраза дня — то, что предлагается сказать живому человеку сегодня.', 'текст']
@@ -45,7 +50,7 @@ window.AJ.program = [
     {ar:'أنا…', tr:'а́на…', ru:'я…', kind:'core',
      img:'Photoreal medium close-up: an older Arab man with a white henna-tipped beard presses his palm flat to his own chest, introducing himself'},
     {ar:'وأنت؟', tr:'уа а́нта?', ru:'а ты?', kind:'core',
-     img:'Photoreal medium shot: an older Arab man turns an open questioning palm toward the viewer, eyebrows raised'},
+     img:'Photoreal medium shot: an older Arab man turns an open questioning palm toward a young man opposite him, eyebrows raised'},
     {ar:'مع السلامة', tr:'ма‘а с-саля́ма', ru:'до свидания', kind:'core',
      img:'Photoreal wide shot at dusk: two men wave goodbye at the door of a modern apartment building, city lights behind them'},
     {ar:'أهلاً وسهلاً', tr:'а́хлян уа са́хлян', ru:'добро пожаловать', kind:'seed',
@@ -110,7 +115,7 @@ window.AJ.program = [
     {ar:'الحمد لله', tr:'альхамдули-лля́х', ru:'слава Богу (в ответ — «хорошо»)', kind:'seed',
      img:'Photoreal medium close-up of a contented older Arab man, eyes closed, hand on heart'},
     {ar:'أو', tr:'ау', ru:'или', kind:'seed',
-     img:'Photoreal close-up of two hands holding a book in one and a pen in the other, offering both to the camera'}
+     img:'Photoreal close-up of two hands holding a book in one and a pen in the other, held out side by side over a wooden table'}
   ],
   theory:{
     title:'هذا и предложение, в котором нет глагола',
@@ -147,7 +152,7 @@ window.AJ.program = [
     {ar:'أريد…', tr:'ури́ду…', ru:'я хочу…', kind:'core',
      img:'Photoreal medium shot: an older Arab man drops into an armchair by the window, fanning himself, evening city lights behind'},
     {ar:'تفضّل', tr:'тафа́ддаль', ru:'вот, пожалуйста (когда подают)', kind:'core',
-     img:'Photoreal close-up of a hand offering a small glass of tea toward the camera, modern kitchen counter behind'},
+     img:'Photoreal close-up of a hand offering a small glass of tea across a modern kitchen counter to a second pair of hands'},
     {ar:'شكرًا', tr:'шу́кран', ru:'спасибо', kind:'core',
      img:'Photoreal medium close-up: a young man in a denim jacket accepts a glass of tea with both hands, grateful smile'},
     {ar:'شاي', tr:'шай', ru:'чай', kind:'core',
