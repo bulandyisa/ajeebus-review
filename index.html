@@ -1228,8 +1228,6 @@ $('#p-lessons').addEventListener('click',async e=>{
   /* клик по абзацу сценария — подсветить и подвести соответствующий шот раскадровки */
   const jp=e.target.closest('[data-jump]');
   if(jp){ linkSlot(jp.dataset.jump,'board'); return; }
-  const rw=e.target.closest('.srow[data-slot]');
-  if(rw&&!e.target.closest('button,input')){ linkSlot(rw.dataset.slot,'script'); return; }
 
   if(e.target.closest('#copyScript')){
     copy(scriptText(AJ.lessons.find(l=>l.n===curLesson)),'Сценарий урока скопирован'); return;
@@ -1280,6 +1278,13 @@ $('#p-lessons').addEventListener('click',async e=>{
     const it=takes.find(t=>t.key===selTake[slot])||takes[0]; if(!it) return;
     await setStatus(it,a2.dataset.act2); renderAll(); return;
   }
+
+  /* Клик по пустому месту строки — подсветить абзац сценария.
+     ОБЯЗАТЕЛЬНО последним: стоя выше, он перехватывал клик по кадру, и видео не запускалось.
+     Плюс явные исключения — иначе управление плеером дёргает страницу при каждом тапе. */
+  const rw=e.target.closest('.srow[data-slot]');
+  if(rw && !e.target.closest('button,input,textarea,select,video,audio,img,.pbox,[data-play]'))
+    linkSlot(rw.dataset.slot,'script');
 });
 $('#p-lessons').addEventListener('change',async e=>{
   const n=e.target.closest('[data-note]'); if(!n) return;
@@ -1317,7 +1322,7 @@ async function showFocus(){
   media.innerHTML=it.thumb?`<img src="${it.thumb}" alt="">`:'';
   try{ const f=await it.handle.getFile(); const url=URL.createObjectURL(f);
     media.innerHTML=it.type==='video'?`<video src="${url}" controls autoplay loop></video>`:`<img src="${url}" alt="">`;
-  }catch(e){}
+  }catch(e){ media.innerHTML='<div class="empty">Файл недоступен — нажмите «Обновить» в шапке</div>'; }
 }
 function moveFocus(d){ focusIdx=(focusIdx+d+focusList.length)%focusList.length; showFocus(); }
 async function focusStatus(st){
