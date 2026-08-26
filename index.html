@@ -225,6 +225,23 @@
 
   .btn.theme{align-self:center;margin-right:4px}
 
+  /* ---- курс целиком ---- */
+  .lvbadge{display:grid;place-items:center;width:24px;height:24px;border-radius:7px;flex:none;
+           background:var(--saffron);color:var(--on-gold);font-weight:700;font-size:13px}
+  .lvgrid{display:grid;grid-template-columns:minmax(260px,1fr) minmax(320px,1.35fr);gap:22px;align-items:start}
+  @media (max-width:900px){ .lvgrid{grid-template-columns:1fr} }
+  .lvgrid h4{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);
+             margin:0 0 6px;font-weight:650}
+  .lvgrid h4:not(:first-child){margin-top:14px}
+  .gram{font-size:12.5px;line-height:1.65}
+  #p-course .maptbl td.w{white-space:nowrap}
+  #p-course .maptbl td.t{white-space:normal;min-width:9ch}
+  .stat-line{margin-top:14px;padding-top:10px;border-top:1px solid var(--line);
+             font-size:11.5px;color:var(--faint)}
+  .dec{margin-bottom:14px}
+  .dec:last-child{margin-bottom:0}
+  .dec b{display:block;font-size:13.5px;font-weight:650;margin-bottom:4px}
+
   /* ---- карта 50 уроков ---- */
   .maptbl{width:100%;border-collapse:collapse;font-size:12.5px}
   .maptbl th{text-align:left;font-weight:600;color:var(--dim);font-size:11px;text-transform:uppercase;
@@ -395,12 +412,16 @@
   <button role="tab" data-p="review" aria-selected="false">Все файлы</button>
   <button role="tab" data-p="season" aria-selected="false">Сезон целиком</button>
   <button role="tab" data-p="map"    aria-selected="false">50 уроков</button>
+  <button role="tab" data-p="course" aria-selected="false">Курс до B1</button>
   <button role="tab" data-p="canon"  aria-selected="false">Канон</button>
   <button role="tab" data-p="calls"  aria-selected="false">Решения и правила</button>
 </div>
 
 <!-- ================= УРОКИ ================= -->
 <section class="page on" id="p-lessons"></section>
+
+<!-- ================= КУРС ЦЕЛИКОМ ================= -->
+<section class="page" id="p-course"></section>
 
 <!-- ================= КАРТА 50 УРОКОВ ================= -->
 <section class="page" id="p-map"></section>
@@ -493,7 +514,8 @@
   (function(){ var v='?v='+Math.floor(Date.now()/60000);
     document.write('<script src="data.js'+v+'"><\/script>');
     document.write('<script src="program.js'+v+'"><\/script>');
-    document.write('<script src="seasons.js'+v+'"><\/script>'); })();
+    document.write('<script src="seasons.js'+v+'"><\/script>');
+    document.write('<script src="course.js'+v+'"><\/script>'); })();
 </script>
 <script>
 /* ================= тема ================= */
@@ -1120,6 +1142,96 @@ ${AJ.tail}
 The shot ends on a held pause, not mid-movement.`;
 }
 
+/* Сворачивание разделов на вкладках «Курс» и «50 уроков».
+   На «Всех файлах» это живёт в обработчике #grid; здесь свой, состояние не запоминаем —
+   эти вкладки читаются подряд, а не фильтруются. */
+document.addEventListener('click',e=>{
+  const h=e.target.closest('#p-course .shead2, #p-map .shead2');
+  if(h) h.closest('.sect').classList.toggle('closed');
+});
+
+/* ================= курс целиком: шесть уровней до B1 ================= */
+function renderCourse(){
+  const el=$('#p-course'), C=AJ.course;
+  if(!C){ el.innerHTML='<div class="empty">course.js не загрузился</div>'; return; }
+
+  const lvl=C.levels.map(L=>`
+    <div class="sect" data-sect="lv${L.n}">
+      <div class="shead2">
+        <span class="lvbadge">${L.n}</span>
+        <span class="stitle">${esc(L.title)}</span>
+        <span class="chip hi">${esc(L.code)}</span>
+        <span class="ssub">${esc(L.tagline)}</span>
+        <span class="spacer"></span>
+        <span class="chip">${L.lessons} уроков</span>
+        <span class="chip">${esc(L.words)}</span>
+      </div>
+      <div class="sbody">
+        <div class="lvgrid">
+          <div>
+            <h4>Что умеет в конце</h4>
+            <div class="thin">${esc(L.goal)}</div>
+            <h4>Зачем уровень нужен продукту</h4>
+            <div class="thin">${esc(L.why)}</div>
+            <h4>Сериал</h4>
+            <div class="thin">${esc(L.series)}</div>
+          </div>
+          <div>
+            <h4>Модули</h4>
+            <table class="maptbl">
+              ${L.modules.map(m=>`<tr class="main"><td class="t">${esc(m[0])}</td><td class="w">${esc(m[1])}</td><td>${esc(m[2])}</td></tr>`).join('')}
+            </table>
+            <h4>Грамматическая линия</h4>
+            <div class="thin gram">${esc(L.grammar)}</div>
+          </div>
+        </div>
+        <div class="stat-line">${esc(L.status)}</div>
+      </div>
+    </div>`).join('');
+
+  el.innerHTML=`
+    <div class="lhero">
+      <h2>Аджибус — весь курс: от букв до B1</h2>
+      <div class="lskill">Шесть уровней, ${C.totalLessons} уроков, ${C.totalWords} слов. Уровень 1 в сторе, уровень 2 расписан поурочно, уровни 3–6 — модульный план.</div>
+      <div class="cores">${C.levels.map(L=>`<span class="core">${L.n}. ${esc(L.title)} · ${esc(L.code)}</span>`).join('')}</div>
+    </div>
+
+    ${lvl}
+
+    <div class="sect" data-sect="cdec">
+      <div class="shead2"><span class="stitle">Методические развилки и решения</span>
+        <span class="ssub">почему курс устроен так, а не как в учебнике</span></div>
+      <div class="sbody">${C.decisions.map(d=>`<div class="dec"><b>${esc(d[0])}</b><div class="thin">${esc(d[1])}</div></div>`).join('')}</div>
+    </div>
+
+    <div class="sect" data-sect="cevo">
+      <div class="shead2"><span class="stitle">Как меняется урок от уровня к уровню</span>
+        <span class="ssub">нагрузка растёт вместе с учеником</span></div>
+      <div class="sbody">
+        <table class="maptbl">
+          <tr><th>Уровень</th><th>CEFR</th><th>Новых слов</th><th>Правил</th><th>Заданий</th><th>Чтение</th><th>Длина</th></tr>
+          ${C.lessonEvolution.map(r=>`<tr class="main"><td class="t">${esc(r[0])}</td><td class="w">${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td><td>${esc(r[4])}</td><td>${esc(r[5])}</td><td class="w">${esc(r[6])}</td></tr>`).join('')}
+        </table>
+      </div>
+    </div>
+
+    <div class="sect" data-sect="csys">
+      <div class="shead2"><span class="stitle">Что живёт поверх уроков</span>
+        <span class="ssub">системы приложения, а не содержание урока</span></div>
+      <div class="sbody">${C.systems.map(d=>`<div class="dec"><b>${esc(d[0])}</b><div class="thin">${esc(d[1])}</div></div>`).join('')}</div>
+    </div>
+
+    <div class="sect" data-sect="cprod">
+      <div class="shead2"><span class="stitle">Объём производства всего курса</span></div>
+      <div class="sbody">
+        <table class="maptbl">
+          <tr><th>Позиция</th><th>Объём</th><th>Чем делается</th></tr>
+          ${C.production.map(r=>`<tr class="main"><td class="t">${esc(r[0])}</td><td class="w">${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('')}
+        </table>
+      </div>
+    </div>`;
+}
+
 /* ================= карта пятидесяти уроков ================= */
 function renderMap(){
   const el=$('#p-map'); const S=AJ.seasons||[];
@@ -1300,7 +1412,7 @@ function renderAll(){
   $('#stCanon').textContent=items.filter(i=>i.status==='canon').length;
   const shotsDone=AJ.lessons.reduce((a,L)=>a+L.shots.filter(s=>takesOfShot(L.n,s.n).length).length,0);
   $('#stShots').innerHTML=`${shotsDone}<span style="color:var(--faint);font-size:12px">/${TOTAL_SHOTS}</span>`;
-  renderLessons(); renderReview(); renderSeason(); renderMap(); renderCanon(); renderCalls();
+  renderLessons(); renderReview(); renderSeason(); renderMap(); renderCourse(); renderCanon(); renderCalls();
 }
 
 /* ================= фокус-режим ================= */
