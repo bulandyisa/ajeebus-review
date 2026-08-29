@@ -242,6 +242,20 @@
   .dec:last-child{margin-bottom:0}
   .dec b{display:block;font-size:13.5px;font-weight:650;margin-bottom:4px}
 
+  /* ---- съёмочный план ---- */
+  .cbox .cbody{display:none}
+  .cbox.open .cbody{display:block;padding:4px 11px 11px}
+  .cbox .ptog::before{content:'🎬';transform:none;font-size:11px}
+  .cnote{font-size:11.5px;color:var(--dim);padding:7px 0 4px;line-height:1.5}
+  .ckadr{border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
+  .ckadr:first-of-type{border-top:0;margin-top:0}
+  .ckhead{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:5px}
+  .ckhead b{font-size:12px;font-weight:650}
+  .crefs{font-size:11px;color:var(--faint)}
+  .cnote2{font-size:11px;color:var(--clay)}
+  .crefs i{font-style:normal;background:var(--panel-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--dim)}
+  .ckcode{max-height:none;-webkit-mask-image:none;mask-image:none;cursor:auto;color:var(--dim);border:1px solid var(--line);border-radius:8px;background:var(--code-bg)}
+
   /* ---- карта 50 уроков ---- */
   .maptbl{width:100%;border-collapse:collapse;font-size:12.5px}
   .maptbl th{text-align:left;font-weight:600;color:var(--dim);font-size:11px;text-transform:uppercase;
@@ -554,6 +568,7 @@ let shotFilter='all';
 let lessonView=localStorage.getItem('aj_lview')||'split';   /* split | board | script */
 let selTake={};
 let openPrompts=new Set();   /* какие промпты раскрыты целиком */
+let openCoverage=new Set();  /* у каких шотов раскрыт съёмочный план */
 let closedSections=new Set(JSON.parse(localStorage.getItem('aj_closed')||'[]'));
 const saveFold=()=>localStorage.setItem('aj_closed',JSON.stringify([...closedSections]));
 let focusList=[], focusIdx=0, lastScan=0;
@@ -991,6 +1006,13 @@ function renderLessons(){
           </div>
           <pre class="pcode">${esc(buildPrompt(L.n,S.n))}</pre>
         </div>
+        <div class="pbox cbox${openCoverage.has(`${L.n}-${S.n}`)?' open':''}" data-cbox="${L.n}-${S.n}">
+          <div class="phead">
+            <button class="ptog" data-ctog="${L.n}-${S.n}">Съёмочный план — сцена кадрами</button>
+            <span class="pcost">каждый кадр — своя генерация со своими референсами</span>
+          </div>
+          <div class="cbody">${openCoverage.has(`${L.n}-${S.n}`)?coverageHTML(L.n,S.n):''}</div>
+        </div>
         <div class="sfoot2">
           ${sel?`<span class="sfile" title="${esc(sel.path)}">${esc(sel.name)}</span>`:''}
           ${sel?`<input class="snote" data-note="${esc(sel.key)}" value="${esc(sel.note)}" placeholder="Заметка — что править">`:''}
@@ -1105,6 +1127,106 @@ function progHTML(L){
     <h3>Итог урока</h3>
     <div class="thin">${P.wrap.map(w=>'— '+esc(w)).join('<br>')}<br><br><b>Фраза дня.</b> ${esc(P.phrase)}</div>
   </div>`;
+}
+
+function coverageHTML(ln,sn){
+  const {plan,note}=coveragePlan(ln,sn);
+  return `<div class="cnote">${esc(note)}</div>`+plan.map((k,i)=>`
+    <div class="ckadr">
+      <div class="ckhead">
+        <b>${i+1}. ${esc(k.label)}</b>
+        ${k.note?`<span class="cnote2">${esc(k.note)}</span>`:''}
+        <span class="crefs">приложить: ${k.refs.chars.length?k.refs.chars.map(c=>`<i>${esc(c)}</i>`).join(' + ')+' + ':''}<i>${esc(k.refs.plate)}</i></span>
+        <span class="spacer"></span>
+        <button class="btn ghost sm" data-ccopy="${ln}-${sn}-${i}">⧉ Копировать</button>
+      </div>
+      <pre class="pcode ckcode">${esc(k.prompt)}</pre>
+    </div>`).join('');
+}
+
+/* ---- съёмочный план: сцена кадрами с разных ракурсов ----
+   Решение Исы от 26.08: длинные шоты снимаются несколькими кадрами (мастер → крупные
+   планы → немая перебивка) и склеиваются. Каждый кадр — отдельная генерация со СВОИМ
+   полным набором референсов. Слотов у Flow три: максимум два персонажа + плашка локации. */
+
+const LOCGROUP={alley:'улица', shop:'гостиная', tea:'кухня', yard:'крыша', market:'магазин'};
+/* какую плашку локации прикладывать к какому типу кадра */
+function plateFor(loc,kind){
+  const g=(AJ.locplan||[]).find(x=>x.folder===LOCGROUP[loc]);
+  const items=g?g.items:[];
+  const pick=res=>{for(const r of res){const it=items.find(i=>i.id.includes(r));if(it)return it.id;}return items[0]?items[0].id:'мастер-плашка '+(LOCGROUP[loc]||loc);};
+  if(kind==='master') return pick(['широкий','ряд-широкий','дверь-закрыта']);
+  if(kind==='insert') return pick(['крупно','деталь','стол','чайник','ключ','яблоки']);
+  return pick(['обратный','средний','у-плиты','стеллаж','прилавок']);
+}
+
+function whoInShot(S){
+  const ch=id=>AJ.chars.find(c=>c.id===id);
+  const t=(S.en+' '+S.ru).toLowerCase();
+  const who=[ch('ajibus')];
+  const add=(id,re)=>{ if(re.test(t)){ const c=ch(id); if(c) who.push(c); } };
+  add('yunus',  /yunus|юнус/);
+  add('anza',   /goat|коз|анза/);
+  add('cat',    /\bcat\b|кот[^о]|кота|коту/);
+  add('seller', /vendor|продав/);
+  add('salma',  /salma|сальма|девочк/);
+  add('amina',  /amina|амина|соседк|старушк/);
+  add('shopper',/niqab|никаб|покупательниц/);
+  return who;
+}
+
+const EN_NAME={ajibus:'the older man',yunus:'the young man',anza:'the goat',cat:'the cat',
+  seller:'the shop assistant',salma:'the little girl',amina:'the elderly neighbour',shopper:'the woman in the black niqab'};
+const enName=c=>EN_NAME[c.id]||c.name;
+
+function coveragePlan(ln,sn){
+  const L=AJ.lessons.find(l=>l.n===+ln), S=L.shots.find(s=>s.n===+sn);
+  const who=whoInShot(S);
+  const humans=who.filter(c=>!['anza','cat'].includes(c.id));
+  const animals=who.filter(c=>['anza','cat'].includes(c.id));
+  const A=humans[0], B=humans[1];
+  const light=/вечер|закат|ноч/i.test(S.ru)?'warm evening light, low sun, long shadows':'soft warm daylight';
+  const axis=B?`${enName(A)} stays frame LEFT, ${enName(B)} stays frame RIGHT in every shot of this scene — never swap sides`:null;
+
+  const head=(k,i,n)=>`[У${L.n}·Ш${S.n} · кадр ${i}/${n} · ${k}]  — Veo 3.1 Fast · 9:16 · 8s · x1 · 10 кредитов`;
+  const scene=`SCENE: ${AJ.locs[S.loc]} — match the attached location reference exactly, same room, same furniture.\nLIGHT (identical in every shot of this scene): ${light}.${axis?'\nAXIS: '+axis+'.':''}`;
+  const tail=`STYLE: photoreal live-action comedy, warm sand-emerald-saffron palette, natural film grain, Mr-Bean-style physical comedy in a completely realistic world, animals behave like real animals.\n\n${AJ.tail}\n\nThe shot ends on a held pause, not mid-movement.`;
+  const dlg=lines=>lines&&lines.length
+    ?`DIALOGUE (Modern Standard Arabic, spoken exactly as written):\n${lines.map(a=>'  "'+a+'"').join('\n')}`
+    :'DIALOGUE: none — no speech in this shot.';
+  const refs=(chars,plate)=>({chars:chars.map(c=>c.name), plate});
+  const mk=(k,i,n,frame,lines,dnote,sound,chars,plateKind)=>({
+    label:k, note:dnote||'',
+    refs:refs(chars, plateFor(S.loc,plateKind)),
+    prompt:[head(k,i,n), chars.map(c=>c.lock).join('\n\n'), scene,
+      'FRAME: '+frame, 'ACTION: '+S.en+'.', dlg(lines), 'SOUND: '+sound, tail].join('\n\n')
+  });
+
+  const plan=[];
+  const shortShot=S.ar.length<=1 && !B;
+  if(shortShot){
+    plan.push(mk('единственный кадр',1,2,S.cam,S.ar,null,S.snd,who.slice(0,2),'master'));
+    plan.push(mk('перебивка (по желанию)',2,2,
+      'static insert close-up of a telling detail of the room (no people in frame)',
+      [], null, 'room ambience only — dialogue from neighbouring shots will be laid over in the edit', [], 'insert'));
+    return {plan, note:'Короткий шот: одна реплика, один герой — хватает одного кадра. Перебивка — запас для монтажа.'};
+  }
+
+  const n=B?4:3; let i=0;
+  plan.push(mk('мастер — общий план',++i,n,
+    B?`wide two-shot, both actors fully in frame, ${enName(A)} frame left, ${enName(B)} frame right, static camera`
+     :'medium-wide shot, full action plays out, static camera',
+    S.ar, 'вся сцена целиком — мастер держит всю игру', S.snd, humans.slice(0,2).concat(animals).slice(0,2),'master'));
+  plan.push(mk(`крупный план — ${A.name}`,++i,n,
+    `medium close-up of ${enName(A)}, same side of the axis as the master, shallow depth of field`,
+    S.ar.slice(0,Math.max(1,Math.ceil(S.ar.length/2))), 'его часть диалога — уточнить по смыслу', 'close-perspective version of the same sound', [A],'cu'));
+  if(B) plan.push(mk(`крупный план — ${B.name}`,++i,n,
+    `medium close-up of ${enName(B)}, over-the-shoulder from behind ${enName(A)} (his shoulder soft in the left foreground), shallow depth of field`,
+    S.ar.slice(Math.ceil(S.ar.length/2)), 'его реплика или молчаливая реакция — уточнить по смыслу', 'close-perspective version of the same sound', [B,A].slice(0,2),'cu'));
+  plan.push(mk('перебивка — немая',++i,n,
+    'static insert close-up of a telling detail of the scene (a glass of tea, a key on its hook, a plant on the windowsill) — no people in frame',
+    [], null, 'room ambience ONLY, no speech — the dialogue track continues over this cut in the edit (L-cut)', [],'insert'));
+  return {plan, note:B?'Диалог: мастер играет всю сцену, крупные планы дают монтажный ритм, немая перебивка прячет склейки. Реплики крупных планов уточните по смыслу сцены.':'Один герой: мастер + крупный план + перебивка.'};
 }
 
 /* ---- сборка промпта ---- */
@@ -1333,6 +1455,20 @@ $('#p-lessons').addEventListener('click',async e=>{
   }
   const pc=e.target.closest('[data-pcopy]');
   if(pc){ const [ln,sn]=pc.dataset.pcopy.split('-'); copy(buildPrompt(ln,sn),`Промпт У${ln}·Ш${sn} скопирован`); return; }
+
+  const cc=e.target.closest('[data-ccopy]');
+  if(cc){ const [ln,sn,i]=cc.dataset.ccopy.split('-');
+    const k=coveragePlan(ln,sn).plan[+i];
+    copy(k.prompt,`Кадр ${+i+1} (${k.label}) скопирован`); return; }
+
+  const ct=e.target.closest('[data-ctog]');
+  if(ct){
+    const k=ct.dataset.ctog, box=ct.closest('.cbox');
+    if(openCoverage.has(k)){ openCoverage.delete(k); box.classList.remove('open'); box.querySelector('.cbody').innerHTML=''; }
+    else{ openCoverage.add(k); box.classList.add('open');
+      const [ln,sn]=k.split('-'); box.querySelector('.cbody').innerHTML=coverageHTML(ln,sn); }
+    return;
+  }
 
   const lv=e.target.closest('[data-lv]');
   if(lv){ lessonView=lv.dataset.lv; localStorage.setItem('aj_lview',lessonView); renderLessons(); return; }
