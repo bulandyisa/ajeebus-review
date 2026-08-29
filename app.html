@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Ajeebus — app prototype v2</title>
+<title>Ajeebus — app prototype v3</title>
 <style>
   :root{
     --bg:#F7F2E8; --card:#FFFFFF; --ink:#27211497; --ink2:#262014; --dim:#6E6250; --faint:#9A8D78;
@@ -195,25 +195,176 @@
   .phrase{width:100%;background:var(--em-soft);border:1px solid #C4E2D9;border-radius:14px;padding:12px 15px;text-align:left}
   .phrase .p1{font-size:10px;font-weight:800;letter-spacing:.07em;color:var(--em);text-transform:uppercase;margin-bottom:3px}
   .phrase .p2{font-size:13.5px;line-height:1.5;color:var(--ink2)}
+
+  /* ================= SHELL / NAV (v3) ================= */
+  .scr{flex:1;overflow-y:auto;min-height:0;display:flex;flex-direction:column}
+  .nav{display:flex;border-top:1px solid var(--line);background:var(--card);
+       padding:6px 8px calc(8px + env(safe-area-inset-bottom))}
+  .nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+       font-size:10px;font-weight:750;color:var(--faint);padding:6px 0;border-radius:12px}
+  .nav button .ni{font-size:20px;line-height:1;filter:grayscale(1);opacity:.65}
+  .nav button[aria-pressed="true"]{color:var(--em)}
+  .nav button[aria-pressed="true"] .ni{filter:none;opacity:1}
+  .hpad{padding:16px 18px 26px}
+
+  /* ================= SALAM ================= */
+  .salam{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+         padding:30px 26px;text-align:center}
+  .scircle{width:118px;height:118px;border-radius:50%;background:var(--gold-soft);display:grid;
+           place-items:center;font-size:62px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .salam .sar{font-size:40px;color:var(--ink2)}
+  .ssub{color:var(--dim);font-size:13.5px;line-height:1.6}
+  .sreply{margin-top:8px;background:var(--em);color:#fff;border-radius:18px;padding:15px 26px;
+          display:flex;flex-direction:column;gap:3px;box-shadow:0 4px 0 var(--em-dark);transition:.1s}
+  .sreply:active{transform:translateY(3px);box-shadow:0 1px 0 var(--em-dark)}
+  .sreply .ar{font-size:23px}
+  .srt{font-size:10px;opacity:.85}
+  .snote0{font-size:10px;color:var(--faint);margin-top:6px}
+
+  /* ================= HOME / LADDER ================= */
+  .hellorow{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .hellorow h1{font-size:21px;font-weight:800;letter-spacing:-.02em}
+  .hellorow .sub{font-size:11.5px;color:var(--dim)}
+  .chip{font-size:12px;font-weight:800;background:var(--card);border:1px solid var(--line);
+        border-radius:99px;padding:6px 11px;box-shadow:var(--shadow);white-space:nowrap;color:var(--ink2)}
+  .banner{width:100%;display:flex;align-items:center;gap:11px;text-align:left;background:var(--gold-soft);
+          border:1px solid #EFDDB4;border-radius:16px;padding:11px 14px;margin-bottom:10px;color:var(--ink2)}
+  .banner b{font-size:12.5px}
+  .banner .b2{font-size:10.5px;color:var(--dim)}
+  .banner .bi{font-size:22px}
+  .chev{margin-left:auto;color:var(--faint);font-size:20px;flex:none}
+  .ladderhead{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+              color:var(--faint);margin:16px 2px 10px}
+  .lvl1{width:100%;text-align:left;background:var(--ok-soft);border:1px solid #BFDECB;border-radius:16px;
+        padding:13px 15px;display:flex;align-items:center;gap:11px;margin-bottom:9px;color:var(--ink2)}
+  .lvl1 .ck{color:var(--ok);font-weight:800;font-size:17px}
+  .lvl1 .l1t{font-size:14px;font-weight:750}
+  .lvl1 .l1s{font-size:11px;color:var(--dim)}
+  .mods{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:-4px 6px 12px;
+        padding:12px 14px 10px}
+  .modrow{display:flex;gap:10px;font-size:12px;padding:6px 0;border-bottom:1px dashed var(--line);color:var(--ink2)}
+  .modrow:last-of-type{border-bottom:0}
+  .modrow .mr{color:var(--faint);flex:none;width:48px;font-weight:700}
+  .stinger{font-size:11px;color:var(--dim);background:var(--gold-soft);border-radius:10px;
+           padding:8px 11px;margin-top:9px;line-height:1.5}
+  .lvlcard{width:100%;text-align:left;background:var(--card);border:2px solid var(--em);border-radius:20px;
+           padding:14px 15px;display:flex;gap:13px;align-items:center;box-shadow:var(--shadow);margin:0 0 12px;color:var(--ink2)}
+  .lvlcard:active{transform:scale(.985)}
+  .lface{width:56px;height:56px;border-radius:18px;background:var(--gold-soft);display:grid;
+         place-items:center;font-size:30px;flex:none}
+  .lk{font-size:9px;font-weight:800;letter-spacing:.07em;color:var(--em);text-transform:uppercase}
+  .lt2{font-size:16px;font-weight:800}
+  .lsub{font-size:11px;color:var(--dim);margin:1px 0 7px}
+  .pbar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+  .pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--em),#1B9E85)}
+  .lnext{font-size:11px;color:var(--em);font-weight:700;margin-top:6px}
+  .lvlrow{display:flex;align-items:center;gap:11px;padding:11px 14px;border:1px solid var(--line);
+          border-radius:16px;margin-bottom:8px;opacity:.6}
+  .lvlrow .ln{width:29px;height:29px;border-radius:10px;background:var(--card);border:1px solid var(--line);
+              display:grid;place-items:center;font-weight:800;font-size:12.5px;flex:none}
+  .lrt{font-size:13.5px;font-weight:750}
+  .lrc{font-size:9.5px;color:var(--faint);font-weight:700;margin-left:4px}
+  .lrs{font-size:10.5px;color:var(--dim)}
+  .lock{margin-left:auto;font-size:14px}
+  .foot2{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;line-height:1.5}
+
+  /* ================= LEVEL MAP ================= */
+  .maphead{display:flex;align-items:center;gap:10px;padding:13px 16px 8px}
+  .back{font-size:26px;color:var(--faint);width:32px;height:32px;flex:none;text-align:left;line-height:1}
+  .mk{font-size:9.5px;font-weight:800;letter-spacing:.07em;color:var(--gold);text-transform:uppercase}
+  .mt{font-size:17px;font-weight:800}
+  .maphead .chip{margin-left:auto}
+  .paystrip{display:block;width:calc(100% - 36px);margin:4px 18px 0;background:var(--em-soft);
+            border:1.5px dashed var(--em);color:var(--em);font-size:11px;font-weight:750;border-radius:12px;
+            padding:9px 12px;text-align:left}
+  .seevent{font-size:11px;color:var(--dim);margin:-7px 2px 10px;line-height:1.5}
+  .lc.current{border:2px solid var(--em)}
+  .lc.soon{opacity:.35}
+
+  /* ================= SERIES ================= */
+  .scrtitle{font-size:20px;font-weight:800;margin-bottom:4px}
+  .snote{font-size:12px;color:var(--dim);line-height:1.55;margin-bottom:14px}
+  .epcard{width:100%;display:flex;gap:12px;align-items:center;text-align:left;background:var(--card);
+          border:1px solid var(--line);border-radius:16px;padding:9px 10px;box-shadow:var(--shadow);
+          margin-bottom:8px;color:var(--ink2)}
+  .epcard.soon{opacity:.5;box-shadow:none;background:transparent}
+  .epthumb{width:60px;height:80px;border-radius:12px;flex:none;display:grid;place-items:center;color:#fff;
+           font-size:19px;background:radial-gradient(120% 90% at 30% 20%,#3A3326,#221D14)}
+  .ept{font-size:13px;font-weight:750}
+  .eps{font-size:10.5px;color:var(--dim);margin-top:2px}
+
+  /* ================= PROFILE ================= */
+  .prow{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+  .pface{width:52px;height:52px;border-radius:50%;background:var(--card);border:1px solid var(--line);
+         display:grid;place-items:center;font-size:25px}
+  .pn{font-weight:800;font-size:16px}
+  .ps{font-size:11px;color:var(--dim)}
+  .minibtn{margin-left:auto;background:var(--em);color:#fff;font-size:11.5px;font-weight:800;
+           border-radius:99px;padding:8px 14px;box-shadow:0 2px 0 var(--em-dark)}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:11px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 6px;
+        text-align:center;box-shadow:var(--shadow)}
+  .tile b{font-size:18px;display:block}
+  .tile span{font-size:9px;color:var(--dim);letter-spacing:.05em;text-transform:uppercase;font-weight:750}
+  .cert{background:var(--gold-soft);border:1px solid #EFDDB4;border-radius:14px;padding:11px 14px;
+        font-size:12px;margin:11px 0;line-height:1.5}
+  .cert.locked{opacity:.6}
+  .reset{display:block;margin:18px auto 0;font-size:10.5px;color:var(--faint);text-decoration:underline}
+
+  /* ================= PAYWALL ================= */
+  .pw{padding:12px 20px 8px;display:flex;flex-direction:column;gap:11px}
+  .pwx{align-self:flex-start;font-size:20px;color:var(--faint);width:32px;height:32px}
+  .pwstrip{font-size:28px;letter-spacing:7px;text-align:center}
+  .pw h2{font-size:21px;font-weight:800;text-align:center;line-height:1.3}
+  .pwsub{font-size:13px;color:var(--dim);text-align:center;line-height:1.55}
+  .bens{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
+        padding:13px 15px}
+  .bens .b{display:flex;gap:9px;font-size:12.5px;line-height:1.5;margin-bottom:7px;color:var(--ink2)}
+  .bens .b:last-child{margin-bottom:0}
+  .bens .b::before{content:'✓';color:var(--em);font-weight:800}
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+  .plan{position:relative;border:2px solid var(--line);background:var(--card);border-radius:16px;
+        padding:14px 8px 11px;text-align:center;display:flex;flex-direction:column;gap:2px;color:var(--ink2)}
+  .plan b{font-size:14px}
+  .plan span{font-size:10.5px;color:var(--dim)}
+  .plan.sel{border-color:var(--em);background:var(--em-soft)}
+  .plan .badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--gold);
+               color:#fff;font-size:8px;font-weight:800;border-radius:99px;padding:2px 8px;letter-spacing:.05em}
+  .pwnote{text-align:center;font-size:9.5px;color:var(--faint)}
+  .later{width:100%;text-align:center;font-size:12.5px;font-weight:700;color:var(--dim);padding:10px 0 2px}
 </style>
 </head>
 <body>
 <div class="phone">
-  <div class="draft"><b>DRAFT v2</b> · UI EN · content RU · voice = system TTS placeholder (final: native speaker)</div>
+  <div class="draft"><b>DRAFT v3</b> · full app vision · UI EN · content RU · voice = system TTS placeholder</div>
   <div id="view" style="flex:1;display:flex;flex-direction:column;min-height:0"></div>
 </div>
 <script src="data.js"></script>
 <script src="program.js"></script>
 <script src="seasons.js"></script>
+<script src="course.js"></script>
 <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const store={get(){try{return JSON.parse(localStorage.getItem('ajapp2')||'{}')}catch(e){return{}}},
-  save(o){try{localStorage.setItem('ajapp2',JSON.stringify(o))}catch(e){}}};
-let done=store.get().done||{};
+
+/* ---------- состояние (v3): прогресс + подписка ---------- */
+const S=(()=>{ let o={done:{},sub:false};
+  try{ Object.assign(o,JSON.parse(localStorage.getItem('ajapp3')||'{}')); }catch(e){}
+  try{ if(!Object.keys(o.done||{}).length){
+    const old=JSON.parse(localStorage.getItem('ajapp2')||'{}');
+    if(old.done) o.done=old.done; } }catch(e){}
+  o.done=o.done||{}; return o; })();
+const persist=()=>{ try{localStorage.setItem('ajapp3',JSON.stringify(S))}catch(e){} };
+let done=S.done;
+
 const flat=AJ.seasons.flatMap(se=>se.items.map(i=>({n:i[0],title:i[1],goal:i[5],season:se})));
 const prog=n=>AJ.program.find(p=>p.n===n);
-
+const doneN=()=>Object.keys(done).length;
+const titleOf=n=>(flat.find(f=>f.n===n)||{}).title||'';
+const nextLesson=()=>{ for(const f of flat){ if(prog(f.n)&&!done[f.n]) return f.n; } return 1; };
+const unlocked=n=>n<=3||S.sub;
+const wordsLearned=()=>Object.keys(done).reduce((a,n)=>{
+  const p=prog(+n); return a+(p?p.vocab.filter(v=>v.kind==='core').length:0)},0);
 /* ---------- TTS (черновик: системные голоса; в проде — носитель) ---------- */
 let voices=[];
 function loadVoices(){ voices=speechSynthesis.getVoices()||[]; }
@@ -230,7 +381,6 @@ function speak(text,lang,rate){
   }catch(e){return null}
 }
 const stopSpeak=()=>{try{speechSynthesis.cancel()}catch(e){}};
-
 /* ---------- эмодзи-заглушки картинок ---------- */
 const EMO=[['чай','🫖'],['кофе','☕'],['вода','💧'],['сок','🧃'],['финик','🌴'],['сахар','🍬'],
  ['книга','📕'],['ручка','🖊️'],['ключ','🔑'],['кот','🐈'],['коз','🐐'],['дом','🏠'],['дверь','🚪'],
@@ -263,37 +413,249 @@ const EMO=[['чай','🫖'],['кофе','☕'],['вода','💧'],['сок','�
 function emoji(v){ const k=(v.ru+' '+v.tr).toLowerCase();
   for(const [t,e] of EMO) if(k.includes(t)) return e; return '💬'; }
 
-/* ================= HOME ================= */
-function home(){
+/* ================= САЛЯМ НА ВХОДЕ =================
+   Сквозная фишка удержания: приложение здоровается, пользователь отвечает вслух.
+   Ритуал — раз за сессию, дальше сразу главный экран. */
+function salam(){
   stopSpeak();
-  const doneN=Object.keys(done).length;
+  $('#view').innerHTML=`<div class="salam">
+    <div class="scircle">👳🏽‍♂️</div>
+    <div class="sar ar">السلام عليكم!</div>
+    <div class="ssub">Ajeebus greets you at the door.<br>Answer him — out loud.</div>
+    <button class="sreply" id="srep">
+      <span class="ar">وعليكم السلام</span>
+      <span class="srt">wa-ʿalaykumu s-salām · tap when you've said it</span>
+    </button>
+    <div class="snote0">the app opens with salām every time — you reply with your voice</div>
+  </div>`;
+  setTimeout(()=>speak('السلام عليكم','ar-SA',0.8),400);
+  $('#srep').onclick=()=>{ try{sessionStorage.setItem('aj_salam','1')}catch(e){}
+    speak('وعليكم السلام','ar-SA',0.85); home(); };
+}
+
+/* ================= ОБОЛОЧКА С НИЖНЕЙ НАВИГАЦИЕЙ ================= */
+function shell(tab,inner){
+  stopSpeak();
   $('#view').innerHTML=`
-  <div class="home">
-    <div class="apphead">
+   <div class="scr">${inner}</div>
+   <div class="nav">
+     <button data-nav="learn" aria-pressed="${tab==='learn'}"><span class="ni">📚</span>Learn</button>
+     <button data-nav="series" aria-pressed="${tab==='series'}"><span class="ni">🎬</span>Series</button>
+     <button data-nav="profile" aria-pressed="${tab==='profile'}"><span class="ni">👤</span>Profile</button>
+   </div>`;
+  $('.nav').onclick=e=>{ const b=e.target.closest('[data-nav]'); if(!b) return;
+    ({learn:home,series:series,profile:profile})[b.dataset.nav](); };
+}
+
+/* ================= ГЛАВНЫЙ ЭКРАН — ЛЕСТНИЦА УРОВНЕЙ =================
+   Уровень 1 «Читаю» — одна пройденная ступень (три алфавитных курса упакованы внутрь),
+   уровень 2 — активная карточка, 3–6 — замки. Анза держит стрик, серия — событие. */
+let l1open=false;
+function home(){
+  const lv=AJ.course.levels, n2=lv[1], dn=doneN(), nxt=nextLesson();
+  shell('learn',`
+  <div class="hpad">
+    <div class="hellorow">
       <div class="logo">🫖</div>
-      <div><h1>Ajeebus</h1><div class="sub">Level 2 · First Words · A1</div></div>
+      <div style="flex:1"><h1>Ajeebus</h1><div class="sub">Arabic — from letters to conversation</div></div>
+      <div class="chip">🔥 ${dn}</div>
+    </div>
+
+    <button class="banner" data-go="series">
+      <span class="bi">📺</span>
+      <span><b>${done[3]?'Episode 4 arrives with your next lesson':'New episode out — «Чай у Аджибуса»'}</b><br>
+      <span class="b2">every lesson drops as an episode of the series</span></span>
+      <span class="chev">›</span>
+    </button>
+
+    <div class="streak">
+      <div class="f">🐐</div>
+      <div><div class="t1">${dn?`Streak safe — ${dn} lesson${dn>1?'s':''} done`:'Anza is eyeing your streak'}</div>
+      <div class="t2">Miss a day and Anza eats it. Win it back with two lessons — not with money.</div></div>
+    </div>
+
+    <div class="ladderhead">Your path to conversation</div>
+
+    <button class="lvl1" data-l1>
+      <span class="ck">✓</span>
+      <div style="flex:1"><div class="l1t">Level 1 · ${esc(lv[0].title)} <span class="lrc">${esc(lv[0].code)}</span></div>
+      <div class="l1s">${esc(lv[0].tagline)} · ${lv[0].lessons} lessons · completed</div></div>
+      <span class="chev">${l1open?'▾':'▸'}</span>
+    </button>
+    ${l1open?`<div class="mods">
+      ${lv[0].modules.map(m=>`<div class="modrow"><span class="mr">${esc(m[1])}</span><div><b>${esc(m[0])}</b> — ${esc(m[2])}</div></div>`).join('')}
+      <div class="stinger">🫖 Ajeebus hosted this level too: salām at the door, a sting after each module,
+      a joke certificate at the end — and a stranger with a backpack knocking in the final scene.</div>
+    </div>`:''}
+
+    <button class="lvlcard" data-go="map">
+      <div class="lface">👳🏽‍♂️</div>
+      <div style="flex:1;min-width:0">
+        <div class="lk">Level 2 · ${esc(n2.code)} · current</div>
+        <div class="lt2">${esc(n2.title)}</div>
+        <div class="lsub">${esc(n2.tagline)}</div>
+        <div class="pbar"><i style="width:${Math.max(2,Math.round(dn/n2.lessons*100))}%"></i></div>
+        <div class="lnext">Next: Lesson ${nxt} — ${esc(titleOf(nxt))}</div>
+      </div>
+      <span class="chev">›</span>
+    </button>
+
+    ${lv.slice(2).map(l=>`
+      <div class="lvlrow">
+        <span class="ln">${l.n}</span>
+        <div style="flex:1"><div class="lrt">${esc(l.title)}<span class="lrc">${esc(l.code)}</span></div>
+        <div class="lrs">${esc(l.tagline)}</div></div>
+        <span class="lock">🔒</span>
+      </div>`).join('')}
+
+    <div class="foot2">280 lessons · one continuous story · Modern Standard Arabic only, no dialect</div>
+  </div>`);
+  $('.scr').onclick=e=>{
+    const g=e.target.closest('[data-go]');
+    if(g){ ({map,series})[g.dataset.go](); return; }
+    if(e.target.closest('[data-l1]')){ l1open=!l1open; home(); }
+  };
+}
+
+/* ================= КАРТА УРОВНЯ 2 ================= */
+function map(){
+  const dn=doneN(), nxt=nextLesson();
+  shell('learn',`
+   <div class="maphead">
+     <button class="back" data-back>‹</button>
+     <div><div class="mk">Level 2 · A1</div><div class="mt">Первые слова</div></div>
+     <div class="chip">${dn}/50</div>
+   </div>
+   ${S.sub?'':`<button class="paystrip" data-paywall>🔓 Lessons 1–3 are free — unlock all 50 with Ajeebus+</button>`}
+   <div class="hpad" style="padding-top:8px">
+   ${AJ.seasons.map(se=>`
+     <div class="season">
+       <div class="seahead"><span class="n">Season ${se.n}</span><span class="t">${esc(se.title)}</span></div>
+       <div class="seevent">${esc(se.event||se.idea||'')}</div>
+       <div class="lgrid">
+         ${se.items.map(it=>{
+           const n=it[0], has=!!prog(n), open=has&&unlocked(n);
+           const cls=['lc', done[n]?'done':'', has?'':'soon', (n===nxt&&open&&!done[n])?'current':''].join(' ');
+           return `<button class="${cls}" data-open="${n}" ${has?'':'disabled'}>
+             ${n<=3&&!S.sub?`<span class="freechip">FREE</span>`:(has&&!open?`<span class="pay">🔒</span>`:'')}
+             <span class="num">${n}</span><span class="lt">${esc(it[1])}</span>
+           </button>`;}).join('')}
+       </div>
+     </div>`).join('')}
+   <div class="foot2">Lessons 31–50 are being written — the map already knows their names.</div>
+   </div>`);
+  $('.scr').onclick=e=>{
+    if(e.target.closest('[data-back]')) return home();
+    if(e.target.closest('[data-paywall]')) return paywall('locked');
+    const b=e.target.closest('[data-open]'); if(!b) return;
+    const n=+b.dataset.open;
+    if(!unlocked(n)) return paywall('locked');
+    startFlow(n);
+  };
+}
+
+/* ================= СЕРИАЛ ================= */
+function series(){
+  shell('series',`<div class="hpad">
+    <h2 class="scrtitle">The series</h2>
+    <div class="snote">Every lesson ships as an episode — filmed like a show, no one talks to the camera.
+    When one drops, Ajeebus sends a push: <i class="ar">«الشاي يبرد»</i> — “the tea is getting cold”.</div>
+    ${flat.slice(0,8).map(f=>{
+      const released=f.n<=3;
+      return `<button class="epcard ${released?'':'soon'}" data-ep="${f.n}" ${released?'':'disabled'}>
+        <div class="epthumb">${released?'▶':(f.n===4?'🔜':'·')}</div>
+        <div style="flex:1"><div class="ept">Episode ${f.n} · ${esc(f.title)}</div>
+        <div class="eps">${released?'12 shots · footage ready — opens inside Lesson '+f.n
+                          :(f.n===4?'Drops together with Lesson 4':'Coming soon')}</div></div>
+        ${released&&!unlocked(f.n)?'<span class="lock">🔒</span>':''}
+      </button>`}).join('')}
+    <div class="foot2">Season 1 of 5 · episodes release with your lessons — a reason to come back, not homework</div>
+  </div>`);
+  $('.scr').onclick=e=>{ const b=e.target.closest('[data-ep]'); if(!b) return;
+    const n=+b.dataset.ep;
+    if(!unlocked(n)) return paywall('locked');
+    startFlow(n,'episode'); };
+}
+
+/* ================= ПРОФИЛЬ ================= */
+function profile(){
+  const season1=AJ.seasons[0].items.every(it=>done[it[0]]);
+  shell('profile',`<div class="hpad">
+    <div class="prow">
+      <div class="pface">🧑🏻</div>
+      <div><div class="pn">You</div><div class="ps">${S.sub?'Ajeebus+ member':'Free plan · lessons 1–3'}</div></div>
+      ${S.sub?'':'<button class="minibtn" data-paywall>Upgrade</button>'}
+    </div>
+    <div class="tiles">
+      <div class="tile"><b>${doneN()}</b><span>lessons</span></div>
+      <div class="tile"><b>${wordsLearned()}</b><span>words</span></div>
+      <div class="tile"><b>🔥 ${doneN()}</b><span>streak</span></div>
     </div>
     <div class="streak">
       <div class="f">🐐</div>
-      <div><div class="t1">${doneN?`Streak safe — ${doneN} lesson${doneN>1?'s':''} done`:'Anza is eyeing your streak'}</div>
-      <div class="t2">Miss a day and Anza eats it. Win it back with two lessons.</div></div>
+      <div><div class="t1">Anza, keeper of your streak</div>
+      <div class="t2">She eats missed days. She has never once apologized.</div></div>
     </div>
-    ${AJ.seasons.map(se=>`
-      <div class="season">
-        <div class="seahead"><span class="n">Season ${se.n}</span><span class="t">${esc(se.title)}</span></div>
-        <div class="lgrid">
-          ${se.items.map(it=>{
-            const n=it[0], has=!!prog(n), free=n<=3;
-            return `<button class="lc ${done[n]?'done':''} ${has?'':'locked'}" data-open="${n}" ${has?'':'disabled'}>
-              ${free?`<span class="freechip">FREE</span>`:(n<=30?`<span class="pay">🔒</span>`:'')}
-              <span class="num">${n}</span><span class="lt">${esc(it[1])}</span>
-            </button>`;}).join('')}
-        </div>
-      </div>`).join('')}
-  </div>`;
-  $('#view').onclick=e=>{const b=e.target.closest('[data-open]'); if(b) startFlow(+b.dataset.open);};
+    <div class="cert ${season1?'':'locked'}">🎓 <b>Certificate from Ajeebus</b> —
+      ${season1?'earned! A joke certificate, but the pride is real.':'finish Season 1 (lessons 1–10) to earn it.'}</div>
+    <div class="foot2">progress, subscription and voice settings live here in the real app</div>
+    <button class="reset" data-reset>Reset draft progress</button>
+  </div>`);
+  $('.scr').onclick=e=>{
+    if(e.target.closest('[data-paywall]')) return paywall('locked');
+    if(e.target.closest('[data-reset]')){ done={}; S.done={}; S.sub=false; persist(); home(); }
+  };
 }
 
+/* ================= ПЕЙВОЛЛ =================
+   Появляется на пике: после урока 3 ученик впервые сам провёл диалог.
+   Продаём персонажа и сериал, не экраны упражнений. */
+function paywall(mode){
+  stopSpeak();
+  let plan='year';
+  const render=()=>{
+    $('#view').innerHTML=`
+    <div class="scr"><div class="pw">
+      <button class="pwx" data-later>✕</button>
+      <div class="pwstrip">👳🏽‍♂️🫖🐐🔑🎬</div>
+      <h2>${mode==='peak'?'You just had your first real dialogue in Arabic.':'Ajeebus is waiting'}</h2>
+      <p class="pwsub">${mode==='peak'
+        ?'Three lessons in — you asked, thanked, and got your tea. Ajeebus says it would be a shame to stop now.'
+        :'Lessons 4–50 continue the story — and the story is how the words stick.'}</p>
+      <div class="bens">
+        <div class="b">All 50 lessons of Level 2 — and Levels 3–6 as they arrive</div>
+        <div class="b">A new episode of the series with every lesson</div>
+        <div class="b">Ajeebus's voice on every word, rule and push</div>
+        <div class="b">Streak repair — win it back from Anza with two lessons</div>
+      </div>
+      <div class="plans">
+        <button class="plan ${plan==='year'?'sel':''}" data-plan="year">
+          <span class="badge">SAVE 58%</span><b>Yearly</b><span>$39.99/yr · $3.33/mo</span></button>
+        <button class="plan ${plan==='month'?'sel':''}" data-plan="month">
+          <b>Monthly</b><span>$7.99/mo</span></button>
+      </div>
+      <div class="pwnote">draft — prices are placeholders</div>
+    </div></div>
+    <div class="ffoot">
+      <button class="cta" id="buy">Continue with Ajeebus</button>
+      <button class="later" data-later>Maybe later</button>
+    </div>`;
+    $('#view').onclick=e=>{
+      const p=e.target.closest('[data-plan]');
+      if(p){ plan=p.dataset.plan; render(); return; }
+      if(e.target.closest('[data-later]')){ $('#view').onclick=null; map(); return; }
+      if(e.target.closest('#buy')){ $('#view').onclick=null; S.sub=true; persist(); map(); }
+    };
+  };
+  render();
+}
+
+/* ---------- выходы из урока ---------- */
+function exitFlow(){ stopSpeak(); map(); }
+function finishLesson(){
+  done[F.n]=true; S.done=done; persist(); window.scrollTo(0,0);
+  if(F.n===3&&!S.sub) paywall('peak'); else map();
+}
 /* ================= FLOW ================= */
 let F=null; /* {n, steps, idx, P, M, sub} */
 
@@ -320,8 +682,9 @@ function buildSteps(n){
   return steps;
 }
 
-function startFlow(n){
+function startFlow(n,jump){
   F={n,steps:buildSteps(n),idx:0,P:prog(n),M:flat.find(f=>f.n===n),sub:'none'};
+  if(jump==='episode'){ const i=F.steps.findIndex(s=>s.t==='episode'); if(i>0) F.idx=i; }
   renderStep();
 }
 function next(){ if(F.idx<F.steps.length-1){F.idx++; renderStep();} }
@@ -343,7 +706,7 @@ function frame(inner,{cta='Continue',ctaOn=true,kicker='',q=''}={}){
     <div class="feedback" id="fb"><span class="fi"></span><div><div class="ft1"></div><div class="ft2"></div></div></div>
     <div class="ffoot"><button class="cta" id="cta" ${ctaOn?'':'disabled'}>${esc(cta)}</button></div>
   </div>`;
-  $('#fx').onclick=()=>{ if(confirm('Leave the lesson? Progress in this session is kept.')) home(); };
+  $('#fx').onclick=exitFlow;
 }
 function feedback(good,sub){
   const fb=$('#fb');
@@ -599,12 +962,14 @@ function renderStep(){
       <div class="canlist">${P.wrap.map(w=>`<div class="cl">${esc(w)}</div>`).join('')}</div>
       <div class="phrase"><div class="p1">Phrase of the day</div><div class="p2">${esc(P.phrase)}</div></div>
     </div>`,{cta:'Finish'});
-    $('#cta').onclick=()=>{ done[F.n]=true; store.save({done}); home(); window.scrollTo(0,0); };
+    $('#cta').onclick=finishLesson;
     return;
   }
 }
 
-home();
+function boot(){ let seen=false; try{seen=!!sessionStorage.getItem("aj_salam")}catch(e){}
+  if(seen) home(); else salam(); }
+boot();
 </script>
 </body>
 </html>
