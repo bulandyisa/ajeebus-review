@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Ajeebus — app prototype v3</title>
+<title>Ajeebus — app prototype v4</title>
 <style>
   :root{
     --bg:#F7F2E8; --card:#FFFFFF; --ink:#27211497; --ink2:#262014; --dim:#6E6250; --faint:#9A8D78;
@@ -633,7 +633,7 @@ function home(){
       <button class="lvlrow" data-goc="${l.n}" style="width:100%;text-align:left">
         <span class="ln">${l.n}</span>
         <div style="flex:1"><div class="lrt">${esc(l.title)}<span class="lrc">${esc(l.code)}</span></div>
-        <div class="lrs">${esc(l.tagline)} · ${l.lessons} lessons</div></div>
+        <div class="lrs">${l.lessons} lessons · ${l.modules.length} parts</div></div>
         <span class="lock">🔒</span>
       </button>`).join('')}
 
