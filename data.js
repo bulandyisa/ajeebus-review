@@ -281,16 +281,38 @@ window.AJ = {
 
   /* ---------- открытые решения ---------- */
   blockers:[
-    {id:'build', q:'Телосложение Аджибуса', why:'Блокирует весь канон: character lock и все последующие генерации зависят от силуэта.',
-     opts:['Вариант А — невысокий, круглый (рекомендация паспорта)','Вариант B — высокий, сухопарый'],
-     hint:'В папке 00-архив-превью лежат по 4 кадра каждого варианта в полный рост.'},
-    {id:'voice', q:'Голос Аджибуса', why:'Закрепляется в карточке персонажа Flow один раз — иначе голос плавает от серии к серии.',
-     opts:['Algenib — gravelly, low','Sadachbia — lively, low','Umbriel — smooth, lower'],
-     hint:'Прослушать демо в разделе «Голоса» библиотеки ассетов Flow. Первый выбор паспорта — Algenib.'},
-    {id:'look', q:'Финальный облик после исправления чалмы', why:'Без утверждённого мастер-портрета нельзя заводить карточку персонажа и начинать производство.',
-     opts:['Утверждён — можно заводить персонажа','Нужна ещё серия генераций'],
-     hint:'Ни в одном из 16 архивных превью чалма ещё НЕ исправлена: везде пышный шар вместо имамы.'}
+    {id:'look2', q:'Облик Аджибуса 2.0 — арабский сеттинг', why:'Пивот от 27.08: действие переносится в арабскую страну, одежда персонажей — арабская. Все локации, канон и промпты пересобираются от этого выбора.',
+     opts:['A — тоуб + кардиган (фирменная деталь)','B — египетская галабея в полоску','C — оманская дишдаша + кума','D — магрибская джеллаба с капюшоном'],
+     hint:'Карточки вариантов с полными промптами — наверху вкладки «Канон». Выбор отмечается там же; плашки генерим после логина во Flow.'}
   ],
+
+  /* ---------- кастинг 2.0: облик Аджибуса в арабском сеттинге (пивот 27.08) ----------
+     Юнус остаётся в джинсовке — он теперь иностранный студент, и выделяться одеждой
+     ему положено по роли. Меняется только Аджибус и мир вокруг. */
+  casting:{
+    question:'Облик Аджибуса 2.0 — каким он будет в арабском городе?',
+    note:'Общее во всех вариантах: ~65 лет, пышная белая борода с хной спереди, маленькие круглые очки, лучистые глаза, театральная пластика. Меняется только одежда и головной убор. Выбор одного варианта пересобирает character lock, все локации и промпты.',
+    options:[
+      {id:'A', title:'Тоуб + кардиган', sub:'фирменная деталь сохраняется',
+       ru:'Белоснежный тоуб (галабея) до пят — и поверх него тот самый вязаный бежевый кардиган. Белая вязаная такия на голове. Чудачество читается мгновенно: дед, который носит кардиган поверх тоуба, потому что «спине холодно». Максимальная преемственность с уже снятым.',
+       lock:'the older Arab man in a crisp white thobe with a beige knitted cardigan worn over it, a white crocheted taqiyah cap, full white beard with henna-orange front, small round glasses'},
+      {id:'B', title:'Египетская галабея', sub:'полосатая, домашняя',
+       ru:'Просторная серо-полосатая галабея каирского кроя, поверх — клетчатый шерстяной шарф, наброшенный на плечи. Белая такия. Тёплый «дедушка из старого Каира», очень фактурный в кадре.',
+       lock:'the older Arab man in a loose grey-striped Egyptian galabeya with a checked wool scarf draped over his shoulders, a white taqiyah cap, full white beard with henna-orange front, small round glasses'},
+      {id:'C', title:'Оманская дишдаша', sub:'самый нарядный',
+       ru:'Белая дишдаша с кисточкой-фуррахой у ворота и вышитая оманская кума на голове. Строгий и красивый силуэт; чудачество будет держаться только на пластике и реквизите.',
+       lock:'the older Arab man in a white Omani dishdasha with a tassel at the collar and an embroidered round kuma cap, full white beard with henna-orange front, small round glasses'},
+      {id:'D', title:'Магрибская джеллаба', sub:'капюшон!',
+       ru:'Песочная джеллаба с остроконечным капюшоном. Капюшон — готовый комический реквизит: поднят в моменты обиды, в нём можно прятаться. Самый характерный силуэт из четырёх.',
+       lock:'the older Arab man in a sand-coloured Moroccan djellaba with a pointed hood (hood down), full white beard with henna-orange front, small round glasses'}
+    ],
+    shots:[
+      ['полный рост, нейтральная поза','Photoreal full-body shot of {LOCK}, standing relaxed in a sunlit old-city alley with traditional architecture, warm morning light'],
+      ['крупный портрет','Photoreal medium close-up of {LOCK}, warm delighted expression, eyebrows raised, soft daylight, blurred old-city background'],
+      ['фирменный жест','Photoreal medium shot of {LOCK} mid-gesture, one hand raised in a theatrical conductor sweep, joyful face, sunlit courtyard behind'],
+      ['за чаем','Photoreal medium shot of {LOCK} pouring tea from a small kettle into a glass in a thin high stream, focused expression, traditional low table']
+    ]
+  },
 
   /* ---------- модели и цены ---------- */
   models:[

@@ -225,6 +225,18 @@
 
   .btn.theme{align-self:center;margin-right:4px}
 
+  /* ---- кастинг 2.0 ---- */
+  .castgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:800px){.castgrid{grid-template-columns:1fr}}
+  .castcard{border:1.5px solid var(--line);border-radius:13px;padding:13px;background:var(--bg);display:flex;flex-direction:column;gap:8px}
+  .castcard.sel{border-color:var(--saffron);box-shadow:0 0 0 1px rgba(235,168,58,.3)}
+  .castcard .ckh{display:flex;align-items:baseline;gap:8px}
+  .castcard .ckh b{font-size:14px}
+  .castcard .ckh span{font-size:11px;color:var(--faint)}
+  .castcard .ckd{font-size:12.5px;line-height:1.55;color:var(--dim)}
+  .castcard .cklock{font:10.5px/1.5 ui-monospace,Menlo,monospace;color:var(--code-ink);background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+  .castcard .ckf{display:flex;gap:8px;margin-top:auto}
+
   /* ---- курс целиком ---- */
   .lvbadge{display:grid;place-items:center;width:24px;height:24px;border-radius:7px;flex:none;
            background:var(--saffron);color:var(--on-gold);font-weight:700;font-size:13px}
@@ -234,8 +246,8 @@
              margin:0 0 6px;font-weight:650}
   .lvgrid h4:not(:first-child){margin-top:14px}
   .gram{font-size:12.5px;line-height:1.65}
-  #p-course .maptbl td.w{white-space:nowrap}
-  #p-course .maptbl td.t{white-space:normal;min-width:9ch}
+  #p-map .maptbl td.w{white-space:nowrap}
+  #p-map .maptbl td.t{white-space:normal;min-width:9ch}
   .stat-line{margin-top:14px;padding-top:10px;border-top:1px solid var(--line);
              font-size:11.5px;color:var(--faint)}
   .dec{margin-bottom:14px}
@@ -424,18 +436,13 @@
 <div class="tabs" id="tabs" role="tablist">
   <button role="tab" data-p="lessons" aria-selected="true">Уроки</button>
   <button role="tab" data-p="review" aria-selected="false">Все файлы</button>
-  <button role="tab" data-p="season" aria-selected="false">Сезон целиком</button>
-  <button role="tab" data-p="map"    aria-selected="false">50 уроков</button>
-  <button role="tab" data-p="course" aria-selected="false">Курс до B1</button>
+  <button role="tab" data-p="map"    aria-selected="false">Программа</button>
   <button role="tab" data-p="canon"  aria-selected="false">Канон</button>
   <button role="tab" data-p="calls"  aria-selected="false">Решения и правила</button>
 </div>
 
 <!-- ================= УРОКИ ================= -->
 <section class="page on" id="p-lessons"></section>
-
-<!-- ================= КУРС ЦЕЛИКОМ ================= -->
-<section class="page" id="p-course"></section>
 
 <!-- ================= КАРТА 50 УРОКОВ ================= -->
 <section class="page" id="p-map"></section>
@@ -474,9 +481,6 @@
   </div>
   <div id="grid"></div>
 </section>
-
-<!-- ================= СЕЗОН ================= -->
-<section class="page" id="p-season"></section>
 
 <!-- ================= КАНОН ================= -->
 <section class="page" id="p-canon"></section>
@@ -566,6 +570,7 @@ let grouping=localStorage.getItem('aj_group')||'sect';
 let curLesson=+(localStorage.getItem('aj_lesson')||1);
 let shotFilter='all';
 let lessonView=localStorage.getItem('aj_lview')||'split';   /* split | board | script */
+let progView=localStorage.getItem('aj_pview')||'l2';        /* l2 — 50 уроков | course — весь курс */
 let selTake={};
 let openPrompts=new Set();   /* какие промпты раскрыты целиком */
 let openCoverage=new Set();  /* у каких шотов раскрыт съёмочный план */
@@ -905,7 +910,8 @@ $('#grid').addEventListener('change',async e=>{
 
 /* ================= сезон ================= */
 function assetsOfShot(l,s){ return items.filter(i=>String(i.lesson)===String(l)&&eqShot(i.shot,s)&&i.status!=='rejected'&&i.status!=='new'); }
-function renderSeason(){
+function renderSeason(){ /* вкладка удалена 27.08 — функция оставлена мёртвой */
+  if(!$('#p-season')) return;
   $('#p-season').innerHTML=AJ.lessons.map(L=>{
     const withMat=L.shots.filter(s=>assetsOfShot(L.n,s.n).length).length;
     const pct=Math.round(withMat/L.shots.length*100);
@@ -1268,13 +1274,19 @@ The shot ends on a held pause, not mid-movement.`;
    На «Всех файлах» это живёт в обработчике #grid; здесь свой, состояние не запоминаем —
    эти вкладки читаются подряд, а не фильтруются. */
 document.addEventListener('click',e=>{
-  const h=e.target.closest('#p-course .shead2, #p-map .shead2');
+  const pk=e.target.closest('[data-pick]');
+  if(pk){ try{localStorage.setItem('aj_cast_ajibus',pk.dataset.pick)}catch(_){} renderCanon(); return; }
+  const cp=e.target.closest('[data-castprompts]');
+  if(cp){ copy(castingPrompts(cp.dataset.castprompts),'Промпты кастинга '+cp.dataset.castprompts+' скопированы'); return; }
+  const pv=e.target.closest('[data-pv]');
+  if(pv){ progView=pv.dataset.pv; localStorage.setItem('aj_pview',progView); renderProgram(); return; }
+  const h=e.target.closest('#p-map .shead2');
   if(h) h.closest('.sect').classList.toggle('closed');
 });
 
 /* ================= курс целиком: шесть уровней до B1 ================= */
 function renderCourse(){
-  const el=$('#p-course'), C=AJ.course;
+  const el=$('#p-map'), C=AJ.course;
   if(!C){ el.innerHTML='<div class="empty">course.js не загрузился</div>'; return; }
 
   const lvl=C.levels.map(L=>`
@@ -1311,7 +1323,7 @@ function renderCourse(){
       </div>
     </div>`).join('');
 
-  el.innerHTML=`
+  el.innerHTML=programSeg()+`
     <div class="lhero">
       <h2>Аджибус — весь курс: от букв до B1</h2>
       <div class="lskill">Шесть уровней, ${C.totalLessons} уроков, ${C.totalWords} слов. Уровень 1 в сторе, уровень 2 расписан поурочно, уровни 3–6 — модульный план.</div>
@@ -1355,12 +1367,21 @@ function renderCourse(){
 }
 
 /* ================= карта пятидесяти уроков ================= */
+/* Вкладка «Программа» объединяет бывшие «50 уроков», «Курс до B1» и «Сезон целиком»:
+   один предмет — один блок, внутри переключатель масштаба. */
+function programSeg(){
+  return `<div class="sfilters" style="margin-bottom:14px"><div class="seg">
+      <button data-pv="l2" aria-pressed="${progView==='l2'}">Уровень 2 · 50 уроков</button>
+      <button data-pv="course" aria-pressed="${progView==='course'}">Весь курс до B1</button>
+    </div></div>`;
+}
+function renderProgram(){ progView==='course'?renderCourse():renderMap(); }
 function renderMap(){
   const el=$('#p-map'); const S=AJ.seasons||[];
   if(!S.length){ el.innerHTML='<div class="empty">seasons.js не загрузился</div>'; return; }
   const done=n=>{ const L=AJ.lessons.find(x=>x.n===n); if(!L) return null;
     const d=L.shots.filter(x=>takesOfShot(n,x.n).length).length; return d+' / '+L.shots.length; };
-  el.innerHTML=S.map(se=>`
+  el.innerHTML=programSeg()+S.map(se=>`
     <div class="sect" data-sect="s${se.n}">
       <div class="shead2">
         <span class="stitle">Сезон ${se.n}. ${esc(se.title)}</span>
@@ -1384,8 +1405,39 @@ function renderMap(){
 }
 
 /* ================= канон ================= */
+function castingHTML(){
+  const C=AJ.casting; if(!C) return '';
+  let sel=''; try{sel=localStorage.getItem('aj_cast_ajibus')||''}catch(e){}
+  return `<div class="sect" data-sect="cast2">
+    <div class="shead2"><span class="lvbadge">2.0</span>
+      <span class="stitle">Кастинг: ${esc(C.question)}</span>
+      <span class="spacer"></span>
+      <span class="chip ${sel?'hi':''}">${sel?'выбран вариант '+esc(sel):'не выбран'}</span></div>
+    <div class="sbody">
+      <div class="thin" style="margin-bottom:12px">${esc(C.note)}</div>
+      <div class="castgrid">
+        ${C.options.map(o=>`
+          <div class="castcard ${sel===o.id?'sel':''}" data-cast="${o.id}">
+            <div class="ckh"><b>${o.id} · ${esc(o.title)}</b><span>${esc(o.sub)}</span></div>
+            <div class="ckd">${esc(o.ru)}</div>
+            <div class="cklock">${esc(o.lock)}</div>
+            <div class="ckf">
+              <button class="btn sm ${sel===o.id?'gold':'ghost'}" data-pick="${o.id}">${sel===o.id?'★ Выбран':'Выбрать'}</button>
+              <button class="btn ghost sm" data-castprompts="${o.id}">⧉ Промпты 4 плашек</button>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="bhint" style="margin-top:10px">Плашки кастинга генерим на Nano Banana (0 кредитов) после логина во Flow — по 4 ракурса на вариант, файлы лягут в <code>01-канон-аджибус/кастинг-2.0/</code>. Выбор здесь — рабочая пометка; финальное решение фиксируется в data.js и пересобирает канон.</div>
+    </div>
+  </div>`;
+}
+function castingPrompts(id){
+  const C=AJ.casting, o=C.options.find(x=>x.id===id);
+  return C.shots.map((sh,i)=>`[КАСТИНГ 2.0 · вариант ${id} · плашка ${i+1}/4 · ${sh[0]}] — Nano Banana Pro · 9:16 · x1 · 0 кредитов\n\n${sh[1].replace('{LOCK}',o.lock)}. Photoreal, warm sand-emerald-saffron palette, natural film grain.`).join('\n\n————————————\n\n');
+}
+
 function renderCanon(){
-  $('#p-canon').innerHTML=AJ.chars.map(c=>{
+  $('#p-canon').innerHTML=castingHTML()+AJ.chars.map(c=>{
     const pics=items.filter(i=>i.char===c.id&&i.status==='canon'&&i.thumb).slice(0,12);
     return `<div class="charcard">
       <div class="lhead"><span class="ltitle">${esc(c.name)}</span>
@@ -1548,7 +1600,7 @@ function renderAll(){
   $('#stCanon').textContent=items.filter(i=>i.status==='canon').length;
   const shotsDone=AJ.lessons.reduce((a,L)=>a+L.shots.filter(s=>takesOfShot(L.n,s.n).length).length,0);
   $('#stShots').innerHTML=`${shotsDone}<span style="color:var(--faint);font-size:12px">/${TOTAL_SHOTS}</span>`;
-  renderLessons(); renderReview(); renderSeason(); renderMap(); renderCourse(); renderCanon(); renderCalls();
+  renderLessons(); renderReview(); renderProgram(); renderCanon(); renderCalls();
 }
 
 /* ================= фокус-режим ================= */
