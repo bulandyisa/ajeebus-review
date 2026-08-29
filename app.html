@@ -332,11 +332,53 @@
                color:#fff;font-size:8px;font-weight:800;border-radius:99px;padding:2px 8px;letter-spacing:.05em}
   .pwnote{text-align:center;font-size:9.5px;color:var(--faint)}
   .later{width:100%;text-align:center;font-size:12.5px;font-weight:700;color:var(--dim);padding:10px 0 2px}
+
+  /* ================= v4: КУРСЫ И ПУТЬ ================= */
+  .pathwrap{padding:2px 18px 26px}
+  .partband{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
+            padding:12px 15px;margin:20px 0 4px}
+  .partband .pk{font-size:9.5px;font-weight:800;letter-spacing:.08em;color:var(--gold);text-transform:uppercase}
+  .partband .pt{font-size:16px;font-weight:800;margin-top:1px}
+  .partband .pe{font-size:11px;color:var(--dim);margin-top:3px;line-height:1.5}
+  .prow2{display:flex;flex-direction:column;align-items:center;margin:12px 0;transition:.12s}
+  .pnode{width:68px;height:68px;border-radius:50%;background:var(--card);border:2.5px solid var(--line);
+         box-shadow:0 5px 0 var(--line);display:flex;align-items:center;justify-content:center;
+         font-size:22px;font-weight:800;color:var(--ink2);position:relative}
+  .pnode:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+  .pnode .mini{position:absolute;top:-3px;right:-5px;font-size:14px}
+  .pnode.done{background:var(--em);border-color:var(--em-dark);box-shadow:0 5px 0 var(--em-dark);color:#fff;font-size:26px}
+  .pnode.cur{width:84px;height:84px;border-color:var(--em);color:var(--em);font-size:26px;animation:ring 1.8s infinite}
+  @keyframes ring{0%{outline:0 solid rgba(20,128,107,.35);outline-offset:0}
+    70%{outline:12px solid rgba(20,128,107,0);outline-offset:6px}100%{outline:0 solid rgba(20,128,107,0)}}
+  .pnode.lockd{opacity:.55}
+  .pnode.soon{opacity:.28;box-shadow:none}
+  .plabel{margin-top:8px;font-size:11px;color:var(--dim);text-align:center;max-width:140px;line-height:1.3}
+  .startchip{font-size:9px;font-weight:800;letter-spacing:.07em;background:var(--em);color:#fff;
+             border-radius:99px;padding:3px 11px;margin-bottom:7px;text-transform:uppercase}
+  .cgoal{font-size:13px;color:var(--ink2);line-height:1.6;background:var(--card);border:1px solid var(--line);
+         border-radius:16px;padding:13px 15px;box-shadow:var(--shadow);margin-bottom:10px}
+  .cstats{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .cstats span{font-size:11px;color:var(--dim);border:1px solid var(--line);border-radius:99px;padding:5px 11px;background:var(--card)}
+  .partrow{display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+           border-radius:14px;padding:11px 13px;margin-bottom:8px}
+  .partrow .pi{width:30px;height:30px;border-radius:10px;background:var(--gold-soft);display:grid;
+               place-items:center;font-weight:800;font-size:12.5px;flex:none;color:var(--ink2)}
+  .partrow.dn .pi{background:var(--ok-soft);color:var(--ok)}
+  .partrow .pn2{font-size:13px;font-weight:750}
+  .partrow .pr{font-size:10px;color:var(--faint);font-weight:700;margin-left:5px}
+  .partrow .pd{font-size:11.5px;color:var(--dim);margin-top:2px;line-height:1.45}
+  .locknote{background:var(--gold-soft);border:1px solid #EFDDB4;border-radius:14px;padding:11px 14px;
+            font-size:12px;line-height:1.5;margin-bottom:10px;color:var(--ink2)}
+  .phcard{margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:3px;background:var(--gold-soft);
+          border:1px solid #EFDDB4;border-radius:16px;padding:11px 18px;color:var(--ink2)}
+  .phcard .ar{font-size:23px;line-height:1.6}
+  .phcard .phn{font-size:9.5px;color:var(--dim);letter-spacing:.03em}
+  .contbtn{margin:2px 0 14px}
 </style>
 </head>
 <body>
 <div class="phone">
-  <div class="draft"><b>DRAFT v3</b> · full app vision · UI EN · content RU · voice = system TTS placeholder</div>
+  <div class="draft"><b>DRAFT v4</b> · EN interface · no transliteration · theory RU (localization layer pending) · system TTS</div>
   <div id="view" style="flex:1;display:flex;flex-direction:column;min-height:0"></div>
 </div>
 <script src="data.js"></script>
@@ -413,9 +455,102 @@ const EMO=[['чай','🫖'],['кофе','☕'],['вода','💧'],['сок','�
 function emoji(v){ const k=(v.ru+' '+v.tr).toLowerCase();
   for(const [t,e] of EMO) if(k.includes(t)) return e; return '💬'; }
 
-/* ================= САЛЯМ НА ВХОДЕ =================
-   Сквозная фишка удержания: приложение здоровается, пользователь отвечает вслух.
-   Ритуал — раз за сессию, дальше сразу главный экран. */
+/* ---------- Английские глоссы для интерфейса (перевод контент-слоя).
+   Ключи — русские строки из program.js; арабские строки проходят как есть. ---------- */
+const EN_GLOSS={
+"здравствуйте (букв. «мир вам»)":"hello (lit. “peace be upon you”)",
+"и вам мир (ответ на приветствие)":"and upon you peace (the reply)",
+"я…":"I am…","а ты?":"and you?","до свидания":"goodbye","добро пожаловать":"welcome",
+"прошу, проходи":"please, come in","удивительно!":"amazing!","нет":"no",
+"приветствие":"greeting","прощание":"farewell","рука к груди":"hand to the chest",
+"ладонь к собеседнику":"palm toward the other person","прошу":"go ahead, please","удивительно":"amazing",
+"что это?":"what is this?","это…":"this is…","да":"yes","книга":"book","ручка":"pen",
+"ключ":"key","кот":"cat","как дела?":"how are you?",
+"слава Богу (в ответ — «хорошо»)":"praise God (the way to say “fine”)","или":"or",
+"я хочу…":"I want…","вот, пожалуйста (когда подают)":"here you are (when serving)",
+"спасибо":"thank you","чай":"tea","вода":"water","финики":"dates","кофе":"coffee",
+"вкусно":"delicious","ладно, хорошо":"okay, fine","где…?":"where is…?","здесь":"here","там":"there",
+"тот самый ключ":"THE key (that very one)","очки":"glasses","яблоки":"apples","бананы":"bananas",
+"где?":"where?","сколько стоит?":"how much is it?","дорого":"expensive","дёшево":"cheap",
+"сколько?":"how many?","один":"one","два":"two","три":"three","четыре":"four","пять":"five",
+"десять":"ten","шесть":"six","семь":"seven","восемь":"eight","девять":"nine",
+"я не хочу":"I don't want to","я не понимаю":"I don't understand","я не знаю":"I don't know",
+"ещё раз":"one more time","помедленнее":"slower, please","что значит...?":"what does … mean?",
+"не хочу":"don't want to","не понимаю":"don't understand","не знаю":"don't know",
+"у меня есть":"I have","у тебя есть":"you have","что у тебя есть?":"what do you have?",
+"время":"time","идея":"idea","гость":"guest","проблема":"problem",
+"кто это? (о мужчине)":"who is he?","кто это? (о женщине)":"who is she?",
+"отец":"father","мама":"mother","брат":"brother","сестра":"sister",
+"друг":"friend (m)","подруга":"friend (f)","бабушка":"grandmother",
+"а ты? (к женщине)":"and you? (to a woman)","приходи":"come over","когда?":"when?",
+"сегодня":"today","завтра":"tomorrow","мой дом":"my house","если пожелает Аллах":"God willing",
+"с моим братом":"with my brother","куда?":"where to?","я иду в":"I'm going to",
+"рынок":"market","мечеть":"mosque","дом":"house","работа":"work","кафе":"café",
+"я иду":"I'm going","ты идёшь":"you're going","он идёт":"he's going","я работаю":"I work",
+"я пью":"I'm drinking","что ты делаешь?":"what are you doing?","сейчас":"now",
+"я":"I","ты":"you","он":"he","направо":"to the right","налево":"to the left",
+"прямо, вперёд":"straight ahead","стоп, остановись":"stop","здесь, пожалуйста":"here, please",
+"улица":"street","близко":"near","далеко":"far","прямо":"straight","стоп":"stop",
+"который час?":"what time is it?","пять часов":"five o'clock","с половиной":"and a half",
+"утра":"in the morning","вечера":"in the evening","минута":"minute",
+"опаздывающий, поздно":"late","день":"day","пятница":"Friday","суббота":"Saturday",
+"воскресенье":"Sunday","понедельник":"Monday","в (о времени и месте)":"at / in (time & place)",
+"вторник":"Tuesday","среда":"Wednesday","четверг":"Thursday",
+"пожалуйста (просьба)":"please (asking)","сок":"juice","счёт":"the bill","сахар":"sugar",
+"без":"without","сладкий":"sweet","горячий":"hot","холодный":"cold","можно?":"may I?",
+"можно воды?":"may I have some water?","фото, картинка":"photo, picture","конечно":"of course",
+"к сожалению, нет":"unfortunately, no","секундочку":"one moment","помощь":"help",
+"я живу в":"I live in","где ты живёшь?":"where do you live?","откуда ты?":"where are you from?",
+"я из":"I'm from","город":"city","деревня":"village","район":"neighborhood",
+"деньги":"money","у меня нет":"I don't have","сдача":"change (money)","я плачу":"I pay",
+"карта":"card","бесплатно":"free of charge","почему?":"why?","потому что":"because",
+"опоздавший":"late (person)","автобус":"bus","прости, сожалею":"sorry","занят":"busy",
+"большой":"big","маленький":"small","новый":"new","старый":"old","красивый":"beautiful",
+"длинный, высокий":"long, tall","короткий, низкий":"short, low","как красиво...!":"how beautiful…!",
+"вид":"view","море":"sea","небо":"sky","машаллах (восхищение без сглаза)":"mashallah (admiration)",
+"звёзды":"stars","луна":"moon","моя книга":"my book","твоя книга":"your book",
+"его книга":"his book","её книга":"her book","это моё":"this is mine","чьё это?":"whose is this?",
+"мой ключ":"my key","моя":"my","твоя":"your","его":"his","её":"her",
+"голова":"head","живот":"stomach","у меня болит голова":"my head hurts","я болен":"I'm sick",
+"как здоровье?":"how's your health?","лекарство":"medicine","выздоравливай":"get well soon",
+"болен":"sick","день — дни":"day — days","неделя":"week","с, уже (о времени)":"since, for (time)",
+"два дня":"two days","таблетка":"pill","каждый день":"every day",
+"хочешь...? (буквально: любишь?)":"would you like…? (lit. “do you love?”)",
+"я люблю, мне нравится":"I love, I like","отличная идея":"great idea","отлично":"excellent",
+"возможно":"maybe","в другой раз":"another time","я люблю":"I love",
+"встреча, договорённость":"appointment","значит, тогда":"so, then","договорились!":"deal!",
+"у кафе (перед кафе)":"by the café (in front of it)","до, раньше":"before","после":"after",
+"встреча":"meeting","значит":"so","до":"before","алло":"hello? (on the phone)",
+"кто говорит? (кто со мной?)":"who's speaking?","секундочку, пожалуйста":"one moment, please",
+"отвечает / не отвечает":"answers / doesn't answer","номер":"number","ошибка":"mistake",
+"прости (я сожалею)":"sorry (I regret it)","прости меня":"forgive me","я забыл":"I forgot",
+"я сделал":"I did it","ничего страшного":"no harm done","я сломал":"I broke it",
+"ты прав (правда с тобой)":"you're right","сожалею":"I'm sorry","ты прав":"you're right",
+"был":"was (he)","была":"was (she)","вчера":"yesterday","верно, правда":"true, right",
+"я был":"I was","давно, прежде":"long ago, before"
+};
+const AR_RE=/[؀-ۿ]/;
+function gloss(ru){ if(!ru) return ''; if(AR_RE.test(ru)) return ru; return EN_GLOSS[ru]||ru; }
+
+/* ---------- фраза-пример для карточки слова: ищем в материале урока фразу ≥2 слов с этим словом ---------- */
+const stripAr=s=>String(s||'').replace(/[ً-ْٰـ]/g,'').replace(/[؟!.,،:؛]/g,'').replace(/\s+/g,' ').trim();
+function phraseFor(v,P){
+  const w=stripAr(v.ar); if(!w) return null;
+  const cand=[];
+  for(const d of P.drills||[]){
+    if(d.type==='build') for(const it of d.items) cand.push(it.target);
+    if(d.type==='say') for(const it of d.items) if(typeof it==='string') cand.push(it);
+    if(d.type==='gap') for(const it of d.items) if(it.text&&it.answer) cand.push(it.text.replace('___',it.answer));
+  }
+  for(const v2 of P.vocab||[]) if(v2!==v) cand.push(v2.ar);
+  for(const c of cand){
+    const sc=stripAr(c);
+    if(sc!==w && sc.split(' ').length>=2 && (' '+sc+' ').includes(' '+w+' ')) return c;
+  }
+  return null;
+}
+
+/* ================= САЛЯМ НА ВХОДЕ ================= */
 function salam(){
   stopSpeak();
   $('#view').innerHTML=`<div class="salam">
@@ -424,7 +559,7 @@ function salam(){
     <div class="ssub">Ajeebus greets you at the door.<br>Answer him — out loud.</div>
     <button class="sreply" id="srep">
       <span class="ar">وعليكم السلام</span>
-      <span class="srt">wa-ʿalaykumu s-salām · tap when you've said it</span>
+      <span class="srt">say it out loud, then tap</span>
     </button>
     <div class="snote0">the app opens with salām every time — you reply with your voice</div>
   </div>`;
@@ -433,9 +568,10 @@ function salam(){
     speak('وعليكم السلام','ar-SA',0.85); home(); };
 }
 
-/* ================= ОБОЛОЧКА С НИЖНЕЙ НАВИГАЦИЕЙ ================= */
+/* ================= ОБОЛОЧКА ================= */
 function shell(tab,inner){
   stopSpeak();
+  $('#view').onclick=null;
   $('#view').innerHTML=`
    <div class="scr">${inner}</div>
    <div class="nav">
@@ -447,9 +583,7 @@ function shell(tab,inner){
     ({learn:home,series:series,profile:profile})[b.dataset.nav](); };
 }
 
-/* ================= ГЛАВНЫЙ ЭКРАН — ЛЕСТНИЦА УРОВНЕЙ =================
-   Уровень 1 «Читаю» — одна пройденная ступень (три алфавитных курса упакованы внутрь),
-   уровень 2 — активная карточка, 3–6 — замки. Анза держит стрик, серия — событие. */
+/* ================= ГЛАВНЫЙ ЭКРАН — ВСЕ КУРСЫ ================= */
 let l1open=false;
 function home(){
   const lv=AJ.course.levels, n2=lv[1], dn=doneN(), nxt=nextLesson();
@@ -474,75 +608,113 @@ function home(){
       <div class="t2">Miss a day and Anza eats it. Win it back with two lessons — not with money.</div></div>
     </div>
 
-    <div class="ladderhead">Your path to conversation</div>
+    <div class="ladderhead">Courses — your path to conversation</div>
 
-    <button class="lvl1" data-l1>
+    <button class="lvl1" data-goc="1">
       <span class="ck">✓</span>
-      <div style="flex:1"><div class="l1t">Level 1 · ${esc(lv[0].title)} <span class="lrc">${esc(lv[0].code)}</span></div>
+      <div style="flex:1"><div class="l1t">Course 1 · ${esc(lv[0].title)} <span class="lrc">${esc(lv[0].code)}</span></div>
       <div class="l1s">${esc(lv[0].tagline)} · ${lv[0].lessons} lessons · completed</div></div>
-      <span class="chev">${l1open?'▾':'▸'}</span>
-    </button>
-    ${l1open?`<div class="mods">
-      ${lv[0].modules.map(m=>`<div class="modrow"><span class="mr">${esc(m[1])}</span><div><b>${esc(m[0])}</b> — ${esc(m[2])}</div></div>`).join('')}
-      <div class="stinger">🫖 Ajeebus hosted this level too: salām at the door, a sting after each module,
-      a joke certificate at the end — and a stranger with a backpack knocking in the final scene.</div>
-    </div>`:''}
-
-    <button class="lvlcard" data-go="map">
-      <div class="lface">👳🏽‍♂️</div>
-      <div style="flex:1;min-width:0">
-        <div class="lk">Level 2 · ${esc(n2.code)} · current</div>
-        <div class="lt2">${esc(n2.title)}</div>
-        <div class="lsub">${esc(n2.tagline)}</div>
-        <div class="pbar"><i style="width:${Math.max(2,Math.round(dn/n2.lessons*100))}%"></i></div>
-        <div class="lnext">Next: Lesson ${nxt} — ${esc(titleOf(nxt))}</div>
-      </div>
       <span class="chev">›</span>
     </button>
 
+    <button class="lvlcard" data-goc="2">
+      <div class="lface">👳🏽‍♂️</div>
+      <div style="flex:1;min-width:0">
+        <div class="lk">Course 2 · ${esc(n2.code)} · current</div>
+        <div class="lt2">${esc(n2.title)}</div>
+        <div class="lsub">5 parts · ${n2.lessons} lessons · a season of the series in each part</div>
+        <div class="pbar"><i style="width:${Math.max(2,Math.round(dn/n2.lessons*100))}%"></i></div>
+      </div>
+      <span class="chev">›</span>
+    </button>
+    <button class="cta contbtn" data-cont>▶ &nbsp;Continue — Lesson ${nxt} · ${esc(titleOf(nxt))}</button>
+
     ${lv.slice(2).map(l=>`
-      <div class="lvlrow">
+      <button class="lvlrow" data-goc="${l.n}" style="width:100%;text-align:left">
         <span class="ln">${l.n}</span>
         <div style="flex:1"><div class="lrt">${esc(l.title)}<span class="lrc">${esc(l.code)}</span></div>
-        <div class="lrs">${esc(l.tagline)}</div></div>
+        <div class="lrs">${esc(l.tagline)} · ${l.lessons} lessons</div></div>
         <span class="lock">🔒</span>
-      </div>`).join('')}
+      </button>`).join('')}
 
-    <div class="foot2">280 lessons · one continuous story · Modern Standard Arabic only, no dialect</div>
+    <div class="foot2">6 courses · 280 lessons · one continuous story · Modern Standard Arabic only, no dialect</div>
   </div>`);
   $('.scr').onclick=e=>{
+    if(e.target.closest('[data-cont]')) return startFlow(nextLesson());
     const g=e.target.closest('[data-go]');
-    if(g){ ({map,series})[g.dataset.go](); return; }
-    if(e.target.closest('[data-l1]')){ l1open=!l1open; home(); }
+    if(g) return ({series,profile})[g.dataset.go]();
+    const c=e.target.closest('[data-goc]');
+    if(c) return course(+c.dataset.goc);
   };
 }
 
-/* ================= КАРТА УРОВНЯ 2 ================= */
-function map(){
-  const dn=doneN(), nxt=nextLesson();
-  shell('learn',`
-   <div class="maphead">
+/* ================= СТРАНИЦА КУРСА ================= */
+function chead(l,chip){
+  return `<div class="maphead">
      <button class="back" data-back>‹</button>
-     <div><div class="mk">Level 2 · A1</div><div class="mt">Первые слова</div></div>
-     <div class="chip">${dn}/50</div>
-   </div>
-   ${S.sub?'':`<button class="paystrip" data-paywall>🔓 Lessons 1–3 are free — unlock all 50 with Ajeebus+</button>`}
-   <div class="hpad" style="padding-top:8px">
-   ${AJ.seasons.map(se=>`
-     <div class="season">
-       <div class="seahead"><span class="n">Season ${se.n}</span><span class="t">${esc(se.title)}</span></div>
-       <div class="seevent">${esc(se.event||se.idea||'')}</div>
-       <div class="lgrid">
-         ${se.items.map(it=>{
-           const n=it[0], has=!!prog(n), open=has&&unlocked(n);
-           const cls=['lc', done[n]?'done':'', has?'':'soon', (n===nxt&&open&&!done[n])?'current':''].join(' ');
-           return `<button class="${cls}" data-open="${n}" ${has?'':'disabled'}>
-             ${n<=3&&!S.sub?`<span class="freechip">FREE</span>`:(has&&!open?`<span class="pay">🔒</span>`:'')}
-             <span class="num">${n}</span><span class="lt">${esc(it[1])}</span>
-           </button>`;}).join('')}
-       </div>
-     </div>`).join('')}
-   <div class="foot2">Lessons 31–50 are being written — the map already knows their names.</div>
+     <div><div class="mk">Course ${l.n} · ${esc(l.code)}</div><div class="mt">${esc(l.title)}</div></div>
+     <div class="chip">${chip}</div>
+   </div>`;
+}
+
+function course(n){
+  const l=AJ.course.levels[n-1];
+  if(n===2) return course2();
+  if(n===1){
+    shell('learn', chead(l,'✓ done')+`
+      <div class="hpad" style="padding-top:8px">
+        <div class="cgoal">${esc(l.goal)}</div>
+        ${l.modules.map((m,i)=>`<div class="partrow dn">
+          <span class="pi">✓</span>
+          <div><div class="pn2">Part ${i+1} · ${esc(m[0])}<span class="pr">lessons ${esc(m[1])}</span></div>
+          <div class="pd">${esc(m[2])}</div></div></div>`).join('')}
+        <div class="stinger">🫖 Ajeebus hosted this course too: salām at the door, a sting after each part,
+        a joke certificate at the end — and a stranger with a backpack knocking in the final scene.
+        The three old alphabet courses now live inside this one step.</div>
+      </div>`);
+  } else {
+    shell('learn', chead(l,l.lessons+' lessons')+`
+      <div class="hpad" style="padding-top:8px">
+        <div class="locknote">🔒 Opens after Course ${n-1}. The story continues — same characters, new places.</div>
+        <div class="cgoal">${esc(l.goal)}</div>
+        <div class="cstats"><span>${l.lessons} lessons</span><span>+${esc(String(l.words))} words</span><span>${l.modules.length} parts</span></div>
+        ${l.modules.map((m,i)=>`<div class="partrow">
+          <span class="pi">${i+1}</span>
+          <div><div class="pn2">${esc(m[0])}<span class="pr">lessons ${esc(m[1])}</span></div>
+          <div class="pd">${esc(m[2])}</div></div></div>`).join('')}
+      </div>`);
+  }
+  $('.scr').onclick=e=>{ if(e.target.closest('[data-back]')) home(); };
+}
+
+/* -------- курс 2: части-сезоны и уроки-путь -------- */
+const WAVE=[0,-56,-88,-56,0,56,88,56];
+function course2(){
+  const l=AJ.course.levels[1], dn=doneN(), nxt=nextLesson();
+  let gi=0;
+  shell('learn', chead(l,dn+'/50')+
+   (S.sub?'':`<button class="paystrip" data-paywall>🔓 Lessons 1–3 are free — unlock all 50 with Ajeebus+</button>`)+
+   `<div class="pathwrap">
+   ${AJ.seasons.map((se,si)=>`
+     <div class="partband">
+       <div class="pk">Part ${se.n} of 5 · lessons ${se.items[0][0]}–${se.items[se.items.length-1][0]}</div>
+       <div class="pt">${esc(se.title)}</div>
+       <div class="pe">${esc(se.event||se.idea||'')}</div>
+     </div>
+     ${se.items.map(it=>{
+       const n=it[0], has=!!prog(n), open=has&&unlocked(n), cur=(n===nxt&&open&&!done[n]);
+       const off=WAVE[gi++%WAVE.length];
+       const cls=['pnode',done[n]?'done':'',cur?'cur':'',(has&&!open)?'lockd':'',has?'':'soon'].join(' ');
+       return `<div class="prow2" style="transform:translateX(${off}px)">
+         ${cur?'<span class="startchip">start</span>':''}
+         <button class="${cls}" data-open="${n}" ${has?'':'disabled'}>
+           ${done[n]?'✓':(cur?'▶':n)}
+           ${has&&!open?'<span class="mini">🔒</span>':''}
+         </button>
+         <div class="plabel"><b>${n}.</b> ${esc(it[1])}</div>
+       </div>`;}).join('')}
+   `).join('')}
+   <div class="foot2">Lessons 31–50 are being written — the path already knows their names.</div>
    </div>`);
   $('.scr').onclick=e=>{
     if(e.target.closest('[data-back]')) return home();
@@ -553,6 +725,7 @@ function map(){
     startFlow(n);
   };
 }
+function map(){ course(2); }
 
 /* ================= СЕРИАЛ ================= */
 function series(){
@@ -597,7 +770,7 @@ function profile(){
       <div class="t2">She eats missed days. She has never once apologized.</div></div>
     </div>
     <div class="cert ${season1?'':'locked'}">🎓 <b>Certificate from Ajeebus</b> —
-      ${season1?'earned! A joke certificate, but the pride is real.':'finish Season 1 (lessons 1–10) to earn it.'}</div>
+      ${season1?'earned! A joke certificate, but the pride is real.':'finish Part 1 (lessons 1–10) to earn it.'}</div>
     <div class="foot2">progress, subscription and voice settings live here in the real app</div>
     <button class="reset" data-reset>Reset draft progress</button>
   </div>`);
@@ -607,9 +780,7 @@ function profile(){
   };
 }
 
-/* ================= ПЕЙВОЛЛ =================
-   Появляется на пике: после урока 3 ученик впервые сам провёл диалог.
-   Продаём персонажа и сериал, не экраны упражнений. */
+/* ================= ПЕЙВОЛЛ ================= */
 function paywall(mode){
   stopSpeak();
   let plan='year';
@@ -623,7 +794,7 @@ function paywall(mode){
         ?'Three lessons in — you asked, thanked, and got your tea. Ajeebus says it would be a shame to stop now.'
         :'Lessons 4–50 continue the story — and the story is how the words stick.'}</p>
       <div class="bens">
-        <div class="b">All 50 lessons of Level 2 — and Levels 3–6 as they arrive</div>
+        <div class="b">All 50 lessons of Course 2 — and Courses 3–6 as they arrive</div>
         <div class="b">A new episode of the series with every lesson</div>
         <div class="b">Ajeebus's voice on every word, rule and push</div>
         <div class="b">Streak repair — win it back from Anza with two lessons</div>
@@ -643,21 +814,24 @@ function paywall(mode){
     $('#view').onclick=e=>{
       const p=e.target.closest('[data-plan]');
       if(p){ plan=p.dataset.plan; render(); return; }
-      if(e.target.closest('[data-later]')){ $('#view').onclick=null; map(); return; }
-      if(e.target.closest('#buy')){ $('#view').onclick=null; S.sub=true; persist(); map(); }
+      if(e.target.closest('[data-later]')){ $('#view').onclick=null; course(2); return; }
+      if(e.target.closest('#buy')){ $('#view').onclick=null; S.sub=true; persist(); course(2); }
     };
   };
   render();
 }
 
 /* ---------- выходы из урока ---------- */
-function exitFlow(){ stopSpeak(); map(); }
+function exitFlow(){ if(F){clearTimeout(F.timer);} stopSpeak(); F=null; course(2); }
 function finishLesson(){
-  done[F.n]=true; S.done=done; persist(); window.scrollTo(0,0);
-  if(F.n===3&&!S.sub) paywall('peak'); else map();
+  done[F.n]=true; S.done=done; persist(); const n=F.n; F=null; window.scrollTo(0,0);
+  if(n===3&&!S.sub) paywall('peak'); else course(2);
 }
-/* ================= FLOW ================= */
-let F=null; /* {n, steps, idx, P, M, sub} */
+
+/* ================= УРОК (v4) =================
+   Изменения против v2: без транскрипции; глоссы и формулировки заданий — английские;
+   верный ответ через 2 секунды сам ведёт дальше; у слова — фраза-пример из материала урока. */
+let F=null;
 
 function buildSteps(n){
   const P=prog(n), L=AJ.lessons.find(l=>l.n===n);
@@ -683,15 +857,18 @@ function buildSteps(n){
 }
 
 function startFlow(n,jump){
-  F={n,steps:buildSteps(n),idx:0,P:prog(n),M:flat.find(f=>f.n===n),sub:'none'};
+  F={n,steps:buildSteps(n),idx:0,P:prog(n),M:flat.find(f=>f.n===n),timer:0};
   if(jump==='episode'){ const i=F.steps.findIndex(s=>s.t==='episode'); if(i>0) F.idx=i; }
   renderStep();
 }
-function next(){ if(F.idx<F.steps.length-1){F.idx++; renderStep();} }
+function next(){ if(!F) return; clearTimeout(F.timer);
+  if(F.idx<F.steps.length-1){ F.idx++; renderStep(); } }
 function requeue(step){ F.steps.push({...step,retry:true}); }
+function autoNext(ms){ clearTimeout(F.timer); F.timer=setTimeout(next,ms||2000); }
 
 function frame(inner,{cta='Continue',ctaOn=true,kicker='',q=''}={}){
   const pct=Math.round(F.idx/(F.steps.length-1)*100);
+  $('#view').onclick=null;
   $('#view').innerHTML=`
   <div class="flow">
     <div class="fhead">
@@ -719,7 +896,7 @@ function feedback(good,sub){
 
 function renderStep(){
   const s=F.steps[F.idx], P=F.P, M=F.M;
-  stopSpeak();
+  clearTimeout(F.timer); stopSpeak();
 
   /* ---------- intro ---------- */
   if(s.t==='intro'){
@@ -732,29 +909,31 @@ function renderStep(){
     $('#cta').onclick=next; return;
   }
 
-  /* ---------- word ---------- */
+  /* ---------- слово: вязь + звук + картинка + перевод + фраза ---------- */
   if(s.t==='word'){
-    const v=s.v;
+    const v=s.v, ph=phraseFor(v,P);
     frame(`<div class="word">
       <div class="wimg">${emoji(v)}<span class="ph">illustration placeholder</span></div>
       <div class="war ar">${esc(v.ar)}</div>
-      <div class="wtr">${esc(v.tr)}</div>
-      <div class="wru">${esc(v.ru)}</div>
+      <div class="wru">${esc(gloss(v.ru))}</div>
       <button class="spk" id="spk">🔊</button>
-      <div class="ttsnote">tap to hear again</div>
+      ${ph?`<button class="phcard" id="phc">
+        <span class="ar">${esc(ph)}</span>
+        <span class="phn">🔊 hear it inside a phrase</span></button>`:''}
     </div>`,{kicker:'New word'});
     const play=()=>{ const b=$('#spk'); b.classList.add('playing');
       const u=speak(v.ar,'ar-SA',0.75); if(u)u.onend=()=>b.classList.remove('playing');
       setTimeout(()=>b.classList.remove('playing'),2500); };
-    setTimeout(play,250);           /* автопроизношение при появлении слова */
+    setTimeout(play,250);
     $('#spk').onclick=play;
+    if(ph) $('#phc').onclick=()=>speak(ph,'ar-SA',0.75);
     $('#cta').onclick=next; return;
   }
 
   /* ---------- quick check ---------- */
   if(s.t==='check'){
     frame(`<div class="choices">${s.opts.map(o=>`<button class="choice ar" data-c="${esc(o.ar)}">${esc(o.ar)}</button>`).join('')}</div>`,
-      {kicker:'Quick check',q:`Which one means “${s.target.ru}”?`,ctaOn:false,cta:'Continue'});
+      {kicker:'Quick check',q:`Which one means “${gloss(s.target.ru)}”?`,ctaOn:false,cta:'Continue'});
     let answered=false;
     $('.choices').onclick=e=>{
       const c=e.target.closest('[data-c]'); if(!c||answered) return; answered=true;
@@ -763,7 +942,8 @@ function renderStep(){
       if(!ok){ $$(`[data-c]`).find(x=>x.dataset.c===s.target.ar).classList.add('good'); requeue(s); }
       $$('.choice').forEach(x=>{if(x!==c)x.classList.add('ghost')});
       speak(s.target.ar,'ar-SA',0.8);
-      feedback(ok, ok?'':`Correct: <span class="ar">${esc(s.target.ar)}</span> — ${esc(s.target.ru)}`);
+      feedback(ok, ok?'':`Correct: <span class="ar">${esc(s.target.ar)}</span> — ${esc(gloss(s.target.ru))}`);
+      if(ok) autoNext(2000);
     };
     $('#cta').onclick=next; return;
   }
@@ -773,7 +953,7 @@ function renderStep(){
     frame(`<div>${s.seeds.map((v,i)=>`
       <div class="seedrow" data-seed="${i}">
         <span class="sp">🔊</span>
-        <div><div>${esc(v.ru)}</div><div class="sr">${esc(v.tr)}</div></div>
+        <div>${esc(gloss(v.ru))}</div>
         <span class="sa ar">${esc(v.ar)}</span>
       </div>`).join('')}
       <div class="ttsnote" style="text-align:center;margin-top:6px">These appear in the episode — just recognize them, no need to memorize.</div>`,
@@ -799,7 +979,7 @@ function renderStep(){
       </div>
     </div>`,{kicker:'Why it works'});
     let playing=true;
-    const u=speak(T.voice,'ru-RU',0.95);            /* аудио теории стартует само */
+    const u=speak(T.voice,'ru-RU',0.95);
     if(u) u.onend=()=>{ playing=false; $('#tv').classList.remove('playing'); $('#pp').textContent='▶'; };
     $('#tv').onclick=()=>{
       if(playing){ stopSpeak(); playing=false; $('#tv').classList.remove('playing'); $('#pp').textContent='▶'; }
@@ -816,11 +996,11 @@ function renderStep(){
     if(type==='match'||(type==='recall'&&Array.isArray(d.items[0]))){
       const pairs=Array.isArray(d.items[0])?d.items:d.items.map(x=>[x,x]);
       const Lc=pairs.map((p,j)=>({t:p[0],j})).sort(()=>Math.random()-.5),
-            Rc=pairs.map((p,j)=>({t:p[1],j})).sort(()=>Math.random()-.5);
+            Rc=pairs.map((p,j)=>({t:gloss(p[1]),j})).sort(()=>Math.random()-.5);
       frame(`<div class="paircols">
         <div style="display:flex;flex-direction:column;gap:10px">${Lc.map(x=>`<button class="choice ar" data-ml="${x.j}">${esc(x.t)}</button>`).join('')}</div>
         <div style="display:flex;flex-direction:column;gap:10px">${Rc.map(x=>`<button class="choice" data-mr="${x.j}">${esc(x.t)}</button>`).join('')}</div>
-      </div>`,{kicker:s.retry?'Try again':'Match the pairs',q:esc(d.task),ctaOn:false});
+      </div>`,{kicker:s.retry?'Try again':'Match',q:'Match Arabic to its meaning',ctaOn:false});
       let sl=null,sr=null,left=pairs.length;
       $('.fbody').onclick=e=>{
         const l=e.target.closest('[data-ml]'), r=e.target.closest('[data-mr]');
@@ -830,7 +1010,7 @@ function renderStep(){
         if(sl&&sr){
           if(sl.dataset.ml===sr.dataset.mr){ sl.classList.add('good','ghost'); sr.classList.add('good','ghost');
             sl.classList.remove('sel'); sr.classList.remove('sel'); left--;
-            if(!left){ feedback(true,''); $('#cta').onclick=next; } }
+            if(!left){ feedback(true,''); autoNext(1400); } }
           else{ sl.classList.add('bad'); sr.classList.add('bad');
             setTimeout(()=>$$('.choice.bad').forEach(x=>x.classList.remove('bad','sel')),400); }
           sl=null; sr=null;
@@ -841,24 +1021,25 @@ function renderStep(){
 
     if(type==='build'){
       const it=d.items[0], words=[...it.words].sort(()=>Math.random()-.5);
-      frame(`<div class="slots" id="slots"></div>
+      frame(`<button class="listenbtn" id="lb" style="margin-bottom:12px">🔊</button>
+        <div class="slots" id="slots"></div>
         <div class="bank">${words.map((w,i)=>`<button class="chipw" data-w="${i}">${esc(w)}</button>`).join('')}</div>`,
-        {kicker:s.retry?'Try again':'Build the phrase',q:esc(d.task),ctaOn:false,cta:'Check'});
-      const chosen=[];
+        {kicker:s.retry?'Try again':'Build',q:'Build what you hear',ctaOn:false,cta:'Check'});
+      const playT=()=>speak(it.target,'ar-SA',0.72);
+      setTimeout(playT,300);
+      $('#lb').onclick=playT;
       $('.fbody').onclick=e=>{
         const c=e.target.closest('.chipw'); if(!c) return;
         if(c.parentElement.id==='slots'){ c.remove();
           $(`.bank [data-w="${c.dataset.w}"]`)?.classList.remove('ghost');
-          chosen.splice(chosen.findIndex(x=>x===c.dataset.w),1);
         } else if(!c.classList.contains('ghost')){
-          const cl=c.cloneNode(true); $('#slots').appendChild(cl); c.classList.add('ghost'); chosen.push(c.dataset.w);
+          const cl=c.cloneNode(true); $('#slots').appendChild(cl); c.classList.add('ghost');
           speak(c.textContent,'ar-SA',0.9);
         }
         $('#cta').disabled = $('#slots').children.length!==words.length;
         $('#cta').textContent='Check';
         $('#cta').onclick=checkIt;
       };
-      /* Пунктуация в target (؟ ! ،) не участвует в сборке — чипы её не несут. */
       const norm=x=>x.replace(/[؟!.,،]/g,'').replace(/\s+/g,' ').trim();
       const target=norm(it.target);
       function checkIt(){
@@ -868,22 +1049,23 @@ function renderStep(){
         speak(target,'ar-SA',0.8);
         feedback(ok, ok?'':`Correct: <span class="ar">${esc(it.target)}</span>`);
         $('#cta').textContent='Continue'; $('#cta').onclick=next;
+        if(ok) autoNext(2000);
       }
       $('#cta').onclick=checkIt; return;
     }
 
     if(type==='gap'){
       const it=d.items[0];
-      if(!it.options){ /* свободный ввод — в прототипе показываем ответ */
+      if(!it.options){
         frame(`<div class="say"><div class="arb ar">${esc(it.text)}</div>
-          <div class="mnote">${esc(it.hint||'')} — free typing in the real app</div></div>`,
-          {kicker:'Fill the gap',q:esc(d.task),cta:'Got it'});
+          <div class="mnote">free typing in the real app</div></div>`,
+          {kicker:'Fill the gap',q:'Say the missing word, then continue',cta:'Got it'});
         $('#cta').onclick=next; return;
       }
       const opts=[...it.options].sort(()=>Math.random()-.5);
       frame(`<div class="say" style="margin:0 0 18px"><div class="arb ar">${esc(it.text)}</div></div>
         <div class="choices">${opts.map(o=>`<button class="choice ar" data-c="${esc(o)}">${esc(o)}</button>`).join('')}</div>`,
-        {kicker:s.retry?'Try again':'Fill the gap',q:esc(d.task),ctaOn:false});
+        {kicker:s.retry?'Try again':'Fill the gap',q:'Choose the missing word',ctaOn:false});
       let answered=false;
       $('.choices').onclick=e=>{
         const c=e.target.closest('[data-c]'); if(!c||answered)return; answered=true;
@@ -893,6 +1075,7 @@ function renderStep(){
         $$('.choice').forEach(x=>{if(x!==c)x.classList.add('ghost')});
         speak(it.text.replace('___',it.answer),'ar-SA',0.8);
         feedback(ok, ok?'':`Correct: <span class="ar">${esc(it.answer)}</span>`);
+        if(ok) autoNext(2000);
       };
       $('#cta').onclick=next; return;
     }
@@ -904,19 +1087,19 @@ function renderStep(){
         <div class="mnote">Listen first, then hold the mic and repeat</div>
         <button class="mbtn" id="mic">🎙</button>
         <div class="mnote" id="mnote">speech check is a placeholder in this draft</div>
-      </div>`,{kicker:'Say it out loud',q:esc(d.task),ctaOn:false});
+      </div>`,{kicker:'Speak',q:'Say it out loud',ctaOn:false});
       setTimeout(()=>speak(phrase,'ar-SA',0.7),300);
       $('#mic').onclick=()=>{ const m=$('#mic'); m.classList.add('rec'); $('#mnote').textContent='listening…';
         setTimeout(()=>{ m.classList.remove('rec'); $('#mnote').textContent='Sounded great — Ajeebus approves.';
-          feedback(true,''); },1400); };
+          feedback(true,''); autoNext(1800); },1400); };
       $('#cta').onclick=next; return;
     }
 
-    /* listen / plain recall: аудио → выбор */
+    /* listen / plain recall */
     const correct=d.items[0], opts=[...d.items].sort(()=>Math.random()-.5);
     frame(`<button class="listenbtn" id="lb">🔊</button>
       <div class="choices">${opts.map(o=>`<button class="choice ar" data-c="${esc(o)}">${esc(o)}</button>`).join('')}</div>`,
-      {kicker:s.retry?'Try again':'Listen and choose',q:esc(d.task),ctaOn:false});
+      {kicker:s.retry?'Try again':'Listen',q:'Tap what you hear',ctaOn:false});
     const playIt=()=>speak(correct,'ar-SA',0.75);
     setTimeout(playIt,300);
     $('#lb').onclick=playIt;
@@ -928,6 +1111,7 @@ function renderStep(){
       if(!ok){ $$('[data-c]').find(x=>x.dataset.c===correct)?.classList.add('good'); requeue(s); }
       $$('.choice').forEach(x=>{if(x!==c)x.classList.add('ghost')});
       feedback(ok, ok?'':`It was: <span class="ar">${esc(correct)}</span>`);
+      if(ok) autoNext(2000);
     };
     $('#cta').onclick=next; return;
   }
