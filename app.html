@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en" data-app-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ajeebus — app prototype</title>
+<style>
+  :root{
+    --bg:#F6F1E7; --card:#FFFFFF; --ink:#262014; --dim:#6E6250; --faint:#9A8D78;
+    --line:#E7DECB; --em:#14806B; --em-soft:#E3F2EE; --gold:#C98A1B; --gold-soft:#FBF0DA;
+    --clay:#B2472A; --ok:#2E8F53; --ok-soft:#E7F4EC; --lock:#CFC5B0;
+    --r:18px; --shadow:0 1px 3px rgba(60,45,20,.08),0 6px 20px rgba(60,45,20,.05);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{font:16px/1.5 -apple-system,'SF Pro Text','Segoe UI',Roboto,sans-serif}
+  body{background:#EAE3D4;color:var(--ink)}
+  .phone{max-width:440px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;
+         box-shadow:0 0 40px rgba(60,45,20,.12)}
+  .ar{font-family:'Geeza Pro','Noto Naskh Arabic','Traditional Arabic',serif;direction:rtl}
+  .draftbar{position:sticky;top:0;z-index:50;background:var(--ink);color:#EFE7D6;font-size:11px;
+            padding:6px 14px;display:flex;gap:8px;align-items:center}
+  .draftbar b{color:#F5C86A;font-weight:650}
+  button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+
+  /* ---------- home ---------- */
+  .home{padding:22px 18px 40px}
+  .apphead{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .logo{width:44px;height:44px;border-radius:14px;background:var(--gold-soft);display:grid;place-items:center;
+        font-size:24px;border:1px solid var(--line)}
+  .apphead h1{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .apphead .sub{font-size:12.5px;color:var(--dim)}
+  .salam{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);
+         padding:14px 16px;margin:14px 0 20px;display:flex;gap:12px;align-items:center}
+  .salam .face{width:46px;height:46px;border-radius:50%;background:var(--em-soft);display:grid;place-items:center;font-size:24px;flex:none}
+  .salam .t1{font-weight:700;font-size:15px}
+  .salam .t2{font-size:12.5px;color:var(--dim)}
+  .season{margin-bottom:20px}
+  .seahead{display:flex;align-items:baseline;gap:8px;margin:0 2px 10px}
+  .seahead .n{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--gold);text-transform:uppercase}
+  .seahead .t{font-size:16px;font-weight:750}
+  .seahead .ev{font-size:11.5px;color:var(--faint);margin-left:auto;text-align:right;max-width:45%}
+  .lgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+  .lc{aspect-ratio:1;border-radius:16px;background:var(--card);border:1px solid var(--line);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+      box-shadow:var(--shadow);position:relative;transition:.12s}
+  .lc:active{transform:scale(.94)}
+  .lc .num{font-size:15px;font-weight:800}
+  .lc .lt{font-size:8.5px;color:var(--dim);text-align:center;padding:0 3px;line-height:1.15;
+          overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .lc.done{background:var(--ok-soft);border-color:#BFDECB}
+  .lc.done .num::after{content:' ✓';color:var(--ok);font-size:11px}
+  .lc.locked{opacity:.55;background:transparent;box-shadow:none}
+  .lc.locked .num{color:var(--lock)}
+  .lc .pay{position:absolute;top:5px;right:6px;font-size:9px}
+  .freechip{font-size:9px;font-weight:800;color:var(--em);background:var(--em-soft);border-radius:6px;
+            padding:1px 5px;position:absolute;top:5px;right:6px}
+
+  /* ---------- lesson ---------- */
+  .lesson{padding:0 0 90px}
+  .lhead{position:sticky;top:26px;z-index:40;background:linear-gradient(var(--bg) 82%,transparent);
+         padding:14px 18px 10px;display:flex;align-items:center;gap:10px}
+  .back{width:36px;height:36px;border-radius:12px;background:var(--card);border:1px solid var(--line);
+        font-size:16px;flex:none;box-shadow:var(--shadow)}
+  .lhead .lt1{font-size:11px;font-weight:800;letter-spacing:.07em;color:var(--gold);text-transform:uppercase}
+  .lhead .lt2{font-size:17px;font-weight:800;letter-spacing:-.01em}
+  .steps{display:flex;gap:5px;padding:2px 18px 12px}
+  .steps i{height:4px;flex:1;border-radius:99px;background:var(--line)}
+  .steps i.on{background:var(--em)}
+  .blocks{padding:0 16px}
+  .blk{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);
+       padding:16px;margin-bottom:14px}
+  .bh{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+  .bh .ic{width:28px;height:28px;border-radius:9px;background:var(--gold-soft);display:grid;place-items:center;font-size:14px}
+  .bh .bt{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+  .bh .opt{font-size:10px;color:var(--faint);margin-left:auto;border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+
+  /* video placeholder */
+  .vph{aspect-ratio:9/14;max-height:340px;width:100%;border-radius:14px;background:
+       radial-gradient(120% 90% at 30% 20%, #3A3326 0%, #221D14 70%);display:flex;flex-direction:column;
+       align-items:center;justify-content:center;gap:10px;color:#D8CDB8;position:relative;overflow:hidden}
+  .vph .play{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);
+             display:grid;place-items:center;font-size:20px;color:#fff}
+  .vph .cap{font-size:12px;opacity:.75;text-align:center;padding:0 20px;line-height:1.45}
+  .subseg{display:flex;gap:6px;margin-top:10px}
+  .subseg button{flex:1;font-size:11.5px;font-weight:650;padding:7px 4px;border-radius:10px;
+                 border:1px solid var(--line);color:var(--dim);background:var(--bg)}
+  .subseg button[aria-pressed="true"]{background:var(--ink);color:#F3EBDB;border-color:var(--ink)}
+  .sublines{margin-top:10px;font-size:14px;display:none;flex-direction:column;gap:7px}
+  .sublines.on{display:flex}
+  .subline{border-left:2px solid var(--line);padding-left:9px}
+  .subline .a{font-size:16.5px}
+  .subline .r{font-size:11.5px;color:var(--dim)}
+
+  /* vocab */
+  .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .vc{border:1px solid var(--line);border-radius:14px;padding:12px 11px;background:var(--bg);
+      display:flex;flex-direction:column;gap:3px;min-height:96px;position:relative;transition:.12s}
+  .vc:active{transform:scale(.97)}
+  .vc .var{font-size:21px;line-height:1.35;text-align:right}
+  .vc .vtr{font-size:12px;color:var(--dim)}
+  .vc .vru{font-size:12.5px;font-weight:650;color:var(--em);opacity:0;transition:.15s}
+  .vc.open .vru{opacity:1}
+  .vc .hint{position:absolute;bottom:8px;right:10px;font-size:9.5px;color:var(--faint)}
+  .vc.open .hint{display:none}
+  .vc .spk{position:absolute;top:8px;left:9px;font-size:13px;opacity:.6}
+  .vc .spk.playing{opacity:1;animation:pulse .7s infinite}
+  .vc.seed{border-style:dashed;opacity:.8}
+  .vc.seed::after{content:'passive';position:absolute;top:8px;right:10px;font-size:8.5px;color:var(--faint);
+                  border:1px solid var(--line);border-radius:5px;padding:0 4px}
+  @keyframes pulse{50%{transform:scale(1.25)}}
+
+  /* theory */
+  .th p{font-size:14.5px;line-height:1.62;margin-bottom:10px}
+  .th details{margin:4px 0 10px}
+  .th summary{font-size:12.5px;font-weight:650;color:var(--em);cursor:pointer;list-style:none}
+  .th summary::before{content:'▸ '}
+  .th details[open] summary::before{content:'▾ '}
+  .th details p{margin-top:8px;color:var(--dim)}
+  .voice{display:flex;gap:11px;align-items:center;background:var(--gold-soft);border:1px solid #EFDDB4;
+         border-radius:13px;padding:11px 13px;margin-top:4px}
+  .voice .vp{width:38px;height:38px;border-radius:50%;background:var(--gold);color:#FFF8E9;display:grid;
+             place-items:center;font-size:14px;flex:none}
+  .voice .vt1{font-size:13px;font-weight:700}
+  .voice .vt2{font-size:11.5px;color:var(--dim)}
+  .voice .wave{margin-left:auto;display:flex;gap:2px;align-items:center;height:20px}
+  .voice .wave i{width:3px;border-radius:2px;background:var(--gold);height:6px}
+  .voice.playing .wave i{animation:eq .6s infinite ease-in-out}
+  .voice .wave i:nth-child(2){animation-delay:.15s}.voice .wave i:nth-child(3){animation-delay:.3s}
+  .voice .wave i:nth-child(4){animation-delay:.45s}
+  @keyframes eq{50%{height:18px}}
+
+  /* practice */
+  .ex{border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--bg);margin-bottom:11px}
+  .ex .xh{display:flex;gap:7px;align-items:center;margin-bottom:10px}
+  .ex .xn{font-size:10px;font-weight:800;color:var(--gold)}
+  .ex .xt{font-size:13px;font-weight:700}
+  .ex .xtype{margin-left:auto;font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{border:1px solid var(--line);background:var(--card);border-radius:11px;padding:8px 12px;
+        font-size:15px;transition:.1s;box-shadow:0 1px 2px rgba(60,45,20,.06)}
+  .chip:active{transform:scale(.95)}
+  .chip.sel{background:var(--em-soft);border-color:var(--em);color:var(--em)}
+  .chip.good{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+  .chip.bad{background:#FBEAE4;border-color:var(--clay);color:var(--clay);animation:shake .3s}
+  .chip.ghost{opacity:.35;pointer-events:none}
+  @keyframes shake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+  .slots{min-height:44px;border:1.5px dashed var(--line);border-radius:11px;padding:7px;margin-bottom:9px;
+         display:flex;flex-wrap:wrap;gap:6px;background:var(--card)}
+  .paircols{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .xfoot{margin-top:9px;display:flex;align-items:center;gap:8px;min-height:20px}
+  .xok{font-size:12.5px;font-weight:700;color:var(--ok);display:none}
+  .ex.done{border-color:#BFDECB}
+  .ex.done .xok{display:block}
+  .gapline{font-size:19px;text-align:right;margin-bottom:10px}
+  .mic{display:flex;flex-direction:column;align-items:center;gap:8px;padding:6px 0}
+  .mic .arb{font-size:22px}
+  .mic .mbtn{width:56px;height:56px;border-radius:50%;background:var(--clay);color:#fff;font-size:22px;
+             box-shadow:0 4px 14px rgba(178,71,42,.4)}
+  .mic .mbtn.rec{animation:pulse .8s infinite;background:#8F3018}
+  .mic .mnote{font-size:11px;color:var(--faint)}
+
+  /* wrap */
+  .wrapl{font-size:14px;line-height:1.6;margin-bottom:8px;display:flex;gap:8px}
+  .wrapl::before{content:'✓';color:var(--ok);font-weight:800}
+  .phrase{background:var(--em-soft);border:1px solid #C4E2D9;border-radius:13px;padding:12px 14px;margin-top:10px}
+  .phrase .p1{font-size:10.5px;font-weight:800;letter-spacing:.07em;color:var(--em);text-transform:uppercase;margin-bottom:4px}
+  .phrase .p2{font-size:14px;line-height:1.55}
+  .donebtn{width:100%;margin-top:14px;background:var(--em);color:#fff;font-size:15px;font-weight:750;
+           padding:14px;border-radius:14px;box-shadow:0 5px 16px rgba(20,128,107,.35)}
+  .donebtn:disabled{opacity:.5;box-shadow:none}
+  .paynote{background:var(--gold-soft);border:1px dashed var(--gold);border-radius:13px;padding:11px 13px;
+           font-size:12.5px;color:var(--dim);margin-bottom:14px}
+  .paynote b{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="draftbar"><b>DRAFT PROTOTYPE</b><span>UI — EN · lesson content — RU (to be localized) · audio & video are placeholders</span></div>
+  <div id="view"></div>
+</div>
+<script src="data.js"></script>
+<script src="program.js"></script>
+<script src="seasons.js"></script>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store={get k(){try{return JSON.parse(localStorage.getItem('ajapp')||'{}')}catch(e){return{}}},
+  save(o){try{localStorage.setItem('ajapp',JSON.stringify(o))}catch(e){}}};
+let done=store.k.done||{};
+const flat=AJ.seasons.flatMap(se=>se.items.map(i=>({n:i[0],title:i[1],canSay:i[2],rule:i[3],place:i[4],goal:i[5],season:se})));
+const prog=n=>AJ.program.find(p=>p.n===n);
+
+/* ---------------- HOME ---------------- */
+function home(){
+  const doneN=Object.keys(done).length;
+  $('#view').innerHTML=`
+  <div class="home">
+    <div class="apphead">
+      <div class="logo">🫖</div>
+      <div><h1>Ajeebus</h1><div class="sub">Level 2 · First Words · A1</div></div>
+    </div>
+    <div class="salam">
+      <div class="face">👳🏽‍♂️</div>
+      <div><div class="t1 ar">السلام عليكم!</div>
+      <div class="t2">${doneN?`${doneN} of 50 lessons done — the tea is still warm.`:'Say it back out loud — that’s how every visit starts.'}</div></div>
+    </div>
+    ${AJ.seasons.map(se=>`
+      <div class="season">
+        <div class="seahead"><span class="n">Season ${se.n}</span><span class="t">${esc(se.title)}</span>
+          <span class="ev">${esc(se.event.split('.')[0])}</span></div>
+        <div class="lgrid">
+          ${se.items.map(it=>{
+            const n=it[0], has=!!prog(n), free=n<=3;
+            return `<button class="lc ${done[n]?'done':''} ${has?'':'locked'}" data-open="${n}" ${has?'':'disabled'}>
+              ${free?`<span class="freechip">FREE</span>`:(n<=30?`<span class="pay">🔒</span>`:'')}
+              <span class="num">${n}</span><span class="lt">${esc(it[1])}</span>
+            </button>`;}).join('')}
+        </div>
+      </div>`).join('')}
+    <div class="paynote"><b>Prototype note.</b> Lessons 1–30 are written; 31–50 are mapped (greyed out). The lock icon marks where the paywall lives — right after the emotional peak of lesson 3. In this draft everything opens.</div>
+  </div>`;
+}
+
+/* ---------------- LESSON ---------------- */
+let ex_state={};
+function lesson(n){
+  const P=prog(n), M=flat.find(f=>f.n===n), L=AJ.lessons.find(l=>l.n===n);
+  ex_state={done:0,total:P.drills.length};
+  const vocab=P.vocab;
+  const scenes=L?L.shots.filter(s=>s.ar.length).slice(0,3):[];
+  $('#view').innerHTML=`
+  <div class="lesson">
+    <div class="lhead">
+      <button class="back" data-home>‹</button>
+      <div><div class="lt1">Lesson ${n} · Season ${M.season.n}</div><div class="lt2">${esc(M.title)}</div></div>
+    </div>
+    <div class="steps"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="blocks">
+
+      ${n===1?`
+      <div class="blk">
+        <div class="bh"><div class="ic">🎬</div><div class="bt">Intro — meet Ajeebus</div><span class="opt">30 sec, once</span></div>
+        <div class="vph"><div class="play">▶</div>
+          <div class="cap">Series intro: Ajeebus sets two tea glasses, glances at his watch, a knock at the door…<br>Hooks the user before any teaching. Placeholder — cut from shot footage.</div></div>
+      </div>`:`
+      <div class="blk">
+        <div class="bh"><div class="ic">🎬</div><div class="bt">Cold open</div><span class="opt">optional · 15 sec</span></div>
+        <div class="vph" style="max-height:180px"><div class="play">▶</div>
+          <div class="cap">15-second teaser from this episode, no subtitles. Sets the question, doesn’t teach.</div></div>
+      </div>`}
+
+      <div class="blk">
+        <div class="bh"><div class="ic">🃏</div><div class="bt">New words — ${vocab.filter(v=>v.kind==='core').length} active</div></div>
+        <div class="vgrid">
+          ${vocab.map((v,i)=>`
+            <button class="vc ${v.kind==='seed'?'seed':''}" data-vc="${i}">
+              <span class="spk" data-spk="${i}">🔊</span>
+              <span class="var ar">${esc(v.ar)}</span>
+              <span class="vtr">${esc(v.tr)}</span>
+              <span class="vru">${esc(v.ru)}</span>
+              <span class="hint">tap for meaning</span>
+            </button>`).join('')}
+        </div>
+      </div>
+
+      <div class="blk th">
+        <div class="bh"><div class="ic">💡</div><div class="bt">Why it works</div><span class="opt">${esc(P.theory.title)}</span></div>
+        ${P.theory.text.slice(0,2).map(t=>`<p>${esc(t)}</p>`).join('')}
+        ${P.theory.text.length>2?`<details><summary>One more detail</summary>${P.theory.text.slice(2).map(t=>`<p>${esc(t)}</p>`).join('')}</details>`:''}
+        <button class="voice" id="voiceBtn">
+          <span class="vp">▶</span>
+          <span><span class="vt1">Ajeebus explains it his way</span><br><span class="vt2">45 sec · voice-over (placeholder)</span></span>
+          <span class="wave"><i></i><i></i><i></i><i></i></span>
+        </button>
+      </div>
+
+      <div class="blk">
+        <div class="bh"><div class="ic">🏋️</div><div class="bt">Practice</div><span class="opt"><span id="exdone">0</span>/${P.drills.length}</span></div>
+        ${P.drills.map((d,i)=>exHTML(d,i,P)).join('')}
+      </div>
+
+      <div class="blk">
+        <div class="bh"><div class="ic">📺</div><div class="bt">Episode</div><span class="opt">reinforcement</span></div>
+        <div class="vph">
+          <div class="play">▶</div>
+          <div class="cap">${L?`Episode ${n} · 12 shots${n<=3?' · footage shot ✓':''}`:`Episode ${n} — attached when the series catches up`}<br>Full scene in slow, clear Arabic.</div>
+        </div>
+        <div class="subseg" id="subseg">
+          <button data-sub="none" aria-pressed="true">No subtitles</button>
+          <button data-sub="ar" aria-pressed="false">العربية</button>
+          <button data-sub="ru" aria-pressed="false">AR + translation</button>
+        </div>
+        <div class="sublines" id="sublines">
+          ${scenes.map(s=>s.ar.map(a=>`<div class="subline"><div class="a ar">${esc(a)}</div><div class="r" data-ru>${esc(s.ru.split('.')[0])}</div></div>`).join('')).join('')||'<div class="subline"><div class="r">Subtitle demo appears when the episode is attached.</div></div>'}
+        </div>
+      </div>
+
+      <div class="blk">
+        <div class="bh"><div class="ic">🎯</div><div class="bt">You can now</div></div>
+        ${P.wrap.map(w=>`<div class="wrapl">${esc(w)}</div>`).join('')}
+        <div class="phrase"><div class="p1">Phrase of the day</div><div class="p2">${esc(P.phrase)}</div></div>
+        <button class="donebtn" id="doneBtn">${done[n]?'Done ✓ (tap to repeat)':'Finish lesson'}</button>
+      </div>
+    </div>
+  </div>`;
+  wireLesson(n,P);
+}
+
+/* --------- exercises --------- */
+function exHTML(d,i,P){
+  const t=AJ.drillTypes[d.type][0];
+  const wrap=(inner)=>`<div class="ex" data-ex="${i}">
+    <div class="xh"><span class="xn">${i+1}</span><span class="xt">${esc(d.task)}</span><span class="xtype">${esc(t)}</span></div>
+    ${inner}<div class="xfoot"><span class="xok">Nice! ✓</span></div></div>`;
+  if(d.type==='match'||d.type==='recall'&&Array.isArray(d.items[0])){
+    const pairs=Array.isArray(d.items[0])?d.items:d.items.map(x=>[x,x]);
+    const L=pairs.map((p,j)=>({t:p[0],j})), R=pairs.map((p,j)=>({t:p[1],j})).sort(()=>Math.random()-.5);
+    return wrap(`<div class="paircols">
+      <div class="chips" style="flex-direction:column">${L.map(x=>`<button class="chip ar" data-ml="${x.j}">${esc(x.t)}</button>`).join('')}</div>
+      <div class="chips" style="flex-direction:column">${R.map(x=>`<button class="chip" data-mr="${x.j}">${esc(x.t)}</button>`).join('')}</div>
+    </div>`);
+  }
+  if(d.type==='build'){
+    const it=d.items[0];
+    const words=[...it.words].sort(()=>Math.random()-.5);
+    return wrap(`<div class="slots" data-slots="${esc(it.target)}"></div>
+      <div class="chips">${words.map(w=>`<button class="chip ar" data-bw="${esc(w)}">${esc(w)}</button>`).join('')}</div>`);
+  }
+  if(d.type==='gap'){
+    const it=d.items[0];
+    const opts=it.options?[...it.options].sort(()=>Math.random()-.5):null;
+    return wrap(`<div class="gapline ar">${esc(it.text)}</div>
+      ${opts?`<div class="chips">${opts.map(o=>`<button class="chip ar" data-gap="${esc(o)}" data-ans="${esc(it.answer)}">${esc(o)}</button>`).join('')}</div>`
+            :`<div class="chips"><span style="font-size:12px;color:var(--faint)">${esc(it.hint||'')} — free input in the real app</span></div>`}`);
+  }
+  if(d.type==='say'){
+    return wrap(`<div class="mic"><div class="arb ar">${esc(d.items[0])}</div>
+      <button class="mbtn" data-mic>🎙</button>
+      <div class="mnote" data-micnote>hold to record — you’ll hear Ajeebus say it first (placeholder)</div></div>`);
+  }
+  /* listen / recall-list: play + choose */
+  const correct=d.items[0], opts=[...d.items].sort(()=>Math.random()-.5);
+  return wrap(`<div class="chips" style="margin-bottom:9px">
+      <button class="chip" data-listen>🔊 Play</button><span style="font-size:11px;color:var(--faint);align-self:center" data-lhint>audio placeholder — plays “${esc(correct)}”</span></div>
+    <div class="chips">${opts.map(o=>`<button class="chip ar" data-lopt="${esc(o)}" data-lans="${esc(correct)}">${esc(o)}</button>`).join('')}</div>`);
+}
+
+function exDone(box){
+  if(box.classList.contains('done')) return;
+  box.classList.add('done');
+  ex_state.done++; $('#exdone').textContent=ex_state.done;
+}
+
+function wireLesson(n,P){
+  $('#view').onclick=e=>{
+    const t=e.target;
+    if(t.closest('[data-home]')){ home(); wireHome(); return; }
+
+    const vc=t.closest('[data-vc]');
+    if(vc){ if(t.closest('[data-spk]')){ const s=t.closest('[data-spk]'); s.classList.add('playing');
+        setTimeout(()=>s.classList.remove('playing'),900); } else vc.classList.toggle('open'); return; }
+
+    if(t.closest('#voiceBtn')){ const v=$('#voiceBtn'); v.classList.toggle('playing');
+      v.querySelector('.vp').textContent=v.classList.contains('playing')?'❚❚':'▶'; return; }
+
+    const sub=t.closest('[data-sub]');
+    if(sub){ $$('#subseg button').forEach(b=>b.setAttribute('aria-pressed',b===sub));
+      const m=sub.dataset.sub; const sl=$('#sublines');
+      sl.classList.toggle('on',m!=='none');
+      $$('#sublines [data-ru]').forEach(r=>r.style.display=m==='ru'?'':'none'); return; }
+
+    /* match */
+    const ml=t.closest('[data-ml]'), mr=t.closest('[data-mr]');
+    if(ml||mr){
+      const box=t.closest('.ex'); const side=ml?'l':'r'; const el=ml||mr;
+      box.dataset['sel'+side]=el.dataset[side==='l'?'ml':'mr'];
+      $$('.chip.sel',box).forEach?0:0;
+      box.querySelectorAll('.chip.sel').forEach(c=>{if((side==='l'&&c.dataset.ml!=null)||(side==='r'&&c.dataset.mr!=null))c.classList.remove('sel')});
+      el.classList.add('sel');
+      const a=box.dataset.sell, b=box.dataset.selr;
+      if(a!=null&&b!=null){
+        const lch=box.querySelector(`[data-ml="${a}"]`), rch=box.querySelector(`[data-mr="${b}"]`);
+        if(a===b){ lch.classList.add('good','ghost'); rch.classList.add('good','ghost'); lch.classList.remove('sel'); rch.classList.remove('sel');
+          if(!box.querySelector('[data-ml]:not(.ghost)')) exDone(box);
+        } else { lch.classList.add('bad'); rch.classList.add('bad');
+          setTimeout(()=>{box.querySelectorAll('.chip.bad').forEach(c=>c.classList.remove('bad','sel'))},400); }
+        delete box.dataset.sell; delete box.dataset.selr;
+      }
+      return;
+    }
+
+    /* build */
+    const bw=t.closest('[data-bw]');
+    if(bw&&!bw.classList.contains('ghost')){
+      const box=t.closest('.ex'), slots=box.querySelector('.slots');
+      const c=bw.cloneNode(true); c.removeAttribute('data-bw'); c.classList.add('sel');
+      slots.appendChild(c); bw.classList.add('ghost');
+      const target=slots.dataset.slots.replace(/\s+/g,' ').trim();
+      const cur=[...slots.children].map(x=>x.textContent).join(' ').replace(/\s+/g,' ').trim();
+      if(!box.querySelector('[data-bw]:not(.ghost)')){
+        if(cur===target){ [...slots.children].forEach(x=>x.classList.replace('sel','good')); exDone(box); }
+        else { [...slots.children].forEach(x=>x.classList.add('bad'));
+          setTimeout(()=>{slots.innerHTML=''; box.querySelectorAll('[data-bw]').forEach(x=>x.classList.remove('ghost'))},600); }
+      }
+      return;
+    }
+
+    /* gap */
+    const g=t.closest('[data-gap]');
+    if(g){ const box=t.closest('.ex');
+      if(g.dataset.gap===g.dataset.ans){ g.classList.add('good');
+        box.querySelector('.gapline').innerHTML=box.querySelector('.gapline').innerHTML.replace('___',`<b style="color:var(--ok)">${esc(g.dataset.gap)}</b>`);
+        box.querySelectorAll('[data-gap]').forEach(x=>{if(x!==g)x.classList.add('ghost')}); exDone(box);
+      } else { g.classList.add('bad'); setTimeout(()=>g.classList.remove('bad'),400); }
+      return; }
+
+    /* listen */
+    if(t.closest('[data-listen]')){ const h=t.closest('.ex').querySelector('[data-lhint]');
+      h.style.color='var(--em)'; setTimeout(()=>h.style.color='',800); return; }
+    const lo=t.closest('[data-lopt]');
+    if(lo){ const box=t.closest('.ex');
+      if(lo.dataset.lopt===lo.dataset.lans){ lo.classList.add('good');
+        box.querySelectorAll('[data-lopt]').forEach(x=>{if(x!==lo)x.classList.add('ghost')}); exDone(box); }
+      else { lo.classList.add('bad'); setTimeout(()=>lo.classList.remove('bad'),400); }
+      return; }
+
+    /* mic */
+    const mic=t.closest('[data-mic]');
+    if(mic){ const box=t.closest('.ex'), note=box.querySelector('[data-micnote]');
+      mic.classList.add('rec'); note.textContent='listening…';
+      setTimeout(()=>{ mic.classList.remove('rec'); note.textContent='Sounded great — Ajeebus approves. (speech check is a placeholder)'; exDone(box); },1400);
+      return; }
+
+    if(t.closest('#doneBtn')){ done[n]=true; store.save({done}); home(); wireHome();
+      window.scrollTo(0,0); return; }
+  };
+}
+function wireHome(){
+  $('#view').onclick=e=>{ const b=e.target.closest('[data-open]');
+    if(b){ lesson(+b.dataset.open); window.scrollTo(0,0); } };
+}
+home(); wireHome();
+</script>
+</body>
+</html>
