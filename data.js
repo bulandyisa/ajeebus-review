@@ -358,3 +358,16 @@ window.AJ = {
   ],
   tail:'speaks slow, clear Modern Standard Arabic, with a pause after the key phrase. no subtitles, no text, no captions, no on-screen writing.'
 };
+
+/* ---------- Арабский мир: плашки локаций после пивота (Nano Banana, 0 кредитов).
+   Старая библиотека из 56 плашек снята в «современном городе» и больше не канон. ---------- */
+window.AJ.arabworld = [
+ ['living','Гостиная Аджибуса','Photoreal cinematic still, vertical. A warm living room in a modern Arab apartment: a low sofa with woven cushions, a carved wooden coffee table with a brass tea tray and small glasses, a patterned rug, a mashrabiya wooden lattice screen over the tall window, potted plants, a shelf of Arabic books. Late afternoon sun through the lattice throwing patterned light across the wall. Sand, ochre and deep green palette, 35mm look. No people in frame, no text.'],
+ ['street','Улица старого города','Photoreal cinematic still, vertical. A quiet street in an old Arab city at golden hour: sand-coloured stone houses, blue wooden shutters, an arched doorway with a worn step, a small shop sign in Arabic script, bougainvillea spilling over a wall, a minaret in the distance. Warm low sun, long shadows, dust in the air, 35mm look. No people in frame, no text.'],
+ ['roof','Крыша-терраса на закате','Photoreal cinematic still, vertical. A rooftop terrace of an Arab townhouse at sunset: low parapet wall, two plastic chairs and a small metal table with a teapot, potted mint and herbs, a laundry line, satellite dishes, flat city rooftops and a minaret silhouette against an orange and violet sky. Warm dusk light, 35mm look. No people in frame, no text.'],
+ ['shop','Лавка у дома','Photoreal cinematic still, vertical. A small neighbourhood grocery shop in an Arab city: wooden crates of apples, bananas and dates, a hanging brass scale, shelves of tea boxes and spice jars, handwritten Arabic price tags, a woven basket, warm overhead light and daylight from the doorway, 35mm look. No people in frame, no text.'],
+ ['hall','Прихожая','Photoreal cinematic still, vertical. The entrance hall of an Arab apartment: a heavy carved wooden door standing half open, a brass door knocker, a key hook on the wall with one old key, a small console table with a bowl, geometric floor tiles, a woven rug, warm light spilling in from the corridor, 35mm look. No people in frame, no text.'],
+ ['kitchen','Кухонный угол','Photoreal cinematic still, vertical. A small kitchen corner in an Arab apartment: a stovetop with a dented teapot, glass tea cups on a tray, a jar of dates, tins of tea and spices, hanging copper utensils, a window with a lace curtain and warm morning light, patterned wall tiles, 35mm look. No people in frame, no text.'],
+ ['cafe','Кафе на углу','Photoreal cinematic still, vertical. A corner café in an Arab city: small round tables with metal chairs on the pavement, a menu board in Arabic, glasses of tea and a plate of dates, a shaded awning, tiled floor inside, warm late-morning light, 35mm look. No people in frame, no text.'],
+ ['mosque','Двор у мечети','Photoreal cinematic still, vertical. A quiet courtyard beside a neighbourhood mosque: stone arches, a small fountain for ablutions, worn steps, shoes left at the entrance, a minaret above, palm shade on the wall, warm afternoon light, 35mm look. No people in frame, no text.']
+];

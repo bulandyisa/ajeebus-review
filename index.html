@@ -1276,6 +1276,12 @@ The shot ends on a held pause, not mid-movement.`;
 document.addEventListener('click',e=>{
   const pk=e.target.closest('[data-pick]');
   if(pk){ try{localStorage.setItem('aj_cast_ajibus',pk.dataset.pick)}catch(_){} renderCanon(); return; }
+  const ap=e.target.closest('[data-arabprompt]');
+  if(ap){ const w=AJ.arabworld.find(x=>x[0]===ap.dataset.arabprompt);
+    copy(w[2],'Промпт скопирован: '+w[1]); return; }
+  if(e.target.closest('[data-araball]')){
+    copy(AJ.arabworld.map(([id,ti,p])=>'[ЛОКАЦИЯ · '+ti+'] — Nano Banana Pro · 9:16 · x1 · 0 кредитов\n\n'+p).join('\n\n————————————\n\n'),
+      'Скопированы все 8 промптов'); return; }
   const cp=e.target.closest('[data-castprompts]');
   if(cp){ copy(castingPrompts(cp.dataset.castprompts),'Промпты кастинга '+cp.dataset.castprompts+' скопированы'); return; }
   const pv=e.target.closest('[data-pv]');
@@ -1404,6 +1410,31 @@ function renderMap(){
     </div>`).join('');
 }
 
+/* ================= арабский мир: плашки локаций после пивота ================= */
+function arabWorldHTML(){
+  const W=AJ.arabworld; if(!W) return '';
+  return `<div class="sect" data-sect="arabworld">
+    <div class="shead2"><span class="lvbadge">NEW</span>
+      <span class="stitle">Арабский мир: плашки локаций заново</span>
+      <span class="spacer"></span>
+      <span class="chip">${W.length} промптов · 0 кредитов</span></div>
+    <div class="sbody">
+      <div class="thin" style="margin-bottom:12px">Старая библиотека из 56 плашек снята в «современном городе» и после пивота не канон.
+      Эти промпты пересобирают мир в арабском сеттинге: Nano Banana Pro · 9:16 · x1 · 0 кредитов, без референсов.
+      Файлы кладём в <code>05-локации-араб/</code>.</div>
+      <div class="castgrid">
+        ${W.map(([id,title,prompt])=>`
+          <div class="castcard">
+            <div class="ckh"><b>${esc(title)}</b><span>${esc(id)}</span></div>
+            <div class="cklock" style="max-height:120px;overflow:auto">${esc(prompt)}</div>
+            <div class="ckf"><button class="btn ghost sm" data-arabprompt="${esc(id)}">⧉ Копировать промпт</button></div>
+          </div>`).join('')}
+      </div>
+      <button class="btn ghost sm" data-araball style="margin-top:10px">⧉ Все восемь одним списком</button>
+    </div>
+  </div>`;
+}
+
 /* ================= канон ================= */
 function castingHTML(){
   const C=AJ.casting; if(!C) return '';
@@ -1437,7 +1468,7 @@ function castingPrompts(id){
 }
 
 function renderCanon(){
-  $('#p-canon').innerHTML=castingHTML()+AJ.chars.map(c=>{
+  $('#p-canon').innerHTML=arabWorldHTML()+castingHTML()+AJ.chars.map(c=>{
     const pics=items.filter(i=>i.char===c.id&&i.status==='canon'&&i.thumb).slice(0,12);
     return `<div class="charcard">
       <div class="lhead"><span class="ltitle">${esc(c.name)}</span>
