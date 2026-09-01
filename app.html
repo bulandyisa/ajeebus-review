@@ -272,8 +272,10 @@
   /* интро урока */
   .lintro{margin:auto 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
   .lintro .cardimg{width:100%;border-radius:22px;overflow:hidden;border:1px solid var(--line);position:relative}
-  .lintro .cardimg img{width:100%;height:200px;object-fit:cover}
-  .lintro .cardimg .veil{position:absolute;inset:0;background:var(--scrim)}
+  .lintro .cardimg img{width:100%;height:236px;object-fit:cover}
+  /* кадр в интро урока — сериал должен быть видно, поэтому вуаль лёгкая */
+  .lintro .cardimg .veil{position:absolute;inset:0;
+     background:linear-gradient(to top,rgba(10,8,6,.55) 0%,rgba(10,8,6,.10) 45%,rgba(10,8,6,0) 100%)}
   .lintro h2{font-size:25px;font-weight:600}
   .lintro .goal{font-size:13.5px;color:var(--dim);line-height:1.6;max-width:310px}
   .lintro .meta{display:flex;gap:7px}
@@ -311,7 +313,7 @@
   .opt.good{border-color:var(--em);background:var(--em-soft);color:var(--em)}
   .opt.bad{border-color:var(--clay);background:var(--clay-soft);color:var(--clay)}
   .opt.ghost{opacity:.32;pointer-events:none}
-  .pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+  .pairs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
   .pairs .col{display:flex;flex-direction:column;gap:10px}
   .pairs .opt{font-size:16px;padding:13px 8px;min-height:54px}
   .pairs .opt.ar{font-size:21px}
@@ -453,12 +455,27 @@ const wordsLearned=()=>Object.keys(done).reduce((a,n)=>{
 
 /* кадры сериала вместо плашек-заглушек */
 const IMG={living:'aj-living.jpg',kitchen:'aj-kitchen.jpg',roof:'aj-roof.jpg',street:'aj-street.jpg',
-           shop:'aj-shop.jpg',hall:'aj-hall.jpg',ajeebus:'aj-ajeebus.jpg',yunus:'aj-yunus.jpg'};
-const PARTIMG=[IMG.living,IMG.street,IMG.hall,IMG.roof,IMG.shop];
-const COURSEIMG={1:IMG.hall,2:IMG.living,3:IMG.street,4:IMG.roof,5:IMG.kitchen,6:IMG.shop};
-function lessonImg(n){ if(n===1)return IMG.hall; if(n===3)return IMG.kitchen; if(n===5)return IMG.shop;
-  if(n<=10)return IMG.living; if(n<=20)return IMG.street; if(n<=30)return IMG.living;
-  if(n<=40)return IMG.street; return IMG.roof; }
+           shop:'aj-shop.jpg',hall:'aj-hall.jpg',market:'aj-market.jpg',taxi:'aj-taxi.jpg',
+           mosque:'aj-mosque.jpg',rest:'aj-rest.jpg',exch:'aj-exch.jpg',bus:'aj-bus.jpg',
+           clinic:'aj-clinic.jpg',pharm:'aj-pharm.jpg',night:'aj-night.jpg',room:'aj-room.jpg',
+           station:'aj-station.jpg',train:'aj-train.jpg',hotel:'aj-hotel.jpg',beach:'aj-beach.jpg',
+           village:'aj-village.jpg',study:'aj-study.jpg',
+           ajeebus:'aj-ajeebus.jpg',yunus:'aj-yunus.jpg'};
+const PARTIMG=[IMG.living,IMG.street,IMG.rest,IMG.train,IMG.study];
+const COURSEIMG={1:IMG.hall,2:IMG.living,3:IMG.street,4:IMG.rest,5:IMG.night,6:IMG.study};
+/* локация каждого урока — по теме, а не по десяткам */
+const LESSONIMG={
+ 1:IMG.hall,    2:IMG.living, 3:IMG.kitchen,4:IMG.living, 5:IMG.shop,
+ 6:IMG.market,  7:IMG.living, 8:IMG.living, 9:IMG.living, 10:IMG.hall,
+ 11:IMG.street, 12:IMG.street,13:IMG.taxi,  14:IMG.street,15:IMG.mosque,
+ 16:IMG.rest,   17:IMG.rest,  18:IMG.street,19:IMG.exch,  20:IMG.bus,
+ 21:IMG.living, 22:IMG.night, 23:IMG.living,24:IMG.clinic,25:IMG.pharm,
+ 26:IMG.rest,   27:IMG.rest,  28:IMG.living,29:IMG.street,30:IMG.roof,
+ 31:IMG.room,   32:IMG.station,33:IMG.train,34:IMG.hotel, 35:IMG.rest,
+ 36:IMG.beach,  37:IMG.village,38:IMG.street,39:IMG.train,40:IMG.market,
+ 41:IMG.shop,   42:IMG.study, 43:IMG.kitchen,44:IMG.living,45:IMG.roof,
+ 46:IMG.study,  47:IMG.market,48:IMG.living,49:IMG.roof,  50:IMG.hall};
+function lessonImg(n){ return LESSONIMG[n]||IMG.living; }
 
 /* ---------- TTS (черновик: системные голоса; в проде — носитель) ---------- */
 let voices=[];
@@ -740,8 +757,375 @@ const EN_CAN={
 50:'welcome a newcomer the way you were welcomed'
 };
 const lCan=n=>EN_CAN[n]||'';
-const CODE=c=>c==="до A1"?"pre-A1":c;
-const bidi=t=>String(t).replace(/([\u0600-\u06FF][\u0600-\u06FF\s،؛؟ـًٌٍَُِّْ]*)/g,"<bdi>$1</bdi>");
+
+/* уровневый код курса: русская метка → CEFR */
+const CODE=c=>String(c||'').replace('до A1','pre-A1').replace('до ','pre-');
+
+/* арабские отрезки внутри английского текста — в <bdi>, иначе пунктуация уезжает */
+const AR_RUN=/([؀-ۿݐ-ݿ][؀-ۿݐ-ݿ\sً-ْـ«»]*[؀-ۿݐ-ݿ]|[؀-ۿݐ-ݿ])/g;
+const bidi=s=>String(s==null?'':s).replace(AR_RUN,'<bdi dir="rtl">$1</bdi>');
+
+/* ---------- Английский текст уроков 1–30.
+   Теория, цель, итоги и фраза дня. Уроки 1–30 — весь контент, который есть в program.js. ---------- */
+const EN_TEXT={
+1:{goal:'Greet someone, say who you are, ask their name and say goodbye.',
+ tt:'Why the answer is not an echo',
+ t:['«السلام عليكم» is not «hi». Literally it means “peace be upon you” — not a greeting but a wish. That is why you do not hand back the same words: you answer «وعليكم السلام», “and upon you peace”. The greeting is always a pair, and the second half is not optional.',
+    'Now look at «أنا يونس» — “I am Yunus”. There is no word for “am”: in the present tense Arabic simply does not need the linking verb. Two words side by side already make a sentence. Fewer parts than you expected, not more.',
+    'In small print: «وأنت؟» is addressed to a man. To a woman you say «وأنتِ؟». Keep the masculine form for now; we take the feminine one when you actually need it.'],
+ voice:'Listen here, my friend. When an Arab says as-salamu alaykum, he is not saying hello. He is giving you peace. And peace cannot be handed back in the same amount — you give back a little more: wa alaykumu s-salam, and upon you too. It is like tea. Someone pours for you, you pour back. ʿAjeeeb!',
+ w:['A greeting is always a pair: you say «السلام عليكم» and you wait for «وعليكم السلام».',
+    'To introduce yourself you need no verb at all: أنا and your name.',
+    'One farewell covers every occasion: مع السلامة.'],
+ p:'Say «السلام عليكم» to one living person today. Not in the app — out loud.'},
+
+2:{goal:'Ask “what is this?” about any object, answer, agree and refuse.',
+ tt:'هذا and the sentence with no verb',
+ t:['«هذا» means “this”. So «ما هذا؟» is literally “what this?”, and the answer is built just as simply: «هذا كتاب» — “this is a book”. Again not a trace of the verb “to be”: two words side by side and the sentence is finished. Same machinery as «أنا يونس» in lesson one, except now you point at a thing instead of yourself.',
+    '«نعم» and «لا» answer the whole sentence, not a single word. «هذا قلم؟» — «نعم». Nobody says “yes, this is a pen”.',
+    'And remember one detail — it fires two lessons from now. Right now you say «هذا مفتاح», “this is a key”: a key, any key. When the key becomes THE key, the word will change. For now just notice how it looks.'],
+ voice:'My friend, «ma haza» is the best phrase in the language. Why? Because after it you do not need a teacher any more. You point — they give you a word. You point again — another word. You do not need me! Well. Almost. The tea will not brew itself.',
+ w:['ما هذا؟ — “what is this?”. Works on every object on earth.',
+    'The answer needs no verb: هذا and the word.',
+    'نعم — yes, لا — no. They answer the whole phrase.'],
+ p:'Ask «ما هذا؟» about five things in your home. Find the answers yourself — that is the whole point of the phrase.'},
+
+3:{goal:'Ask for what you want, accept what you are offered, and say thank you.',
+ tt:'أريد — your first verb',
+ t:['«أريد» is “I want”. This is a real verb, and it is already in the first person: the «أ» at the front is the “I”. Nothing else has to change — just put a noun after it: أريد شاي, أريد ماء, أريد تمر.',
+    '«تفضّل» has no one-word translation. It is the universal “please, go ahead”: said when handing you a cup, when inviting you in, when giving up a seat, when passing documents. One word instead of ten different ones.',
+    'And the thing the episode shows without a single line of dialogue: you give and take with the right hand. The left hand in that role reads as impolite. Ajeebus never explains it to Yunus — he simply turns his palm, and it is understood.'],
+ voice:'Look what a fine thing this is. Uridu — I want. Then you say what you want, and you are done. Uridu shay. Uridu ma. Uridu tamr. Uridu qahwa?.. No. No-no-no. We do not discuss coffee. In my house there is tea.',
+ w:['أريد + a word is enough to ask for anything.',
+    'تفضّل is said when giving. شكرًا when taking.',
+    'You give and take with the right hand.'],
+ p:'Order something in your head in Arabic today: أريد + whatever you actually want.'},
+
+4:{goal:'Ask where something is and answer “here” or “there”.',
+ tt:'ال — the Arabic “that very one”',
+ t:['In lesson two it was «هذا مفتاح» — “this is a key”. Just a key, named for the first time. Here Ajeebus shouts «أين المفتاح؟» — and a small «ال» has appeared in front of the word. He is not looking for some key; he wants his own, the one we already know about.',
+    'ال works exactly like the English “the”. It is written joined to the word and never changes for gender or number — one form for everything. In a language where almost everything changes, this is a gift.',
+    'In small print, about sound: before roughly half of the letters the “l” in ال is swallowed and the next consonant doubles. الشاي is read “ash-shay”, not “al-shay”. The rule looks frightening and takes about a week by ear — just repeat after Ajeebus and do not think about it.'],
+ voice:'The key, the key, where is the key! Do you hear the difference? Not “miftah” — “AL-miftah”. Because this is not some key off the street. This is MY key. Al is what you say when the thing is already an old acquaintance. Like a neighbour: first “some man”, then “that man who walks so loudly”.',
+ w:['أين + a word — “where is…?”.',
+    'هنا — here, هناك — there. Two words cover any answer.',
+    'ال in front of a word means “that very one”.'],
+ p:'Find any object at home and ask out loud: أين ___؟ — then answer yourself: هنا.'},
+
+5:{goal:'Ask the price, say “expensive” and “cheap”, and finish a purchase on your own.',
+ tt:'What «بكم؟» is made of',
+ t:['«بكم؟» is two parts: «بـ», the preposition “for”, and «كم», “how much”. Together: “for how much?”. There is no separate word for “price” to learn.',
+    '«غالي» and «رخيص» are adjectives — “expensive” and “cheap”. In bargaining they work as whole lines: say one of them with the right face and your position is stated.',
+    'Now count for yourself. About thirty lines were spoken in that scene. New words among them: three. Everything else you already knew — salam, kayfa haluk, ma haza, uridu, tafaddal, shukran, la, lazeez. That is how a language accumulates: not as a list of two hundred words, but as five words that turn up in every single scene.'],
+ voice:'Bargaining is not about money, it is about respect. You say “ghali!” — expensive. He says: that is the price. You clutch your heart. He does not move. You say “rakhees?” — pitifully. He says nothing. And that is when you buy. At the same price. But now you know each other!',
+ w:['بكم؟ — “how much is it?”.',
+    'غالي — expensive, رخيص — cheap. One word each is enough.',
+    'A whole purchase: أريد + the thing → بكم؟ → شكرًا.'],
+ p:'Say the whole purchase out loud, three times. Next time it happens in a real shop.'},
+
+6:{goal:'Understand the numbers 1–10 by ear and count objects.',
+ tt:'Kam? — numbers without grammar',
+ t:['«كم» means “how many”. It goes in front of the thing: كم تفاح؟ — “how many apples?” Notice that the noun after كم stays singular — literally “how many apple”. The counted word does not change, which makes life simpler.',
+    'We learn 1–10 as labels, without rules. Arabic numbers do have a famous agreement system — we come back to it many lessons from now, when there is something to agree. For now the task is one: hear “khamsa” and understand “five”.',
+    'Advice from life: numbers are not memorized in a column, they are memorized at a till. Count everything out loud — steps, dates, cups.'],
+ voice:'Numbers, my friend, are not a maths lesson. They are the market! You say “kam?” — they answer. Did not catch it? You already know what to say: “marra thaniya” — again… ah, no-no, that is the next lesson. For now just count: wahid, ithnan, thalatha. Salma next door counts to ten faster than I do. She is six years old. That is the offensive part!',
+ w:['كم؟ — “how many?”, and the noun after it stays singular.',
+    'Numbers 1–10 are labels for the ear, no grammar attached.',
+    'واحد، اثنان، ثلاثة، أربعة، خمسة — the first five are compulsory, the rest you recognize.'],
+ p:'Count five objects on your desk out loud in Arabic.'},
+
+7:{goal:'Refuse, admit you did not understand, and ask for it slower.',
+ tt:'La + verb — and the three most honest phrases',
+ t:['Negation in the present is simply لا in front of the verb: أريد “I want” → لا أريد “I do not want”, أفهم “I understand” → لا أفهم “I do not understand”. No auxiliary words, no change to the verb itself.',
+    '“I do not understand” is not a defeat, it is a tool. Say لا أفهم، مرة ثانية and the other person will repeat more slowly. In Arab culture asking again is not shameful; nodding without understanding is.',
+    'And a relative of “ma haza” from lesson two: ما معنى؟ — “what does it mean?” There you asked about objects, here about words. With these two questions you no longer need a teacher… almost.'],
+ voice:'Learn three phrases, my friend, and I am calm about you in any country. “La uridu” — I do not want, thank you. “La aʿrif” — I do not know, it happens. And the main one: “la afham” — I do not understand! That is not weakness. That is the cleverest phrase a student owns. The fool nods. The clever one says: la afham, marra thaniya, bibutʼ! And the whole world slows down for him.',
+ w:['لا in front of the verb and the negation is done: لا أريد، لا أفهم، لا أعرف.',
+    'Did not understand? Say so: مرة ثانية، ببطء.',
+    'ما معنى؟ — “what does it mean?” — the brother of “ma haza”, but for words.'],
+ p:'Say «لا أفهم» honestly out loud at least once today — even to yourself over an Arabic text.'},
+
+8:{goal:'Say what you have, ask what the other person has, and offer it to a guest.',
+ tt:'ʿIndi — “I have”, with no verb for having',
+ t:['Arabic has no verb “to have” — and it does not need one. عند means “at”, عندي means “at me”. عندي شاي is literally “at me tea”: you name who, you name what, the sentence is finished.',
+    'عندك is “you have”. Look closely at the tails: ـي is “my / me”, ـك is “your / you”. Remember this pair — very soon you will see it on every other word and discover you already know it.',
+    'عندي is not only for objects: عندي وقت — I have time, عندي فكرة — I have an idea, عندي مشكلة — I have a problem. Three phrases that turn up in Arabic drama every five minutes.'],
+ voice:'See how convenient. The English have “I have”, the Germans “ich habe” — whole verbs, conjugations, suffering! And we have: ʿindi. At me. That is all! ʿindi shay — I have tea. ʿindi fikra — I have an idea. ʿindi waqt? No, my friend, waqt is exactly what I do not have — I have a guest and only one teapot. Now that is a mushkila.',
+ w:['عندي — “I have”, عندك — “you have”. No verb for having is needed.',
+    'The tails ـي “my” and ـك “your” will soon be everywhere.',
+    'عندي وقت / فكرة / مشكلة — the three liveliest phrases with ʿindi.'],
+ p:'Say عندي + the word about three things near you. Properly, out loud.'},
+
+9:{goal:'Talk about your family from a photo and address a woman correctly.',
+ tt:'Ta marbuta — the letter that makes a word feminine',
+ t:['A little circle with two dots at the end of a word — ة, “ta marbuta” — almost always means the feminine: صديق “friend” → صديقة “female friend”. One letter instead of a separate word. Hear an “-a” at the end and it is probably about a woman.',
+    'That is why “who is this?” splits in two: من هذا؟ about a man, من هذه؟ about a woman. You have known هذا since lesson two — هذه is its sister.',
+    'And what was promised in lesson one: to a woman you say وأنتِ — “wa anti”, with an “i” at the end. كيف حالك؟ sounds “haluk” to a man and “haluki” to a woman. One sound of difference, and a whole conversation of respect.'],
+ voice:'Family, my friend, is the first thing you will be asked about. Not “what do you do” — “how is your mother? your father? how many brothers?” You show a photo and say: haza abi, hazihi ummi. And remember: to Hajja Amina upstairs you say “wa anti”, not “wa anta”. One sound! And for that sound she brings you a tray with lunch. Tested.',
+ w:['ة at the end makes the word feminine: صديق → صديقة.',
+    'هذا about a man, هذه about a woman.',
+    'To a woman: وأنتِ، كيف حالكِ — with “i” at the end.'],
+ p:'Open a family photo and name three people in Arabic: هذا… هذه…'},
+
+10:{goal:'Invite someone over, accept an invitation and agree a time by ear.',
+ tt:'Taʿal — and a deal sealed with “in sha Allah”',
+ t:['تعال is “come”. It is a command, but a warm one: paired with تفضّل it sounds like an embrace, not an order. تعال إلى بيتي — “come to my house”. Assemble بيتي yourself: بيت “house” plus the familiar tail ـي “my” from earlier lessons.',
+    'متى؟ — “when?”. The answers are ready: اليوم “today”, غدًا “tomorrow”. Three words and the arrangement is made.',
+    'And the main thing. To any plan about the future an Arab answers إن شاء الله — “if God wills”. This is not “maybe” and not an excuse, whatever tourists think. It is respect for the fact that the future is not in our hands. You said “ghadan?”, you heard “in sha Allah” — that means you have properly agreed.'],
+ voice:'Yunus said to me today: taʿal ila bayti! Come to my place, he says. I nearly dropped the teapot. Yesterday he could not pronounce “salam” — today he invites me over! I asked: mata? He says: ghadan, in sha Allah. He said it exactly right. With “in sha Allah”. Because the future belongs to God — and the tea is today. ʿAjeeeb!',
+ w:['تعال — “come”; تعال إلى بيتي is the whole invitation.',
+    'متى؟ → اليوم / غدًا — an arrangement in three words.',
+    'Plans are sealed with «إن شاء الله» — and that is agreement, not an excuse.'],
+ p:'Invite someone over with a full Arabic sentence: تعال إلى بيتي غدًا!'},
+
+11:{goal:'Say where you are going and ask someone else the same.',
+ tt:'إلى — the arrow of direction',
+ t:['«إلى» is the preposition “to, towards” — an arrow of movement: «أذهب إلى السوق», “I am going to the market”. The question assembles itself out of parts you already own: «إلى أين؟» — “where to?”, literally “to where”.',
+    'Notice that the places all carry «الـ»: السوق، البيت، المسجد. Remember THE key from lesson four? When you say “I am going to the market” you mean your own, familiar market — which is why the article lives here permanently.',
+    '«أذهب» means “I go”. For now it is just a label on a word. In the next lesson it turns out to be the door into a whole system — but let us not run ahead.'],
+ voice:'Ila ayna, my friend? Where are you off to? That is the first question the street asks you. And look how simple the answer is: adhhabu ila s-suq. I am going to the market. Adhhabu ila l-masjid. Adhhabu ila l-bayt. One little arrow, ila, and the whole city is yours. Where am I going? To the shop. For dates. Again. Anza ate the last ones.',
+ w:['«إلى» — “to, towards”: the arrow of direction.',
+    '«إلى أين؟» — “where to?”; the answer is «أذهب إلى» + a place.',
+    'Places travel with «الـ»: السوق، البيت، المسجد.'],
+ p:'On your way out of the house today, say out loud where you are going: أذهب إلى...'},
+
+12:{goal:'Say what you are doing right now — about yourself, the person opposite you and a third person.',
+ tt:'Three engine letters: أ، ت، ي',
+ t:['Look at three words: أذهب، تذهب، يذهب. The root is one and the same — ذهب, “to go”. Only the first letter changes: «أ» means “I”, «ت» means “you”, «ي» means “he”. This is not a conjugation table — these are three stickers on one verb.',
+    'And now the trick: the stickers work on any verb. «أشرب» I drink → «تشرب» you drink → «يشرب» he drinks. أعمل → تعمل → يعمل. Understand it once and every verb in the course hands you three forms for free.',
+    'The familiar «أريد» from lesson three belongs to the same family: أ + ريد. You have been conjugating verbs since lesson three without knowing it.'],
+ voice:'Let me tell you a secret, my friend. You think Arabic verbs are frightening? Watch. Adhhab — I go. Tadhhab — you go. Yadhhab — he goes. Alif is me. Ta is you. Ya is him. Three letters! I have been drinking tea for thirty years — ashrab. You drink — tashrab. Yunus drinks — yashrab. Even Anza… no. Anza does not drink tea. Anza eats my dates.',
+ w:['«أ» = I, «ت» = you, «ي» = he — the first letter of the verb names who is doing it.',
+    'The stickers work on any verb: أشرب → تشرب → يشرب.',
+    '«أريد» from lesson 3 is the same system: you have been conjugating all along.'],
+ p:'Take the verb “to drink” and run it out loud over real people: I drink, you drink, he drinks.'},
+
+13:{goal:'Survive a taxi: give the address, command “right, left, straight” and stop where you need to.',
+ tt:'Command words: the imperative without the rules',
+ t:['Nobody conjugates in a taxi — in a taxi you command. «يمين» right, «يسار» left, «أمام» straight ahead, «قف» stop. This is the imperative mood, but there is no need to study it as a topic: four commands cover the whole road.',
+    'Politeness is compulsory. A bare command sounds sharp, so: «قف هنا من فضلك» — “stop here, please”. The formula “command + min fadlik” turns an order into a request.',
+    'The familiar «تعال» from lesson ten is a command too — “come”. You are already using the imperative: تفضّل، تعال، قف. The system will assemble itself, word by word.'],
+ voice:'A taxi is theatre, my friend. You get in and you say: ila s-suq, min fadlik. After that three words decide everything: yamin! yasar! amam! And the finale: qif huna. Stop here. That is it — you have arrived. Karim the driver will say mashallah, where did you get Arabic? — and you say proudly: min Ajeebus. No. Do not say that. Just smile.',
+ w:['يمين، يسار، أمام، قف — four words steer any car.',
+    'Command + «من فضلك» = a polite request.',
+    '«تفضّل» and «تعال» — you have been speaking in the imperative for a while now.'],
+ p:'On the road today, call out the turns to yourself in Arabic: yamin… yasar… amam.'},
+
+14:{goal:'Ask and tell the time, and agree on an hour to meet.',
+ tt:'As-saʿa + a number, and the time is done',
+ t:['«كم الساعة؟» — “what time is it?”, literally “how many the hour?” — our old «كم» from lesson six. The answer: «الساعة خمسة», “the hour is five”. You already know the number; the word «الساعة» is the same in every answer.',
+    'Half past is «والنصف»: «الساعة خمسة والنصف» — “five and a half”. First the whole hour, then the half on top: honest arithmetic. Morning and evening are the little tails «صباحًا» and «مساءً».',
+    'An honest footnote: in strict literary usage the hour is given as an ordinal — «الساعة الخامسة», “the fifth hour”. We teach the simple spoken form, which is understood everywhere; the literary one catches up at level four, when ordinal numbers arrive.'],
+ voice:'Kam as-saʿa, my friend? You do not know? Well, Yunus knows now! As-saʿa khamsa — five o’clock. As-saʿa khamsa wa-n-nisf — half past five. See how honest that is: first the whole hour, then the half laid on top. None of your “half of an hour that has not happened yet”. Arab precision. Tea, by the way, brews for exactly four daqiqa. That is precision too.',
+ w:['«كم الساعة؟» — “what time is it?”; the answer is «الساعة» + a number.',
+    '«والنصف» — “and a half”; «صباحًا» / «مساءً» — in the morning / in the evening.',
+    'The literary form with ordinals comes later — the spoken one is understood everywhere.'],
+ p:'Three times today answer the question “kam as-saʿa?” out loud — in Arabic.'},
+
+15:{goal:'Name the days of the week and arrange to meet on a particular day.',
+ tt:'The days of the week are numbers you already know',
+ t:['Look carefully: «الأحد» Sunday — from «واحد», one. «الاثنين» Monday — from «اثنان», two. «الثلاثاء» from «ثلاثة» three, «الأربعاء» four, «الخميس» five. The Arabic week is simply numbered! You learned the days of the week back in lesson six — you just did not know it.',
+    'Only two are special: «الجمعة» Friday, the day of gathering (from the same root as “assembly”), the chief day of the week. And «السبت» Saturday, the day of rest, a relative of “sabbath”.',
+    'The preposition «في» puts all of it into time: «في يوم الجمعة» — “on Friday”. The same «في» also says “in the house”: one preposition for place and time alike.'],
+ voice:'And now the trick, my friend! You know the days of the week. You do not believe me? Ahad — what is that? Wahid, one! The first day. Ithnayn — ithnan, two! Thulatha — thalatha! The Arabs did not agonise over names: they numbered them and went to drink tea. Only Friday is special — jumʿa, the day everyone gathers. And Saturday — sabt, rest. Five days for free, my friend. For free!',
+ w:['The days are numbers: الأحد=1, الاثنين=2, الثلاثاء=3…',
+    'The special ones: «الجمعة» the day of gathering, «السبت» the day of rest.',
+    '«في» — “in, on”: في يوم الجمعة، في البيت.'],
+ p:'Say today’s day and tomorrow’s out loud: اليوم… غدًا…'},
+
+16:{goal:'Place a full, polite order in a café and ask for the bill.',
+ tt:'Min fadlik opens any door',
+ t:['«من فضلك» is “please”, literally “out of your kindness”. The ordering formula: first what, then the magic word — «عصير من فضلك», “juice, please”. «شاي من فضلك». «الحساب من فضلك» — “the bill, please”, the phrase that ends every café on earth.',
+    '«بدون» is “without”: «شاي بدون سكر», tea without sugar. One word and the order became precise. And «سكر» is the ancestor of the word for sugar in almost every language: sugar, Zucker, şeker — all of them came from Arabic. You have known this word your whole life.',
+    'To a waitress: «من فضلكِ», min fadliki — the familiar “-i” from lesson nine works here too.'],
+ voice:'In a café, my friend, it is not your accent that gives you away. It is rudeness! Never just “shay!”. Always: shay, min fadlik. Want it without sugar — shay bidun sukkar. And sukkar… sugar… do you hear it? We gave you that, along with the word! Drink it in good health. And the bill — al-hisab, min fadlik. And a smile. A smile is half of the Arabic language.',
+ w:['An order = the thing + «من فضلك»: عصير من فضلك.',
+    '«بدون» — “without”: شاي بدون سكر.',
+    '«الحساب من فضلك» — this is how every café ends.'],
+ p:'Place today’s order — even if only in your head — entirely in Arabic, with “min fadlik” at the end.'},
+
+17:{goal:'Ask for permission, a favour or a thing with a single word — and understand the answer.',
+ tt:'Mumkin — the Swiss army knife of asking',
+ t:['«ممكن» means “possible” — and in a question it becomes the universal “may I?”. The formula could not be simpler: «ممكن» + whatever you want. «ممكن ماء؟» — may I have water? «ممكن صورة؟» — may I take a photo? «ممكن هنا؟» — may I sit here? A noun, a place, anything at all.',
+    'The answers come in a pair: «طبعًا» — “of course” (you will hear this most often; Arab politeness is generous), and «للأسف، لا» — “unfortunately, no” (a refusal is always softened).',
+    'How does «ممكن» differ from «أريد»? “Urid” declares a wish, “mumkin” asks permission. The first is about you, the second about the other person. That is why “mumkin” sounds gentler and opens more doors.'],
+ voice:'If they forced me to leave my student one single word — one! — I would leave him “mumkin”. Mumkin maʼ? May I have water? Mumkin sura? May I take a picture? Mumkin huna? May I sit here? One word, and the whole world answers you: tabʿan! Of course! Arabs rarely say no, my friend. And if they do, it is lil-asaf, la. With regret. Because refusing a guest hurts.',
+ w:['«ممكن» + a word = any request: ممكن ماء؟ ممكن صورة؟',
+    'The answers: «طبعًا» of course / «للأسف، لا» unfortunately, no.',
+    '«أريد» is a wish, «ممكن» is permission. The second is gentler.'],
+ p:'Ask for something today with “mumkin” — and count how many times you hear “tabʿan”.'},
+
+18:{goal:'Say where you live and where you are from, and ask the same of someone else.',
+ tt:'The verb and its preposition travel together',
+ t:['«أسكن في» — “I live in”: the verb سكن always brings the preposition في along. Learn them as one long word: «أسكن في المدينة», “I live in the city”. The familiar «ت» from lesson twelve gives you the question: «أين تسكن؟» — “where do you live?”',
+    'Origin goes through «من», “from”: «من أين أنت؟» — “where are you from?”, literally “from where you”. The answer: «أنا من» + a country — and country names in Arabic sound almost the way they do in your own language. That is a gift.',
+    'Now build the story of yourself out of three lessons: أنا يونس. أنا من موسكو. أسكن في القاهرة. Three sentences, and the stranger on the bench is already someone you are talking to.'],
+ voice:'Min ayna anta, my friend? Where are you from? They will ask you that a thousand times. And look at the beautiful answer you can give now: ana min Rusiya. Askun fi l-Qahira. I am from Russia, I live in Cairo. That is all! The old man on the bench is already pouring you tea from his flask and telling you about his grandchildren. Three sentences open hearts, my friend.',
+ w:['«أسكن في» — learn it as one piece: verb plus preposition.',
+    '«من أين أنت؟» → «أنا من» + a country.',
+    'Three sentences about yourself: name, origin, where you live.'],
+ p:'Assemble your own introduction — name, country, city — and say it in one go, without pauses.'},
+
+19:{goal:'Pay, ask for your change and admit honestly that you have no money.',
+ tt:'Ma ʿindi — a “no” of its own',
+ t:['In lesson seven we negated verbs with «لا»: لا أريد، لا أفهم. But «عندي» is not a verb — it is “with me” (remember: that phrase has no verb in it at all). So it gets its own negation: «ما عندي» — “I do not have”. «ما عندي نقود» — I have no money. «ما عندي وقت» — I have no time.',
+    'The rule is simple: «لا» for verbs, «ما» for «عندي». Two noes for two cases, and an Arab ear will not let you mix them: “la ʿindi” sounds as odd as “not I have”.',
+    'The till, in words: «أدفع» — “I pay” (that familiar «أ»!), «الباقي» — “the change”, literally “the remainder”. «الباقي لك» — “keep the change”, literally “the remainder is yours”. One second, and you are a generous man.'],
+ voice:'Disaster, my friend. I am at the till, basket full of dates, I reach for my wallet — and it is not there! So I say it honestly, loudly, like a man: ma ʿindi nuqud! I have no money! And then Yunus — my Yunus! — takes out his wallet and says: ana adfaʿ. I am paying. The student paying for the teacher! I almost wept. Then I remembered: that is my money, I lent it to him yesterday. Never mind. It was beautiful.',
+ w:['«لا» for verbs, «ما» for «عندي»: ما عندي نقود.',
+    '«أدفع» — “I pay”, «الباقي» — “the change”.',
+    '«الباقي لك» — “keep the change”: generosity in one second.'],
+ p:'Check your pockets and tell the truth in Arabic: عندي نقود — or ما عندي.'},
+
+20:{goal:'Give a reason: answer “why?” with a full sentence.',
+ tt:'Li-anna glues two sentences together',
+ t:['«لماذا؟» — “why?”. Until this lesson all you could do was fall guiltily silent. Now you have «لأن», “because”: «أنا متأخر لأن الحافلة متأخرة» — “I am late because the bus is late”. Two thoughts became one sentence — the first complex syntax of the course.',
+    'Notice the pair متأخر / متأخرة: one about a man, one about the bus (the word «حافلة» is feminine — there is the ة!). Lesson nine is doing its work.',
+    '«آسف» — “sorry” — is for now just a polite word standing next to being late. A full apology with the past tense gets a lesson of its own: we have sown it, it will grow.'],
+ voice:'Limadha, asks Hajja Amina, limadha mutaʼakhkhir?! Why are you late?! And here, my friend, you must not stay silent. Silence is guilt. Say it: li-anna! Because! Li-anna l-hafila mutaʼakhkhira! The bus was late! Li-anna Anza… no. Do not mention Anza. Nobody believes the goat. Although it is always the goat.',
+ w:['«لماذا؟» — “why?”, «لأن» — “because”.',
+    '«لأن» glues two sentences into one — your first complex phrase.',
+    'متأخر / متأخرة — gender agreement is already working on its own.'],
+ p:'Say today’s “because” in Arabic: لأن… — about the weather, about the traffic, anything.'},
+
+21:{goal:'Describe a thing and a person: big, small, new, old, beautiful.',
+ tt:'First what, then which',
+ t:['The word order is the reverse of what you expect: «بيت كبير» is literally “house big”. First the thing, then the description. Always. You get used to it in a day, because the order is iron — no exceptions.',
+    'The adjective adapts to gender: «بيت كبير» a big house, but «مدينة كبيرة» a big city — the word مدينة is feminine, and the adjective takes the ة after it. The ta marbuta from lesson nine now works on agreement.',
+    'And pairs for the memory: كبير/صغير، جديد/قديم، طويل/قصير. Adjectives live in pairs of opposites — learn them in twos and they come back twice as easily.'],
+ voice:'Yunus bought a jacket, my friend. He comes in and asks: how is it? And I look — the jacket is jadida, jamila… but kabira! Big! He stands in it the way I stand in a tent. So I said honestly: al-jacket jamil… wa kabir. Beautiful and big. Honesty, my friend, is part of the language too. He wears it with a belt now. Tayyib. The main thing is that it is warm.',
+ w:['The order is iron: first the thing, then the description — بيت كبير.',
+    'A feminine word takes a feminine adjective: مدينة كبيرة.',
+    'Learn adjectives in pairs of opposites.'],
+ p:'Describe three things around you with “thing + which”: كتاب قديم، بيت كبير…'},
+
+22:{goal:'Say out loud that something is beautiful — in Arabic, and meaning it.',
+ tt:'Ma ajmal — the formula of wonder',
+ t:['«ما أجمل» + a thing = “how beautiful… !”: «ما أجمل المنظر!» — what a view! «ما أجمل البحر!» — what a sea! Do you recognise «أجمل»? It is «جميل», beautiful, from the last lesson, in a special form. One formula, endless wonder.',
+    'And a word you knew before this course began: «ما شاء الله» — “what God has willed”. It is said when admiring — a child, a house, a success — so that the admiration is a blessing and not an evil eye. If you praise someone’s child, add mashallah: this is not superstition, it is care.',
+    'Grammar today: none. That is deliberate. After twenty-one lessons in a row you have earned a lesson where all you have to do is admire something.'],
+ voice:'Yunus and I climbed up to the neighbour’s roof. Sunset. The city all gold. And Yunus — on his own, I did not prompt him! — says: ma ajmal al-manzar… And then quietly: ma shaʼa Llah. And that, my friend, was when I knew. That is it. The man has begun to speak. Not with words — with his heart. Grammar can be learned. Wonder can only be felt.',
+ w:['«ما أجمل» + a thing = “how beautiful!”',
+    'Praising something of someone else’s — add «ما شاء الله»: admiration without the evil eye.',
+    'No grammar today — you have earned it.'],
+ p:'Find one beautiful moment today and say it out loud: ما أجمل…!'},
+
+23:{goal:'Say whose it is: mine, yours, his, hers — with one sound on the end of the word.',
+ tt:'One letter instead of the word “my”',
+ t:['Where other languages need a separate word for “my”, Arabic makes do with one sound at the end: «كتابي», kitabi. «ـي» is “my”, «ـك» “your”, «ـه» “his”, «ـها» “her”. The book stays the same, the tails change: كتابي، كتابك، كتابه، كتابها.',
+    'And here is the moment we have been sowing for: «عندي» and «عندك» from lesson eight are THE SAME tails! عند+ي “with me”, عند+ك “with you”. «بيتي» from lesson ten is بيت+ي. You have been using this system for fifteen lessons. Today you simply recognised its face.',
+    'A quick quarrel about property: «لمن هذا؟» whose is this? — «هذا لي» this is mine — «لا، هذا لي!» no, this is MINE! After that let Hajja Amina decide.'],
+ voice:'There is a scandal in the courtyard, my friend! Bilal is shouting: al-kura li! The ball is mine! The other one shouts: la, hadhihi kurati! So out I come and say wisely: liman hadhihi l-kura? Whose is this ball? And they both went quiet. Because the ball, my friend… the ball turned out to be Anza’s. She was already eating it. The moral: while you argue over the tails of “mine” and “yours”, the goat settles the matter on the merits.',
+ w:['«ـي» my, «ـك» your, «ـه» his, «ـها» her — tails instead of words.',
+    '«عندي» and «بيتي» are the same system: you have been inside it since lesson eight.',
+    '«لمن هذا؟» — «هذا لي»: a property dispute in two words.'],
+ p:'Walk round the room and name five things with a tail: كتابي، مفتاحي، بيتي…'},
+
+24:{goal:'Complain about how you feel and understand someone else’s complaint.',
+ tt:'Illness is “had”: ʿindi back on duty',
+ t:['In Arabic pain does not “hurt” — you “have” it: «عندي صداع», “I have a headache”. The familiar construction from lesson eight has simply taken on new work. «عندي زكام» — I have a cold. One pattern, different words.',
+    'The whole state goes through the familiar verbless sentence: «أنا مريض», I am ill (a woman says «مريضة» — the ة on duty again). To ask after health: «كيف صحتك؟» — a close brother of “kayfa haluk” from lesson two.',
+    'And a cultural pearl: hearing of an illness, an Arab answers «سلامتك» — “your health”, a wish for recovery. The reply to it is «الله يسلمك». A pair, like salam: a complaint without “salamtak” in return is like a greeting without an answer.'],
+ voice:'Kayfa sihhatuk, my friend? How is your health? If it is good — alhamdulillah! If it is bad, say so plainly: ʿindi sudaʿ. My head hurts. And at once they will say salamtak! Get well! And bring you ginger tea, and honey, and more tea, and Hajja Amina will bring soup… Being ill in an Arab house, my friend, is almost a holiday. Almost. Better not to be ill.',
+ w:['Pain is “had”: عندي صداع.',
+    '«أنا مريض» / «مريضة» — your state in a verbless sentence.',
+    'A complaint is answered with «سلامتك» — “get well”.'],
+ p:'Ask someone “كيف صحتك؟” today — and hear the answer out to the end.'},
+
+25:{goal:'Explain to a doctor what happened and how long ago; understand the words for “more than one”.',
+ tt:'Words in pairs, and the magic tail -ayn',
+ t:['The Arabic plural is capricious, so here is our arrangement: every word arrives with its pair, like an irregular verb in English. «يوم» day — «أيام» days. Not a rule — a pair. Hear a new pair, put it in the jar.',
+    'And here is a gift almost no other language has: the dual. “Two days” is not “ithnan yawm” but a single word, «يومين», yawmayn. The tail -ayn means “a pair”: «ساعتين» two hours, «أسبوعين» two weeks. Beautiful and economical.',
+    'The doctor needs all of this for one question: «منذ متى؟» — “since when?”. The answer: «منذ يومين» — “for two days now”. The prescription arrives with «حبة كل يوم» — one pill every day.'],
+ voice:'Doctor Samir is a good man, but his questions are always the same. Mundhu mata? How long? And you must answer precisely: mundhu yawmayn. Two days. Do you hear the beauty of it? Not “two days” in two words — in one! Yawm-ayn. The tail -ayn, and everything doubled. The Arabs even have a number just for pairs. For a pair of eyes, a pair of hands, and a pair of days with a sore head.',
+ w:['The plural comes as a pair to the word: يوم — أيام.',
+    'The tail -ayn = “a pair”: يومين، أسبوعين.',
+    '«منذ متى؟» — “since when?”; «منذ يومين» — “for two days”.'],
+ p:'Say in Arabic how long you have been learning Arabic: منذ…'},
+
+26:{goal:'Invite by asking, accept with delight and refuse without offending.',
+ tt:'Tuhibb? — an invitation shaped as a question',
+ t:['«تحب شاي؟» — “would you like tea?”, literally “do you love tea?”. No question particle at all — only the intonation lifted at the end: that is how this course has been asking since lesson one. «أحب» is “I love”: أحب الشاي، أحب هذه المدينة.',
+    'Agreement, with delight: «نعم، أحب!» or «فكرة ممتازة!» — “an excellent idea!” (both words are familiar: فكرة from lesson eight, and ممتاز is new but indestructibly useful).',
+    'A refusal is always soft, in three steps: «للأسف» from lesson seventeen, «ربما» maybe, «وقت آخر» another time. A flat “no” to an invitation is close to rude in Arab culture; “another time” is the polite “no”, and both sides understand it.'],
+ voice:'My neighbour Khaled is a musician. Plays loudly, but a heart of gold. Yesterday he asks: tuhibb qahwa? Would you like coffee? And I… I made a mistake, my friend — I said: uhibb! I love it! And I am a tea man! But to refuse a neighbour… I drank it. And I will tell you honestly: Khaled’s qahwa is a fikra mumtaza. Just do not tell Yunus. He and I have a tea tradition.',
+ w:['«تحب» + a thing؟ — an invitation by question, by intonation.',
+    'Agreement: «فكرة ممتازة!» Refusal: «للأسف… وقت آخر».',
+    'A flat “no” to an invitation is rude; “another time” is the polite one.'],
+ p:'Offer someone something with “tuhibb…?” — and watch the conversation get warmer.'},
+
+27:{goal:'Arrange a meeting in full: the day, the hour and the place in one sentence.',
+ tt:'Building a meeting out of ready parts',
+ t:['Almost nothing is new today, and that is deliberate. A complete arrangement assembles itself from what you already have: «في يوم الجمعة» (lesson 15) + «الساعة خمسة» (lesson 14) + «أمام المقهى» (أمام from the taxi, المقهى from the city). The result: «موعدنا في يوم الجمعة، الساعة خمسة، أمام المقهى».',
+    'Only the joints are new: «إذن» — “so, then” — sums up (“idhan, Friday at five”), and «اتفقنا» — “agreed!” — puts the seal on it. Once you hear “ittafaqna”, the meeting is happening.',
+    '«أمام» from lesson thirteen has opened up: in a taxi it meant “straight ahead”, but really it means “in front of” — «أمام المقهى», in front of the café. One word, two turns.'],
+ voice:'Look, my friend, at what you can do — on your own, without me! Fi yawm al-jumʿa: you have the day. As-saʿa khamsa: you have the hour. Amam al-maqha: you have the place. Idhan… ittafaqna! Agreed! A whole meeting, a real grown-up one, out of pieces you have been collecting for fifteen lessons. That is how a language is built: brick by brick, and then suddenly — a house.',
+ w:['A meeting = day + hour + place: you have had all the parts for a while.',
+    '«إذن» sums up, «اتفقنا» puts the seal on it.',
+    '«أمام» — “in front of”: in the taxi it was “straight on”, at the café it is “in front”.'],
+ p:'Fix your next real meeting in Arabic — day, hour, place — and close it with “ittafaqna”.'},
+
+28:{goal:'Hold a phone conversation: answer, ask them to wait, explain that someone is busy.',
+ tt:'He and she by ear: the engine letters keep working',
+ t:['The telephone ritual: «ألو» → «من معي؟» who is speaking? (literally “who is with me” — that familiar tail «ـي»!) → «لحظة من فضلك» one moment please. Three lines, and you can hold a conversation with no gestures at all.',
+    'The main grammar: talking about a third person. «يجيب» — “he answers”, the familiar «ي» from lesson twelve. She: «تجيب». Wait, you will say, «ت» means “you”! It does — the letter «ت» works twice, for “you” and for “she”, and context tells you which. Arabic is economical: «أحمد لا يجيب» Ahmad is not answering, «أمي لا تجيب» my mother is not answering.',
+    'Wrong number: «الرقم خطأ» — “the number is wrong”. Apologise (آسف), hang up, no harm done.'],
+ voice:'I call Yunus — la yujib. No answer! I call again — la yujib! Now I am worried, the kettle is going cold! I call a third time… Alu! Man maʿi?! I shout. And it is not Yunus. It is Hajja Amina. Raqm khataʼ, she says, wrong number, my dear. And then twenty minutes about her grandchildren. That was a good wrong number, my friend. A warm one.',
+ w:['The ritual: «ألو» → «من معي؟» → «لحظة من فضلك».',
+    '«ي» is “he”, «ت» is “you” and “she”: context tells you which.',
+    '«الرقم خطأ» — “wrong number”: apologise and that is that.'],
+ p:'Start your next phone call, silently, in Arabic: alu, man maʿi?'},
+
+29:{goal:'Apologise, admit fault and accept an apology.',
+ tt:'The tail -tu: the first door into the past',
+ t:['Until now the whole course has lived in the present. Today, the first step back in time: «نسيت» I forgot, «فعلت» I did, «كسرت» I broke. Do you hear the common tail? «ـتُ», “-tu”, on the end of a verb means “I did this in the past”. The present is built with prefixes at the front (أ، ت، ي), the past with tails at the back. For now we take only “I”; the rest can wait.',
+    'An apology in Arabic has two storeys: «آسف» “I am sorry” — a state, and «سامحني» “forgive me” — a request (a familiar command, like قف and تعال, only warm). The full formula: «آسف، نسيت» — sorry, I forgot.',
+    'To accept an apology: «لا بأس», “no harm” (literally “no harm done”). And to admit that the other person is right, the most beautiful idiom of all: «الحق معك» — “the truth is with you”. Not “you won the argument” — the truth is simply standing beside you. After those words there is nothing left to quarrel about.'],
+ voice:'Khaled and I fell out, my friend. Over nothing: he played the oud at midnight, I said one word, he said two… Three days without a greeting. Three days, imagine that! Neighbours! Then Bilal came, the boy from the courtyard, looked at the two of us and said: you are both ridiculous. So I went to Khaled and said: samihni. Asif. And he said: la baʼs… al-haqq maʿak, I did play late. And I said: la, al-haqq maʿak! And we argued about which of us was the one in the wrong until the tea went cold. That was a good quarrel. A proper one.',
+ w:['The tail «ـتُ» = “I did”: نسيت، فعلت، كسرت.',
+    'An apology: «آسف» + «سامحني». The answer: «لا بأس».',
+    '«الحق معك» — “the truth is with you”: after that, people stop quarrelling.'],
+ p:'If there is someone to say it to — apologise in Arabic today: آسف، نسيت. It counts even if they do not understand the words: they will understand the tone.'},
+
+30:{goal:'Say how things used to be — “was, were” — and close the season with a reconciliation.',
+ tt:'Kana — the time machine',
+ t:['Remember the first rule of the course, the sentence with no verb — «البيت كبير», the house is big? Add «كان» and it drives off into the past: «كان البيت كبير», the house was big. «الشاي ساخن» the tea is hot → «كان الشاي ساخن» the tea was hot. One verb, and everything you could say about now works for yesterday.',
+    'The feminine comes with a familiar letter: «كانت». «المدينة كانت صغيرة» — the city was small. And the tail from the last lesson gives you “I was”: «كنت» — «كنت مريض» I was ill, «كنت في السوق» I was at the market.',
+    '«أمس» — “yesterday” — is the past tense’s chief companion. And a word for the end of the season: «صحيح», “true”. «كان الحق معك» — “the truth was with you”. The season of quarrels and reconciliations is closed.'],
+ voice:'Zaman, my friend… long ago… I was young. Kuntu saghir! Kuntu tawil… no, tall I never was, I will not lie to you. But listen to the power of this: kana. Was. Kana sh-shay sakhin — the tea was hot. Kanat al-madina saghira — the city was small. One word, and you are a storyteller! Your whole life, everything that was “before”, has opened up. Careful with that power: old men like me go into “kana” and do not come back.',
+ w:['«كان» + a verbless sentence = the past: كان الشاي ساخن.',
+    '«كانت» — “she was”, «كنت» — “I was”.',
+    '«أمس» — “yesterday”: the chief companion of the past.'],
+ p:'End the day with a sentence about it: كان اليوم… — and add the adjective the day has earned.'}
+};
+const LT=(n,k)=>{ const L=EN_TEXT[n]; return L?L[k]:null; };
+
+/* ---------- перевод реплик сцены: собираем словарь из лексики всех уроков ---------- */
+const SCENE_EXTRA={'والآن':'and now','لا':'no','نعم':'yes','هيا':'come on','يا':'o','طيب':'all right',
+ 'آه':'ah','أهلا':'welcome','أهلاً':'welcome','هه':'ha','ممم':'mmm','شششش':'shh','انظر':'look',
+ 'هنا':'here','هناك':'there','ماذا':'what','كيف':'how','من':'who','أين':'where','ما':'what'};
+const AR_DICT=(()=>{ const m=new Map();
+  for(const P of (window.AJ&&window.AJ.program)||[]) for(const v of P.vocab||[]) m.set(stripAr(v.ar), gloss(v.ru));
+  for(const k in SCENE_EXTRA) m.set(stripAr(k), SCENE_EXTRA[k]);
+  return m; })();
+/* Переводим только то, что реально знаем: строку разбираем на известные куски,
+   и если хоть один кусок неизвестен — перевод не показываем вообще. */
+function trLine(line){
+  const clean=stripAr(line); if(!clean) return null;
+  if(AR_DICT.has(clean)) return AR_DICT.get(clean);
+  const words=clean.split(' ').filter(Boolean);
+  const out=[]; let i=0;
+  while(i<words.length){
+    let hit=null;
+    for(let len=Math.min(4,words.length-i); len>0; len--){
+      const chunk=words.slice(i,i+len).join(' ');
+      if(AR_DICT.has(chunk)){ hit={txt:AR_DICT.get(chunk),len}; break; }
+    }
+    if(!hit) return null;
+    out.push(short(hit.txt)); i+=hit.len;
+  }
+  return out.join(' ');
+}
 
 /* ================= ЭКРАНЫ (v6) ================= */
 const ICON={
@@ -1096,7 +1480,7 @@ function renderStep(){
     frame(`<div class="lintro">
       <div class="cardimg"><img src="${lessonImg(F.n)}" alt=""><div class="veil"></div></div>
       <h2 class="dsp">Lesson ${F.n} · ${esc(lTitle(F.n))}</h2>
-      <div class="goal">${esc(P.goal)}</div>
+      <div class="goal">${esc(LT(F.n,'goal')||P.goal)}</div>
       <div class="meta"><span>≈ 7 min</span><span>${P.vocab.filter(v=>v.kind==='core').length} new words</span><span>1 rule</span></div>
     </div>`,{cta:'Start'});
     $('#cta').onclick=next; return;
@@ -1150,7 +1534,7 @@ function renderStep(){
   }
 
   if(s.t==='theory'){
-    const T=P.theory;
+    const T=P.theory, TX=LT(F.n,'t')||T.text, VOICE=LT(F.n,'voice')||T.voice;
     frame(`<div class="theory">
       <button class="tvoice playing" id="tv">
         <img src="${IMG.ajeebus}" alt="">
@@ -1159,15 +1543,15 @@ function renderStep(){
         <span class="wave"><i></i><i></i><i></i><i></i><i></i></span>
       </button>
       <div class="tcard">
-        <h3 class="dsp">${esc(T.title)}</h3>
-        ${T.text.slice(0,2).map(t=>`<p>${esc(t)}</p>`).join('')}
-        ${T.text.length>2?`<details><summary>one more detail</summary>${T.text.slice(2).map(t=>`<p>${esc(t)}</p>`).join('')}</details>`:''}
+        <h3 class="dsp">${esc(LT(F.n,'tt')||T.title)}</h3>
+        ${TX.slice(0,2).map(t=>`<p>${bidi(esc(t))}</p>`).join('')}
+        ${TX.length>2?`<details><summary>one more detail</summary>${TX.slice(2).map(t=>`<p>${bidi(esc(t))}</p>`).join('')}</details>`:''}
       </div></div>`,{kicker:'Why it works'});
     let playing=true;
-    const u=speak(T.voice,'ru-RU',0.95);
+    const u=speak(VOICE, LT(F.n,'voice')?'en-US':'ru-RU', 0.95);
     if(u)u.onend=()=>{playing=false;$('#tv').classList.remove('playing');};
     $('#tv').onclick=()=>{ if(playing){stopSpeak();playing=false;$('#tv').classList.remove('playing');}
-      else{const u2=speak(T.voice,'ru-RU',0.95);playing=true;$('#tv').classList.add('playing');
+      else{const u2=speak(VOICE, LT(F.n,'voice')?'en-US':'ru-RU', 0.95);playing=true;$('#tv').classList.add('playing');
         if(u2)u2.onend=()=>{playing=false;$('#tv').classList.remove('playing');}} };
     $('#cta').onclick=()=>{stopSpeak(); next();}; return;
   }
@@ -1299,8 +1683,9 @@ function renderStep(){
         <button data-sub="ru" aria-pressed="false">AR + translation</button>
       </div>
       <div class="sublines" id="slines">
-        ${scenes.map(x=>x.ar.map(a=>`<div class="subline"><div class="a ar">${esc(a)}</div>
-          <div class="r" data-ru style="display:none">${esc(x.ru.split('.')[0])}</div></div>`).join('')).join('')
+        ${scenes.map(x=>x.ar.map(a=>{const tr=trLine(a);
+          return `<div class="subline"><div class="a ar">${esc(a)}</div>
+          ${tr?`<div class="r" data-ru style="display:none">${esc(tr)}</div>`:''}</div>`;}).join('')).join('')
           ||'<div class="subline"><div class="r">Subtitles appear when the episode is attached.</div></div>'}
       </div>`,{kicker:'Episode',q:'Watch — you already know these words'});
     $('#sseg').onclick=e=>{const b=e.target.closest('[data-sub]'); if(!b)return;
@@ -1314,8 +1699,8 @@ function renderStep(){
     frame(`<div class="wrapend">
       <div class="medal">🏅</div>
       <h2 class="dsp">Lesson ${F.n} complete</h2>
-      <div class="canlist">${P.wrap.map(w=>`<div class="cl">${esc(w)}</div>`).join('')}</div>
-      <div class="today"><div class="p1">Phrase of the day</div><div class="p2">${esc(P.phrase)}</div></div>
+      <div class="canlist">${(LT(F.n,'w')||P.wrap).map(w=>`<div class="cl">${bidi(esc(w))}</div>`).join('')}</div>
+      <div class="today"><div class="p1">Phrase of the day</div><div class="p2">${bidi(esc(LT(F.n,'p')||P.phrase))}</div></div>
     </div>`,{cta:'Finish'});
     $('#cta').onclick=finishLesson; return;
   }

@@ -1413,24 +1413,26 @@ function renderMap(){
 /* ================= арабский мир: плашки локаций после пивота ================= */
 function arabWorldHTML(){
   const W=AJ.arabworld; if(!W) return '';
+  const shot=W.filter(r=>r[3]).length;
   return `<div class="sect" data-sect="arabworld">
-    <div class="shead2"><span class="lvbadge">NEW</span>
-      <span class="stitle">Арабский мир: плашки локаций заново</span>
+    <div class="shead2"><span class="lvbadge">СНЯТО</span>
+      <span class="stitle">Арабский мир: библиотека локаций</span>
       <span class="spacer"></span>
-      <span class="chip">${W.length} промптов · 0 кредитов</span></div>
+      <span class="chip">${shot} из ${W.length} · 0 кредитов</span></div>
     <div class="sbody">
       <div class="thin" style="margin-bottom:12px">Старая библиотека из 56 плашек снята в «современном городе» и после пивота не канон.
-      Эти промпты пересобирают мир в арабском сеттинге: Nano Banana Pro · 9:16 · x1 · 0 кредитов, без референсов.
-      Файлы кладём в <code>05-локации-араб/</code>.</div>
+      Эти сняты заново в арабском сеттинге: Nano Banana Pro · 9:16 · x1 · 0 кредитов, без референсов.
+      Все двадцать два кадра уже лежат в репозитории и разведены по урокам курса 2 в веб-прототипе.</div>
       <div class="castgrid">
-        ${W.map(([id,title,prompt])=>`
+        ${W.map(([id,title,prompt,file])=>`
           <div class="castcard">
+            ${file?`<img src="${esc(file)}" alt="" loading="lazy" style="width:100%;height:150px;object-fit:cover;border-radius:10px 10px 0 0;display:block">`:''}
             <div class="ckh"><b>${esc(title)}</b><span>${esc(id)}</span></div>
-            <div class="cklock" style="max-height:120px;overflow:auto">${esc(prompt)}</div>
+            <div class="cklock" style="max-height:110px;overflow:auto">${esc(prompt)}</div>
             <div class="ckf"><button class="btn ghost sm" data-arabprompt="${esc(id)}">⧉ Копировать промпт</button></div>
           </div>`).join('')}
       </div>
-      <button class="btn ghost sm" data-araball style="margin-top:10px">⧉ Все восемь одним списком</button>
+      <button class="btn ghost sm" data-araball style="margin-top:10px">⧉ Все промпты одним списком</button>
     </div>
   </div>`;
 }
@@ -1439,12 +1441,16 @@ function arabWorldHTML(){
 function castingHTML(){
   const C=AJ.casting; if(!C) return '';
   let sel=''; try{sel=localStorage.getItem('aj_cast_ajibus')||''}catch(e){}
+  if(C.chosen) sel=C.chosen;
   return `<div class="sect" data-sect="cast2">
     <div class="shead2"><span class="lvbadge">2.0</span>
       <span class="stitle">Кастинг: ${esc(C.question)}</span>
       <span class="spacer"></span>
       <span class="chip ${sel?'hi':''}">${sel?'выбран вариант '+esc(sel):'не выбран'}</span></div>
     <div class="sbody">
+      ${C.verdict?`<div class="bhint" style="margin-bottom:10px;border-left:3px solid var(--gold,#D9A441);padding-left:10px"><b>${esc(C.verdict)}</b></div>`:''}
+      ${C.hair?`<div class="bhint" style="margin-bottom:6px">${esc(C.hair)}</div>`:''}
+      ${C.eyes?`<div class="bhint" style="margin-bottom:12px">${esc(C.eyes)}</div>`:''}
       <div class="thin" style="margin-bottom:12px">${esc(C.note)}</div>
       <div class="castgrid">
         ${C.options.map(o=>`
