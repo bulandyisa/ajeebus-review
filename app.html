@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Ajeebus — app prototype v6</title>
+<title>Ajeebus — app prototype v7</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -386,11 +386,47 @@
          padding:13px 15px;text-align:left}
   .today .p1{font-size:9.5px;font-weight:800;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:4px}
   .today .p2{font-size:13px;line-height:1.55;color:var(--ink)}
+
+  /* ================= РАЗДЕЛЫ И СПИСОК УРОКОВ (v7) ================= */
+  .seclist{padding:0 16px 30px}
+  .psec{margin-top:22px}
+  .phead{position:sticky;top:66px;z-index:5;display:flex;gap:12px;align-items:center;
+         background:var(--bg);padding:10px 4px 12px}
+  .phead img{width:64px;height:64px;border-radius:14px;object-fit:cover;flex:none;
+             filter:brightness(.85);border:1px solid var(--line)}
+  .pkick{font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold)}
+  .ptit{font-size:20px;font-weight:600;margin:2px 0 7px}
+  .pbarrow{display:flex;align-items:center;gap:9px}
+  .pbarrow .bar{flex:1;height:5px;background:var(--card2)}
+  .pbarrow .n{font-size:10.5px;font-weight:700;color:var(--faint)}
+  .pstory{font-size:12px;color:var(--dim);line-height:1.55;margin:0 4px 12px}
+  .lrows{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .lrow{width:100%;display:flex;align-items:center;gap:13px;text-align:left;padding:13px 14px;
+        border-bottom:1px solid var(--line);transition:background .12s}
+  .lrow:last-child{border-bottom:0}
+  .lrow:active{background:var(--card2)}
+  .lrow .mk{width:32px;height:32px;border-radius:10px;flex:none;display:grid;place-items:center;
+            font-size:13px;font-weight:700;background:var(--card2);color:var(--dim)}
+  .lrow .mk.done{background:var(--em-soft);color:var(--em);font-size:15px}
+  .lrow .mk.lock{background:transparent;font-size:13px;opacity:.75}
+  .lrow .mk.soon{background:transparent;color:var(--faint)}
+  .lrow .mk.play{background:var(--gold);color:var(--gold-ink);width:40px;height:40px;border-radius:13px;font-size:15px}
+  .lmid{flex:1;min-width:0}
+  .ltit{font-size:14.5px;font-weight:600;line-height:1.3}
+  .lcan{font-size:12px;color:var(--dim);margin-top:3px;line-height:1.4}
+  .lmeta{font-size:10.5px;color:var(--faint);margin-top:5px;letter-spacing:.02em}
+  .lkick{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+  .lrow .chev{margin-left:auto;color:var(--faint);font-size:18px;flex:none}
+  .lrow.is-done .ltit{color:var(--dim)}
+  .lrow.is-off{opacity:.5}
+  .lrow.cur{align-items:flex-start;background:var(--card2);border-left:3px solid var(--gold);padding:16px 14px}
+  .startpill{align-self:center;background:var(--gold);color:var(--gold-ink);font-size:12px;font-weight:700;
+             border-radius:99px;padding:9px 16px;flex:none}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="ribbon"><b>DRAFT v6</b> · premium pass · real stills from the series · system TTS</div>
+  <div class="ribbon"><b>DRAFT v7</b> · lessons as sections · stills are PRE-PIVOT (Arab setting pending) · system TTS</div>
   <div id="view"></div>
 </div>
 <script src="data.js"></script>
@@ -649,6 +685,61 @@ const pEvent=n=>(EN_PART[n]||{}).e||'';
 const lTitle=n=>EN_LESSON[n]||'';
 const mod   =(lvl,i)=>(EN_MOD[lvl]||[])[i]||['',''];
 const newWords=s=>{const m=String(s||'').match(/\d+/);return m?('+'+m[0]+' new words'):''};
+
+/* что ученик научится говорить — строка под названием урока в списке */
+const EN_CAN={
+1:'greet, introduce yourself, say goodbye',
+2:'name any object, agree and refuse',
+3:'ask for something, offer it, say thank you',
+4:'ask “where”, answer “here / there”',
+5:'ask the price, say “expensive” and “cheap”',
+6:'count your shopping and catch a number by ear',
+7:'refuse, admit you did not understand, ask for it slower',
+8:'say what you have and offer it to a guest',
+9:'talk about family from photos, address a woman',
+10:'invite someone over and accept an invitation',
+11:'ask and say where you are going',
+12:'say what you are doing now: I, you, he',
+13:'give an address — right, left, straight, stop',
+14:'tell the time and agree on an hour',
+15:'set a meeting for a day of the week',
+16:'order politely',
+17:'ask permission, a favour or an object in one word',
+18:'say where you live and where you are from',
+19:'pay, ask for change, admit you have no money',
+20:'explain a reason',
+21:'describe an object and a person',
+22:'admire something and judge it',
+23:'say whose it is',
+24:'complain about how you feel and understand a complaint',
+25:'explain what happened',
+26:'invite, accept, refuse politely',
+27:'fix a time and a place to meet',
+28:'hold a phone call',
+29:'apologize and admit fault',
+30:'tell how it was',
+31:'name the things you pack',
+32:'buy a ticket, find the platform',
+33:'small talk with a fellow traveller',
+34:'check in, ask for a room and a key',
+35:'read a menu, order, ask the other person',
+36:'say what you can and cannot do',
+37:'accept hospitality, address an elder',
+38:'tell what went wrong',
+39:'tell about a trip as “we”',
+40:'give a gift and say who it is for',
+41:'name a profession — yours and other people’s',
+42:'say what you study and why',
+43:'describe your daily routine',
+44:'compare the past and the present',
+45:'say what you are going to do',
+46:'give an opinion and disagree politely',
+47:'compare two things and choose',
+48:'link several events into one story',
+49:'spend a whole day in Arabic on your own',
+50:'welcome a newcomer the way you were welcomed'
+};
+const lCan=n=>EN_CAN[n]||'';
 const CODE=c=>c==="до A1"?"pre-A1":c;
 const bidi=t=>String(t).replace(/([\u0600-\u06FF][\u0600-\u06FF\s،؛؟ـًٌٍَُِّْ]*)/g,"<bdi>$1</bdi>");
 
@@ -782,36 +873,49 @@ function course(n){
 }
 
 /* ---------- путь курса 2 ---------- */
-const WAVE=[0,-38,-58,-38,0,38,58,38];
+/* -------- курс 2: последовательные разделы со списком уроков --------
+   Кружки по змейке заменены на разделы: у каждой части своя шапка с обложкой
+   и прогрессом, внутри — уроки строками. Видно, что человек умеет после каждого. */
+function lessonRow(n,it,nxt){
+  const has=!!prog(n), open=has&&unlocked(n), cur=(n===nxt&&open&&!done[n]);
+  const P=has?prog(n):null;
+  const meta=P?`${P.vocab.filter(v=>v.kind==='core').length} words · 1 rule · 7 min`:'in production';
+  const mark=done[n]?'<span class="mk done">✓</span>'
+    :(!has?'<span class="mk soon">•</span>'
+    :(!open?'<span class="mk lock">🔒</span>':`<span class="mk num">${n}</span>`));
+  if(cur) return `<button class="lrow cur" data-open="${n}">
+      <span class="mk play">▶</span>
+      <div class="lmid"><div class="lkick">Next lesson</div>
+        <div class="ltit">${n}. ${esc(lTitle(n))}</div>
+        <div class="lcan">${esc(lCan(n))}</div>
+        <div class="lmeta">${meta}</div></div>
+      <span class="startpill">Start</span></button>`;
+  return `<button class="lrow ${done[n]?'is-done':''} ${(!has||!open)?'is-off':''}" data-open="${n}" ${has?'':'disabled'}>
+      ${mark}
+      <div class="lmid"><div class="ltit">${n}. ${esc(lTitle(n))}</div>
+        <div class="lcan">${esc(lCan(n))}</div></div>
+      ${open&&!done[n]?'<span class="chev">›</span>':(has&&!open?'':'')}
+    </button>`;
+}
 function course2(){
-  const l=AJ.course.levels[1], dn=doneN(), nxt=nextLesson(); let gi=0;
+  const l=AJ.course.levels[1], dn=doneN(), nxt=nextLesson();
   shell('learn', chead(2,`${dn}/50`)+
    (S.sub?'':`<button class="unlockbar" data-paywall>🔓 Lessons 1–3 are free — open all 50 with Ajeebus+</button>`)+
-   `<div class="pathwrap">
-    ${AJ.seasons.map(se=>`
-      <div class="chapter">
-        <img src="${PARTIMG[se.n-1]}" alt=""><div class="veil"></div>
-        <div class="chtxt">
-          <div class="kick">Part ${se.n} of 5 · lessons ${se.items[0][0]}–${se.items[se.items.length-1][0]}</div>
-          <h3 class="dsp">${esc(pTitle(se.n))}</h3>
-          <p>${esc(pEvent(se.n))}</p>
-          <div class="barrow"><div class="bar"><i style="width:${Math.round(se.items.filter(i=>done[i[0]]).length/se.items.length*100)}%"></i></div>
-            <span class="n">${se.items.filter(i=>done[i[0]]).length}/${se.items.length}</span></div>
+   `<div class="seclist">
+    ${AJ.seasons.map(se=>{
+      const d=se.items.filter(i=>done[i[0]]).length, total=se.items.length;
+      return `<section class="psec">
+        <div class="phead">
+          <img src="${PARTIMG[se.n-1]}" alt="">
+          <div class="pmid"><div class="pkick">Part ${se.n} of 5 · lessons ${se.items[0][0]}–${se.items[total-1][0]}</div>
+            <div class="ptit dsp">${esc(pTitle(se.n))}</div>
+            <div class="pbarrow"><div class="bar"><i style="width:${Math.round(d/total*100)}%"></i></div>
+              <span class="n">${d}/${total}</span></div></div>
         </div>
-      </div>
-      <div class="nodes">
-      ${se.items.map(it=>{
-        const n=it[0], has=!!prog(n), open=has&&unlocked(n), cur=(n===nxt&&open&&!done[n]);
-        const off=WAVE[gi++%WAVE.length];
-        return `<div class="noderow" style="transform:translateX(${off}px)">
-          ${cur?'<span class="startchip">start</span>':''}
-          <button class="node ${done[n]?'is-done':''} ${cur?'is-cur':''} ${(has&&!open)?'is-lock':''} ${has?'':'is-soon'}"
-                  data-open="${n}" ${has?'':'disabled'}>${done[n]?'✓':(cur?'▶':n)}
-            ${has&&!open?'<span class="lockdot">🔒</span>':''}</button>
-          <div class="nlabel">${esc(lTitle(n)||it[1])}</div>
-        </div>`;}).join('')}
-      </div>`).join('')}
-    <div class="foot">Lessons 31–50 are being written — the path already knows their names.</div>
+        <div class="pstory">${esc(pEvent(se.n))}</div>
+        <div class="lrows">${se.items.map(it=>lessonRow(it[0],it,nxt)).join('')}</div>
+      </section>`}).join('')}
+    <div class="foot">Lessons 31–50 are being written — the list already knows their names.</div>
    </div>`);
   $('.scr').onclick=e=>{
     if(e.target.closest('[data-back]')) return home();
