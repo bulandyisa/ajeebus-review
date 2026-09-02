@@ -1,7 +1,7 @@
 /* Аджибус — данные проекта. Источник: паспорт проекта от 13.08.2026.
    Всё, что дашборд знает о сериале, лежит здесь. Правится руками. */
 window.AJ = {
-  updated: '2026-09-01',
+  updated: '2026-09-02',
 
   /* ---------- персонажи ---------- */
   chars: [
@@ -14,7 +14,7 @@ window.AJ = {
         ['Очки','Маленькие круглые. В промпте писать round glasses.'],
         ['Одежда (канон 2.0 от 01.09)','Белоснежный тоуб до пят, поверх него — тот самый вязаный бежевый кардиган. Вариант A кастинга 2.0. Старый канон «рубашка + чинос» отменён вместе с пивотом в арабский сеттинг. По сценарию переодеваем: тоуб меняется, кардиган и такия остаются узнаваемыми.'],
         ['Голова','Белая вязаная такия, под ней ЛЫСАЯ голова — волос по бокам не видно (решение Исы 01.09). Старая чалма-имама отменена, как и «голова непокрытая» из промежуточного канона.'],
-        ['Глаза','Тёмно-карие. Голубые и светлые отклонены — «не по-арабски». Выбор между тёплым карим и почти чёрным за Исой, в промпте по умолчанию very dark brown eyes, almost black.'],
+        ['Глаза','Очень тёмные карие, почти чёрные. В промпте писать very dark brown eyes, almost black. Голубые и любые светлые запрещены — «не по-арабски».'],
         ['Реквизит','Лупа — опциональна. Кадр «глаз через лупу в камеру» остаётся кандидатом в иконку приложения, но в сериале не обязателен.'],
         ['Пластика','Театральная, размашистая. Брови делают половину актёрской работы.']
       ],
@@ -23,20 +23,20 @@ window.AJ = {
       lock:"the older man with the white henna-tipped beard, round glasses, linen shirt under a knitted cardigan"
     },
     {
-      id:'yunus', name:'Юнус', role:'Ученик, араб лет двадцати', status:'утверждён 14.08',
+      id:'yunus', name:'Юнус', role:'Ученик, европеец лет двадцати двух — иностранный студент', status:'утверждён 01.09 (канон 2.0)',
       folder:'02-канон-юнус', match:'02-канон-юнус|юнус|yunus',
       anchors:[
         ['Железное правило','Знание Юнуса всегда равно знанию зрителя. Переспрашивает то, что не понял бы зритель, ошибается там, где ошибся бы зритель.'],
         ['Функция','Не персонаж, а аватар клиента. Его прогресс — главный продающий аргумент.'],
-        ['Внешность','Короткие тёмные волосы, лёгкая щетина, выразительные тревожные брови.'],
+        ['Внешность (канон 2.0 от 01.09)','ЯВНО ЗАПАДНАЯ: светлая кожа, светлые серо-голубые глаза, русые (тёмно-русые) волосы, лёгкая щетина, выразительные тревожные брови. Прежний канон «араб с тёмными волосами» отменён: араб, который не знает арабского, ломает логику, а иностранность Юнуса должна читаться в кадре без слов.'],
         ['Одежда','Джинсовая куртка поверх серой футболки, холщовый рюкзак.'],
         ['Стартовый багаж','Знает по-арабски ровно одно слово: салям.']
       ],
       voice:'Achird (male, friendly, mid pitch).',
-      lock:"the young man in the denim jacket with a canvas backpack"
+      lock:"the Western European young man about twenty-two with fair skin, light blue-grey eyes and tousled light brown hair, in a blue denim jacket over a grey t-shirt with a canvas backpack"
     },
     {
-      id:'anza', name:'Анза (коза)', role:'Коза-воровка, живёт на крыше-террасе', status:'кастинг 17.08',
+      id:'anza', name:'Анза (коза)', role:'Коза-воровка, живёт на крыше-террасе', status:'переснята в арабском сеттинге 02.09 — ждёт выбора Исы',
       folder:'03-канон-анза', match:'03-канон-анза|анза',
       anchors:[
         ['Правило мира','Люди говорят — животные действуют. Не разговаривает, ведёт себя как настоящая коза.'],
@@ -47,7 +47,7 @@ window.AJ = {
       lock:"a small scruffy tan-and-white nanny goat with one floppy ear and a frayed rope collar, behaving like a real goat"
     },
     {
-      id:'cat', name:'Кот', role:'Спит на стопке книг в гостиной', status:'кастинг 17.08',
+      id:'cat', name:'Кот', role:'Спит на стопке книг в гостиной', status:'переснят в арабском сеттинге 02.09 — ждёт выбора Исы',
       folder:'08-канон-кот', match:'08-канон-кот|канон-кот',
       anchors:[
         ['Функция','Живой предмет для «ма хаза?» — единственное существо в кадре, которое можно назвать словом и потрогать.'],
@@ -100,6 +100,135 @@ window.AJ = {
         ['Внешность','Простая чёрная абайя и никаб, видны только спокойные тёмные глаза, корзина в руке.']
       ],
       lock:"a woman in a plain black abaya and black niqab, only her calm dark eyes visible, with a shopping basket"
+    },
+
+    /* ---------- ростер 02.09: разнообразие сезонов (ночная сессия) ---------- */
+    {
+      id:'karim', name:'Карим', role:'Таксист, сезон 2 (урок 13)', status:'кастинг 02.09',
+      folder:'12-канон-карим', match:'12-канон-карим|карим|karim',
+      anchors:[
+        ['Характер','Говорит быстрее, чем едет. Комментирует всё. Чётки на зеркале, термос под сиденьем.'],
+        ['Функция','Первый незнакомец, с которым ученик остаётся один на один надолго — весь урок 13.']
+      ],
+      lock:"the cheerful Arab taxi driver in his forties with a neat black moustache and stubble, in a worn grey shirt, prayer beads hanging from the mirror of his old yellow taxi"
+    },
+    {
+      id:'khalil', name:'Абу Халиль', role:'Пекарь за углом, сезоны 1–2', status:'кастинг 02.09',
+      folder:'13-канон-пекарь', match:'13-канон-пекарь|халиль|khalil|пекар',
+      anchors:[
+        ['Характер','Немногословный великан с мукой на предплечьях. Хлеб отдаёт до денег: «потом, потом».'],
+        ['Мир','Его тандыр — запах всего квартала; у печи всегда очередь из двух человек и одной козы.']
+      ],
+      lock:"the big quiet Arab baker in his fifties with broad flour-dusted forearms, a white apron over a grey thobe, standing at a glowing tandoor oven"
+    },
+    {
+      id:'ibrahim', name:'Хадж Ибрахим', role:'Старик с нардами в парке, сезон 2 (урок 18)', status:'кастинг 02.09',
+      folder:'14-канон-ибрахим', match:'14-канон-ибрахим|ибрахим|ibrahim',
+      anchors:[
+        ['Характер','Сидит в парке дольше, чем стоит парк. Всех называет «сынок». Нарды выигрывает молча.'],
+        ['Функция','Случайный собеседник: с ним ученик впервые говорит о себе с чужим человеком.']
+      ],
+      lock:"the very old dignified Arab man in his late seventies with a white beard, dark kufi cap and a wooden cane, sitting at a backgammon board on a park bench"
+    },
+    {
+      id:'muhsin', name:'Мухсин', role:'Продавец фалафеля, сезон 2', status:'кастинг 02.09',
+      folder:'15-канон-мухсин', match:'15-канон-мухсин|мухсин|muhsin',
+      anchors:[
+        ['Характер','Худой, весёлый, работает как жонглёр: шарики фалафеля летят в масло дугой.'],
+        ['Функция','Уличная еда — самый честный разговорник: очередь, заказ, сдача, шутка.']
+      ],
+      lock:"the skinny cheerful young Arab falafel vendor in his thirties with a white cap and a stained apron, tossing falafel balls into a sizzling pan at a street cart"
+    },
+    {
+      id:'abusaid', name:'Абу Саид', role:'Бавваб — привратник дома, сезон 2', status:'кастинг 02.09',
+      folder:'16-канон-бавваб', match:'16-канон-бавваб|бавваб|саид|said',
+      anchors:[
+        ['Характер','Сидит у входа в плетёном кресле с газетой сорокалетней давности. Знает всё раньше всех.'],
+        ['Функция','Живая доска объявлений квартала: кто пришёл, кто ушёл, почему опоздали.']
+      ],
+      lock:"the drowsy old Arab doorman in a long brown galabeya and white turban-wrap, slumped in a wicker chair by a doorway with a folded newspaper"
+    },
+    {
+      id:'samir', name:'Доктор Самир', role:'Врач, сезон 3 (урок 25)', status:'кастинг 02.09',
+      folder:'17-канон-самир', match:'17-канон-самир|самир|samir',
+      anchors:[
+        ['Характер','Спокойный, аккуратный, слушает дольше, чем говорит. Вопросы всегда одни и те же.'],
+        ['Функция','Медицинская лексика в самом безопасном виде: доктор, который никуда не торопится.']
+      ],
+      lock:"the calm Arab doctor in his mid-forties with short greying hair and thin glasses, in a white coat over a shirt, a stethoscope around his neck"
+    },
+    {
+      id:'fatima', name:'Тётушка Фатима', role:'Торговка на рынке, сезон 3', status:'кастинг 02.09',
+      folder:'18-канон-фатима', match:'18-канон-фатима|фатима|fatima',
+      anchors:[
+        ['Характер','Голос перекрывает весь рынок, сердце — тоже. Торгуется яростно, потом докладывает лишнего инжира бесплатно.'],
+        ['Канон женщин','Пожилая женщина с открытым лицом — по правилу трёх типов.']
+      ],
+      lock:"the loud warm elderly Arab market woman in her late sixties in a dark loose dress and patterned headscarf, behind heaped crates of figs and pomegranates"
+    },
+    {
+      id:'khaled', name:'Халед', role:'Сосед-музыкант с удом, сезон 3', status:'кастинг 02.09',
+      folder:'19-канон-халед', match:'19-канон-халед|халед|khaled',
+      anchors:[
+        ['Характер','Играет на уде так, что прощаешь ему полночь. Ссора с Аджибусом из-за уда — арка сезона 3.'],
+        ['Реквизит','Уд — канонный предмет: он же играет на свадьбе Тарика (урок 22).']
+      ],
+      lock:"the easy-going Arab musician in his mid-thirties with dark curly hair and a short beard, in a rolled-sleeve shirt, cradling a polished oud"
+    },
+    {
+      id:'bilal', name:'Билял', role:'Мальчишка со двора, сезон 3', status:'кастинг 02.09',
+      folder:'20-канон-билял', match:'20-канон-билял|билял|bilal',
+      anchors:[
+        ['Характер','Девять лет, вечно с мячом, вечно посередине чужих историй. Мирит взрослых, сам того не замечая.'],
+        ['Функция','Детская речь — простая и быстрая: идеальный спарринг для ученика.']
+      ],
+      lock:"the lively Arab boy about nine years old in a striped t-shirt and sandals, holding a scuffed football under one arm"
+    },
+    {
+      id:'tariq', name:'Тарик', role:'Племянник Амины, жених — свадьба сезона 3', status:'кастинг 02.09',
+      folder:'21-канон-тарик', match:'21-канон-тарик|тарик|tariq',
+      anchors:[
+        ['Функция','Свадьба квартала (урок 22): двор в гирляндах, уд Халеда, «мабрук!» хором.'],
+        ['Канон','Показываем мужскую сторону праздника; невеста в кадре не появляется.']
+      ],
+      lock:"the beaming young Arab groom in his late twenties in a crisp white thobe and golden-trimmed dark bisht, hands pressed to his heart in thanks"
+    },
+    {
+      id:'faris', name:'Абу Фарис', role:'Проводник поезда, сезон 4', status:'кастинг 02.09',
+      folder:'22-канон-проводник', match:'22-канон-проводник|фарис|faris|проводник',
+      anchors:[
+        ['Характер','Форма старше него самого, выправка железная, компостер щёлкает как метроном.'],
+        ['Функция','Голос дороги: билеты, платформы, номера мест — числа 11–100 в деле.']
+      ],
+      lock:"the upright Arab train conductor in his fifties in a worn navy uniform and peaked cap, a ticket punch in his hand, standing in a train corridor"
+    },
+    {
+      id:'yusuf', name:'Абу Юсуф', role:'Хозяин гостиницы у моря, сезон 4', status:'кастинг 02.09',
+      folder:'23-канон-юсуф', match:'23-канон-юсуф|юсуф|yusuf',
+      anchors:[
+        ['Характер','Гостям радуется как родне, ключи выдаёт как награды. Лестницу его гостиницы красили при трёх королях.'],
+        ['Функция','Гостиничный ритуал целиком: заселение, этажи, «айна ль-хаммам?».']
+      ],
+      lock:"the stout welcoming Arab hotel keeper in his sixties with a trimmed grey beard, in a sand-coloured thobe and dark vest, holding out a room key on a wooden fob"
+    },
+    {
+      id:'salih', name:'Салих', role:'Рыбак с лодкой, сезон 4 (урок 36)', status:'кастинг 02.09',
+      folder:'24-канон-салих', match:'24-канон-салих|салих|salih|рыбак',
+      anchors:[
+        ['Характер','Лицо из морщин и соли, смеётся глазами. Лодка бирюзовая, зовётся «Бахр».'],
+        ['Функция','Урок «умею — не умею» на палубе: астатыу ан асбах — сказано над настоящей водой.']
+      ],
+      lock:"the weathered Arab fisherman in his fifties with sun-creased skin and a grey stubble, in a faded blue shirt and rolled trousers, mending a net on a turquoise wooden boat"
+    },
+    {
+      id:'zahra', name:'Хаджа Захра', role:'Старшая сестра Аджибуса, деревня — сезон 4', status:'кастинг 02.09',
+      folder:'25-канон-захра', match:'25-канон-захра|захра|zahra',
+      anchors:[
+        ['Кто она','Старшая сестра Аджибуса: та же порода — брови, искры в глазах, — но покой вместо его урагана.'],
+        ['Функция','Причина всей поездки сезона 4. Два старика не виделись три года; у неё двор под пальмами и тот же рецепт чая.'],
+        ['Канон женщин','Пожилая женщина с открытым лицом — по правилу трёх типов.']
+      ],
+      lock:"the serene elderly Arab village woman in her early seventies with deep smile lines and expressive thick brows, in a dark embroidered dress and loose cream headscarf, pouring tea in a palm-shaded courtyard"
     }
   ],
 
@@ -298,10 +427,9 @@ window.AJ = {
       +'По сценарию Аджибуса будем переодевать не раз — постоянными остаются борода с хной, круглые очки и такия.',
     hair:'ВОЛОСЫ: решено 01.09 — БЕЗ ВОЛОС, как в первом варианте. Голова под такией лысая, по бокам волос не видно. '
       +'Пробы с кудрями (A2) и с гривой без шапки (A3) отклонены.',
-    eyes:'ГЛАЗА: голубые/светлые отклонены как «не по-арабски» (Иса, 01.09). Сняты три пробы: '
-      +'1 — тёплый карий цвета крепкого чая; 2 — очень тёмный, почти чёрный; 3 — янтарно-карий с медовым кольцом. '
-      +'Рекомендация: вариант 2. Тёмно-карий не умеет уехать в зелень или орех при плохом свете, а искру в глазах держат блики, а не радужка. '
-      +'Вариант 1 — если нужно, чтобы направление взгляда читалось на маленьком экране. Вариант 3 отклонён: янтарь редок настолько, что становится главной приметой персонажа.',
+    eyes:'ГЛАЗА: решено 01.09 — ВАРИАНТ 2, очень тёмный карий, почти чёрный (very dark brown eyes, almost black). '
+      +'Голубые и светлые отклонены как «не по-арабски», тёплый карий и янтарный — как пробы. '
+      +'Тёмно-карий не уезжает в зелень или орех при тёплом контровом свете, а искру в глазах держат блики, а не радужка.',
     note:'Общее во всех вариантах: ~65 лет, пышная белая борода с хной спереди, маленькие круглые очки, лучистые глаза, театральная пластика. Меняется только одежда и головной убор. Выбор одного варианта пересобирает character lock, все локации и промпты.',
     options:[
       {id:'A', title:'Тоуб + кардиган', sub:'фирменная деталь сохраняется',
@@ -337,6 +465,11 @@ window.AJ = {
 
   /* ---------- правила промптинга ---------- */
   rules:[
+    'ГОЛОС ЖИВЁТ В КАРТОЧКЕ ПЕРСОНАЖА, А НЕ В ПРОМПТЕ (разобрано 01.09). Голос, прикреплённый к запросу отдельным ассетом рядом с карточкой персонажа, НЕ РАБОТАЕТ — говорит всегда голос, вшитый в карточку. Из-за этого проба из пяти голосов (Charon, Enceladus, Umbriel, Iapetus) дала четыре одинаковые дорожки: Иса услышал их как один голос, и был прав. Чтобы поменять голос — менять его в карточке персонажа, другого способа нет.',
+    'ДЕФЕКТ ГОЛОСА БЫЛ ВПИСАН В КАРТОЧКУ (найдено 01.09). В карточке «Голос АджибусаAlgenib Custom» с августа стояло описание манеры: «Warm, RASPY, sing-song voice of a delighted ELDERLY Arab man». Отсюда и «старческий голос, будто нет пары зубов», который услышал Иса. Слова rasp/elderly из описания убраны; новая карточка «Аджибус 2.0» несёт голос Algenib Custom с формулировкой: warm, bright, mid-range pitch, not a deep bass, clean resonant tone, crisp clear consonants, no rasp, no hoarseness, no wobble, no lisp. Правило: в описании голоса не писать raspy, gravelly, elderly, frail — модель отыгрывает их буквально.',
+    'ВЕСЬ ВТОРОСТЕПЕННЫЙ РОСТЕР НЕ КАНОН (проверено 01.09): Юнус, Анза, кот, продавец, Сальма, Амина и покупательница сняты в «современном городе» — за окном небоскрёбы, продавец в фартуке сетевого супермаркета. После пивота всё это переснимается в арабском сеттинге на Nano Banana, 0 кредитов. Юнус переснят и УТВЕРЖДЁН Исой 01.09 (канон 2.0, западная внешность), остальные шестеро в очереди.',
+    'ЛИЦО В ВИДЕО — ТОЛЬКО ЧЕРЕЗ КАРТОЧКУ ПЕРСОНАЖА (поймано 01.09): если приложить обычную фотореалистичную картинку человека референсом в режиме «Образцы», Veo отвечает «Этот запрос может нарушать наши правила в отношении генерации изображений известных людей» и генерация не проходит (бонусы не списываются). Та же самая картинка, оформленная карточкой персонажа, проходит нормально. Вывод: любой кадр с человеком собираем через карточку, а не через голую картинку.',
+    'ГОЛОСА МОЖНО СРАВНИВАТЬ БЕСПЛАТНО (01.09): Veo 3.1 Lite [Lower Priority] стоит 0 бонусов, поэтому пробы голоса гоняем на ней — одна реплика, один персонаж, разные голоса из раздела «Голоса». Картинка на Lite плывёт (персонаж может выйти другим человеком), но звук честный. Финальную проверку липсинка делать на Fast за 10.',
     'БИБЛИОТЕКА ЛОКАЦИЙ ПЕРЕСНЯТА (01.09): 22 плашки в арабском сеттинге лежат в репозитории как aj-*.jpg и разведены по всем 50 урокам курса 2 — прихожая, гостиная, кухня, спальня, крыша днём и ночью, улица, лавка, рынок, мечеть, кафе, такси, остановка, обменник, врач, аптека, вокзал, вагон, отель, море, деревня, кабинет. Все Nano Banana Pro 9:16 x1, 0 кредитов. Старые 56 плашек «современного города» не канон и не используются.',
     'ВЕСЬ МИР — АРАБСКИЙ (напоминание к производству, 01.09): вся библиотека локаций (56 плашек) снята в старом «современном городе» и после пивота НЕ КАНОН. Прежде чем собирать кадры, локации перегенерировать в арабском сеттинге: арабская квартира с машрабией, улица старого города, крыша с минаретом на закате, лавка с финиками и специями. Аджибус — в арабской одежде (вариант кастинга 2.0), Юнус остаётся в джинсовке как иностранец. Всё это Nano Banana, 0 кредитов.',
     'Селектор Flow снова сам сполз на «Видео · 720p · 8s» (01.09) — перед каждой отправкой смотреть на чип у кнопки «Создать», иначе бесплатная картинка уедет как видео за 10 кредитов.',
@@ -396,6 +529,20 @@ window.AJ.arabworld = [
  ['hotel','Ресепшн отеля','Photoreal cinematic still, vertical. A small hotel reception in an Arab city: a wooden counter with a brass bell and a key rack with numbered keys, patterned tiles, an old ceiling fan, a potted palm, an arched doorway onto the street. No people. Warm lamp light, 35mm, fine film grain.','aj-hotel.jpg'],
  ['beach','Берег моря на закате','Photoreal cinematic still, vertical. A quiet beach on the Arabian coast at sunset: calm sea, wet sand with footprints, a small wooden fishing boat pulled ashore, palm silhouettes on the left, a violet and orange sky. No people. 35mm, fine film grain.','aj-beach.jpg'],
  ['village','Двор в деревне','Photoreal cinematic still, VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A village courtyard in the Arab countryside: a low mud-brick house with a weathered blue wooden door, tall date palms rising upward out of the top of the frame, a stone well with a bucket, a rope bed against the wall, a clay water jar. No people. Late afternoon sun, long shadows, 35mm, fine film grain, muted warm palette.','aj-village.jpg'],
- ['study','Кабинет с книгами','Photoreal cinematic still, vertical 9:16. A quiet study room in an old Arab house: a low wooden desk, stacks of worn Arabic books, an open notebook and a pen, a brass lamp, a bookshelf to the ceiling, a mashrabiya window casting patterned light on the wall. No people. Warm evening light, 35mm, fine film grain, muted warm palette.','aj-study.jpg']
+ ['study','Кабинет с книгами','Photoreal cinematic still, vertical 9:16. A quiet study room in an old Arab house: a low wooden desk, stacks of worn Arabic books, an open notebook and a pen, a brass lamp, a bookshelf to the ceiling, a mashrabiya window casting patterned light on the wall. No people. Warm evening light, 35mm, fine film grain, muted warm palette.','aj-study.jpg'],
+ /* --- волна 2 от 02.09 (ночная сессия): локации разнообразия сезонов --- */
+ ['pek','Пекарня Абу Халиля','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A small bakery niche in an old Arab city street: a glowing tandoor oven, fresh flatbreads stacked on a wooden counter, flour dust in the air, tall shelf of bread baskets rising out of the top of the frame. Warm ember glow mixed with cool morning light. No people in frame, fine film grain.','aj-pek.jpg'],
+ ['wed','Свадебный двор — ночь','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A stone courtyard of an old Arab city prepared for a wedding at night: strings of warm lights criss-crossing upward out of the top of the frame, rows of cushioned benches, trays of sweets on low tables, an oud resting on a chair. Festive warm string-light glow against deep blue night. No people in frame, fine film grain.','aj-wed.jpg'],
+ ['mall','Торговый центр','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A modern glass shopping mall interior: a tall atrium with escalators rising out of the top of the frame, polished floor reflecting shopfronts, potted palms. Bright even skylight through a glass roof. No people in frame, fine film grain.','aj-mall.jpg'],
+ ['corn','Набережная','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A seaside corniche promenade of an Arab city: stone balustrade, tall palm trees rising out of the top of the frame, moored fishing boats, distant minaret across the bay. Late golden afternoon light. No people in frame, fine film grain.','aj-corn.jpg'],
+ ['park','Парк — скамейка с нардами','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A small shaded park in an Arab city: gravel path, an old bench with a backgammon board left on it, a fig tree spreading upward out of the top of the frame, a tiled drinking fountain. Dappled afternoon light. No people in frame, fine film grain.','aj-park.jpg'],
+ ['boat','Палуба лодки Салиха','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. The deck of a turquoise wooden fishing boat: coiled ropes, a folded net, a small mast rising out of the top of the frame, calm open sea beyond the gunwale. Clear early-morning sun. No people in frame, fine film grain.','aj-boat.jpg'],
+ ['zahra','Двор хаджи Захры','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A village courtyard in an Arab oasis: tall date palms rising out of the top of the frame, a low clay house wall, a woven mat with cushions and a brass tea tray, chickens\' feed bowl by the wall. Soft warm afternoon light through palm leaves. No people in frame, fine film grain.','aj-zahra.jpg'],
+ ['yroom','Комнатка Юнуса','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A tiny rented student room in an old Arab city: a mattress on the floor neatly made, a single electric kettle with one glass cup on a crate, textbooks in a stack, a tall shuttered window rising out of the top of the frame with rooftops beyond. Honest plain daylight. No people in frame, fine film grain.','aj-yroom.jpg'],
+ ['office','Офис Юнуса','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A modest modern office in an Arab city: two desks with monitors, a whiteboard with Arabic notes wiped half-clean, a tall window rising out of the top of the frame with the old town far below. Neutral daylight with warm desk lamp. No people in frame, fine film grain.','aj-office.jpg'],
+ ['class','Вечерний класс','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A small evening language classroom: rows of simple desks, a green chalkboard with neat Arabic letters, a tall window rising out of the top of the frame, a map of the Arab world on the wall. Warm fluorescent and dusk mix. No people in frame, fine film grain.','aj-class.jpg'],
+ ['book','Книжный магазин','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A cramped old bookshop in an Arab city: floor-to-ceiling wooden shelves rising out of the top of the frame, stacked Arabic books, a rolling ladder, a small desk with a brass lamp. Warm pooled lamplight. No people in frame, fine film grain.','aj-book.jpg'],
+ ['amina2','Гостиная хаджи Амины','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A cosy living room of an elderly Arab neighbour: lace-covered armchairs, framed old family photographs on a sideboard, a tall glass-front cabinet with porcelain rising out of the top of the frame, a tray with tea glasses on a low table. Soft warm afternoon light through curtains. No people in frame, fine film grain.','aj-amina2.jpg'],
+ ['jama','Площадь у мечети','VERTICAL PORTRAIT ORIENTATION, camera held upright at eye level. A small stone plaza in front of an old city mosque just after dawn: a tall minaret rising out of the top of the frame, rows of shoes shelf by the gate, pigeons, a water fountain for ablution at the side. Pale gold early light, long shadows. No people in frame, fine film grain.','aj-jama.jpg'],
 ];
 
