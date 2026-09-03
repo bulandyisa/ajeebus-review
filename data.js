@@ -6,7 +6,8 @@ window.AJ = {
   /* ---------- персонажи ---------- */
   chars: [
     {
-      id:'ajibus', name:'Аджибус', role:'Чудаковатый восторженный араб ~65 лет, старый арабский город',
+      id:'ajibus',
+      plates:['cast-ajibus-01.jpg','cast-ajibus-02.jpg','cast-ajibus-03.jpg'], name:'Аджибус', role:'Чудаковатый восторженный араб ~65 лет, старый арабский город',
       status:'утверждён 14.08',
       folder:'01-канон-аджибус', match:'01-канон-аджибус|07-современн|аджибус|ajibus', not:'юнус|yunus',
       anchors:[
@@ -23,7 +24,8 @@ window.AJ = {
       lock:"the older man with the white henna-tipped beard, round glasses, linen shirt under a knitted cardigan"
     },
     {
-      id:'yunus', name:'Юнус', role:'Ученик, европеец лет двадцати двух — иностранный студент', status:'утверждён 01.09 (канон 2.0)',
+      id:'yunus',
+      plates:['cast-yunus-01.jpg','cast-yunus-02.jpg','cast-yunus-03.jpg','cast-yunus-04.jpg'], name:'Юнус', role:'Ученик, европеец лет двадцати двух — иностранный студент', status:'утверждён 01.09 (канон 2.0)',
       folder:'02-канон-юнус', match:'02-канон-юнус|юнус|yunus',
       anchors:[
         ['Железное правило','Знание Юнуса всегда равно знанию зрителя. Переспрашивает то, что не понял бы зритель, ошибается там, где ошибся бы зритель.'],
@@ -36,7 +38,8 @@ window.AJ = {
       lock:"the Western European young man about twenty-two with fair skin, light blue-grey eyes and tousled light brown hair, in a blue denim jacket over a grey t-shirt with a canvas backpack"
     },
     {
-      id:'anza', name:'Анза (коза)', role:'Коза-воровка, живёт на крыше-террасе', status:'переснята в арабском сеттинге 02.09 — ждёт выбора Исы',
+      id:'anza',
+      plates:['cast-anza-01.jpg','cast-anza-02.jpg'], name:'Анза (коза)', role:'Коза-воровка, живёт на крыше-террасе', status:'переснята в арабском сеттинге 02.09 — ждёт выбора Исы',
       folder:'03-канон-анза', match:'03-канон-анза|анза',
       anchors:[
         ['Правило мира','Люди говорят — животные действуют. Не разговаривает, ведёт себя как настоящая коза.'],
@@ -47,7 +50,8 @@ window.AJ = {
       lock:"a small scruffy tan-and-white nanny goat with one floppy ear and a frayed rope collar, behaving like a real goat"
     },
     {
-      id:'cat', name:'Кот', role:'Спит на стопке книг в гостиной', status:'переснят в арабском сеттинге 02.09 — ждёт выбора Исы',
+      id:'cat',
+      plates:['cast-cat-01.jpg','cast-cat-02.jpg'], name:'Кот', role:'Спит на стопке книг в гостиной', status:'переснят в арабском сеттинге 02.09 — ждёт выбора Исы',
       folder:'08-канон-кот', match:'08-канон-кот|канон-кот',
       anchors:[
         ['Функция','Живой предмет для «ма хаза?» — единственное существо в кадре, которое можно назвать словом и потрогать.'],
@@ -57,7 +61,8 @@ window.AJ = {
       lock:"a plump ginger-and-white cat with a torn ear, asleep on a stack of books, opening one eye and going back to sleep"
     },
     {
-      id:'seller', name:'Продавец в магазине', role:'Эпизодический, урок 5', status:'кастинг 17.08',
+      id:'seller',
+      plates:['cast-seller-01.jpg','cast-seller-02.jpg'], name:'Продавец в магазине', role:'Эпизодический, урок 5', status:'кастинг 17.08',
       folder:'04-канон-продавец', match:'04-канон-продавец|продавец',
       anchors:[
         ['Характер','Невозмутимый, реагирует ровно ноль раз на театр Аджибуса. Улыбается один раз за весь сезон — когда Юнус сам делает заказ. Это и есть финальный кадр сезона.'],
@@ -67,7 +72,8 @@ window.AJ = {
       lock:"a young shop assistant in a branded apron, deadpan, standing behind the fruit counter of a modern grocery store"
     }    ,
     {
-      id:'salma', name:'Сальма', role:'Соседская девочка лет шести', status:'кастинг 17.08',
+      id:'salma',
+      plates:['cast-salma-01.jpg','cast-salma-02.jpg'], name:'Сальма', role:'Соседская девочка лет шести', status:'кастинг 17.08',
       folder:'09-канон-сальма', match:'09-канон-сальма|сальма',
       anchors:[
         ['Функция','Второе зеркало для зрителя и главный мотивирующий гэг сезона: шестилетка говорит по-арабски свободнее взрослого Юнуса. Это унижение каждый взрослый ученик переживал лично — поэтому смешно и подстёгивает.'],
@@ -80,7 +86,8 @@ window.AJ = {
       lock:"a cheerful Arab girl of about six with big dark eyes, a small pastel headscarf and a simple long-sleeved modest dress"
     },
     {
-      id:'amina', name:'Хаджа Амина', role:'Соседка сверху, около 75 лет', status:'кастинг 17.08',
+      id:'amina',
+      plates:['cast-amina-01.jpg','cast-amina-02.jpg'], name:'Хаджа Амина', role:'Соседка сверху, около 75 лет', status:'кастинг 17.08',
       folder:'10-канон-амина', match:'10-канон-амина|амина',
       anchors:[
         ['Функция','Взрослый доброжелательный свидетель. Приносит еду, хвалит, подкармливает козу. Даёт естественные поводы для «шукран», «лязиз» и «тафаддаль» без единой новой конструкции.'],
@@ -92,7 +99,8 @@ window.AJ = {
       lock:"a warm Arab woman in her mid-seventies with deep laugh lines, a loose pastel hijab and a long modest dress"
     },
     {
-      id:'shopper', name:'Покупательница', role:'Фоновый персонаж магазина, урок 5', status:'кастинг 17.08',
+      id:'shopper',
+      plates:['cast-shopper-01.jpg'], name:'Покупательница', role:'Фоновый персонаж магазина, урок 5', status:'кастинг 17.08',
       folder:'11-канон-покупательница', match:'11-канон-покупательница|покупательница',
       anchors:[
         ['Функция','Без реплик. Делает современный арабский город достоверным — в кадре живут разные люди, а не только двое главных.'],
@@ -104,7 +112,8 @@ window.AJ = {
 
     /* ---------- ростер 02.09: разнообразие сезонов (ночная сессия) ---------- */
     {
-      id:'karim', name:'Карим', role:'Таксист, сезон 2 (урок 13)', status:'кастинг 02.09',
+      id:'karim',
+      plates:['cast-karim-01.jpg'], name:'Карим', role:'Таксист, сезон 2 (урок 13)', status:'кастинг 02.09',
       folder:'12-канон-карим', match:'12-канон-карим|карим|karim',
       anchors:[
         ['Характер','Говорит быстрее, чем едет. Комментирует всё. Чётки на зеркале, термос под сиденьем.'],
@@ -113,7 +122,8 @@ window.AJ = {
       lock:"the cheerful Arab taxi driver in his forties with a neat black moustache and stubble, in a worn grey shirt, prayer beads hanging from the mirror of his old yellow taxi"
     },
     {
-      id:'khalil', name:'Абу Халиль', role:'Пекарь за углом, сезоны 1–2', status:'кастинг 02.09',
+      id:'khalil',
+      plates:['cast-khalil-01.jpg'], name:'Абу Халиль', role:'Пекарь за углом, сезоны 1–2', status:'кастинг 02.09',
       folder:'13-канон-пекарь', match:'13-канон-пекарь|халиль|khalil|пекар',
       anchors:[
         ['Характер','Немногословный великан с мукой на предплечьях. Хлеб отдаёт до денег: «потом, потом».'],
@@ -122,7 +132,8 @@ window.AJ = {
       lock:"the big quiet Arab baker in his fifties with broad flour-dusted forearms, a white apron over a grey thobe, standing at a glowing tandoor oven"
     },
     {
-      id:'ibrahim', name:'Хадж Ибрахим', role:'Старик с нардами в парке, сезон 2 (урок 18)', status:'кастинг 02.09',
+      id:'ibrahim',
+      plates:['cast-ibrahim-01.jpg'], name:'Хадж Ибрахим', role:'Старик с нардами в парке, сезон 2 (урок 18)', status:'кастинг 02.09',
       folder:'14-канон-ибрахим', match:'14-канон-ибрахим|ибрахим|ibrahim',
       anchors:[
         ['Характер','Сидит в парке дольше, чем стоит парк. Всех называет «сынок». Нарды выигрывает молча.'],
@@ -131,7 +142,8 @@ window.AJ = {
       lock:"the very old dignified Arab man in his late seventies with a white beard, dark kufi cap and a wooden cane, sitting at a backgammon board on a park bench"
     },
     {
-      id:'muhsin', name:'Мухсин', role:'Продавец фалафеля, сезон 2', status:'кастинг 02.09',
+      id:'muhsin',
+      plates:['cast-muhsin-01.jpg'], name:'Мухсин', role:'Продавец фалафеля, сезон 2', status:'кастинг 02.09',
       folder:'15-канон-мухсин', match:'15-канон-мухсин|мухсин|muhsin',
       anchors:[
         ['Характер','Худой, весёлый, работает как жонглёр: шарики фалафеля летят в масло дугой.'],
@@ -140,7 +152,8 @@ window.AJ = {
       lock:"the skinny cheerful young Arab falafel vendor in his thirties with a white cap and a stained apron, tossing falafel balls into a sizzling pan at a street cart"
     },
     {
-      id:'abusaid', name:'Абу Саид', role:'Бавваб — привратник дома, сезон 2', status:'кастинг 02.09',
+      id:'abusaid',
+      plates:['cast-abusaid-01.jpg'], name:'Абу Саид', role:'Бавваб — привратник дома, сезон 2', status:'кастинг 02.09',
       folder:'16-канон-бавваб', match:'16-канон-бавваб|бавваб|саид|said',
       anchors:[
         ['Характер','Сидит у входа в плетёном кресле с газетой сорокалетней давности. Знает всё раньше всех.'],
@@ -149,7 +162,8 @@ window.AJ = {
       lock:"the drowsy old Arab doorman in a long brown galabeya and white turban-wrap, slumped in a wicker chair by a doorway with a folded newspaper"
     },
     {
-      id:'samir', name:'Доктор Самир', role:'Врач, сезон 3 (урок 25)', status:'кастинг 02.09',
+      id:'samir',
+      plates:['cast-samir-01.jpg'], name:'Доктор Самир', role:'Врач, сезон 3 (урок 25)', status:'кастинг 02.09',
       folder:'17-канон-самир', match:'17-канон-самир|самир|samir',
       anchors:[
         ['Характер','Спокойный, аккуратный, слушает дольше, чем говорит. Вопросы всегда одни и те же.'],
@@ -158,7 +172,8 @@ window.AJ = {
       lock:"the calm Arab doctor in his mid-forties with short greying hair and thin glasses, in a white coat over a shirt, a stethoscope around his neck"
     },
     {
-      id:'fatima', name:'Тётушка Фатима', role:'Торговка на рынке, сезон 3', status:'кастинг 02.09',
+      id:'fatima',
+      plates:['cast-fatima-01.jpg'], name:'Тётушка Фатима', role:'Торговка на рынке, сезон 3', status:'кастинг 02.09',
       folder:'18-канон-фатима', match:'18-канон-фатима|фатима|fatima',
       anchors:[
         ['Характер','Голос перекрывает весь рынок, сердце — тоже. Торгуется яростно, потом докладывает лишнего инжира бесплатно.'],
@@ -167,7 +182,8 @@ window.AJ = {
       lock:"the loud warm elderly Arab market woman in her late sixties in a dark loose dress and patterned headscarf, behind heaped crates of figs and pomegranates"
     },
     {
-      id:'khaled', name:'Халед', role:'Сосед-музыкант с удом, сезон 3', status:'кастинг 02.09',
+      id:'khaled',
+      plates:['cast-khaled-01.jpg'], name:'Халед', role:'Сосед-музыкант с удом, сезон 3', status:'кастинг 02.09',
       folder:'19-канон-халед', match:'19-канон-халед|халед|khaled',
       anchors:[
         ['Характер','Играет на уде так, что прощаешь ему полночь. Ссора с Аджибусом из-за уда — арка сезона 3.'],
@@ -176,7 +192,8 @@ window.AJ = {
       lock:"the easy-going Arab musician in his mid-thirties with dark curly hair and a short beard, in a rolled-sleeve shirt, cradling a polished oud"
     },
     {
-      id:'bilal', name:'Билял', role:'Мальчишка со двора, сезон 3', status:'кастинг 02.09',
+      id:'bilal',
+      plates:['cast-bilal-01.jpg'], name:'Билял', role:'Мальчишка со двора, сезон 3', status:'кастинг 02.09',
       folder:'20-канон-билял', match:'20-канон-билял|билял|bilal',
       anchors:[
         ['Характер','Девять лет, вечно с мячом, вечно посередине чужих историй. Мирит взрослых, сам того не замечая.'],
@@ -185,7 +202,8 @@ window.AJ = {
       lock:"the lively Arab boy about nine years old in a striped t-shirt and sandals, holding a scuffed football under one arm"
     },
     {
-      id:'tariq', name:'Тарик', role:'Племянник Амины, жених — свадьба сезона 3', status:'кастинг 02.09',
+      id:'tariq',
+      plates:['cast-tariq-01.jpg'], name:'Тарик', role:'Племянник Амины, жених — свадьба сезона 3', status:'кастинг 02.09',
       folder:'21-канон-тарик', match:'21-канон-тарик|тарик|tariq',
       anchors:[
         ['Функция','Свадьба квартала (урок 22): двор в гирляндах, уд Халеда, «мабрук!» хором.'],
@@ -194,7 +212,8 @@ window.AJ = {
       lock:"the beaming young Arab groom in his late twenties in a crisp white thobe and golden-trimmed dark bisht, hands pressed to his heart in thanks"
     },
     {
-      id:'faris', name:'Абу Фарис', role:'Проводник поезда, сезон 4', status:'кастинг 02.09',
+      id:'faris',
+      plates:['cast-faris-01.jpg'], name:'Абу Фарис', role:'Проводник поезда, сезон 4', status:'кастинг 02.09',
       folder:'22-канон-проводник', match:'22-канон-проводник|фарис|faris|проводник',
       anchors:[
         ['Характер','Форма старше него самого, выправка железная, компостер щёлкает как метроном.'],
@@ -203,7 +222,8 @@ window.AJ = {
       lock:"the upright Arab train conductor in his fifties in a worn navy uniform and peaked cap, a ticket punch in his hand, standing in a train corridor"
     },
     {
-      id:'yusuf', name:'Абу Юсуф', role:'Хозяин гостиницы у моря, сезон 4', status:'кастинг 02.09',
+      id:'yusuf',
+      plates:['cast-yusuf-01.jpg'], name:'Абу Юсуф', role:'Хозяин гостиницы у моря, сезон 4', status:'кастинг 02.09',
       folder:'23-канон-юсуф', match:'23-канон-юсуф|юсуф|yusuf',
       anchors:[
         ['Характер','Гостям радуется как родне, ключи выдаёт как награды. Лестницу его гостиницы красили при трёх королях.'],
@@ -212,7 +232,8 @@ window.AJ = {
       lock:"the stout welcoming Arab hotel keeper in his sixties with a trimmed grey beard, in a sand-coloured thobe and dark vest, holding out a room key on a wooden fob"
     },
     {
-      id:'salih', name:'Салих', role:'Рыбак с лодкой, сезон 4 (урок 36)', status:'кастинг 02.09',
+      id:'salih',
+      plates:['cast-salih-01.jpg'], name:'Салих', role:'Рыбак с лодкой, сезон 4 (урок 36)', status:'кастинг 02.09',
       folder:'24-канон-салих', match:'24-канон-салих|салих|salih|рыбак',
       anchors:[
         ['Характер','Лицо из морщин и соли, смеётся глазами. Лодка бирюзовая, зовётся «Бахр».'],
@@ -221,7 +242,8 @@ window.AJ = {
       lock:"the weathered Arab fisherman in his fifties with sun-creased skin and a grey stubble, in a faded blue shirt and rolled trousers, mending a net on a turquoise wooden boat"
     },
     {
-      id:'zahra', name:'Хаджа Захра', role:'Старшая сестра Аджибуса, деревня — сезон 4', status:'кастинг 02.09',
+      id:'zahra',
+      plates:['cast-zahra-01.jpg'], name:'Хаджа Захра', role:'Старшая сестра Аджибуса, деревня — сезон 4', status:'кастинг 02.09',
       folder:'25-канон-захра', match:'25-канон-захра|захра|zahra',
       anchors:[
         ['Кто она','Старшая сестра Аджибуса: та же порода — брови, искры в глазах, — но покой вместо его урагана.'],

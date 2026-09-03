@@ -401,6 +401,43 @@
   .progress i{display:block;height:100%;background:var(--emerald);width:0;transition:width .2s}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
   @media (max-width:640px){ .anch{grid-template-columns:1fr} body{padding:14px 13px 50px} }
+
+  /* ---------- приёмка кадров ---------- */
+  .acbar{position:sticky;top:0;z-index:6;display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:14px}
+  .acmeter{height:8px;border-radius:6px;background:var(--panel-2);flex:1;min-width:150px;overflow:hidden}
+  .acmeter i{display:block;height:100%;background:linear-gradient(90deg,var(--ok),var(--saffron));width:0;transition:width .2s}
+  .acgrp{margin:24px 0 8px;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .ac{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:14px 16px;margin:10px 0}
+  .ac.v-ok{border-color:var(--ok)}
+  .ac.v-redo{border-color:var(--clay)}
+  .ac-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:2px}
+  .ac-t{font-weight:700;font-size:15.5px}
+  .ac-s{color:var(--faint);font-size:12.5px}
+  .ac-st{margin-left:auto;font-size:12px;border-radius:20px;padding:2px 10px;border:1px solid var(--line);color:var(--dim)}
+  .ac-st.ok{border-color:var(--ok);color:var(--ok)}
+  .ac-st.redo{border-color:var(--clay);color:var(--clay)}
+  .ac-v{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .vt{position:relative;width:178px;border-radius:10px;overflow:hidden;border:2px solid transparent;
+    background:var(--panel-2);cursor:pointer;transition:border-color .12s,transform .12s}
+  .vt img{display:block;width:100%;height:310px;object-fit:cover}
+  .vt .vz{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.6);color:#fff;border:0;border-radius:8px;
+    padding:3px 9px;font-size:13px;cursor:zoom-in;opacity:0;transition:opacity .12s}
+  .vt:hover .vz{opacity:1}
+  .lbox{position:fixed;inset:0;background:rgba(8,6,4,.93);display:none;place-items:center;z-index:300;padding:24px}
+  .lbox.open{display:grid}
+  .lbox img{max-width:min(96vw,860px);max-height:92vh;border-radius:12px}
+  .lbox .lx{position:absolute;top:18px;right:22px;font-size:15px}
+  .vt:hover{transform:translateY(-2px)}
+  .vt.win{border-color:var(--saffron)}
+  .vt .vn{position:absolute;left:6px;top:6px;background:rgba(0,0,0,.55);color:#fff;border-radius:20px;padding:1px 8px;font-size:11px}
+  .vt .vw{position:absolute;right:6px;top:6px;background:var(--saffron);color:#1b1408;border-radius:20px;padding:1px 8px;font-size:11px;font-weight:700;display:none}
+  .vt.win .vw{display:block}
+  .ac-a{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .acnote{width:100%;margin-top:8px;padding:8px 12px;border-radius:10px;border:1.5px dashed var(--line);
+    background:var(--panel-2);color:var(--ink);font:13.5px/1.45 inherit;resize:vertical;min-height:38px}
+  .acnote:focus{outline:none;border-style:solid;border-color:var(--saffron)}
+  .achint{color:var(--faint);font-size:12px}
 </style>
 </head>
 <body>
@@ -427,14 +464,16 @@
   <button class="btn" id="rescanBtn" disabled>⟳ Обновить</button>
 </div>
 <div class="hintline" id="folderHint">
-  Нужный путь: <code>~/Projects/Ajeebus/generations</code> — внутри уже разложены подпапки <code>урок-01…05</code>, <code>01-канон-аджибус</code>, <code>06-тесты-видео</code>.
+  Нужный путь: <code>~/Projects/Ajeebus/generations</code> — внутри разложены <code>урок-01…05</code>, <code>NN-канон-…</code> по каждому персонажу, <code>_arab</code> с локациями.
   Дашборд читает их рекурсивно и сам проставляет урок и персонажа по имени подпапки. Работает в Chrome и Edge.
+  <b>Для «Приёмки кадров» папка не обязательна</b> — плашки персонажей и локаций читаются прямо из репозитория; папка нужна, чтобы к ним подтянулись новые дубли и снятые шоты.
 </div>
 
 <div class="progress" id="prog"><i></i></div>
 
 <div class="tabs" id="tabs" role="tablist">
   <button role="tab" data-p="lessons" aria-selected="true">Уроки</button>
+  <button role="tab" data-p="accept" aria-selected="false">Приёмка кадров</button>
   <button role="tab" data-p="review" aria-selected="false">Все файлы</button>
   <button role="tab" data-p="map"    aria-selected="false">Программа</button>
   <button role="tab" data-p="canon"  aria-selected="false">Канон</button>
@@ -443,6 +482,9 @@
 
 <!-- ================= УРОКИ ================= -->
 <section class="page on" id="p-lessons"></section>
+
+<!-- ================= ПРИЁМКА КАДРОВ ================= -->
+<section class="page" id="p-accept"></section>
 
 <!-- ================= КАРТА 50 УРОКОВ ================= -->
 <section class="page" id="p-map"></section>
@@ -506,6 +548,8 @@
     <input class="f-note" id="fNote" placeholder="Заметка — что править">
   </div>
 </div>
+
+<div class="lbox" id="lbox"><button class="btn ghost lx" id="lboxX">Закрыть · Esc</button><img id="lboxImg" alt=""></div>
 
 <div class="modal" id="modal">
   <div class="msheet">
@@ -680,7 +724,8 @@ function setFolderBar(needsClick){
 }
 async function walk(handle, prefix, out){
   for await (const [name,h] of handle.entries()){
-    if(name.startsWith('.')||name.startsWith('_')) continue;
+    if(name.startsWith('.')) continue;
+    if(name.startsWith('_') && name!=='_arab') continue;   /* _arab — библиотека локаций, её читаем */
     const path=prefix?prefix+'/'+name:name;
     if(h.kind==='directory'){ await walk(h,path,out); }
     else if(/\.(png|jpe?g|webp|gif|mp4|webm|mov|m4v)$/i.test(name)){ out.push({h,path}); }
@@ -1630,6 +1675,153 @@ $('#p-lessons').addEventListener('change',async e=>{
 });
 
 /* ================= общий рендер ================= */
+
+/* ================= ПРИЁМКА КАДРОВ ================= */
+/* Объект приёмки = одна вещь, по которой нужен вердикт: персонаж, локация или шот урока.
+   У объекта один или несколько вариантов (при x4 — четыре). Иса выбирает победителя
+   или отправляет всё на пересъёмку с комментарием. */
+let verdicts = {};                     /* {id:{v:'ok'|'redo', win:'file', c:'коммент', at:ts}} */
+let acFilter = localStorage.getItem('aj_acf') || 'todo';
+
+const vGet = id => verdicts[id] || {};
+async function vSet(id, patch){
+  verdicts[id] = Object.assign({}, verdicts[id]||{}, patch, {at:Date.now()});
+  await dbPut('meta', verdicts, 'verdicts');
+}
+
+function acObjects(){
+  const out=[];
+  /* персонажи — плашки лежат в репозитории, папка не нужна */
+  for(const c of AJ.chars){
+    if(!c.plates || !c.plates.length) continue;
+    const takes = items.filter(i=>i.char===c.id).map(i=>({src:i.thumb, name:i.name, local:true}));
+    out.push({id:'char:'+c.id, sect:'Персонажи', title:c.name, sub:c.role,
+              vars: c.plates.map(f=>({src:f,name:f})).concat(takes)});
+  }
+  /* локации */
+  for(const r of AJ.arabworld){
+    const takes=items.filter(i=>new RegExp('_arab/локация-'+r[0]+'[_.]','i').test(i.path))
+                     .map(i=>({src:i.thumb,name:i.name,local:true}));
+    out.push({id:'loc:'+r[0], sect:'Локации', title:r[1], sub:r[0], prompt:r[2],
+              vars:[{src:r[3], name:r[3]}].concat(takes)});
+  }
+  /* шоты уроков — только те, где в папке есть материал */
+  for(const L of AJ.lessons) for(const s of L.shots){
+    const t=takesOfShot(L.n,s.n);
+    if(!t.length) continue;
+    out.push({id:`shot:${L.n}-${s.n}`, sect:'Шоты уроков', title:`Урок ${L.n} · шот ${s.n}`,
+              sub:s.ru.slice(0,110), vars:t.map(i=>({src:i.thumb,name:i.name,local:true}))});
+  }
+  return out;
+}
+
+function acPass(o){
+  const v=vGet(o.id).v;
+  if(acFilter==='todo') return !v;
+  if(acFilter==='ok') return v==='ok';
+  if(acFilter==='redo') return v==='redo';
+  return true;
+}
+
+function acCardHTML(o){
+  const v=vGet(o.id);
+  const st = v.v==='ok' ? '<span class="ac-st ok">✓ принято</span>'
+           : v.v==='redo' ? '<span class="ac-st redo">✕ на пересъёмку</span>'
+           : '<span class="ac-st">без решения</span>';
+  const many=o.vars.length>1;
+  const tiles=o.vars.map((x,i)=>`<div class="vt ${v.win===x.name?'win':''}" data-win="${esc(x.name)}" title="${esc(x.name)}">
+      ${x.src?`<img src="${esc(x.src)}" alt="" loading="lazy">`:'<div class="empty" style="padding:60px 6px;font-size:11px">нет превью</div>'}
+      <span class="vn">${i+1}</span><span class="vw">★</span>
+      ${x.src?`<button class="vz" data-zoom="${esc(x.src)}" title="Увеличить">⤢</button>`:''}</div>`).join('');
+  return `<div class="ac ${v.v?'v-'+v.v:''}" data-id="${esc(o.id)}">
+    <div class="ac-h"><span class="ac-t">${esc(o.title)}</span><span class="ac-s">${esc(o.sub||'')}</span>${st}</div>
+    <div class="ac-v">${tiles}</div>
+    <div class="ac-a">
+      <button class="btn ${v.v==='ok'?'primary':''}" data-ac="ok">✓ Принять${many?' выбранный':''}</button>
+      <button class="btn ${v.v==='redo'?'gold':''}" data-ac="redo">✕ Переснять</button>
+      ${v.v?'<button class="btn ghost sm" data-ac="clear">сбросить</button>':''}
+      <span class="achint">${many?'клик по кадру — выбрать победителя':'вариант один — при x4 здесь будет четыре'}</span>
+    </div>
+    <textarea class="acnote" data-note placeholder="✎ Комментарий: что не так, что поправить в промпте…">${esc(v.c||'')}</textarea>
+  </div>`;
+}
+
+function renderAccept(){
+  const page=$('#p-accept'); if(!page) return;
+  const all=acObjects(), shown=all.filter(acPass);
+  const done=all.filter(o=>vGet(o.id).v).length;
+  const nok=all.filter(o=>vGet(o.id).v==='ok').length;
+  const nredo=all.filter(o=>vGet(o.id).v==='redo').length;
+  const pct=all.length?Math.round(done/all.length*100):0;
+  const seg=(k,t)=>`<button data-acf="${k}" aria-pressed="${acFilter===k}">${t}</button>`;
+  let html=`<div class="acbar">
+      <b>Решено ${done} из ${all.length}</b>
+      <div class="acmeter"><i style="width:${pct}%"></i></div>
+      <div class="seg" id="acFilters">
+        ${seg('todo','Без решения '+(all.length-done))}${seg('ok','✓ принято '+nok)}${seg('redo','✕ переснять '+nredo)}${seg('all','Все')}
+      </div>
+      <button class="btn ghost" id="acExport">⬇ Задание на пересъёмку</button>
+    </div>`;
+  if(!shown.length){
+    html+='<div class="empty">'+(acFilter==='todo'?'Всё решено — можно выгружать задание на пересъёмку.':'В этом фильтре пусто.')+'</div>';
+  } else {
+    let sect='';
+    for(const o of shown){
+      if(o.sect!==sect){ sect=o.sect; html+=`<div class="acgrp">${esc(sect)}</div>`; }
+      html+=acCardHTML(o);
+    }
+  }
+  page.innerHTML=html;
+
+  page.querySelectorAll('[data-acf]').forEach(b=>b.onclick=()=>{
+    acFilter=b.dataset.acf; localStorage.setItem('aj_acf',acFilter); renderAccept(); });
+  page.querySelectorAll('.ac').forEach(card=>{
+    const id=card.dataset.id;
+    card.querySelectorAll('.vz').forEach(z=>z.onclick=e=>{ e.stopPropagation(); lbox(z.dataset.zoom); });
+    card.querySelectorAll('.vt').forEach(t=>t.onclick=async()=>{
+      const cur=vGet(id).win;
+      await vSet(id,{win: cur===t.dataset.win ? '' : t.dataset.win});
+      renderAccept(); });
+    card.querySelectorAll('[data-ac]').forEach(b=>b.onclick=async()=>{
+      const a=b.dataset.ac;
+      if(a==='clear') await vSet(id,{v:'',win:'',c:vGet(id).c||''});
+      else{
+        const o=acObjects().find(x=>x.id===id);
+        const patch={v:a};
+        if(a==='ok'&&!vGet(id).win&&o&&o.vars.length===1) patch.win=o.vars[0].name;
+        await vSet(id,patch);
+      }
+      renderAccept(); toast(a==='redo'?'На пересъёмку':a==='ok'?'Принято':'Сброшено'); });
+    const n=card.querySelector('[data-note]');
+    if(n) n.onchange=async()=>{ await vSet(id,{c:n.value}); };
+  });
+  const ex=$('#acExport'); if(ex) ex.onclick=acExport;
+}
+
+function lbox(src){ $('#lboxImg').src=src; $('#lbox').classList.add('open'); }
+
+function acExport(){
+  const all=acObjects();
+  const L=['ЗАДАНИЕ ПО ПРИЁМКЕ КАДРОВ — '+new Date().toLocaleString('ru'),''];
+  const redo=all.filter(o=>vGet(o.id).v==='redo');
+  const ok=all.filter(o=>vGet(o.id).v==='ok');
+  const todo=all.filter(o=>!vGet(o.id).v);
+  L.push('=== ПЕРЕСНЯТЬ ('+redo.length+') ===');
+  redo.forEach(o=>{ const v=vGet(o.id);
+    L.push('• ['+o.id+'] '+o.title+(o.sub?' — '+o.sub:''));
+    if(v.c) L.push('  что не так: '+v.c);
+    if(o.prompt) L.push('  текущий промпт: '+o.prompt); });
+  L.push('','=== ПРИНЯТО ('+ok.length+') ===');
+  ok.forEach(o=>{ const v=vGet(o.id);
+    L.push('• ['+o.id+'] '+o.title+(v.win?' → победитель: '+v.win:'')+(v.c?' | '+v.c:'')); });
+  L.push('','=== БЕЗ РЕШЕНИЯ ('+todo.length+') ===');
+  todo.forEach(o=>L.push('• ['+o.id+'] '+o.title));
+  const b=new Blob([L.join('\n')],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(b);
+  a.download='приёмка-кадров.txt'; document.body.appendChild(a); a.click(); a.remove();
+  toast('Задание выгружено в Загрузки');
+}
+
 function renderAll(){
   $('#stTotal').textContent=items.length;
   $('#stOk').textContent=items.filter(i=>i.status==='accepted').length;
@@ -1637,7 +1829,7 @@ function renderAll(){
   $('#stCanon').textContent=items.filter(i=>i.status==='canon').length;
   const shotsDone=AJ.lessons.reduce((a,L)=>a+L.shots.filter(s=>takesOfShot(L.n,s.n).length).length,0);
   $('#stShots').innerHTML=`${shotsDone}<span style="color:var(--faint);font-size:12px">/${TOTAL_SHOTS}</span>`;
-  renderLessons(); renderReview(); renderProgram(); renderCanon(); renderCalls();
+  renderLessons(); renderAccept(); renderReview(); renderProgram(); renderCanon(); renderCalls();
 }
 
 /* ================= фокус-режим ================= */
@@ -1739,7 +1931,7 @@ $('#exportBtn').onclick=()=>{
   copy(out,'Отчёт скопирован');
 };
 $('#backupBtn').onclick=()=>{
-  const b=new Blob([JSON.stringify({assets:items.map(strip),decisions})],{type:'application/json'});
+  const b=new Blob([JSON.stringify({assets:items.map(strip),decisions,verdicts})],{type:'application/json'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(b);
   a.download=`ajeebus-${new Date().toISOString().slice(0,10)}.json`; a.click(); toast('Бэкап сохранён');
 };
@@ -1750,10 +1942,15 @@ $('#restoreInput').onchange=async e=>{
     const arr=Array.isArray(raw)?raw:raw.assets||[];
     for(const rec of arr) await dbPut('assets',rec);
     if(raw.decisions){ decisions=raw.decisions; await dbPut('meta',decisions,'decisions'); }
+    if(raw.verdicts){ verdicts=raw.verdicts; await dbPut('meta',verdicts,'verdicts'); }
     await scan(); toast('Восстановлено: '+arr.length);
   }catch(err){ toast('Не удалось прочитать файл'); }
   e.target.value='';
 };
+$('#lboxX').onclick=()=>$('#lbox').classList.remove('open');
+$('#lbox').onclick=e=>{ if(e.target.id==='lbox') $('#lbox').classList.remove('open'); };
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') $('#lbox').classList.remove('open'); });
+
 let tt; function toast(m){const el=$('#toast');el.textContent=m;el.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),2400);}
 
 /* пересканировать при возврате на вкладку */
@@ -1767,6 +1964,7 @@ document.addEventListener('visibilitychange',()=>{
   $$('#groupSeg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.g===grouping)));
   db=await openDB();
   decisions=(await dbGet('meta','decisions'))||{};
+  verdicts=(await dbGet('meta','verdicts'))||{};
   const cached=await dbAll('assets');
   if(cached.length) items=cached.sort((a,b)=>b.mtime-a.mtime);
   renderAll();
