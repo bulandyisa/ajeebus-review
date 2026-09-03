@@ -1,7 +1,7 @@
 /* Аджибус — данные проекта. Источник: паспорт проекта от 13.08.2026.
    Всё, что дашборд знает о сериале, лежит здесь. Правится руками. */
 window.AJ = {
-  updated: '2026-09-02',
+  updated: '2026-09-03',
 
   /* ---------- персонажи ---------- */
   chars: [
@@ -21,7 +21,7 @@ window.AJ = {
       ],
       face:'Густые белые брови — главный инструмент эмоций. Лучистые тёмные глаза в сетке морщинок-смешинок.',
       voice:'Algenib (male, gravelly, low). Во Flow сохранён как «Голос АджибусаAlgenib Custom»: тёплый, с хрипотцой, нараспев, раскатистое «р», длинные щедрые паузы. Взрывается ликующими возгласами, падает в возмущённый шёпот.',
-      lock:"the older man with the white henna-tipped beard, round glasses, linen shirt under a knitted cardigan"
+      lock:"the older Arab man in a crisp white ankle-length thobe with a beige knitted cardigan worn over it, a white crocheted taqiyah cap on a bald head with no hair showing at the sides, full white beard with henna-orange front, small round glasses, very dark brown eyes"
     },
     {
       id:'yunus',
@@ -113,12 +113,14 @@ window.AJ = {
     /* ---------- ростер 02.09: разнообразие сезонов (ночная сессия) ---------- */
     {
       id:'karim',
-      plates:['cast-karim-01.jpg'], name:'Карим', role:'Таксист, сезон 2 (урок 13)', status:'кастинг 02.09',
+      plates:['cast-karim-01.jpg'], name:'Карим', role:'Таксист, сезон 2 (урок 13)', status:'карточка во Flow заведена 03.09, урок 13 снят',
       folder:'12-канон-карим', match:'12-канон-карим|карим|karim',
       anchors:[
         ['Характер','Говорит быстрее, чем едет. Комментирует всё. Чётки на зеркале, термос под сиденьем.'],
-        ['Функция','Первый незнакомец, с которым ученик остаётся один на один надолго — весь урок 13.']
+        ['Функция','Первый незнакомец, с которым ученик остаётся один на один надолго — весь урок 13.'],
+        ['Карточка Flow','«Карим таксист» — заведена 03.09 из плашки кастинга, голос «Голос Карима». Первая съёмка: урок 13, 5 шотов × 4 дубля, 0 кредитов.']
       ],
+      voice:'Sadachbia (male, lively, low). Во Flow — «Голос Карима»: энергичный, разговорчивый, средне-низкий, быстрый темп, улыбка в голосе, чистые согласные. Без хрипоты.',
       lock:"the cheerful Arab taxi driver in his forties with a neat black moustache and stubble, in a worn grey shirt, prayer beads hanging from the mirror of his old yellow taxi"
     },
     {
@@ -427,6 +429,19 @@ window.AJ = {
         {n:4, loc:'market', ru:'Щенячьи глаза: «Рахыс?..» Продавец невозмутим.', ar:['رخيص؟'], en:'Ajibus switches instantly to pleading puppy eyes and suggests a cheap price; the vendor does not move a muscle', cam:'tight two-shot, cut between the two faces', snd:'wheedling delivery, flat silence in reply'},
         {n:5, loc:'market', ru:'Анза ворует банан из корзины Юнуса.', ar:[], en:'While no one is watching, the goat lifts a banana out of the basket at Yunus feet and walks off with it', cam:'low angle on the basket, static', snd:'market noise, quiet theft'},
         {n:6, loc:'market', ru:'ФИНАЛ СЕЗОНА: Аджибус подталкивает Юнуса к прилавку — давай сам. Юнус, волнуясь: «Уриду мауз!.. Бикам?.. Шукран!» Продавец впервые улыбается. Аджибус за его спиной утирает слезу: «Аджи-и-иб!»', ar:['أريد موز','بكم؟','شكرًا','عجيب'], en:'Ajibus nudges Yunus forward to order for himself; nervous but clear, Yunus makes his request, asks the price and thanks the vendor, who smiles for the first time; behind him Ajibus wipes away a tear', cam:'over-shoulder on Yunus at the stall, then slow push-in on Ajibus proud face', snd:'market ambience drops away under the dialogue, warm swell at the end'}
+      ]
+    },
+    {
+      n:13, title:'Такси',
+      skill:'Назвать адрес, командовать «направо, налево, прямо» и остановить такси вежливо.',
+      core:['يمين','يسار','إلى الأمام','قف هنا من فضلك'],
+      seeds:['شارع','قريب','بعيد','إلى أين؟'],
+      shots:[
+        {n:1, loc:'street', ru:'Утро, оживлённая арабская улица. Аджибус поднимает руку, жёлтое такси Карима тормозит у бордюра. Карим высовывается в окно: «Куда, друг мой?»', ar:['إلى أين يا صديقي؟'], en:'Bright morning on a busy Arab city street, warm sunlight, low sandstone buildings, a fruit stall behind. Ajeebus, an Arab man of about sixty five in a white ankle length thobe with a beige knitted cardigan over it and a white knitted skullcap on a bald head, round glasses, full white beard tinted henna orange at the front, stands at the kerb and raises his hand. A yellow taxi rolls to a stop beside him and Karim, the driver, leans out of the open window with one arm on the door, grinning at him. Karim speaks in slow clear formal Modern Standard Arabic, warm and quick, and says: إلى أين يا صديقي؟ Natural lip sync to the exact spoken line. Only Karim speaks, Ajeebus stays silent and smiles back.', cam:'slow push-in from the pavement toward the taxi window', snd:'street ambience, a distant car horn, no music'},
+        {n:2, loc:'taxi', ru:'В салоне. Юнус на заднем сиденье называет адрес: «На рынок, пожалуйста». Карим кивает в зеркале.', ar:['إلى السوق من فضلك'], en:'Inside a taxi moving through an Arab city at mid morning, warm light through the windscreen, shopfronts sliding past the side window. Yunus, a Western European young man of about twenty two with fair skin, light blue grey eyes and tousled light brown hair, in a blue denim jacket over a grey t-shirt, sits on the back seat and leans forward between the front seats. Karim, the Arab taxi driver in his forties with a thick moustache, is at the wheel and watches him in the rear view mirror. Yunus speaks in careful slow formal Modern Standard Arabic with a light foreign accent, shy but proud of himself, and says: إلى السوق من فضلك. Natural lip sync to the exact spoken line. Only Yunus speaks, Karim just nods and smiles in the mirror.', cam:'steady shot from the front passenger seat turned back toward Yunus', snd:'engine hum, light street noise, no music'},
+        {n:3, loc:'taxi', ru:'Перекрёсток. Аджибус с переднего сиденья командует всей ладонью: «Направо, потом налево».', ar:['يمين، ثم يسار'], en:'Inside a taxi in an Arab city approaching a busy junction, warm daylight, bright street through the windscreen. Ajeebus, an Arab man of about sixty five, wearing a white ankle length thobe with a beige knitted cardigan over it and a white knitted skullcap covering his bald head, round glasses, a full white beard tinted henna orange at the front, very dark brown eyes, sits in the front passenger seat and points forward with his whole hand, white eyebrows high, delighted. Karim, the Arab taxi driver in his forties with a thick moustache, is at the wheel beside him. Ajeebus speaks in theatrical formal Modern Standard Arabic, warm and singsong, and says: يمين، ثم يسار. Natural lip sync to the exact spoken line. Only Ajeebus speaks, Karim glances at him and turns the wheel.', cam:'low steady shot from the dashboard toward Ajeebus', snd:'engine hum, street noise, no music'},
+        {n:4, loc:'taxi', ru:'У рынка. Юнус сам, уверенно: «Остановите здесь, пожалуйста». Карим плавно тормозит.', ar:['قِفْ هنا من فضلك'], en:'Inside a taxi pulling up at the edge of a market street in an Arab city, late morning light, stalls and awnings outside the window. Yunus, a Western European young man of about twenty two with fair skin, light blue grey eyes and tousled light brown hair, in a blue denim jacket over a grey t-shirt, sits on the back seat and leans forward pointing at the kerb, confident this time. Karim, the Arab taxi driver in his forties with a thick moustache, brakes gently and looks at him in the rear view mirror. Yunus speaks in clear formal Modern Standard Arabic with a light foreign accent, firm and polite, and says: قِفْ هُنَا مِنْ فَضْلِك. Natural lip sync to the exact spoken line. Only Yunus speaks, Karim nods and stops the car.', cam:'steady shot from the front seat turned back toward Yunus', snd:'idling engine, market noise, no music'},
+        {n:5, loc:'taxi', ru:'Финал. Карим оборачивается через спинку сиденья, сияет: «Машаллах, твой арабский прекрасен». Юнус смущённо улыбается.', ar:['ما شاء الله، لغتك العربية جميلة'], en:'Inside a stopped taxi at the edge of a market street in an Arab city, warm late morning light, stalls and awnings outside the windows. Karim, the Arab taxi driver in his forties with a thick moustache, turns around over the back of his seat with one hand on the headrest, beaming with surprise and pleasure. Yunus, a Western European young man of about twenty two with fair skin, light blue grey eyes and tousled light brown hair, in a blue denim jacket over a grey t-shirt, sits on the back seat and looks down, shy and happy. Karim speaks in warm friendly formal Modern Standard Arabic, quick and delighted, and says: ما شاء الله، لغتك العربية جميلة. Natural lip sync to the exact spoken line. Only Karim speaks, Yunus just smiles.', cam:'slow push-in from the back seat toward Karim', snd:'market noise, idling engine, no music'}
       ]
     }
   ],
