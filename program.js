@@ -42,1231 +42,4183 @@ window.AJ.drillTypes = {
 };
 
 window.AJ.program = [
-
-/* ============================== УРОК 1 ============================== */
-{
-  n:1,
-  goal:'Поздороваться, назвать себя, спросить имя собеседника и попрощаться.',
-  why:'Первый урок не учит языку — он продаёт сериал. Ученик должен на второй минуте сказать вслух настоящую арабскую фразу и получить за это ответ Аджибуса.',
-  vocab:[
-    {ar:'السلام عليكم', tr:'ас-саля́му ‘алейку́м', ru:'здравствуйте (букв. «мир вам»)', kind:'core',
-     img:'Photoreal medium shot on a sunny modern city street: an older Arab man with a white henna-tipped beard and round glasses raises his hand in greeting, warm morning light'},
-    {ar:'وعليكم السلام', tr:'уа ‘алейку́му с-саля́м', ru:'и вам мир (ответ на приветствие)', kind:'core',
-     img:'Photoreal medium shot: a young man in a denim jacket with a canvas backpack answers a greeting, hand on heart, modern city street behind him'},
-    {ar:'أنا…', tr:'а́на…', ru:'я…', kind:'core',
-     img:'Photoreal medium close-up: an older Arab man with a white henna-tipped beard presses his palm flat to his own chest, introducing himself'},
-    {ar:'وأنت؟', tr:'уа а́нта?', ru:'а ты?', kind:'core',
-     img:'Photoreal medium shot: an older Arab man turns an open questioning palm toward a young man opposite him, eyebrows raised'},
-    {ar:'مع السلامة', tr:'ма‘а с-саля́ма', ru:'до свидания', kind:'core',
-     img:'Photoreal wide shot at dusk: two men wave goodbye at the door of a modern apartment building, city lights behind them'},
-    {ar:'أهلاً وسهلاً', tr:'а́хлян уа са́хлян', ru:'добро пожаловать', kind:'seed',
-     img:'Photoreal shot of a modern apartment hallway with the front door thrown wide open, light from the stairwell falling in'},
-    {ar:'تفضّل', tr:'тафа́ддаль', ru:'прошу, проходи', kind:'seed',
-     img:'Photoreal medium shot: an older Arab man makes a wide welcoming sweep of the arm toward an open doorway'},
-    {ar:'عجيب', tr:'‘аджи́б', ru:'удивительно!', kind:'seed',
-     img:'Photoreal close-up of a delighted older Arab face, eyebrows high, both hands thrown up in wonder'},
-    {ar:'لا', tr:'ля', ru:'нет', kind:'seed',
-     img:'Photoreal shot on a rooftop terrace: a goat chewing the strap of a canvas backpack among potted plants'}
-  ],
-  theory:{
-    title:'Почему ответ не повторяет приветствие',
-    text:[
-      '«السلام عليكم» — это не «привет». Дословно это «мир вам»: не приветствие, а пожелание. Поэтому его не возвращают тем же самым — на него отвечают «وعليكم السلام», «и вам мир». Приветствие всегда пара, вторая половина обязательна.',
-      'Теперь посмотрите на «أنا يونس» — «я Юнус». Здесь нет слова «есть»: в арабском в настоящем времени глагол-связка просто не нужен — два слова рядом уже составляют предложение. Меньше деталей, чем вы ждали, а не больше.',
-      'Мелким шрифтом: «وأنت؟» — обращение к мужчине. Женщине говорят «وأنتِ؟», «уа а́нти». Пока держите в голове мужскую форму, женскую разберём, когда она понадобится.'
+  {
+    n: 1,
+    goal: 'Поздороваться, назвать себя, спросить имя собеседника и попрощаться.',
+    why: 'Первый урок не учит языку — он продаёт сериал. Ученик должен на второй минуте сказать вслух настоящую арабскую фразу и получить за это ответ Аджибуса.',
+    vocab: [
+      {
+        ar: 'السلام عليكم',
+        tr: 'ас-саля́му ‘алейку́м',
+        ru: 'здравствуйте (букв. «мир вам»)',
+        kind: 'core',
+        img: 'Photoreal medium shot on a sunny modern city street: an older Arab man with a white henna-tipped beard and round glasses raises his hand in greeting, warm morning light',
+        tier: 'A',
+        back: [2, 4, 5, 8, 14]
+      },
+      {
+        ar: 'وعليكم السلام',
+        tr: 'уа ‘алейку́му с-саля́м',
+        ru: 'и вам мир (ответ на приветствие)',
+        kind: 'core',
+        img: 'Photoreal medium shot: a young man in a denim jacket with a canvas backpack answers a greeting, hand on heart, modern city street behind him',
+        tier: 'A',
+        back: [2, 4, 8, 14, 25]
+      },
+      {
+        ar: 'أنا…',
+        tr: 'а́на…',
+        ru: 'я…',
+        kind: 'core',
+        img: 'Photoreal medium close-up: an older Arab man with a white henna-tipped beard presses his palm flat to his own chest, introducing himself',
+        tier: 'A',
+        back: [2, 18, 19, 20, 24, 25]
+      },
+      {
+        ar: 'وأنت؟',
+        tr: 'уа а́нта?',
+        ru: 'а ты?',
+        kind: 'core',
+        img: 'Photoreal medium shot: an older Arab man turns an open questioning palm toward a young man opposite him, eyebrows raised',
+        tier: 'A',
+        back: [2, 4, 8, 9, 18]
+      },
+      {
+        ar: 'مع السلامة',
+        tr: 'ма‘а с-саля́ма',
+        ru: 'до свидания',
+        kind: 'core',
+        img: 'Photoreal wide shot at dusk: two men wave goodbye at the door of a modern apartment building, city lights behind them',
+        tier: 'A',
+        back: [2, 4, 8, 14, 25]
+      },
+      {
+        ar: 'أهلاً وسهلاً',
+        tr: 'а́хлян уа са́хлян',
+        ru: 'добро пожаловать',
+        kind: 'seed',
+        img: 'Photoreal shot of a modern apartment hallway with the front door thrown wide open, light from the stairwell falling in',
+        tier: 'C',
+        back: [10],
+        act: 10
+      },
+      {
+        ar: 'تفضّل',
+        tr: 'тафа́ддаль',
+        ru: 'прошу, проходи',
+        kind: 'seed',
+        img: 'Photoreal medium shot: an older Arab man makes a wide welcoming sweep of the arm toward an open doorway',
+        tier: 'A',
+        back: [3, 10, 13],
+        act: 3
+      },
+      {
+        ar: 'عجيب',
+        tr: '‘аджи́б',
+        ru: 'удивительно!',
+        kind: 'seed',
+        img: 'Photoreal close-up of a delighted older Arab face, eyebrows high, both hands thrown up in wonder',
+        tier: 'C',
+        back: [9],
+        act: 9
+      },
+      {
+        ar: 'لا',
+        tr: 'ля',
+        ru: 'нет',
+        kind: 'seed',
+        img: 'Photoreal shot on a rooftop terrace: a goat chewing the strap of a canvas backpack among potted plants',
+        tier: 'A',
+        back: [2, 3, 5, 6, 7, 8, 12, 13, 14, 15, 16, 17, 19, 20, 22, 23, 24, 26, 27, 28, 29],
+        act: 2
+      }
     ],
-    voice:'Слушай сюда, друг. Когда араб говорит «ас-саляму алейкум» — он с тобой не здоровается. Он даёт тебе мир. А мир нельзя вернуть ровно столько же, сколько дали, — надо вернуть чуть больше: «уа алейкуму с-салям», и вам тоже. Это как чай. Тебе налили — ты наливаешь в ответ. Аджи-и-иб!',
-    img:'Photoreal close-up of two hands pouring tea from a glass kettle into two small glasses on a modern kitchen counter, warm light'
-  },
-  drills:[
-    {type:'match',  task:'Соедини фразу и картинку', items:[['السلام عليكم','приветствие'],['مع السلامة','прощание'],['أنا…','рука к груди'],['وأنت؟','ладонь к собеседнику']]},
-    {type:'listen', task:'Слушай и выбирай', items:['السلام عليكم','مع السلامة','وأنت؟']},
-    {type:'build',  task:'Собери ответ на приветствие', items:[{target:'وعليكم السلام', words:['السلام','وعليكم']}]},
-    {type:'gap',    task:'Представься', items:[{text:'أنا ___', hint:'подставьте своё имя'}]},
-    {type:'say',    task:'Скажи Аджибусу', items:['السلام عليكم','أنا…']},
-    {type:'match',  task:'Что значит слово', items:[['تفضّل','прошу'],['أهلاً وسهلاً','добро пожаловать'],['عجيب','удивительно'],['لا','нет']]}
-  ],
-  wrap:[
-    'Приветствие — всегда пара: сказали «السلام عليكم» — ждите «وعليكم السلام».',
-    'Чтобы представиться, глагол не нужен: أنا и имя.',
-    'Прощание одно на все случаи: مع السلامة.'
-  ],
-  phrase:'Скажите сегодня одному живому человеку «السلام عليكم». Не в приложении — вслух.'
-},
-
-/* ============================== УРОК 2 ============================== */
-{
-  n:2,
-  goal:'Спросить «что это?» про любой предмет, ответить, согласиться и отказаться.',
-  why:'Первый по-настоящему рабочий инструмент: с «ما هذا؟» ученик может выучить любое существительное сам, без нас.',
-  vocab:[
-    {ar:'ما هذا؟', tr:'ма ха́за?', ru:'что это?', kind:'core',
-     img:'Photoreal medium shot: a young man in a denim jacket points at a shelf in a bright modern living room, questioning look'},
-    {ar:'هذا…', tr:'ха́за…', ru:'это…', kind:'core',
-     img:'Photoreal close-up of a hand pointing at a stack of books on a low shelf in a bright modern living room'},
-    {ar:'نعم', tr:'на́‘ам', ru:'да', kind:'core',
-     img:'Photoreal close-up of an older Arab man giving a firm thumbs up, delighted expression'},
-    {ar:'لا', tr:'ля', ru:'нет', kind:'core',
-     img:'Photoreal close-up of an older Arab man wagging one finger, mock-serious expression'},
-    {ar:'كتاب', tr:'кита́б', ru:'книга', kind:'core',
-     img:'Photoreal close-up of a stack of worn books on a low wooden shelf, soft daylight, modern apartment'},
-    {ar:'قلم', tr:'ка́лям', ru:'ручка', kind:'core',
-     img:'Photoreal close-up of a single pen lying on a wooden table next to a laptop, soft daylight'},
-    {ar:'مفتاح', tr:'мифта́х', ru:'ключ', kind:'core',
-     img:'Photoreal close-up of a single key on a red cord hanging from a hook by the front door of a modern apartment hallway'},
-    {ar:'قطّ', tr:'китт', ru:'кот', kind:'core',
-     img:'Photoreal close-up of a plump ginger-and-white cat asleep on a stack of books in a bright modern living room'},
-    {ar:'كيف حالك؟', tr:'ка́йфа ха́люк?', ru:'как дела?', kind:'seed',
-     img:'Photoreal medium shot: an older Arab man asks after a guest, palm pressed to his own chest, bright modern living room'},
-    {ar:'الحمد لله', tr:'альхамдули-лля́х', ru:'слава Богу (в ответ — «хорошо»)', kind:'seed',
-     img:'Photoreal medium close-up of a contented older Arab man, eyes closed, hand on heart'},
-    {ar:'أو', tr:'ау', ru:'или', kind:'seed',
-     img:'Photoreal close-up of two hands holding a book in one and a pen in the other, held out side by side over a wooden table'}
-  ],
-  theory:{
-    title:'هذا и предложение, в котором нет глагола',
-    text:[
-      '«هذا» значит «этот» или «это». Поэтому «ما هذا؟» — дословно «что это?», а ответ строится так же просто: «هذا كتاب» — «это книга». Опять ни следа глагола «есть»: два слова рядом, и предложение готово. Это та же механика, что в первом уроке с «أنا يونس», просто теперь вы указываете не на себя, а на предмет.',
-      '«نعم» и «لا» отвечают на предложение целиком, а не на отдельное слово. «هذا قلم؟» — «نعم». Никаких «да, это есть ручка» не требуется.',
-      'И запомните одну деталь, она выстрелит через два урока: сейчас вы говорите «هذا مفتاح» — «это ключ», ключ вообще, любой. Когда ключ станет «тем самым», слово изменится. Пока просто заметьте, что оно выглядит вот так.'
+    theory: {
+      title: 'Почему ответ не повторяет приветствие',
+      text: [
+        '«السلام عليكم» — это не «привет». Дословно это «мир вам»: не приветствие, а пожелание. Поэтому его не возвращают тем же самым — на него отвечают «وعليكم السلام», «и вам мир». Приветствие всегда пара, вторая половина обязательна.',
+        'Теперь посмотрите на «أنا يونس» — «я Юнус». Здесь нет слова «есть»: в арабском в настоящем времени глагол-связка просто не нужен — два слова рядом уже составляют предложение. Меньше деталей, чем вы ждали, а не больше.',
+        'Мелким шрифтом: «وأنت؟» — обращение к мужчине. Женщине говорят «وأنتِ؟», «уа а́нти». Пока держите в голове мужскую форму, женскую разберём, когда она понадобится.'
+      ],
+      voice: 'Слушай сюда, друг. Когда араб говорит «ас-саляму алейкум» — он с тобой не здоровается. Он даёт тебе мир. А мир нельзя вернуть ровно столько же, сколько дали, — надо вернуть чуть больше: «уа алейкуму с-салям», и вам тоже. Это как чай. Тебе налили — ты наливаешь в ответ. Аджи-и-иб!',
+      img: 'Photoreal close-up of two hands pouring tea from a glass kettle into two small glasses on a modern kitchen counter, warm light'
+    },
+    drills: [
+      {
+        type: 'match',
+        task: 'Соедини фразу и картинку',
+        items: [
+          ['السلام عليكم', 'приветствие'],
+          ['مع السلامة', 'прощание'],
+          ['أنا…', 'рука к груди'],
+          ['وأنت؟', 'ладонь к собеседнику']
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Слушай и выбирай',
+        items: ['السلام عليكم', 'مع السلامة', 'وأنت؟']
+      },
+      {
+        type: 'build',
+        task: 'Собери ответ на приветствие',
+        items: [
+          {
+            target: 'وعليكم السلام',
+            words: ['السلام', 'وعليكم']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Представься',
+        items: [
+          {text:'أنا ___', hint:'подставьте своё имя'}
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Скажи Аджибусу',
+        items: ['السلام عليكم', 'أنا…']
+      },
+      {
+        type: 'match',
+        task: 'Что значит слово',
+        items: [
+          ['تفضّل', 'прошу'],
+          ['أهلاً وسهلاً', 'добро пожаловать'],
+          ['عجيب', 'удивительно'],
+          ['لا', 'нет']
+        ]
+      }
     ],
-    voice:'Друг мой, «ма хаза» — это лучшая фраза в языке. Почему? Потому что после неё тебе больше не нужен учитель. Ты тычешь пальцем — тебе говорят слово. Тычешь ещё раз — ещё слово. Я тебе не нужен! Хотя нет. Нужен. Чай сам себя не заварит.',
-    img:'Photoreal wide shot of a bright modern living room with a bookshelf, a laptop on a wooden table, a cat asleep on a pile of books'
-  },
-  drills:[
-    {type:'match',  task:'Соедини слово и предмет', items:[['كتاب','книга'],['قلم','ручка'],['مفتاح','ключ'],['قطّ','кот']]},
-    {type:'listen', task:'Что назвал Аджибус', items:['كتاب','قلم','مفتاح','قطّ']},
-    {type:'build',  task:'Собери вопрос', items:[{target:'ما هذا؟', words:['هذا','ما']}]},
-    {type:'gap',    task:'Ответь на вопрос', items:[{text:'___ كتاب', options:['هذا','ما','لا'], answer:'هذا'}]},
-    {type:'say',    task:'Спроси про предмет рядом с собой', items:['ما هذا؟']},
-    {type:'recall', task:'Из первого урока', items:['السلام عليكم','مع السلامة']}
-  ],
-  wrap:[
-    'ما هذا؟ — «что это?». Работает с любым предметом на свете.',
-    'Ответ — без глагола: هذا и слово.',
-    'نعم — да, لا — нет. Отвечают на всю фразу целиком.'
-  ],
-  phrase:'Спросите «ما هذا؟» про пять вещей у себя дома. Ответы найдите сами — это и есть смысл фразы.'
-},
-
-/* ============================== УРОК 3 ============================== */
-{
-  n:3,
-  goal:'Попросить то, что хочешь, принять угощение и поблагодарить.',
-  why:'Самый применимый урок сезона: أريد + شكرًا закрывают половину бытовых ситуаций в любой арабской стране.',
-  vocab:[
-    {ar:'أريد…', tr:'ури́ду…', ru:'я хочу…', kind:'core',
-     img:'Photoreal medium shot: an older Arab man drops into an armchair by the window, fanning himself, evening city lights behind'},
-    {ar:'تفضّل', tr:'тафа́ддаль', ru:'вот, пожалуйста (когда подают)', kind:'core',
-     img:'Photoreal close-up of a hand offering a small glass of tea across a modern kitchen counter to a second pair of hands'},
-    {ar:'شكرًا', tr:'шу́кран', ru:'спасибо', kind:'core',
-     img:'Photoreal medium close-up: a young man in a denim jacket accepts a glass of tea with both hands, grateful smile'},
-    {ar:'شاي', tr:'шай', ru:'чай', kind:'core',
-     img:'Photoreal extreme close-up of tea poured in a thin stream from high above into a small glass on a clean countertop'},
-    {ar:'ماء', tr:'ма‑а', ru:'вода', kind:'core',
-     img:'Photoreal close-up of a glass jug of water and a plain glass on a modern kitchen counter, morning light'},
-    {ar:'تمر', tr:'тамр', ru:'финики', kind:'core',
-     img:'Photoreal close-up of a bowl of dates on a clean white countertop, warm light from a window'},
-    {ar:'قهوة', tr:'ка́хва', ru:'кофе', kind:'core',
-     img:'Photoreal close-up of a small cup of black coffee standing alone on a modern kitchen counter'},
-    {ar:'لذيذ', tr:'ляз́из', ru:'вкусно', kind:'core',
-     img:'Photoreal close-up of a young man mid-bite, eyes wide with delight, modern kitchen behind him'},
-    {ar:'طيّب', tr:'та́йиб', ru:'ладно, хорошо', kind:'seed',
-     img:'Photoreal medium shot: an older Arab man sighs and hands one last date to a goat standing in an open terrace doorway'}
-  ],
-  theory:{
-    title:'أريد — ваш первый глагол',
-    text:[
-      '«أريد» — «я хочу». Это уже настоящий глагол, и он в форме первого лица: приставка «أ» в начале и значит «я». Дальше ничего склонять не надо — просто ставьте существительное: أريد شاي, أريد ماء, أريد تمر.',
-      '«تفضّل» не переводится одним словом. Это универсальное «прошу»: его говорят, когда подают чашку, когда приглашают войти, когда уступают место, когда протягивают документы. Одно слово вместо десяти разных.',
-      'И то, что в сериале показано без единой реплики: подают и берут правой рукой. Левая рука в этой роли считается невежливой. Аджибус не объясняет этого Юнусу — он молча разворачивает ему ладонь, и всё понятно.'
+    wrap: [
+      'Приветствие — всегда пара: сказали «السلام عليكم» — ждите «وعليكم السلام».',
+      'Чтобы представиться, глагол не нужен: أنا и имя.',
+      'Прощание одно на все случаи: مع السلامة.'
     ],
-    voice:'Смотри, какая хорошая штука. «Уриду» — я хочу. Дальше говоришь что хочешь, и всё, ты закончил. Уриду шай. Уриду ма. Уриду тамр. Уриду кахва?.. Нет. Нет-нет-нет. Про кофе мы не будем. У меня дома чай.',
-    img:'Photoreal close-up of two hands: one offering a date, the other receiving it with the right hand, warm kitchen light'
+    phrase: 'Скажите сегодня одному живому человеку «السلام عليكم». Не в приложении — вслух.',
+    scene: {
+      place: 'улица, прихожая',
+      event: 'Новый ученик',
+      must: []
+    }
   },
-  drills:[
-    {type:'match',  task:'Соедини слово и картинку', items:[['شاي','чай'],['ماء','вода'],['تمر','финики'],['قهوة','кофе']]},
-    {type:'build',  task:'Попроси чай', items:[{target:'أريد شاي', words:['شاي','أريد']}]},
-    {type:'listen', task:'Что попросили', items:['أريد شاي','أريد ماء','أريد تمر']},
-    {type:'gap',    task:'Тебе подали чашку — что ответишь', items:[{text:'___', options:['شكرًا','تفضّل','لا'], answer:'شكرًا'}]},
-    {type:'say',    task:'Закажи вслух то, что хочешь', items:['أريد شاي','شكرًا']},
-    {type:'recall', task:'Из второго урока', items:['ما هذا؟','هذا كتاب']}
-  ],
-  wrap:[
-    'أريد + слово — этого хватает, чтобы попросить что угодно.',
-    'تفضّل говорят, когда подают. شكرًا — когда берут.',
-    'Подают и берут правой рукой.'
-  ],
-  phrase:'Закажите сегодня что-нибудь мысленно по-арабски: أريد + то, что реально хотите.'
-},
-
-/* ============================== УРОК 4 ============================== */
-{
-  n:4,
-  goal:'Спросить, где что-то лежит, и ответить «здесь» или «там».',
-  why:'Самый лёгкий урок сезона и он стоит сразу после пейволла: человек только что заплатил и должен немедленно получить лёгкую победу. Новых существительных здесь ноль — مفتاح посеян ещё во втором уроке.',
-  vocab:[
-    {ar:'أين…؟', tr:'а́йна…?', ru:'где…?', kind:'core',
-     img:'Photoreal medium shot: an older Arab man shades his eyes with a flat palm, searching, a bright modern living room turned upside down behind him'},
-    {ar:'هنا', tr:'ху́на', ru:'здесь', kind:'core',
-     img:'Photoreal close-up of a finger pointing sharply down at the floor of a bright modern living room'},
-    {ar:'هناك', tr:'хуна́к', ru:'там', kind:'core',
-     img:'Photoreal medium shot: a young man points far into the distance from a rooftop terrace, city skyline beyond'},
-    {ar:'المفتاح', tr:'аль-мифта́х', ru:'тот самый ключ', kind:'core',
-     img:'Photoreal close-up of an empty hook by a front door, only a faint mark on the wall where a key used to hang'},
-    {ar:'نظّارة', tr:'назза́ра', ru:'очки', kind:'seed',
-     img:'Photoreal close-up of small round glasses pushed up onto a wrinkled forehead, clearly visible'},
-    {ar:'تفّاح', tr:'туффа́х', ru:'яблоки', kind:'seed',
-     img:'Photoreal close-up of a crate of red apples with a handwritten price label in a bright modern grocery store'},
-    {ar:'موز', tr:'мауз', ru:'бананы', kind:'seed',
-     img:'Photoreal close-up of a bunch of yellow bananas on a grocery store counter under bright LED light'}
-  ],
-  theory:{
-    title:'ال — арабское «тот самый»',
-    text:[
-      'Во втором уроке было «هذا مفتاح» — «это ключ». Просто ключ, впервые названный. Здесь Аджибус кричит «أين المفتاح؟» — и впереди слова появилась приставка «ال». Он ищет не какой-нибудь ключ, а свой, тот самый, о котором мы уже знаем.',
-      'ال работает ровно как английское the. Пишется слитно со словом и не меняется ни по родам, ни по числам — одна форма на всё. Для языка, где меняется почти всё, это подарок.',
-      'Мелким шрифтом, про звук: примерно перед половиной букв «л» в ال проглатывается, а следующая согласная удваивается. الشاي читается не «аль-шай», а «аш-шай». Правило выглядит страшно, а на слух ловится за неделю — просто повторяйте за Аджибусом и не думайте об этом.'
+  {
+    n: 2,
+    goal: 'Спросить «что это?» про любой предмет, ответить, согласиться и отказаться.',
+    why: 'Первый по-настоящему рабочий инструмент: с «ما هذا؟» ученик может выучить любое существительное сам, без нас.',
+    vocab: [
+      {
+        ar: 'ما هذا؟',
+        tr: 'ма ха́за?',
+        ru: 'что это?',
+        kind: 'core',
+        img: 'Photoreal medium shot: a young man in a denim jacket points at a shelf in a bright modern living room, questioning look',
+        tier: 'A',
+        back: [3, 5, 7, 9, 15]
+      },
+      {
+        ar: 'هذا…',
+        tr: 'ха́за…',
+        ru: 'это…',
+        kind: 'core',
+        img: 'Photoreal close-up of a hand pointing at a stack of books on a low shelf in a bright modern living room',
+        tier: 'A',
+        back: [3, 4, 5, 7, 8, 9, 23]
+      },
+      {
+        ar: 'نعم',
+        tr: 'на́‘ам',
+        ru: 'да',
+        kind: 'core',
+        img: 'Photoreal close-up of an older Arab man giving a firm thumbs up, delighted expression',
+        tier: 'A',
+        back: [3, 5, 9, 15, 26]
+      },
+      {
+        ar: 'لا',
+        tr: 'ля',
+        ru: 'нет',
+        kind: 'core',
+        img: 'Photoreal close-up of an older Arab man wagging one finger, mock-serious expression',
+        tier: 'A',
+        back: [2, 3, 5, 6, 7, 8, 12, 13, 14, 15, 16, 17, 19, 20, 22, 23, 24, 26, 27, 28, 29],
+        act: 2
+      },
+      {
+        ar: 'كتاب',
+        tr: 'кита́б',
+        ru: 'книга',
+        kind: 'core',
+        img: 'Photoreal close-up of a stack of worn books on a low wooden shelf, soft daylight, modern apartment',
+        tier: 'B',
+        back: [3, 21, 23]
+      },
+      {
+        ar: 'قلم',
+        tr: 'ка́лям',
+        ru: 'ручка',
+        kind: 'core',
+        img: 'Photoreal close-up of a single pen lying on a wooden table next to a laptop, soft daylight',
+        tier: 'C',
+        back: [6, 13]
+      },
+      {
+        ar: 'مفتاح',
+        tr: 'мифта́х',
+        ru: 'ключ',
+        kind: 'core',
+        img: 'Photoreal close-up of a single key on a red cord hanging from a hook by the front door of a modern apartment hallway',
+        tier: 'B',
+        back: [4, 5, 23]
+      },
+      {
+        ar: 'قطّ',
+        tr: 'китт',
+        ru: 'кот',
+        kind: 'core',
+        img: 'Photoreal close-up of a plump ginger-and-white cat asleep on a stack of books in a bright modern living room',
+        tier: 'C',
+        back: [6, 13]
+      },
+      {
+        ar: 'كيف حالك؟',
+        tr: 'ка́йфа ха́люк?',
+        ru: 'как дела?',
+        kind: 'seed',
+        img: 'Photoreal medium shot: an older Arab man asks after a guest, palm pressed to his own chest, bright modern living room',
+        tier: 'A',
+        back: [9],
+        act: 3
+      },
+      {
+        ar: 'الحمد لله',
+        tr: 'альхамдули-лля́х',
+        ru: 'слава Богу (в ответ — «хорошо»)',
+        kind: 'seed',
+        img: 'Photoreal medium close-up of a contented older Arab man, eyes closed, hand on heart',
+        tier: 'A',
+        back: [4],
+        act: 4
+      },
+      {
+        ar: 'أو',
+        tr: 'ау',
+        ru: 'или',
+        kind: 'seed',
+        img: 'Photoreal close-up of two hands holding a book in one and a pen in the other, held out side by side over a wooden table',
+        tier: 'C',
+        back: [6],
+        act: 6
+      }
     ],
-    voice:'Ключ, ключ, где ключ! Слышишь разницу? Не «мифтах» — «АЛЬ-мифтах». Потому что это не какой-то там ключ с улицы. Это МОЙ ключ. Аль — это когда предмет уже твой знакомый. Как сосед: сначала «какой-то человек», потом «тот человек, который громко ходит».',
-    img:'Photoreal close-up of a key on a red cord hanging around a goat’s neck like a pendant, rooftop terrace behind'
-  },
-  drills:[
-    {type:'listen', task:'Где ищут', items:['هنا','هناك','أين المفتاح؟']},
-    {type:'build',  task:'Спроси, где ключ', items:[{target:'أين المفتاح؟', words:['المفتاح','أين']}]},
-    {type:'gap',    task:'Предмет рядом с тобой — как сказать', items:[{text:'المفتاح ___', options:['هنا','هناك','أين'], answer:'هنا'}]},
-    {type:'match',  task:'Соедини', items:[['هنا','здесь'],['هناك','там'],['أين؟','где?'],['نظّارة','очки']]},
-    {type:'say',    task:'Спроси вслух', items:['أين المفتاح؟','هنا']},
-    {type:'recall', task:'Из третьего урока', items:['أريد شاي','شكرًا']}
-  ],
-  wrap:[
-    'أين + слово — «где…?».',
-    'هنا — здесь, هناك — там. Двух слов хватает на любой ответ.',
-    'ال перед словом значит «тот самый».'
-  ],
-  phrase:'Найдите дома любую вещь и спросите вслух: أين ___؟ — а потом сами себе ответьте هنا.'
-},
-
-/* ============================== УРОК 5 ============================== */
-{
-  n:5,
-  goal:'Спросить цену, сказать «дорого» и «дёшево», довести покупку до конца самостоятельно.',
-  why:'Кульминация сезона. Зритель понимает полторы минуты живого арабского до того, как урок что-то объяснил, — потому что 80% слов он уже носит с собой. На этом ощущении строится продажа следующего уровня.',
-  vocab:[
-    {ar:'بكم؟', tr:'бика́м?', ru:'сколько стоит?', kind:'core',
-     img:'Photoreal medium shot: an older Arab man raises both hands in theatrical enquiry at a fruit counter in a modern grocery store'},
-    {ar:'غالي', tr:'га́ли', ru:'дорого', kind:'core',
-     img:'Photoreal medium close-up: an older Arab man clutches his heart in mock horror at a grocery store counter'},
-    {ar:'رخيص', tr:'рахи́с', ru:'дёшево', kind:'core',
-     img:'Photoreal medium close-up of an older Arab man making pleading puppy eyes across a grocery counter'},
-    {ar:'تفّاح', tr:'туффа́х', ru:'яблоки', kind:'core',
-     img:'Photoreal close-up of a crate of red apples in a bright modern grocery store, price label in front'},
-    {ar:'موز', tr:'мауз', ru:'бананы', kind:'core',
-     img:'Photoreal close-up of a bunch of yellow bananas on a grocery counter, bright LED light'}
-  ],
-  theory:{
-    title:'Из чего собрано «بكم؟»',
-    text:[
-      '«بكم؟» — это две части: «بـ» — предлог «за», и «كم» — «сколько». Вместе получается «за сколько?». Никакого специального слова «цена» учить не нужно.',
-      '«غالي» и «رخيص» — прилагательные, «дорогой» и «дешёвый». В торге они работают как целые реплики: достаточно произнести одно слово с нужным лицом, и позиция заявлена.',
-      'А теперь посчитайте сами. В этой сцене прозвучало около тридцати реплик. Новых слов из них — три. Всё остальное вы уже знали: салям, кайфа халюк, ма хаза, уриду, тафаддаль, шукран, ля, лязиз. Вот так язык и набирается — не списком в двести слов, а пятью словами, которые встречаются в каждой сцене.'
+    theory: {
+      title: 'هذا и предложение, в котором нет глагола',
+      text: [
+        '«هذا» значит «этот» или «это». Поэтому «ما هذا؟» — дословно «что это?», а ответ строится так же просто: «هذا كتاب» — «это книга». Опять ни следа глагола «есть»: два слова рядом, и предложение готово. Это та же механика, что в первом уроке с «أنا يونس», просто теперь вы указываете не на себя, а на предмет.',
+        '«نعم» и «لا» отвечают на предложение целиком, а не на отдельное слово. «هذا قلم؟» — «نعم». Никаких «да, это есть ручка» не требуется.',
+        'И запомните одну деталь, она выстрелит через два урока: сейчас вы говорите «هذا مفتاح» — «это ключ», ключ вообще, любой. Когда ключ станет «тем самым», слово изменится. Пока просто заметьте, что оно выглядит вот так.'
+      ],
+      voice: 'Друг мой, «ма хаза» — это лучшая фраза в языке. Почему? Потому что после неё тебе больше не нужен учитель. Ты тычешь пальцем — тебе говорят слово. Тычешь ещё раз — ещё слово. Я тебе не нужен! Хотя нет. Нужен. Чай сам себя не заварит.',
+      img: 'Photoreal wide shot of a bright modern living room with a bookshelf, a laptop on a wooden table, a cat asleep on a pile of books'
+    },
+    drills: [
+      {
+        type: 'match',
+        task: 'Соедини слово и предмет',
+        items: [
+          ['كتاب', 'книга'],
+          ['قلم', 'ручка'],
+          ['مفتاح', 'ключ'],
+          ['قطّ', 'кот']
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Что назвал Аджибус',
+        items: ['كتاب', 'قلم', 'مفتاح', 'قطّ', 'نعم']
+      },
+      {
+        type: 'build',
+        task: 'Собери вопрос',
+        items: [
+          {
+            target: 'ما هذا؟',
+            words: ['هذا', 'ما']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Ответь на вопрос',
+        items: [
+          {
+            text: '___ كتاب',
+            options: ['هذا', 'ما', 'لا'],
+            answer: 'هذا'
+          }
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Спроси про предмет рядом с собой',
+        items: ['ما هذا؟']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 1',
+        src: [1],
+        items: ['وعليكم السلام', 'وأنت؟']
+      }
     ],
-    voice:'Торговаться — это не про деньги, это про уважение. Ты говоришь «гали!» — дорого. Он говорит: такая цена. Ты хватаешься за сердце. Он не двигается. Ты говоришь «рахис?» — жалобно. Он молчит. И вот тут ты покупаешь. По той же цене. Но теперь вы знакомы!',
-    img:'Photoreal wide shot of a modern grocery store aisle with crates of red apples and yellow bananas under bright LED lighting'
-  },
-  drills:[
-    {type:'match',  task:'Соедини', items:[['بكم؟','сколько стоит?'],['غالي','дорого'],['رخيص','дёшево'],['موز','бананы']]},
-    {type:'listen', task:'Что сказал Аджибус', items:['بكم؟','غالي','رخيص']},
-    {type:'build',  task:'Собери покупку целиком', items:[{target:'أريد موز، بكم؟', words:['بكم؟','موز','أريد']}]},
-    {type:'gap',    task:'Цена не понравилась', items:[{text:'___!', options:['غالي','رخيص','شكرًا'], answer:'غالي'}]},
-    {type:'say',    task:'Купи бананы сам', items:['أريد موز','بكم؟','شكرًا']},
-    {type:'recall', task:'Из уроков 1–4', items:['السلام عليكم','ما هذا؟','أريد تمر','أين المفتاح؟']}
-  ],
-  wrap:[
-    'بكم؟ — «сколько стоит?».',
-    'غالي — дорого, رخيص — дёшево. По одному слову хватает.',
-    'Полная покупка: أريد + товар → بكم؟ → شكرًا.'
-  ],
-  phrase:'Проговорите всю покупку целиком, вслух, три раза. В следующий раз это будет в настоящем магазине.'
-},
-/* ============================== УРОК 6 ============================== */
-{
-  n:6,
-  goal:'Понимать числа 1–10 на слух и посчитать предметы.',
-  why:'Урок 5 создал потребность: продавец назвал цену, а ученик не расслышал число. Этот урок её закрывает. Камео Сальмы: шестилетка считает бегло — и это подстёгивает лучше любых слов.',
-  vocab:[
-    {ar:'كم؟', tr:'кам?', ru:'сколько?', kind:'core'},
-    {ar:'واحد', tr:'ва́хид', ru:'один', kind:'core'},
-    {ar:'اثنان', tr:'исна́н', ru:'два', kind:'core'},
-    {ar:'ثلاثة', tr:'саля́са', ru:'три', kind:'core'},
-    {ar:'أربعة', tr:'а́рбаʿа', ru:'четыре', kind:'core'},
-    {ar:'خمسة', tr:'ха́мса', ru:'пять', kind:'core'},
-    {ar:'عشرة', tr:'ʿа́шара', ru:'десять', kind:'core'},
-    {ar:'ستة', tr:'си́тта', ru:'шесть', kind:'seed'},
-    {ar:'سبعة', tr:'са́бʿа', ru:'семь', kind:'seed'},
-    {ar:'ثمانية', tr:'сама́ния', ru:'восемь', kind:'seed'},
-    {ar:'تسعة', tr:'ти́сʿа', ru:'девять', kind:'seed'}
-  ],
-  theory:{
-    title:'Кам? — и числа без грамматики',
-    text:[
-      '«كم» — «сколько». Ставится перед предметом, и предмет стоит в единственном числе: كم تفاحة؟ — «сколько яблок?», буквально «сколько яблоко?». Одно вопросительное слово, предмет не меняется — это упрощает жизнь.',
-      'Числа 1–10 учим как ярлыки, без правил. У арабских чисел есть своя знаменитая грамматика согласования — мы к ней вернёмся через много уроков, когда будет что согласовывать. Сейчас задача одна: услышать «хамса» и понять «пять».',
-      'Совет из жизни: числа не запоминаются столбиком — они запоминаются у кассы. Считайте вслух всё подряд: ступеньки, финики, чашки.'
+    wrap: [
+      'ما هذا؟ — «что это?». Работает с любым предметом на свете.',
+      'Ответ — без глагола: هذا и слово.',
+      'نعم — да, لا — нет. Отвечают на всю фразу целиком.'
     ],
-    voice:'Числа, друг мой, это не урок математики. Это рынок! Ты говоришь «кам?» — тебе отвечают. Не расслышал? Ты уже знаешь, что сказать: «марра сания» — ещё раз... А, нет-нет, это следующий урок. Пока просто считай: вахид, иснан, саляса. Соседская Сальма считает до десяти быстрее меня. Ей шесть лет. Вот что обидно!'
+    phrase: 'Спросите «ما هذا؟» про пять вещей у себя дома. Ответы найдите сами — это и есть смысл фразы.',
+    scene: {
+      place: 'гостиная',
+      event: 'Что это?',
+      must: []
+    }
   },
-  drills:[
-    {type:'listen', task:'Услышь число и выбери цифру', items:['خمسة','ثلاثة','عشرة']},
-    {type:'match',  task:'Цифра ↔ слово', items:[['١','واحد'],['٣','ثلاثة'],['٥','خمسة'],['١٠','عشرة']]},
-    {type:'build',  task:'Спроси, сколько яблок', items:[{target:'كم تفاحة؟', words:['تفاحة','كم']}]},
-    {type:'gap',    task:'Посчитай по порядку', items:[{text:'واحد، اثنان، ___', options:['ثلاثة','خمسة','عشرة'], answer:'ثلاثة'}]},
-    {type:'say',    task:'Посчитай вслух до пяти', items:['واحد، اثنان، ثلاثة، أربعة، خمسة']},
-    {type:'recall', task:'Из урока про магазин', items:['بكم؟','غالي!']}
-  ],
-  wrap:[
-    'كم تفاحة؟ — «сколько яблок?»: предмет после كم в единственном числе.',
-    'Числа 1–10 — ярлыки на слух, без грамматики.',
-    'واحد، اثنان، ثلاثة، أربعة، خمسة — первая пятёрка обязательна, остальное узнаётся.'
-  ],
-  phrase:'Посчитайте вслух по-арабски пять любых предметов на своём столе.'
-},
-
-/* ============================== УРОК 7 ============================== */
-{
-  n:7,
-  goal:'Отказаться, признаться, что не понял, и попросить повторить помедленнее.',
-  why:'Мета-язык ученика. Три фразы, которые делают возможным всё остальное общение: с ними не страшно не понять. Урок 6 создал проблему — числа на слух быстрые, — этот даёт инструмент.',
-  vocab:[
-    {ar:'لا أريد', tr:'ля ури́ду', ru:'я не хочу', kind:'core'},
-    {ar:'لا أفهم', tr:'ля а́фхам', ru:'я не понимаю', kind:'core'},
-    {ar:'لا أعرف', tr:'ля а́ʿриф', ru:'я не знаю', kind:'core'},
-    {ar:'مرة ثانية', tr:'ма́рра са́ния', ru:'ещё раз', kind:'core'},
-    {ar:'ببطء', tr:'би-бутʼ', ru:'помедленнее', kind:'seed'},
-    {ar:'ما معنى...؟', tr:'ма ма́ʿна...?', ru:'что значит...?', kind:'seed'},
-    {ar:'طيب', tr:'та́йиб', ru:'ладно, хорошо', kind:'seed'}
-  ],
-  theory:{
-    title:'Ля + глагол — и три самые честные фразы',
-    text:[
-      'Отрицание в настоящем — просто لا перед глаголом: أريد «хочу» → لا أريد «не хочу», أفهم «понимаю» → لا أفهم «не понимаю». Никаких вспомогательных слов, никаких изменений в глаголе.',
-      '«Не понимаю» — это не поражение, а инструмент. Сказали لا أفهم، مرة ثانية — и собеседник повторит медленнее. В арабской культуре переспросить не стыдно; стыдно кивать, не поняв.',
-      'И родственник «ма хаза» из второго урока: ما معنى؟ — «что значит?» Там вы спрашивали про предметы, здесь — про слова. С этими двумя вопросами учитель больше не нужен... почти.'
+  {
+    n: 3,
+    goal: 'Попросить то, что хочешь, принять угощение и поблагодарить.',
+    why: 'Самый применимый урок сезона: أريد + شكرًا закрывают половину бытовых ситуаций в любой арабской стране.',
+    vocab: [
+      {
+        ar: 'أريد…',
+        tr: 'ури́ду…',
+        ru: 'я хочу…',
+        kind: 'core',
+        img: 'Photoreal medium shot: an older Arab man drops into an armchair by the window, fanning himself, evening city lights behind',
+        tier: 'A',
+        back: [4, 5, 7, 12, 16, 17, 19]
+      },
+      {
+        ar: 'تفضّل',
+        tr: 'тафа́ддаль',
+        ru: 'вот, пожалуйста (когда подают)',
+        kind: 'core',
+        img: 'Photoreal close-up of a hand offering a small glass of tea across a modern kitchen counter to a second pair of hands',
+        tier: 'A',
+        back: [3, 10, 13],
+        act: 3
+      },
+      {
+        ar: 'شكرًا',
+        tr: 'шу́кран',
+        ru: 'спасибо',
+        kind: 'core',
+        img: 'Photoreal medium close-up: a young man in a denim jacket accepts a glass of tea with both hands, grateful smile',
+        tier: 'A',
+        back: [4, 5, 6, 10, 17]
+      },
+      {
+        ar: 'شاي',
+        tr: 'шай',
+        ru: 'чай',
+        kind: 'core',
+        img: 'Photoreal extreme close-up of tea poured in a thin stream from high above into a small glass on a clean countertop',
+        tier: 'B',
+        back: [4, 7, 8, 12, 16, 26, 30]
+      },
+      {
+        ar: 'ماء',
+        tr: 'ма‑а',
+        ru: 'вода',
+        kind: 'core',
+        img: 'Photoreal close-up of a glass jug of water and a plain glass on a modern kitchen counter, morning light',
+        tier: 'B',
+        back: [5, 17, 22]
+      },
+      {
+        ar: 'تمر',
+        tr: 'тамр',
+        ru: 'финики',
+        kind: 'core',
+        img: 'Photoreal close-up of a bowl of dates on a clean white countertop, warm light from a window',
+        tier: 'C',
+        back: [5, 7]
+      },
+      {
+        ar: 'قهوة',
+        tr: 'ка́хва',
+        ru: 'кофе',
+        kind: 'core',
+        img: 'Photoreal close-up of a small cup of black coffee standing alone on a modern kitchen counter',
+        tier: 'C',
+        back: [7, 16, 26]
+      },
+      {
+        ar: 'لذيذ',
+        tr: 'ляз́из',
+        ru: 'вкусно',
+        kind: 'core',
+        img: 'Photoreal close-up of a young man mid-bite, eyes wide with delight, modern kitchen behind him',
+        tier: 'C',
+        back: [7, 15]
+      },
+      {
+        ar: 'طيّب',
+        tr: 'та́йиб',
+        ru: 'ладно, хорошо',
+        kind: 'seed',
+        img: 'Photoreal medium shot: an older Arab man sighs and hands one last date to a goat standing in an open terrace doorway',
+        tier: 'C',
+        back: [7],
+        act: 7
+      }
     ],
-    voice:'Запомни три фразы, друг, и я спокоен за тебя в любой стране. «Ля уриду» — не хочу, спасибо. «Ля аариф» — не знаю, бывает. И главная: «ля афхам» — не понимаю! Это не слабость. Это самая умная фраза ученика. Глупый кивает. Умный говорит: ля афхам, марра сания, бибутʼ! И весь мир повторяет для него помедленнее.'
-  },
-  drills:[
-    {type:'build',  task:'Скажи, что не понимаешь', items:[{target:'لا أفهم', words:['أفهم','لا']}]},
-    {type:'gap',    task:'Отказаться от кофе', items:[{text:'لا ___ قهوة', options:['أريد','أفهم','أعرف'], answer:'أريد'}]},
-    {type:'listen', task:'Что сказал Юнус', items:['لا أفهم','لا أعرف','لا أريد']},
-    {type:'say',    task:'Попроси повторить', items:['مرة ثانية','ببطء من فضلك']},
-    {type:'match',  task:'Соедини', items:[['لا أريد','не хочу'],['لا أفهم','не понимаю'],['لا أعرف','не знаю'],['مرة ثانية','ещё раз']]},
-    {type:'recall', task:'Из прошлых уроков', items:['أريد شاي','ما هذا؟']}
-  ],
-  wrap:[
-    'لا перед глаголом — отрицание готово: لا أريد، لا أفهم، لا أعرف.',
-    'Не понял — скажи об этом: مرة ثانية، ببطء.',
-    'ما معنى؟ — «что значит?» — брат «ма хаза», только про слова.'
-  ],
-  phrase:'Сегодня хотя бы раз честно скажите вслух «لا أفهم» — пусть даже самому себе над арабским текстом.'
-},
-
-/* ============================== УРОК 8 ============================== */
-{
-  n:8,
-  goal:'Сказать, что у тебя есть, спросить, что есть у собеседника, и предложить это гостю.',
-  why:'عندي — вторая великая конструкция после «уриду»: без глагола «иметь» ученик получает пол-языка бытовых разговоров. И прямая подготовка следующего урока — о семье не поговорить без «у меня есть брат».',
-  vocab:[
-    {ar:'عندي', tr:'ʿи́нди', ru:'у меня есть', kind:'core'},
-    {ar:'عندك', tr:'ʿи́ндак', ru:'у тебя есть', kind:'core'},
-    {ar:'ماذا عندك؟', tr:'ма́за ʿи́ндак?', ru:'что у тебя есть?', kind:'core'},
-    {ar:'وقت', tr:'вакт', ru:'время', kind:'core'},
-    {ar:'فكرة', tr:'фи́кра', ru:'идея', kind:'core'},
-    {ar:'ضيف', tr:'дайф', ru:'гость', kind:'seed'},
-    {ar:'مشكلة', tr:'му́шкиля', ru:'проблема', kind:'seed'}
-  ],
-  theory:{
-    title:'ʿИнди — «у меня», и никакого «иметь»',
-    text:[
-      'В арабском нет глагола «иметь» — и он не нужен. عند значит «у», عندي — «у меня». عندي شاي — буквально «у меня чай»: назвали, у кого, назвали что — предложение готово.',
-      'عندك — «у тебя». Присмотритесь к хвостикам: ـي это «мой/меня», ـك это «твой/тебя». Запомните эту пару — очень скоро вы увидите её на каждом втором слове, и окажется, что вы её уже знаете.',
-      'عندي работает не только с вещами: عندي وقت — есть время, عندي فكرة — есть идея, عندي مشكلة — есть проблема. Три фразы, которые звучат в арабских сериалах каждые пять минут.'
+    theory: {
+      title: 'أريد — ваш первый глагол',
+      text: [
+        '«أريد» — «я хочу». Это уже настоящий глагол, и он в форме первого лица: приставка «أ» в начале и значит «я». Дальше ничего склонять не надо — просто ставьте существительное: أريد شاي, أريد ماء, أريد تمر.',
+        '«تفضّل» не переводится одним словом. Это универсальное «прошу»: его говорят, когда подают чашку, когда приглашают войти, когда уступают место, когда протягивают документы. Одно слово вместо десяти разных.',
+        'И то, что в сериале показано без единой реплики: подают и берут правой рукой. Левая рука в этой роли считается невежливой. Аджибус не объясняет этого Юнусу — он молча разворачивает ему ладонь, и всё понятно.'
+      ],
+      voice: 'Смотри, какая хорошая штука. «Уриду» — я хочу. Дальше говоришь что хочешь, и всё, ты закончил. Уриду шай. Уриду ма. Уриду тамр. Уриду кахва?.. Нет. Нет-нет-нет. Про кофе мы не будем. У меня дома чай.',
+      img: 'Photoreal close-up of two hands: one offering a date, the other receiving it with the right hand, warm kitchen light'
+    },
+    drills: [
+      {
+        type: 'match',
+        task: 'Соедини слово и картинку',
+        items: [
+          ['شاي', 'чай'],
+          ['ماء', 'вода'],
+          ['تمر', 'финики'],
+          ['قهوة', 'кофе']
+        ]
+      },
+      {
+        type: 'build',
+        task: 'Попроси чай',
+        items: [
+          {
+            target: 'أريد شاي',
+            words: ['شاي', 'أريد']
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Что попросили',
+        items: ['أريد شاي', 'أريد ماء', 'أريد تمر', 'لذيذ']
+      },
+      {
+        type: 'gap',
+        task: 'Тебе подали чашку — что ответишь',
+        items: [
+          {
+            text: '___',
+            options: ['شكرًا', 'تفضّل', 'لا'],
+            answer: 'شكرًا'
+          }
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Закажи вслух то, что хочешь',
+        items: ['أريد شاي', 'شكرًا']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 2',
+        src: [2],
+        items: ['نعم']
+      }
     ],
-    voice:'Смотри, как удобно. У англичан «ай хэв», у немцев «ихь хабэ» — целые глаголы, спряжения, мучение! А у нас: ʿинди. У меня. Всё! ʿинди шай — у меня чай. ʿинди фикра — у меня идея. ʿинди вакт? Нет, друг, вакт у меня как раз нет — у меня гость, а чайник один. Вот это уже мушкиля.'
-  },
-  drills:[
-    {type:'build',  task:'Скажи, что у тебя есть чай', items:[{target:'عندي شاي', words:['شاي','عندي']}]},
-    {type:'gap',    task:'Спроси гостя', items:[{text:'ماذا ___؟', options:['عندك','عندي','هذا'], answer:'عندك'}]},
-    {type:'listen', task:'Что есть у Аджибуса', items:['عندي وقت','عندي فكرة','عندي ضيف']},
-    {type:'match',  task:'Соедини', items:[['وقت','время'],['فكرة','идея'],['ضيف','гость'],['مشكلة','проблема']]},
-    {type:'say',    task:'Похвастайся', items:['عندي فكرة!']},
-    {type:'recall', task:'Из урока 7', items:['لا أفهم','مرة ثانية']}
-  ],
-  wrap:[
-    'عندي — «у меня есть», عندك — «у тебя». Глагол «иметь» не нужен.',
-    'Хвостики ـي «мой» и ـك «твой» скоро встретятся везде.',
-    'عندي وقت / فكرة / مشكلة — три самые живые фразы с ʿинди.'
-  ],
-  phrase:'Скажите про три вещи рядом с вами: عندي — и слово. По-настоящему, вслух.'
-},
-
-/* ============================== УРОК 9 ============================== */
-{
-  n:9,
-  goal:'Рассказать о семье по фотографии и правильно обратиться к женщине.',
-  why:'Первые «человеческие» слова: семья. Здесь же курс впервые честно разделяет мужское и женское — через окончание ة и обращение أنتِ. Дебют хаджи Амины: женская половина аудитории наконец слышит обращение к себе.',
-  vocab:[
-    {ar:'من هذا؟', tr:'ман ха́за?', ru:'кто это? (о мужчине)', kind:'core'},
-    {ar:'من هذه؟', tr:'ман ха́зихи?', ru:'кто это? (о женщине)', kind:'core'},
-    {ar:'أب', tr:'аб', ru:'отец', kind:'core'},
-    {ar:'أم', tr:'умм', ru:'мама', kind:'core'},
-    {ar:'أخ', tr:'ах', ru:'брат', kind:'core'},
-    {ar:'أخت', tr:'ухт', ru:'сестра', kind:'core'},
-    {ar:'صديق', tr:'сади́к', ru:'друг', kind:'core'},
-    {ar:'صديقة', tr:'сади́ка', ru:'подруга', kind:'core'},
-    {ar:'جدة', tr:'джа́дда', ru:'бабушка', kind:'seed'},
-    {ar:'وأنتِ؟', tr:'уа а́нти?', ru:'а ты? (к женщине)', kind:'seed'}
-  ],
-  theory:{
-    title:'Та-марбута — буква, которая делает слово женским',
-    text:[
-      'Кружочек с двумя точками на конце слова — ة, «та-марбута» — почти всегда значит женский род: صديق «друг» → صديقة «подруга». Одна буква вместо отдельного слова. Услышали «-а» на конце — скорее всего, речь о женщине.',
-      'Поэтому и «кто это?» раздваивается: من هذا؟ про мужчину, من هذه؟ про женщину. Вы уже знаете هذا со второго урока — هذه его сестра.',
-      'И обещанное с первого урока: к женщине обращаются وأنتِ — «уа анти», с «и» на конце. كيف حالك؟ мужчине звучит «халюк», женщине — «халюки». Разница в один звук, а уважения — на целый разговор.'
+    wrap: [
+      'أريد + слово — этого хватает, чтобы попросить что угодно.',
+      'تفضّل говорят, когда подают. شكرًا — когда берут.',
+      'Подают и берут правой рукой.'
     ],
-    voice:'Семья, друг мой, это первое, о чём тебя спросят. Не «кем работаешь» — «как мама? как отец? сколько братьев?» Ты покажешь фото и скажешь: хаза аби, хазихи умми. И запомни: соседке сверху, хадже Амине, говорят «уа анти», а не «уа анта». Один звук! Но за этот звук она принесёт тебе поднос с обедом. Проверено.'
+    phrase: 'Закажите сегодня что-нибудь мысленно по-арабски: أريد + то, что реально хотите.',
+    scene: {
+      place: 'кухонный угол',
+      event: 'Чай у Аджибуса',
+      must: []
+    }
   },
-  drills:[
-    {type:'match',  task:'Соедини', items:[['أب','отец'],['أم','мама'],['أخ','брат'],['أخت','сестра']]},
-    {type:'gap',    task:'Спроси про женщину на фото', items:[{text:'من ___؟', options:['هذه','هذا','أنتِ'], answer:'هذه'}]},
-    {type:'listen', task:'О ком говорят', items:['صديق','صديقة','جدة']},
-    {type:'build',  task:'Скажи «это моя мама»', items:[{target:'هذه أمي', words:['أمي','هذه']}]},
-    {type:'say',    task:'Спроси у женщины, как дела', items:['كيف حالكِ؟']},
-    {type:'recall', task:'Из урока 8', items:['عندي','ماذا عندك؟']}
-  ],
-  wrap:[
-    'ة на конце — слово женское: صديق → صديقة.',
-    'هذا про мужчину, هذه про женщину.',
-    'К женщине: وأنتِ، كيف حالكِ — «и» на конце.'
-  ],
-  phrase:'Откройте семейное фото и назовите по-арабски троих: هذا... هذه...'
-},
-
-/* ============================== УРОК 10 ============================== */
-{
-  n:10,
-  goal:'Пригласить к себе, принять приглашение и договориться о времени на слух.',
-  why:'Финал сезона: Юнус впервые зовёт в гости сам. Ученик закрывает круг «гостеприимства» — от «тафаддаль» первого урока до собственного приглашения. Плюс культурный слой: ин шаа Ллах как грамматика вежливости.',
-  vocab:[
-    {ar:'تعال', tr:'таʿа́ль', ru:'приходи', kind:'core'},
-    {ar:'متى؟', tr:'ма́та?', ru:'когда?', kind:'core'},
-    {ar:'اليوم', tr:'аль-я́ум', ru:'сегодня', kind:'core'},
-    {ar:'غدًا', tr:'га́дан', ru:'завтра', kind:'core'},
-    {ar:'بيتي', tr:'ба́йти', ru:'мой дом', kind:'core'},
-    {ar:'إن شاء الله', tr:'ин ша́а Лла́х', ru:'если пожелает Аллах', kind:'seed'},
-    {ar:'مع أخي', tr:'ма́ʿа а́хи', ru:'с моим братом', kind:'seed'}
-  ],
-  theory:{
-    title:'Тааль — и договор, скреплённый «ин шаа Ллах»',
-    text:[
-      'تعال — «приходи». Это команда, но тёплая: в паре с تفضّل она звучит как объятие, а не приказ. تعال إلى بيتي — «приходи ко мне домой». Слово بيتي соберите сами: بيت «дом» плюс знакомый хвостик ـي «мой» из прошлых уроков.',
-      'متى؟ — «когда?». Ответы уже готовы: اليوم «сегодня», غدًا «завтра». Три слова — и договорённость состоялась.',
-      'И главное. На любой план о будущем араб отвечает إن شاء الله — «если пожелает Аллах». Это не «может быть» и не отговорка, как думают туристы. Это уважение к тому, что будущее не в наших руках. Сказали «гадан?» — услышали «ин шаа Ллах» — значит, договорились по-настоящему.'
+  {
+    n: 4,
+    goal: 'Спросить, где что-то лежит, и ответить «здесь» или «там».',
+    why: 'Самый лёгкий урок сезона и он стоит сразу после пейволла: человек только что заплатил и должен немедленно получить лёгкую победу. Новых существительных здесь ноль — مفتاح посеян ещё во втором уроке.',
+    vocab: [
+      {
+        ar: 'أين…؟',
+        tr: 'а́йна…?',
+        ru: 'где…?',
+        kind: 'core',
+        img: 'Photoreal medium shot: an older Arab man shades his eyes with a flat palm, searching, a bright modern living room turned upside down behind him',
+        tier: 'A',
+        back: [5, 7, 11, 12, 18]
+      },
+      {
+        ar: 'هنا',
+        tr: 'ху́на',
+        ru: 'здесь',
+        kind: 'core',
+        img: 'Photoreal close-up of a finger pointing sharply down at the floor of a bright modern living room',
+        tier: 'A',
+        back: [5, 7, 11, 13, 17]
+      },
+      {
+        ar: 'هناك',
+        tr: 'хуна́к',
+        ru: 'там',
+        kind: 'core',
+        img: 'Photoreal medium shot: a young man points far into the distance from a rooftop terrace, city skyline beyond',
+        tier: 'A',
+        back: [5, 7, 11, 18, 28]
+      },
+      {
+        ar: 'المفتاح',
+        tr: 'аль-мифта́х',
+        ru: 'тот самый ключ',
+        kind: 'core',
+        img: 'Photoreal close-up of an empty hook by a front door, only a faint mark on the wall where a key used to hang',
+        tier: 'B',
+        back: [5, 6, 10]
+      },
+      {
+        ar: 'نظّارة',
+        tr: 'назза́ра',
+        ru: 'очки',
+        kind: 'seed',
+        img: 'Photoreal close-up of small round glasses pushed up onto a wrinkled forehead, clearly visible',
+        tier: 'C',
+        back: [25],
+        act: 21
+      },
+      {
+        ar: 'تفّاح',
+        tr: 'туффа́х',
+        ru: 'яблоки',
+        kind: 'seed',
+        img: 'Photoreal close-up of a crate of red apples with a handwritten price label in a bright modern grocery store',
+        tier: 'C',
+        back: [5, 6],
+        act: 5
+      },
+      {
+        ar: 'موز',
+        tr: 'мауз',
+        ru: 'бананы',
+        kind: 'seed',
+        img: 'Photoreal close-up of a bunch of yellow bananas on a grocery store counter under bright LED light',
+        tier: 'C',
+        back: [5],
+        act: 5
+      }
     ],
-    voice:'Юнус сегодня сказал мне: тааль иля байти! Приходи, говорит, ко мне. Я чуть чайник не уронил. Вчера он «салям» выговорить не мог — сегодня зовёт в гости! Я спросил: мата? Он говорит: гадан, ин шаа Ллах. Всё правильно сказал. С «ин шаа Ллах». Потому что будущее — оно у Аллаха, а чай — он сегодня. Аджи-и-иб!'
-  },
-  drills:[
-    {type:'build',  task:'Пригласи к себе', items:[{target:'تعال إلى بيتي', words:['بيتي','إلى','تعال']}]},
-    {type:'gap',    task:'Спроси когда', items:[{text:'___؟ — غدًا', options:['متى','ماذا','من'], answer:'متى'}]},
-    {type:'listen', task:'Когда договорились', items:['اليوم','غدًا']},
-    {type:'match',  task:'Соедини', items:[['تعال','приходи'],['متى؟','когда?'],['اليوم','сегодня'],['غدًا','завтра']]},
-    {type:'say',    task:'Прими приглашение', items:['غدًا، إن شاء الله']},
-    {type:'recall', task:'Из всего сезона', items:['تفضّل','عندي وقت']}
-  ],
-  wrap:[
-    'تعال — «приходи»; تعال إلى بيتي — полное приглашение.',
-    'متى؟ → اليوم / غدًا — договорённость из трёх слов.',
-    'Планы на будущее скрепляются «إن شاء الله» — и это согласие, а не отговорка.'
-  ],
-  phrase:'Пригласите кого-нибудь в гости целой арабской фразой: تعال إلى بيتي غدًا!'
-},
-
-/* ============================== УРОК 11 ============================== */
-{
-  n:11,
-  goal:'Сказать, куда идёшь, и спросить об этом собеседника.',
-  why:'Первый урок второго сезона — выход из дома. Один предлог إلى открывает весь город: рынок, мечеть, работа. Ноль сложности после насыщенного финала первого сезона — намеренно лёгкий вход.',
-  vocab:[
-    {ar:'إلى أين؟', tr:'иля а́йна?', ru:'куда?', kind:'core'},
-    {ar:'أذهب إلى', tr:'а́зхаб и́ля', ru:'я иду в', kind:'core'},
-    {ar:'السوق', tr:'ас-сук', ru:'рынок', kind:'core'},
-    {ar:'المسجد', tr:'аль-ма́сджид', ru:'мечеть', kind:'core'},
-    {ar:'البيت', tr:'аль-байт', ru:'дом', kind:'core'},
-    {ar:'العمل', tr:'аль-ʿа́маль', ru:'работа', kind:'seed'},
-    {ar:'المقهى', tr:'аль-ма́кха', ru:'кафе', kind:'seed'}
-  ],
-  theory:{
-    title:'Иля — стрелка направления',
-    text:[
-      'إلى — предлог «в, к», стрелка движения: أذهب إلى السوق — «я иду на рынок». Вопрос собирается из знакомых деталей: إلى أين؟ — «куда?», буквально «к где».',
-      'Обратите внимание: все места идут с الـ — السوق، البيت، المسجد. Помните «тот самый» из четвёртого урока? Когда говоришь «иду на рынок», имеешь в виду свой, известный рынок — поэтому артикль здесь живёт постоянно.',
-      'أذهب — «я иду». Пока это просто слово-ярлык. В следующем уроке оно окажется дверью в целую систему — но не будем забегать.'
+    theory: {
+      title: 'ال — арабское «тот самый»',
+      text: [
+        'Во втором уроке было «هذا مفتاح» — «это ключ». Просто ключ, впервые названный. Здесь Аджибус кричит «أين المفتاح؟» — и впереди слова появилась приставка «ال». Он ищет не какой-нибудь ключ, а свой, тот самый, о котором мы уже знаем.',
+        'ال работает ровно как английское the. Пишется слитно со словом и не меняется ни по родам, ни по числам — одна форма на всё. Для языка, где меняется почти всё, это подарок.',
+        'Мелким шрифтом, про звук: примерно перед половиной букв «л» в ال проглатывается, а следующая согласная удваивается. الشاي читается не «аль-шай», а «аш-шай». Правило выглядит страшно, а на слух ловится за неделю — просто повторяйте за Аджибусом и не думайте об этом.'
+      ],
+      voice: 'Ключ, ключ, где ключ! Слышишь разницу? Не «мифтах» — «АЛЬ-мифтах». Потому что это не какой-то там ключ с улицы. Это МОЙ ключ. Аль — это когда предмет уже твой знакомый. Как сосед: сначала «какой-то человек», потом «тот человек, который громко ходит».',
+      img: 'Photoreal close-up of a key on a red cord hanging around a goat’s neck like a pendant, rooftop terrace behind'
+    },
+    drills: [
+      {
+        type: 'listen',
+        task: 'Где ищут',
+        items: ['هنا', 'هناك', 'أين المفتاح؟']
+      },
+      {
+        type: 'build',
+        task: 'Спроси, где ключ',
+        items: [
+          {
+            target: 'أين المفتاح؟',
+            words: ['المفتاح', 'أين']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Предмет рядом с тобой — как сказать',
+        items: [
+          {
+            text: 'المفتاح ___',
+            options: ['هنا', 'هناك', 'أين'],
+            answer: 'هنا'
+          }
+        ]
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 1, 2',
+        src: [1, 2],
+        items: ['مع السلامة', 'الحمد لله']
+      },
+      {
+        type: 'say',
+        task: 'Спроси вслух',
+        items: ['أين المفتاح؟', 'هنا']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 1',
+        src: [1],
+        items: ['السلام عليكم', 'وعليكم السلام', 'وأنت؟']
+      }
     ],
-    voice:'Иля айна, друг? Куда идёшь? Это первый вопрос улицы. И смотри, какой простой ответ: азхаб иля с-сук. Иду на рынок. Азхаб иля ль-масджид. Азхаб иля ль-байт. Одна стрелочка «иля» — и весь город твой. Куда я иду? В магазин. За финиками. Опять. Анза съела прошлые.'
-  },
-  drills:[
-    {type:'build',  task:'Скажи, что идёшь домой', items:[{target:'أذهب إلى البيت', words:['البيت','إلى','أذهب']}]},
-    {type:'gap',    task:'Спроси куда', items:[{text:'إلى ___؟', options:['أين','متى','من'], answer:'أين'}]},
-    {type:'listen', task:'Куда идёт Аджибус', items:['السوق','المسجد','البيت']},
-    {type:'match',  task:'Соедини', items:[['السوق','рынок'],['المسجد','мечеть'],['العمل','работа'],['المقهى','кафе']]},
-    {type:'say',    task:'Ответь на вопрос улицы', items:['أذهب إلى السوق']},
-    {type:'recall', task:'Из урока 10', items:['تعال','متى؟']}
-  ],
-  wrap:[
-    'إلى — «в, к»: стрелка направления.',
-    'إلى أين؟ — «куда?»; ответ: أذهب إلى + место.',
-    'Места ходят с الـ: السوق، البيت، المسجد.'
-  ],
-  phrase:'Выходя сегодня из дома, скажите себе вслух, куда идёте: أذهب إلى...'
-},
-
-/* ============================== УРОК 12 ============================== */
-{
-  n:12,
-  goal:'Сказать, что делаешь сейчас — про себя, собеседника и третьего человека.',
-  why:'Самый важный грамматический урок сезона: три буквы-двигателя настоящего времени. Даём их не таблицей, а тремя словами — но после этого урока любой глагол курса утраивается бесплатно.',
-  vocab:[
-    {ar:'أذهب', tr:'а́зхаб', ru:'я иду', kind:'core'},
-    {ar:'تذهب', tr:'та́зхаб', ru:'ты идёшь', kind:'core'},
-    {ar:'يذهب', tr:'я́зхаб', ru:'он идёт', kind:'core'},
-    {ar:'أعمل', tr:'а́ʿмаль', ru:'я работаю', kind:'core'},
-    {ar:'أشرب', tr:'а́шраб', ru:'я пью', kind:'core'},
-    {ar:'ماذا تفعل؟', tr:'ма́за та́фʿаль?', ru:'что ты делаешь?', kind:'seed'},
-    {ar:'الآن', tr:'аль-а́н', ru:'сейчас', kind:'seed'}
-  ],
-  theory:{
-    title:'Три буквы-двигателя: أ، ت، ي',
-    text:[
-      'Посмотрите на три слова: أذهب، تذهب، يذهب. Корень один — ذهب «идти». Меняется только первая буква: أ значит «я», ت значит «ты», ي значит «он». Это не таблица спряжения — это три наклейки на один глагол.',
-      'И теперь фокус: наклейки работают на любом глаголе. أشرب «я пью» → تشرب «ты пьёшь» → يشرب «он пьёт». أعمل → تعمل → يعمل. Один раз поняли — получили три формы каждого глагола курса бесплатно.',
-      'Знакомое أريد из третьего урока — из той же семьи: أ +ريد. Вы спрягали глаголы с третьего урока и не знали об этом.'
+    wrap: [
+      'أين + слово — «где…?».',
+      'هنا — здесь, هناك — там. Двух слов хватает на любой ответ.',
+      'ال перед словом значит «тот самый».'
     ],
-    voice:'Открою тебе секрет, друг. Ты думаешь, арабские глаголы — это страшно? Смотри. Азхаб — я иду. Тазхаб — ты идёшь. Язхаб — он идёт. Алиф — это я. Та — это ты. Йа — это он. Три буквы! Я тридцать лет пью чай — ашраб. Ты пьёшь — ташраб. Юнус пьёт — яшраб. Даже Анза... нет, Анза не пьёт чай. Анза ест мои финики.'
+    phrase: 'Найдите дома любую вещь и спросите вслух: أين ___؟ — а потом сами себе ответьте هنا.',
+    scene: {
+      place: 'вся квартира вверх дном',
+      event: 'Айна мифтах?!',
+      must: []
+    }
   },
-  drills:[
-    {type:'match',  task:'Кто это делает', items:[['أذهب','я'],['تذهب','ты'],['يذهب','он']]},
-    {type:'gap',    task:'Про Юнуса', items:[{text:'يونس ___ إلى العمل', options:['يذهب','أذهب','تذهب'], answer:'يذهب'}]},
-    {type:'build',  task:'Скажи «я пью чай»', items:[{target:'أشرب شاي', words:['شاي','أشرب']}]},
-    {type:'listen', task:'Я, ты или он?', items:['أعمل','تعمل','يعمل']},
-    {type:'say',    task:'Ответь: что делаешь?', items:['أشرب شاي الآن']},
-    {type:'recall', task:'Из урока 11', items:['أذهب إلى السوق','إلى أين؟']}
-  ],
-  wrap:[
-    'أ = я, ت = ты, ي = он — первая буква глагола называет деятеля.',
-    'Наклейки работают на любом глаголе: أشرب → تشرب → يشرب.',
-    'أريد из урока 3 — та же система: вы давно спрягаете.'
-  ],
-  phrase:'Возьмите глагол «пить» и проспрягайте вслух на живых людях: я пью, ты пьёшь, он пьёт.'
-},
-
-/* ============================== УРОК 13 ============================== */
-{
-  n:13,
-  goal:'Выжить в такси: назвать адрес, командовать «направо, налево, прямо» и остановить где нужно.',
-  why:'Самый практичный урок сезона — готовый сценарий целиком, от посадки до «сдачи не надо». Повелительное наклонение даём как набор готовых команд, а не как грамматическую тему.',
-  vocab:[
-    {ar:'يمين', tr:'ями́н', ru:'направо', kind:'core'},
-    {ar:'يسار', tr:'яса́р', ru:'налево', kind:'core'},
-    {ar:'إلى الأمام', tr:'и́ля ль-ама́м', ru:'прямо, вперёд', kind:'core'},
-    {ar:'قف', tr:'киф', ru:'стоп, остановись', kind:'core'},
-    {ar:'هنا من فضلك', tr:'ху́на мин фа́длик', ru:'здесь, пожалуйста', kind:'core'},
-    {ar:'شارع', tr:'ша́риʿ', ru:'улица', kind:'seed'},
-    {ar:'قريب', tr:'кари́б', ru:'близко', kind:'seed'},
-    {ar:'بعيد', tr:'баʿи́д', ru:'далеко', kind:'seed'}
-  ],
-  theory:{
-    title:'Команды-слова: повелительное без правил',
-    text:[
-      'В такси не спрягают — в такси командуют. يمين «направо», يسار «налево», إلى الأمام «прямо», قف «стой». Это повелительное наклонение, но учить его как тему не нужно: четыре команды покрывают всю дорогу.',
-      'Вежливость обязательна: голая команда звучит резко, поэтому قف هنا من فضلك — «остановите здесь, пожалуйста». Формула «команда + мин фадлик» превращает приказ в просьбу.',
-      'Знакомое تعال из десятого урока — тоже команда, «приди». Вы уже пользуетесь повелительным: تفضّل، تعال، قف. Система соберётся сама, слово за словом.'
+  {
+    n: 5,
+    goal: 'Спросить цену, сказать «дорого» и «дёшево», довести покупку до конца самостоятельно.',
+    why: 'Кульминация сезона. Зритель понимает полторы минуты живого арабского до того, как урок что-то объяснил, — потому что 80% слов он уже носит с собой. На этом ощущении строится продажа следующего уровня.',
+    vocab: [
+      {
+        ar: 'بكم؟',
+        tr: 'бика́м?',
+        ru: 'сколько стоит?',
+        kind: 'core',
+        img: 'Photoreal medium shot: an older Arab man raises both hands in theatrical enquiry at a fruit counter in a modern grocery store',
+        tier: 'A',
+        back: [6, 8, 12, 19, 30]
+      },
+      {
+        ar: 'غالي',
+        tr: 'га́ли',
+        ru: 'дорого',
+        kind: 'core',
+        img: 'Photoreal medium close-up: an older Arab man clutches his heart in mock horror at a grocery store counter',
+        tier: 'B',
+        back: [6, 7, 11]
+      },
+      {
+        ar: 'رخيص',
+        tr: 'рахи́с',
+        ru: 'дёшево',
+        kind: 'core',
+        img: 'Photoreal medium close-up of an older Arab man making pleading puppy eyes across a grocery counter',
+        tier: 'B',
+        back: [7, 11, 18]
+      },
+      {
+        ar: 'تفّاح',
+        tr: 'туффа́х',
+        ru: 'яблоки',
+        kind: 'core',
+        img: 'Photoreal close-up of a crate of red apples in a bright modern grocery store, price label in front',
+        tier: 'C',
+        back: [5, 6],
+        act: 5
+      },
+      {
+        ar: 'موز',
+        tr: 'мауз',
+        ru: 'бананы',
+        kind: 'core',
+        img: 'Photoreal close-up of a bunch of yellow bananas on a grocery counter, bright LED light',
+        tier: 'C',
+        back: [5],
+        act: 5
+      }
     ],
-    voice:'Такси — это театр, друг. Ты садишься и говоришь: иля с-сук, мин фадлик. Дальше три слова решают всё: ямин! ясар! иля ль-амам! И финал: киф хуна. Стоп здесь. Всё! Ты доехал. Карим-таксист скажет тебе «машаллах, откуда арабский?» — а ты гордо: мин Аджибус. Нет, так не говори. Просто улыбнись.'
-  },
-  drills:[
-    {type:'listen', task:'Куда поворачиваем', items:['يمين','يسار','إلى الأمام']},
-    {type:'match',  task:'Соедини', items:[['يمين','направо'],['يسار','налево'],['إلى الأمام','прямо'],['قف','стоп']]},
-    {type:'build',  task:'Останови такси вежливо', items:[{target:'قف هنا من فضلك', words:['من فضلك','هنا','قف']}]},
-    {type:'gap',    task:'Это близко?', options:undefined, items:[{text:'البيت ___', options:['قريب','بعيد','يمين'], answer:'قريب'}]},
-    {type:'say',    task:'Скомандуй маршрут', items:['يمين، ثم يسار، ثم إلى الأمام']},
-    {type:'recall', task:'Из урока 12', items:['أذهب','يذهب']}
-  ],
-  wrap:[
-    'يمين، يسار، إلى الأمام، قف — четыре слова ведут любую машину.',
-    'Команда + من فضلك = вежливая просьба.',
-    'تفضّل и تعال — вы уже давно говорите в повелительном.'
-  ],
-  phrase:'По дороге сегодня комментируйте повороты вслух: ямин... ясар... иля ль-амам.'
-},
-
-/* ============================== УРОК 14 ============================== */
-{
-  n:14,
-  goal:'Спросить и назвать время, договориться о часе встречи.',
-  why:'Время — вторая ось города после направления. Числа из урока 6 получают главную работу: теперь они называют часы.',
-  vocab:[
-    {ar:'كم الساعة؟', tr:'кам ас-са́ʿа?', ru:'который час?', kind:'core'},
-    {ar:'الساعة الخامسة', tr:'ас-са́ʿа ль-ха́миса', ru:'пять часов', kind:'core'},
-    {ar:'والنصف', tr:'уа-н-нисф', ru:'с половиной', kind:'core'},
-    {ar:'صباحًا', tr:'саба́хан', ru:'утра', kind:'core'},
-    {ar:'مساءً', tr:'маса́ʼан', ru:'вечера', kind:'core'},
-    {ar:'دقيقة', tr:'даки́ка', ru:'минута', kind:'seed'},
-    {ar:'متأخر', tr:'мутаа́ххир', ru:'опаздывающий, поздно', kind:'seed'}
-  ],
-  theory:{
-    title:'Ас-саʿа + число — и время готово',
-    text:[
-      'كم الساعة؟ — «который час?», дословно «сколько часов?» — старое доброе كم из шестого урока. Ответ: الساعة الخامسة — «час пятый». У каждого часа есть имя-ярлык, собранное из знакомого числа: الواحدة «час», الثانية «два», الثالثة «три», الخامسة «пять». Учим их как ярлыки — так же, как выучим дни недели, — без грамматики числительных.',
-      'Половина — والنصف: الساعة الخامسة والنصف — «пять с половиной». Сначала целый час, потом половинка сверху: честная арифметика. Утро и вечер — хвостики صباحًا и مساءً.',
-      'На улице вам прилетит и сокращение الساعة خمسة — «час пять». Понимать его нужно, а отвечать — полной формой: наш курс говорит на фусхе везде, и الساعة الخامسة правильна в любой стране и в любой книге.'
+    theory: {
+      title: 'Из чего собрано «بكم؟»',
+      text: [
+        '«بكم؟» — это две части: «بـ» — предлог «за», и «كم» — «сколько». Вместе получается «за сколько?». Никакого специального слова «цена» учить не нужно.',
+        '«غالي» и «رخيص» — прилагательные, «дорогой» и «дешёвый». В торге они работают как целые реплики: достаточно произнести одно слово с нужным лицом, и позиция заявлена.',
+        'А теперь посчитайте сами. В этой сцене прозвучало около тридцати реплик. Новых слов из них — три. Всё остальное вы уже знали: салям, кайфа халюк, ма хаза, уриду, тафаддаль, шукран, ля, лязиз. Вот так язык и набирается — не списком в двести слов, а пятью словами, которые встречаются в каждой сцене.'
+      ],
+      voice: 'Торговаться — это не про деньги, это про уважение. Ты говоришь «гали!» — дорого. Он говорит: такая цена. Ты хватаешься за сердце. Он не двигается. Ты говоришь «рахис?» — жалобно. Он молчит. И вот тут ты покупаешь. По той же цене. Но теперь вы знакомы!',
+      img: 'Photoreal wide shot of a modern grocery store aisle with crates of red apples and yellow bananas under bright LED lighting'
+    },
+    drills: [
+      {
+        type: 'recall',
+        task: 'Из урока 3',
+        src: [3],
+        items: ['ماء']
+      },
+      {
+        type: 'listen',
+        task: 'Что сказал Аджибус',
+        items: ['بكم؟', 'غالي', 'رخيص', 'تفّاح']
+      },
+      {
+        type: 'build',
+        task: 'Собери покупку целиком',
+        items: [
+          {
+            target: 'أريد موز، بكم؟',
+            words: ['بكم؟', 'موز', 'أريد']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Цена не понравилась',
+        items: [
+          {
+            text: '___!',
+            options: ['غالي', 'رخيص', 'شكرًا'],
+            answer: 'غالي'
+          }
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Купи бананы сам',
+        items: ['أريد موز', 'بكم؟', 'شكرًا']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 2, 4',
+        src: [2, 4],
+        items: ['نعم', 'هنا', 'هناك']
+      }
     ],
-    voice:'Кам ас-саʿа, друг? Не знаешь? А Юнус теперь знает! Ас-саʿа ль-хамиса — пять часов. Ас-саʿа ль-хамиса ва-н-нисф — пять с половиной. Смотри, как честно: сначала целый час, потом половинка сверху. Никаких «половин чего-то, чего ещё нет». Арабская точность. Чай, кстати, заваривается ровно четыре дакика. Это тоже точность.'
-  },
-  drills:[
-    {type:'build',  task:'Спроси время', items:[{target:'كم الساعة؟', words:['الساعة','كم']}]},
-    {type:'listen', task:'Сколько времени назвали', items:['الساعة الثالثة','الساعة الخامسة','الساعة العاشرة']},
-    {type:'gap',    task:'Полшестого по-арабски', items:[{text:'الساعة الخامسة ___', options:['والنصف','صباحًا','دقيقة'], answer:'والنصف'}]},
-    {type:'match',  task:'Соедини', items:[['صباحًا','утра'],['مساءً','вечера'],['دقيقة','минута'],['والنصف','с половиной']]},
-    {type:'say',    task:'Назначь время', items:['الساعة الخامسة مساءً']},
-    {type:'recall', task:'Числа из урока 6', items:['ثلاثة','خمسة','عشرة']}
-  ],
-  wrap:[
-    'كم الساعة؟ — «который час?»; ответ: الساعة الخامسة — часы-ярлыки из чисел.',
-    'والنصف — «с половиной»; صباحًا / مساءً — утра / вечера.',
-    'Уличное «الساعة خمسة» — понимать; отвечать полной формой фусхи.'
-  ],
-  phrase:'Трижды за день ответьте себе вслух на вопрос «кам ас-саʿа?» — по-арабски.'
-},
-
-/* ============================== УРОК 15 ============================== */
-{
-  n:15,
-  goal:'Назвать дни недели и договориться о встрече на конкретный день.',
-  why:'Пять дней недели ученик получает бесплатно: арабские дни — это числа из урока 6. Лучшая иллюстрация принципа «сначала заплати мало, потом получи много».',
-  vocab:[
-    {ar:'يوم', tr:'яум', ru:'день', kind:'core'},
-    {ar:'الجمعة', tr:'аль-джу́мʿа', ru:'пятница', kind:'core'},
-    {ar:'السبت', tr:'ас-сабт', ru:'суббота', kind:'core'},
-    {ar:'الأحد', tr:'аль-а́хад', ru:'воскресенье', kind:'core'},
-    {ar:'الاثنين', tr:'аль-исна́йн', ru:'понедельник', kind:'core'},
-    {ar:'في', tr:'фи', ru:'в (о времени и месте)', kind:'core'},
-    {ar:'الثلاثاء', tr:'ас-суляса́', ru:'вторник', kind:'seed'},
-    {ar:'الأربعاء', tr:'аль-арбиʿа́', ru:'среда', kind:'seed'},
-    {ar:'الخميس', tr:'аль-хами́с', ru:'четверг', kind:'seed'}
-  ],
-  theory:{
-    title:'Дни недели — это числа, которые вы уже знаете',
-    text:[
-      'Смотрите внимательно: الأحد «воскресенье» — от واحد «один». الاثنين «понедельник» — от اثنان «два». الثلاثاء — от ثلاثة «три», الأربعاء — «четыре», الخميس — «пять». Арабская неделя просто пронумерована! Вы выучили дни недели ещё в шестом уроке — просто не знали об этом.',
-      'Особые только два: الجمعة «пятница» — день сбора (от того же корня, что «собрание»), главный день недели. И السبت «суббота» — день покоя, родственник слова «шаббат».',
-      'Предлог في ставит всё это во время: في يوم الجمعة — «в пятницу». Тот же في скажет и «в доме» — предлог один на место и время.'
+    wrap: [
+      'بكم؟ — «сколько стоит?».',
+      'غالي — дорого, رخيص — дёшево. По одному слову хватает.',
+      'Полная покупка: أريد + товар → بكم؟ → شكرًا.'
     ],
-    voice:'А теперь фокус, друг! Ты знаешь дни недели. Не веришь? Ахад — что это? Вахид, один! Первый день. Иснайн — иснан, два! Суляса — саляса! Арабы не мучились с названиями: пронумеровали и пошли пить чай. Только пятница особенная — джумʿа, день, когда все собираются. И суббота — сабт, отдых. Пять дней даром, друг. Даром!'
+    phrase: 'Проговорите всю покупку целиком, вслух, три раза. В следующий раз это будет в настоящем магазине.',
+    scene: {
+      place: 'продуктовый магазин',
+      event: 'Магазин',
+      must: []
+    }
   },
-  drills:[
-    {type:'match',  task:'День ↔ число', items:[['الأحد','واحد'],['الاثنين','اثنان'],['الثلاثاء','ثلاثة'],['الخميس','خمسة']]},
-    {type:'gap',    task:'Встреча в пятницу', items:[{text:'موعدنا ___ يوم الجمعة', options:['في','إلى','من'], answer:'في'}]},
-    {type:'listen', task:'Какой день назвали', items:['الجمعة','السبت','الاثنين']},
-    {type:'build',  task:'«В субботу»', items:[{target:'في يوم السبت', words:['السبت','يوم','في']}]},
-    {type:'say',    task:'Назови сегодняшний день', items:['اليوم يوم...']},
-    {type:'recall', task:'Из урока 14', items:['كم الساعة؟','الساعة الخامسة']}
-  ],
-  wrap:[
-    'Дни недели — номера: الأحد=1, الاثنين=2, الثلاثاء=3...',
-    'Особые: الجمعة — день сбора, السبت — день покоя.',
-    'في — «в»: في يوم الجمعة، في البيت.'
-  ],
-  phrase:'Назовите вслух сегодняшний день и завтрашний: اليوم... غدًا...'
-},
-
-/* ============================== УРОК 16 ============================== */
-{
-  n:16,
-  goal:'Сделать полный вежливый заказ в кафе и попросить счёт.',
-  why:'Кафе — сцена, где встречаются все предыдущие навыки: уриду, числа, вежливость. Плюс подарок-когнат سكر, который аудитория уже знает из родного языка.',
-  vocab:[
-    {ar:'من فضلك', tr:'мин фа́длик', ru:'пожалуйста (просьба)', kind:'core'},
-    {ar:'عصير', tr:'ʿаси́р', ru:'сок', kind:'core'},
-    {ar:'الحساب', tr:'аль-хиса́б', ru:'счёт', kind:'core'},
-    {ar:'سكر', tr:'су́ккар', ru:'сахар', kind:'core'},
-    {ar:'بدون', tr:'биду́н', ru:'без', kind:'core'},
-    {ar:'حلو', tr:'ху́льв', ru:'сладкий', kind:'seed'},
-    {ar:'ساخن', tr:'са́хин', ru:'горячий', kind:'seed'},
-    {ar:'بارد', tr:'ба́рид', ru:'холодный', kind:'seed'}
-  ],
-  theory:{
-    title:'Мин фадлик открывает любую дверь',
-    text:[
-      'من فضلك — «пожалуйста», дословно «из твоей милости». Формула заказа: сначала что, потом волшебное слово: عصير من فضلك — «сок, пожалуйста». شاي من فضلك. الحساب من فضلك — «счёт, пожалуйста» — фраза, которой заканчивается любое кафе мира.',
-      'بدون — «без»: شاي بدون سكر «чай без сахара». Одно слово — и заказ стал точным. Кстати, سكر — предок слова «сахар» почти во всех языках мира: sugar, Zucker, şeker — все пришли из арабского. Вы знали это слово всю жизнь.',
-      'К женщине-официантке: من فضلكِ «мин фадлики» — знакомое «и» из девятого урока работает и здесь.'
+  {
+    n: 6,
+    goal: 'Понимать числа 1–10 на слух и посчитать предметы.',
+    why: 'Урок 5 создал потребность: продавец назвал цену, а ученик не расслышал число. Этот урок её закрывает. Камео Сальмы: шестилетка считает бегло — и это подстёгивает лучше любых слов.',
+    vocab: [
+      {
+        ar: 'كم؟',
+        tr: 'кам?',
+        ru: 'сколько?',
+        kind: 'core',
+        tier: 'A',
+        back: [7, 14, 15, 20, 27]
+      },
+      {
+        ar: 'واحد',
+        tr: 'ва́хид',
+        ru: 'один',
+        kind: 'core',
+        tier: 'B',
+        back: [14, 15, 25]
+      },
+      {
+        ar: 'اثنان',
+        tr: 'исна́н',
+        ru: 'два',
+        kind: 'core',
+        tier: 'B',
+        back: [8, 12, 15]
+      },
+      {
+        ar: 'ثلاثة',
+        tr: 'саля́са',
+        ru: 'три',
+        kind: 'core',
+        tier: 'B',
+        back: [14, 15, 27]
+      },
+      {
+        ar: 'أربعة',
+        tr: 'а́рбаʿа',
+        ru: 'четыре',
+        kind: 'core',
+        tier: 'B',
+        back: [8, 12, 20]
+      },
+      {
+        ar: 'خمسة',
+        tr: 'ха́мса',
+        ru: 'пять',
+        kind: 'core',
+        tier: 'B',
+        back: [8, 12, 14]
+      },
+      {
+        ar: 'عشرة',
+        tr: 'ʿа́шара',
+        ru: 'десять',
+        kind: 'core',
+        tier: 'B',
+        back: [8, 12, 14]
+      },
+      {
+        ar: 'ستة',
+        tr: 'си́тта',
+        ru: 'шесть',
+        kind: 'seed',
+        tier: 'C',
+        back: [15],
+        act: 14
+      },
+      {
+        ar: 'سبعة',
+        tr: 'са́бʿа',
+        ru: 'семь',
+        kind: 'seed',
+        tier: 'C',
+        back: [15],
+        act: 14
+      },
+      {
+        ar: 'ثمانية',
+        tr: 'сама́ния',
+        ru: 'восемь',
+        kind: 'seed',
+        tier: 'C',
+        back: [16],
+        act: 15
+      },
+      {
+        ar: 'تسعة',
+        tr: 'ти́сʿа',
+        ru: 'девять',
+        kind: 'seed',
+        tier: 'C',
+        back: [17],
+        act: 15
+      }
     ],
-    voice:'В кафе, друг, тебя выдаёт не акцент. Тебя выдаёт грубость! Никогда просто «шай!». Всегда: шай мин фадлик. Захотел без сахара — шай бидун суккар. Кстати, суккар... сахар... слышишь? Это мы вам его подарили, вместе со словом! Пейте на здоровье. А счёт — аль-хисаб, мин фадлик. И улыбка. Улыбка — это половина арабского языка.'
-  },
-  drills:[
-    {type:'build',  task:'Закажи сок вежливо', items:[{target:'عصير من فضلك', words:['من فضلك','عصير']}]},
-    {type:'gap',    task:'Чай без сахара', items:[{text:'شاي ___ سكر', options:['بدون','مع','في'], answer:'بدون'}]},
-    {type:'listen', task:'Что заказали', items:['عصير','شاي بدون سكر','قهوة']},
-    {type:'match',  task:'Соедини', items:[['الحساب','счёт'],['سكر','сахар'],['بدون','без'],['عصير','сок']]},
-    {type:'say',    task:'Попроси счёт', items:['الحساب من فضلك']},
-    {type:'recall', task:'Из уроков 3 и 7', items:['أريد شاي','لا أريد']}
-  ],
-  wrap:[
-    'Заказ = что + من فضلك: عصير من فضلك.',
-    'بدون — «без»: شاي بدون سكر.',
-    'الحساب من فضلك — так заканчивается любое кафе.'
-  ],
-  phrase:'Сделайте сегодняшний заказ — хотя бы мысленно — целиком по-арабски, с «мин фадлик» в конце.'
-},
-
-/* ============================== УРОК 17 ============================== */
-{
-  n:17,
-  goal:'Попросить разрешение, услугу или вещь одним словом — и понять ответ.',
-  why:'ممكن — слово-суперсила: один фрейм закрывает сотню ситуаций от «можно воды» до «можно фото». Самое частотное слово вежливой просьбы в арабском мире.',
-  vocab:[
-    {ar:'ممكن؟', tr:'му́мкин?', ru:'можно?', kind:'core'},
-    {ar:'ممكن ماء؟', tr:'му́мкин ма́ʼ?', ru:'можно воды?', kind:'core'},
-    {ar:'صورة', tr:'су́ра', ru:'фото, картинка', kind:'core'},
-    {ar:'طبعًا', tr:'та́бʿан', ru:'конечно', kind:'core'},
-    {ar:'للأسف، لا', tr:'лиль-а́саф, ля', ru:'к сожалению, нет', kind:'core'},
-    {ar:'لحظة', tr:'ла́хза', ru:'секундочку', kind:'seed'},
-    {ar:'مساعدة', tr:'мусаʿа́да', ru:'помощь', kind:'seed'}
-  ],
-  theory:{
-    title:'Мумкин — швейцарский нож просьбы',
-    text:[
-      'ممكن означает «возможно» — и в вопросе превращается в универсальное «можно?». Формула проще некуда: ممكن + что хотите. ممكن ماء؟ — можно воды? ممكن صورة؟ — можно фото? ممكن هنا؟ — можно здесь? Существительное, место, что угодно.',
-      'Ответы приходят парой: طبعًا — «конечно» (услышите чаще всего: арабская вежливость щедра), и للأسف، لا — «к сожалению, нет» (отказ всегда смягчают).',
-      'Чем ممكن отличается от أريد? «Уриду» заявляет желание, «мумкин» спрашивает разрешения. Первое — про вас, второе — про собеседника. Поэтому «мумкин» звучит мягче и открывает больше дверей.'
+    theory: {
+      title: 'Кам? — и числа без грамматики',
+      text: [
+        '«كم» — «сколько». Ставится перед предметом, и предмет стоит в единственном числе: كم تفاحة؟ — «сколько яблок?», буквально «сколько яблоко?». Одно вопросительное слово, предмет не меняется — это упрощает жизнь.',
+        'Числа 1–10 учим как ярлыки, без правил. У арабских чисел есть своя знаменитая грамматика согласования — мы к ней вернёмся через много уроков, когда будет что согласовывать. Сейчас задача одна: услышать «хамса» и понять «пять».',
+        'Совет из жизни: числа не запоминаются столбиком — они запоминаются у кассы. Считайте вслух всё подряд: ступеньки, финики, чашки.'
+      ],
+      voice: 'Числа, друг мой, это не урок математики. Это рынок! Ты говоришь «кам?» — тебе отвечают. Не расслышал? Ты уже знаешь, что сказать: «марра сания» — ещё раз... А, нет-нет, это следующий урок. Пока просто считай: вахид, иснан, саляса. Соседская Сальма считает до десяти быстрее меня. Ей шесть лет. Вот что обидно!'
+    },
+    drills: [
+      {
+        type: 'listen',
+        task: 'Услышь число и выбери цифру',
+        items: ['خمسة', 'ثلاثة', 'عشرة']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 2',
+        src: [2],
+        items: ['قطّ', 'أو']
+      },
+      {
+        type: 'build',
+        task: 'Спроси, сколько яблок',
+        items: [
+          {
+            target: 'كم تفاحة؟',
+            words: ['تفاحة', 'كم']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Посчитай по порядку',
+        items: [
+          {
+            text: 'واحد، اثنان، ___',
+            options: ['ثلاثة', 'خمسة', 'عشرة'],
+            answer: 'ثلاثة'
+          }
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Посчитай вслух до пяти',
+        items: ['واحد، اثنان، ثلاثة، أربعة، خمسة']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 2, 3, 4',
+        src: [2, 3, 4],
+        items: ['شكرًا', 'المفتاح', 'قلم']
+      }
     ],
-    voice:'Если бы меня заставили оставить ученику одно слово — только одно! — я бы оставил «мумкин». Мумкин маʼ? Можно воды? Мумкин сура? Можно фото? Мумкин хуна? Можно тут присесть? Одно слово — и весь мир тебе отвечает: табʿан! Конечно! Арабы редко говорят «нет», друг. А если говорят — то «лиль-асаф, ля». С сожалением. Потому что отказывать гостю больно.'
-  },
-  drills:[
-    {type:'build',  task:'Попроси воды одним словом', items:[{target:'ممكن ماء؟', words:['ماء','ممكن']}]},
-    {type:'gap',    task:'Разреши с радостью', items:[{text:'ممكن صورة؟ — ___!', options:['طبعًا','للأسف','لحظة'], answer:'طبعًا'}]},
-    {type:'listen', task:'Разрешили или нет', items:['طبعًا','للأسف، لا','لحظة']},
-    {type:'match',  task:'Соедини', items:[['ممكن؟','можно?'],['طبعًا','конечно'],['لحظة','секундочку'],['مساعدة','помощь']]},
-    {type:'say',    task:'Попроси помощи', items:['ممكن مساعدة؟']},
-    {type:'recall', task:'Из урока 16', items:['من فضلك','الحساب']}
-  ],
-  wrap:[
-    'ممكن + слово = любая просьба: ممكن ماء؟ ممكن صورة؟',
-    'Ответы: طبعًا «конечно» / للأسف، لا «к сожалению, нет».',
-    'أريد — желание, ممكن — разрешение. Второе мягче.'
-  ],
-  phrase:'Попросите сегодня о чём-нибудь через «мумкин» — и посчитайте, сколько раз услышите «табʿан».'
-},
-
-/* ============================== УРОК 18 ============================== */
-{
-  n:18,
-  goal:'Рассказать, где живёшь и откуда ты, и спросить об этом собеседника.',
-  why:'Первый связный мини-рассказ о себе: имя (урок 1) + город + страна. Разговор со случайным человеком на скамейке — самый человечный сценарий сезона.',
-  vocab:[
-    {ar:'أسكن في', tr:'а́скун фи', ru:'я живу в', kind:'core'},
-    {ar:'أين تسكن؟', tr:'а́йна та́скун?', ru:'где ты живёшь?', kind:'core'},
-    {ar:'من أين أنت؟', tr:'мин а́йна а́нта?', ru:'откуда ты?', kind:'core'},
-    {ar:'أنا من', tr:'а́на мин', ru:'я из', kind:'core'},
-    {ar:'مدينة', tr:'мади́на', ru:'город', kind:'core'},
-    {ar:'قرية', tr:'ка́рья', ru:'деревня', kind:'seed'},
-    {ar:'حي', tr:'хай', ru:'район', kind:'seed'}
-  ],
-  theory:{
-    title:'Глагол и предлог ходят парой',
-    text:[
-      'أسكن في — «я живу в»: глагол سكن всегда берёт с собой предлог في. Учите их одним куском, как одно длинное слово: أسكن في المدينة — «я живу в городе». Знакомая ت из двенадцатого урока даёт вопрос: أين تسكن؟ — «где ты живёшь?»',
-      'Происхождение — через من «из»: من أين أنت؟ «откуда ты?», دословно «из где ты». Ответ: أنا من + страна — названия стран в арабском звучат почти как в вашем родном языке, это подарок.',
-      'Соберём рассказ о себе из трёх уроков: أنا يونس. أنا من موسكو. أسكن في القاهرة. Три предложения — и незнакомец на скамейке уже ваш собеседник.'
+    wrap: [
+      'كم تفاحة؟ — «сколько яблок?»: предмет после كم в единственном числе.',
+      'Числа 1–10 — ярлыки на слух, без грамматики.',
+      'واحد، اثنان، ثلاثة، أربعة، خمسة — первая пятёрка обязательна, остальное узнаётся.'
     ],
-    voice:'Мин айна анта, друг? Откуда ты? Этот вопрос тебе зададут тысячу раз. И смотри, какой красивый ответ ты теперь умеешь: ана мин Русия. Аскун фи ль-Кахира. Я из России, живу в Каире. Всё! Старик на скамейке уже наливает тебе чай из термоса и рассказывает про своих внуков. Три предложения открывают сердца, друг.'
+    phrase: 'Посчитайте вслух по-арабски пять любых предметов на своём столе.',
+    scene: {
+      place: 'магазин, касса',
+      event: 'Сколько их?',
+      must: []
+    }
   },
-  drills:[
-    {type:'build',  task:'Скажи, где живёшь', items:[{target:'أسكن في المدينة', words:['المدينة','في','أسكن']}]},
-    {type:'gap',    task:'Спроси откуда', items:[{text:'من ___ أنت؟', options:['أين','متى','ماذا'], answer:'أين'}]},
-    {type:'listen', task:'Город или деревня', items:['مدينة','قرية','حي']},
-    {type:'match',  task:'Соедини', items:[['أسكن في','я живу в'],['أنا من','я из'],['مدينة','город'],['قرية','деревня']]},
-    {type:'say',    task:'Расскажи о себе три предложения', items:['أنا... أنا من... أسكن في...']},
-    {type:'recall', task:'Из урока 1', items:['أنا...','وأنت؟']}
-  ],
-  wrap:[
-    'أسكن في — учим куском: глагол + предлог.',
-    'من أين أنت؟ → أنا من + страна.',
-    'Три предложения о себе: имя, откуда, где живу.'
-  ],
-  phrase:'Соберите свой рассказ о себе — имя, страна, город — и произнесите одним куском, без пауз.'
-},
-
-/* ============================== УРОК 19 ============================== */
-{
-  n:19,
-  goal:'Заплатить, спросить сдачу и честно признаться, что денег нет.',
-  why:'Дырка в грамматике, которую пора закрыть: отрицание عندي — не «ля», а «ма». Плюс комедийное золото: Аджибус забыл кошелёк, и платит гордый Юнус.',
-  vocab:[
-    {ar:'نقود', tr:'нуку́д', ru:'деньги', kind:'core'},
-    {ar:'ما عندي', tr:'ма ʿи́нди', ru:'у меня нет', kind:'core'},
-    {ar:'الباقي', tr:'аль-ба́ки', ru:'сдача', kind:'core'},
-    {ar:'أدفع', tr:'а́дфаʿ', ru:'я плачу', kind:'core'},
-    {ar:'بطاقة', tr:'бита́ка', ru:'карта', kind:'seed'},
-    {ar:'مجانًا', tr:'маджа́нан', ru:'бесплатно', kind:'seed'}
-  ],
-  theory:{
-    title:'Ма ʿинди — особое «нет»',
-    text:[
-      'В седьмом уроке мы отрицали глаголы через لا: لا أريد، لا أفهم. Но عندي — не глагол, это «у меня» (помните: в этой фразе глагола вообще нет). Поэтому и отрицание у него своё: ما عندي — «у меня нет». ما عندي نقود — «у меня нет денег». ما عندي وقت — «нет времени».',
-      'Правило простое: لا — для глаголов, ما — для عندي. Два «нет» на два случая, и путать их арабское ухо не позволит: «ля ʿинди» звучит так же странно, как «не у меня есть».',
-      'Касса словами: أدفع — «я плачу» (знакомая أ!), الباقي — «сдача», буквально «остаток». الباقي لك — «сдачи не надо», дословно «остаток тебе» — фраза, которая делает вас щедрым человеком за одну секунду.'
+  {
+    n: 7,
+    goal: 'Отказаться, признаться, что не понял, и попросить повторить помедленнее.',
+    why: 'Мета-язык ученика. Три фразы, которые делают возможным всё остальное общение: с ними не страшно не понять. Урок 6 создал проблему — числа на слух быстрые, — этот даёт инструмент.',
+    vocab: [
+      {
+        ar: 'لا أريد',
+        tr: 'ля ури́ду',
+        ru: 'я не хочу',
+        kind: 'core',
+        tier: 'A',
+        back: [8, 10, 16, 17, 19]
+      },
+      {
+        ar: 'لا أفهم',
+        tr: 'ля а́фхам',
+        ru: 'я не понимаю',
+        kind: 'core',
+        tier: 'A',
+        back: [8, 10, 14, 19, 29]
+      },
+      {
+        ar: 'لا أعرف',
+        tr: 'ля а́ʿриф',
+        ru: 'я не знаю',
+        kind: 'core',
+        tier: 'B',
+        back: [9, 13, 21]
+      },
+      {
+        ar: 'مرة ثانية',
+        tr: 'ма́рра са́ния',
+        ru: 'ещё раз',
+        kind: 'core',
+        tier: 'A',
+        back: [8, 10, 14, 22],
+        next: [34]
+      },
+      {
+        ar: 'ببطء',
+        tr: 'би-бутʼ',
+        ru: 'помедленнее',
+        kind: 'seed',
+        tier: 'A',
+        back: [12],
+        act: 12
+      },
+      {
+        ar: 'ما معنى...؟',
+        tr: 'ма ма́ʿна...?',
+        ru: 'что значит...?',
+        kind: 'seed',
+        tier: 'C',
+        back: [19],
+        act: 17
+      },
+      {
+        ar: 'طيب',
+        tr: 'та́йиб',
+        ru: 'ладно, хорошо',
+        kind: 'seed',
+        tier: 'C',
+        back: [7],
+        act: 7
+      },
+      {
+        ar: 'من فضلك',
+        tr: 'мин фа́длик',
+        ru: 'пожалуйста (просьба)',
+        kind: 'seed',
+        tier: 'A',
+        back: [13, 16, 17, 28],
+        act: 16
+      }
     ],
-    voice:'Случилась беда, друг. Стою на кассе, полная корзина фиников, тянусь за кошельком — а его нет! И я говорю честно, громко, как мужчина: ма ʿинди нукуд! Нет у меня денег! И тут Юнус — мой Юнус! — достаёт кошелёк и говорит: ана адфаʿ. Я плачу. Ученик платит за учителя! Я чуть не заплакал. Потом вспомнил: это же мои деньги, я ему вчера одолжил. Ну и пусть. Красиво было.'
-  },
-  drills:[
-    {type:'build',  task:'Признайся честно', items:[{target:'ما عندي نقود', words:['نقود','عندي','ما']}]},
-    {type:'gap',    task:'Выбери правильное «нет»', items:[{text:'___ عندي وقت', options:['ما','لا','لن'], answer:'ما'}]},
-    {type:'listen', task:'Что происходит на кассе', items:['أدفع','الباقي','بطاقة']},
-    {type:'match',  task:'Соедини', items:[['نقود','деньги'],['الباقي','сдача'],['بطاقة','карта'],['مجانًا','бесплатно']]},
-    {type:'say',    task:'Будь щедрым', items:['الباقي لك']},
-    {type:'recall', task:'Из уроков 7 и 8', items:['لا أريد','عندي']}
-  ],
-  wrap:[
-    'لا — для глаголов, ما — для عندي: ما عندي نقود.',
-    'أدفع — «я плачу», الباقي — «сдача».',
-    'الباقي لك — «сдачи не надо»: щедрость за секунду.'
-  ],
-  phrase:'Проверьте карманы и скажите правду по-арабски: عندي نقود — или ما عندي.'
-},
-
-/* ============================== УРОК 20 ============================== */
-{
-  n:20,
-  goal:'Объяснить причину: ответить на «почему?» полной фразой.',
-  why:'Финал сезона. لأن — первый союз, склеивающий два предложения: речь перестаёт быть телеграфом. И сюжетная развязка: почему опоздали? Из-за козы, конечно.',
-  vocab:[
-    {ar:'لماذا؟', tr:'лима́за?', ru:'почему?', kind:'core'},
-    {ar:'لأن', tr:'ли-а́нна', ru:'потому что', kind:'core'},
-    {ar:'متأخر', tr:'мутаа́ххир', ru:'опоздавший', kind:'core'},
-    {ar:'الحافلة', tr:'аль-ха́филя', ru:'автобус', kind:'core'},
-    {ar:'آسف', tr:'а́сиф', ru:'прости, сожалею', kind:'seed'},
-    {ar:'مشغول', tr:'машгу́ль', ru:'занят', kind:'seed'}
-  ],
-  theory:{
-    title:'Лианна склеивает два предложения',
-    text:[
-      'لماذا؟ — «почему?». До этого урока на него можно было только виновато молчать. Теперь есть لأن — «потому что»: أنا متأخر لأن الحافلة متأخرة — «я опоздал, потому что автобус опоздал». Две мысли стали одной фразой — это первый сложный синтаксис курса.',
-      'Заметьте пару متأخر / متأخرة: про мужчину и про автобус (слово حافلة женское — вон она, ة!). Девятый урок работает.',
-      'آسف — «прости» — пока просто вежливое слово рядом с опозданием. Полноценное извинение с прошедшим временем будет отдельным уроком: посеяли — вырастет.'
+    theory: {
+      title: 'Ля + глагол — и три самые честные фразы',
+      text: [
+        'Отрицание в настоящем — просто لا перед глаголом: أريد «хочу» → لا أريد «не хочу», أفهم «понимаю» → لا أفهم «не понимаю». Никаких вспомогательных слов, никаких изменений в глаголе.',
+        '«Не понимаю» — это не поражение, а инструмент. Сказали لا أفهم، مرة ثانية — и собеседник повторит медленнее. В арабской культуре переспросить не стыдно; стыдно кивать, не поняв.',
+        'И родственник «ма хаза» из второго урока: ما معنى؟ — «что значит?» Там вы спрашивали про предметы, здесь — про слова. С этими двумя вопросами учитель больше не нужен... почти.'
+      ],
+      voice: 'Запомни три фразы, друг, и я спокоен за тебя в любой стране. «Ля уриду» — не хочу, спасибо. «Ля аариф» — не знаю, бывает. И главная: «ля афхам» — не понимаю! Это не слабость. Это самая умная фраза ученика. Глупый кивает. Умный говорит: ля афхам, марра сания, бибутʼ! И весь мир повторяет для него помедленнее.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Скажи, что не понимаешь',
+        items: [
+          {
+            target: 'لا أفهم',
+            words: ['أفهم', 'لا']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Отказаться от кофе',
+        items: [
+          {
+            text: 'لا ___ قهوة',
+            options: ['أريد', 'أفهم', 'أعرف'],
+            answer: 'أريد'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Что сказал Юнус',
+        items: ['لا أفهم', 'لا أعرف', 'لا أريد']
+      },
+      {
+        type: 'say',
+        task: 'Попроси повторить',
+        items: ['مرة ثانية', 'ببطء من فضلك']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 5, 6',
+        src: [5, 6],
+        items: ['كم؟', 'غالي', 'رخيص']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 4',
+        src: [4],
+        items: ['أين…؟', 'هنا', 'هناك']
+      }
     ],
-    voice:'Лимаза, спрашивает хаджа Амина, лимаза мутааххир?! Почему опоздал?! И тут, друг, нельзя молчать. Молчание — это вина. Говори: ли-анна! Потому что! Ли-анна ль-хафиля мутааххира! Автобус опоздал! Ли-анна Анза... нет, про Анзу не говори. Про козу никто не верит. Хотя это всегда коза.'
-  },
-  drills:[
-    {type:'build',  task:'Объясни причину', items:[{target:'أنا متأخر لأن الحافلة متأخرة', words:['متأخرة','الحافلة','لأن','متأخر','أنا']}]},
-    {type:'gap',    task:'Ответь почему', items:[{text:'لماذا؟ — ___ أنا مشغول', options:['لأن','لكن','ما'], answer:'لأن'}]},
-    {type:'listen', task:'Причина или вопрос', items:['لماذا؟','لأن','آسف']},
-    {type:'match',  task:'Соедини', items:[['لماذا؟','почему?'],['لأن','потому что'],['الحافلة','автобус'],['مشغول','занят']]},
-    {type:'say',    task:'Извинись с причиной', items:['آسف، أنا متأخر لأن الحافلة متأخرة']},
-    {type:'recall', task:'Из сезона', items:['كم الساعة؟','في يوم الجمعة']}
-  ],
-  wrap:[
-    'لماذا؟ — «почему?», لأن — «потому что».',
-    'لأن склеивает два предложения в одно — первая сложная фраза.',
-    'متأخر / متأخرة — согласование по роду уже работает само.'
-  ],
-  phrase:'Сегодняшнее «потому что» скажите по-арабски: لأن... — хоть про погоду, хоть про пробки.'
-},
-
-/* ============================== УРОК 21 ============================== */
-{
-  n:21,
-  goal:'Описать предмет и человека: большой, маленький, новый, старый, красивый.',
-  why:'Открытие третьего сезона — сезона людей. Прилагательные превращают телеграф в речь: не «дом», а «большой красивый дом». Одно правило: описание идёт после предмета.',
-  vocab:[
-    {ar:'كبير', tr:'каби́р', ru:'большой', kind:'core'},
-    {ar:'صغير', tr:'саги́р', ru:'маленький', kind:'core'},
-    {ar:'جديد', tr:'джади́д', ru:'новый', kind:'core'},
-    {ar:'قديم', tr:'кади́м', ru:'старый', kind:'core'},
-    {ar:'جميل', tr:'джами́ль', ru:'красивый', kind:'core'},
-    {ar:'طويل', tr:'тави́ль', ru:'длинный, высокий', kind:'seed'},
-    {ar:'قصير', tr:'касы́р', ru:'короткий, низкий', kind:'seed'}
-  ],
-  theory:{
-    title:'Сначала что, потом какой',
-    text:[
-      'Порядок слов обратный привычному: بيت كبير — буквально «дом большой». Сначала предмет, потом описание. Всегда. К этому привыкаешь за день, потому что порядок железный, без исключений.',
-      'Прилагательное подстраивается под род: بيت كبير «большой дом», но مدينة كبيرة «большой город» — слово مدينة женское, и прилагательное берёт ة вслед за ним. Знакомая та-марбута из девятого урока теперь работает на согласовании.',
-      'И пары для памяти: كبير/صغير، جديد/قديم، طويل/قصير. Прилагательные живут парами противоположностей — учите двойками, вспоминается вдвое легче.'
+    wrap: [
+      'لا перед глаголом — отрицание готово: لا أريد، لا أفهم، لا أعرف.',
+      'Не понял — скажи об этом: مرة ثانية، ببطء.',
+      'ما معنى؟ — «что значит?» — брат «ма хаза», только про слова.'
     ],
-    voice:'Юнус купил куртку, друг. Приходит, спрашивает: как? А я смотрю — куртка джадида, джамиля... но кабира! Большая! Он в ней как я в палатке. И я говорю честно: аль-джакет джамиль... уа кабир. Красивая и большая. Честность, друг, — тоже часть языка. Он теперь носит её с ремнём. Тайиб. Главное — тепло.'
+    phrase: 'Сегодня хотя бы раз честно скажите вслух «لا أفهم» — пусть даже самому себе над арабским текстом.',
+    scene: {
+      place: 'гостиная',
+      event: 'Не хочу — не понимаю',
+      must: ['تمر', 'لذيذ', 'طيّب']
+    }
   },
-  drills:[
-    {type:'match',  task:'Пары противоположностей', items:[['كبير','صغير'],['جديد','قديم'],['طويل','قصير']]},
-    {type:'build',  task:'«Большой дом» по-арабски', items:[{target:'بيت كبير', words:['كبير','بيت']}]},
-    {type:'gap',    task:'Согласуй с городом', items:[{text:'مدينة ___', options:['كبيرة','كبير','كبار'], answer:'كبيرة'}]},
-    {type:'listen', task:'Какой он', items:['كبير','صغير','جميل']},
-    {type:'say',    task:'Опиши свой дом', items:['بيتي صغير وجميل']},
-    {type:'recall', task:'Из урока 9', items:['صديقة','هذه']}
-  ],
-  wrap:[
-    'Порядок железный: сначала предмет, потом описание — بيت كبير.',
-    'Женскому слову — женское прилагательное: مدينة كبيرة.',
-    'Учите прилагательные парами противоположностей.'
-  ],
-  phrase:'Опишите три вещи вокруг по формуле «что + какой»: كتاب قديم، بيت كبير...'
-},
-
-/* ============================== УРОК 22 ============================== */
-{
-  n:22,
-  goal:'Восхититься вслух — по-арабски и от души.',
-  why:'Урок-передышка после грамматики 21-го: одна конструкция, большой эффект. «Ма аджмаль!» — фраза, которая делает из туриста желанного гостя.',
-  vocab:[
-    {ar:'ما أجمل...!', tr:'ма а́джмаль...!', ru:'как красиво...!', kind:'core'},
-    {ar:'منظر', tr:'ма́нзар', ru:'вид', kind:'core'},
-    {ar:'بحر', tr:'бахр', ru:'море', kind:'core'},
-    {ar:'سماء', tr:'сама́', ru:'небо', kind:'core'},
-    {ar:'ما شاء الله', tr:'ма ша́а Лла́х', ru:'машаллах (восхищение без сглаза)', kind:'core'},
-    {ar:'نجوم', tr:'нуджу́м', ru:'звёзды', kind:'seed'},
-    {ar:'قمر', tr:'ка́мар', ru:'луна', kind:'seed'}
-  ],
-  theory:{
-    title:'Ма аджмаль — формула восторга',
-    text:[
-      'ما أجمل + вещь = «как прекрасно...!»: ما أجمل المنظر! — «какой вид!» ما أجمل البحر! — «какое море!» Узнаёте أجمل? Это جميل «красивый» из прошлого урока в особой форме. Одна формула — бесконечные восторги.',
-      'И слово, которое вы знали до курса: ما شاء الله — «так пожелал Аллах». Его говорят, восхищаясь, — детьми, домом, успехом — чтобы восхищение было благословением, а не сглазом. Хвалите чьего-то ребёнка — обязательно добавьте машаллах: это не суеверие, это забота.',
-      'Грамматики сегодня ноль — и это осознанно. После двадцати одного урока подряд вы заслужили урок, где надо только восхищаться.'
+  {
+    n: 8,
+    goal: 'Сказать, что у тебя есть, спросить, что есть у собеседника, и предложить это гостю.',
+    why: 'عندي — вторая великая конструкция после «уриду»: без глагола «иметь» ученик получает пол-языка бытовых разговоров. И прямая подготовка следующего урока — о семье не поговорить без «у меня есть брат».',
+    vocab: [
+      {
+        ar: 'عندي',
+        tr: 'ʿи́нди',
+        ru: 'у меня есть',
+        kind: 'core',
+        tier: 'A',
+        back: [9, 10, 19, 23, 24, 25]
+      },
+      {
+        ar: 'عندك',
+        tr: 'ʿи́ндак',
+        ru: 'у тебя есть',
+        kind: 'core',
+        tier: 'A',
+        back: [9, 11, 16, 23]
+      },
+      {
+        ar: 'ماذا عندك؟',
+        tr: 'ма́за ʿи́ндак?',
+        ru: 'что у тебя есть?',
+        kind: 'core',
+        tier: 'A',
+        back: [9, 11, 16, 23],
+        next: [35]
+      },
+      {
+        ar: 'وقت',
+        tr: 'вакт',
+        ru: 'время',
+        kind: 'core',
+        tier: 'B',
+        back: [10, 19, 26]
+      },
+      {
+        ar: 'فكرة',
+        tr: 'фи́кра',
+        ru: 'идея',
+        kind: 'core',
+        tier: 'B',
+        back: [10, 15, 26]
+      },
+      {
+        ar: 'ضيف',
+        tr: 'дайф',
+        ru: 'гость',
+        kind: 'seed',
+        tier: 'C',
+        back: [10],
+        act: 10
+      },
+      {
+        ar: 'مشكلة',
+        tr: 'му́шкиля',
+        ru: 'проблема',
+        kind: 'seed',
+        tier: 'C',
+        back: [23],
+        act: 20
+      }
     ],
-    voice:'Поднялись мы с Юнусом на крышу соседнего дома. Закат. Город золотой. И Юнус — сам, я не подсказывал! — говорит: ма аджмаль аль-манзар... И тихо так: ма шаа Ллах. И вот тут, друг, я понял: всё. Человек заговорил. Не словами заговорил — сердцем. Грамматику можно выучить. Восхищение — только почувствовать.'
-  },
-  drills:[
-    {type:'build',  task:'Восхитись видом', items:[{target:'ما أجمل المنظر!', words:['المنظر','أجمل','ما']}]},
-    {type:'listen', task:'Чем восхищаются', items:['البحر','السماء','النجوم']},
-    {type:'match',  task:'Соедини', items:[['بحر','море'],['سماء','небо'],['نجوم','звёзды'],['قمر','луна']]},
-    {type:'gap',    task:'Похвали без сглаза', items:[{text:'بيتك جميل، ___!', options:['ما شاء الله','للأسف','لأن'], answer:'ما شاء الله'}]},
-    {type:'say',    task:'Восхитись небом', items:['ما أجمل السماء!']},
-    {type:'recall', task:'Из урока 21', items:['جميل','كبير']}
-  ],
-  wrap:[
-    'ما أجمل + вещь = «как прекрасно!»',
-    'Хвалишь чьё-то — добавь ما شاء الله: восхищение без сглаза.',
-    'Сегодня без грамматики — заслужили.'
-  ],
-  phrase:'Найдите сегодня один красивый момент и скажите ему вслух: ما أجمل...!'
-},
-
-/* ============================== УРОК 23 ============================== */
-{
-  n:23,
-  goal:'Сказать, чьё это: мой, твой, его, её — одним звуком на конце слова.',
-  why:'Хвостики ـي и ـك ученик уже встречал в عندي и عندك — теперь система раскрывается целиком. Спор о вещах во дворе — идеальная сцена для «моё!» и «твоё!».',
-  vocab:[
-    {ar:'كتابي', tr:'кита́би', ru:'моя книга', kind:'core'},
-    {ar:'كتابك', tr:'кита́бук', ru:'твоя книга', kind:'core'},
-    {ar:'كتابه', tr:'кита́бух', ru:'его книга', kind:'core'},
-    {ar:'كتابها', tr:'кита́буха', ru:'её книга', kind:'core'},
-    {ar:'هذا لي', tr:'ха́за ли', ru:'это моё', kind:'core'},
-    {ar:'لمن هذا؟', tr:'ли-ман ха́за?', ru:'чьё это?', kind:'seed'},
-    {ar:'مفتاحي', tr:'мифта́хи', ru:'мой ключ', kind:'seed'}
-  ],
-  theory:{
-    title:'Одна буква вместо слова «мой»',
-    text:[
-      'Там, где другим языкам нужно отдельное слово «мой», арабскому хватает одного звука на конце: كتابي «китаби». ـي это «мой», ـك «твой», ـه «его», ـها «её». Книга одна, хвостики меняются: كتابي، كتابك، كتابه، كتابها.',
-      'И вот момент, ради которого мы сеяли: عندي و عندك из восьмого урока — это ЖЕ хвостики! عند+ي «у меня», عند+ك «у тебя». بيتي из десятого — بيت+ي. Вы пользуетесь этой системой уже пятнадцать уроков. Сегодня просто узнали её в лицо.',
-      'Быстрый спор о вещах: لمن هذا؟ «чьё это?» — هذا لي «это моё» — لا، هذا لي! «нет, это моё!» Дальше пусть решает хаджа Амина.'
+    theory: {
+      title: 'ʿИнди — «у меня», и никакого «иметь»',
+      text: [
+        'В арабском нет глагола «иметь» — и он не нужен. عند значит «у», عندي — «у меня». عندي شاي — буквально «у меня чай»: назвали, у кого, назвали что — предложение готово.',
+        'عندك — «у тебя». Присмотритесь к хвостикам: ـي это «мой/меня», ـك это «твой/тебя». Запомните эту пару — очень скоро вы увидите её на каждом втором слове, и окажется, что вы её уже знаете.',
+        'عندي работает не только с вещами: عندي وقت — есть время, عندي فكرة — есть идея, عندي مشكلة — есть проблема. Три фразы, которые звучат в арабских сериалах каждые пять минут.'
+      ],
+      voice: 'Смотри, как удобно. У англичан «ай хэв», у немцев «ихь хабэ» — целые глаголы, спряжения, мучение! А у нас: ʿинди. У меня. Всё! ʿинди шай — у меня чай. ʿинди фикра — у меня идея. ʿинди вакт? Нет, друг, вакт у меня как раз нет — у меня гость, а чайник один. Вот это уже мушкиля.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Скажи, что у тебя есть чай',
+        items: [
+          {
+            target: 'عندي شاي',
+            words: ['شاي', 'عندي']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Спроси гостя',
+        items: [
+          {
+            text: 'ماذا ___؟',
+            options: ['عندك', 'عندي', 'هذا'],
+            answer: 'عندك'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Что есть у Аджибуса',
+        items: ['عندي وقت', 'عندي فكرة', 'عندي ضيف']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 1, 5, 7',
+        src: [1, 5, 7],
+        items: ['مع السلامة', 'بكم؟', 'لا أريد']
+      },
+      {
+        type: 'say',
+        task: 'Похвастайся',
+        items: ['عندي فكرة!']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 1',
+        src: [1],
+        items: ['السلام عليكم', 'وعليكم السلام', 'وأنت؟']
+      }
     ],
-    voice:'Во дворе скандал, друг! Билял кричит: аль-кура ли! Мяч мой! Другой кричит: ля, хази курати! И тут выхожу я и говорю мудро: лиман хазихи ль-кура? Чей мяч? И оба замолчали. Потому что мяч, друг... мяч оказался Анзы. Она его уже ела. Мораль: пока спорите о хвостиках «мой-твой», коза решает вопрос по существу.'
-  },
-  drills:[
-    {type:'match',  task:'Чья книга', items:[['كتابي','моя'],['كتابك','твоя'],['كتابه','его'],['كتابها','её']]},
-    {type:'gap',    task:'Про Амину', items:[{text:'هذا بيت___', options:['ها','ي','ك'], answer:'ها'}]},
-    {type:'build',  task:'Заяви права', items:[{target:'هذا كتابي', words:['كتابي','هذا']}]},
-    {type:'listen', task:'Мой, твой или его', items:['مفتاحي','مفتاحك','مفتاحه']},
-    {type:'say',    task:'Спроси чьё', items:['لمن هذا؟']},
-    {type:'recall', task:'Хвостики вы уже знаете', items:['عندي','عندك','بيتي']}
-  ],
-  wrap:[
-    'ـي мой, ـك твой, ـه его, ـها её — хвостики вместо слов.',
-    'عندي и بيتي — та же система: вы в ней с восьмого урока.',
-    'لمن هذا؟ — هذا لي: спор о вещах за два слова.'
-  ],
-  phrase:'Пройдитесь по комнате и назовите пять вещей с хвостиком: كتابي، مفتاحي، بيتي...'
-},
-
-/* ============================== УРОК 24 ============================== */
-{
-  n:24,
-  goal:'Пожаловаться на самочувствие и понять жалобу другого.',
-  why:'Здоровье — вторая после семьи тема арабского смолтока. Знакомое عندي берёт новую работу: болезни по-арабски «имеются». Готовит визит к врачу в следующем уроке.',
-  vocab:[
-    {ar:'رأس', tr:'раʼс', ru:'голова', kind:'core'},
-    {ar:'بطن', tr:'батн', ru:'живот', kind:'core'},
-    {ar:'عندي صداع', tr:'ʿи́нди суда́ʿ', ru:'у меня болит голова', kind:'core'},
-    {ar:'أنا مريض', tr:'а́на мари́д', ru:'я болен', kind:'core'},
-    {ar:'كيف صحتك؟', tr:'ка́йфа сы́ххатук?', ru:'как здоровье?', kind:'core'},
-    {ar:'دواء', tr:'дава́ʼ', ru:'лекарство', kind:'seed'},
-    {ar:'سلامتك', tr:'сала́мтук', ru:'выздоравливай', kind:'seed'}
-  ],
-  theory:{
-    title:'Болезни «имеются»: ʿинди снова в деле',
-    text:[
-      'По-арабски боль не «болит» — она «есть у тебя»: عندي صداع — «у меня головная боль». Знакомая конструкция из восьмого урока просто взяла новую работу. عندي زكام — «у меня простуда». Схема одна, слова меняются.',
-      'Состояние целиком — через знакомое именное предложение: أنا مريض «я болен» (женщина скажет مريضة — ة на посту). Спросить о здоровье: كيف صحتك؟ — родной брат «кайфа халюк» из второго урока.',
-      'И культурная жемчужина: услышав о болезни, араб отвечает سلامتك — «твоего здоровья», пожелание выздоровления. Ответ на него — الله يسلمك. Пара, как салям: жалоба без «саламтак» в ответ — как приветствие без ответа.'
+    wrap: [
+      'عندي — «у меня есть», عندك — «у тебя». Глагол «иметь» не нужен.',
+      'Хвостики ـي «мой» и ـك «твой» скоро встретятся везде.',
+      'عندي وقت / فكرة / مشكلة — три самые живые фразы с ʿинди.'
     ],
-    voice:'Кайфа сыххатук, друг? Как здоровье? Если хорошо — альхамдулиллях! Если плохо — говори прямо: ʿинди судаʿ. Голова болит. И тебе сразу скажут: саламтук! Выздоравливай! И принесут чай с имбирём, и мёд, и ещё чай, и хаджа Амина принесёт суп... Болеть в арабском доме, друг, — это почти праздник. Почти. Лучше не болей.'
+    phrase: 'Скажите про три вещи рядом с вами: عندي — и слово. По-настоящему, вслух.',
+    scene: {
+      place: 'крыша-терраса',
+      event: 'У меня есть',
+      must: ['اثنان', 'أربعة', 'خمسة', 'عشرة']
+    }
   },
-  drills:[
-    {type:'build',  task:'Пожалуйся на голову', items:[{target:'عندي صداع', words:['صداع','عندي']}]},
-    {type:'match',  task:'Соедини', items:[['رأس','голова'],['بطن','живот'],['دواء','лекарство'],['مريض','болен']]},
-    {type:'gap',    task:'Пожелай здоровья', items:[{text:'عندي صداع — ___!', options:['سلامتك','طبعًا','ما شاء الله'], answer:'سلامتك'}]},
-    {type:'listen', task:'Что болит', items:['رأس','بطن','عندي صداع']},
-    {type:'say',    task:'Спроси о здоровье', items:['كيف صحتك؟']},
-    {type:'recall', task:'Из урока 8', items:['عندي','ما عندي']}
-  ],
-  wrap:[
-    'Боль «имеется»: عندي صداع.',
-    'أنا مريض / مريضة — состояние именным предложением.',
-    'На жалобу отвечают سلامتك — «выздоравливай».'
-  ],
-  phrase:'Спросите сегодня кого-нибудь «كيف صحتك؟» — и выслушайте ответ до конца.'
-},
-
-/* ============================== УРОК 25 ============================== */
-{
-  n:25,
-  goal:'Объяснить врачу, что случилось и как давно; понять слова «больше одного».',
-  why:'Приём у доктора Самира — первый разговор с профессионалом. Здесь же множественное число — парами, как решено на уровне курса, плюс арабский бонус: двойственное.',
-  vocab:[
-    {ar:'يوم — أيام', tr:'яум — айя́м', ru:'день — дни', kind:'core'},
-    {ar:'أسبوع', tr:'усбу́ʿ', ru:'неделя', kind:'core'},
-    {ar:'منذ', tr:'му́нзу', ru:'с, уже (о времени)', kind:'core'},
-    {ar:'يومين', tr:'яуме́йн', ru:'два дня', kind:'core'},
-    {ar:'حبة', tr:'ха́бба', ru:'таблетка', kind:'seed'},
-    {ar:'كل يوم', tr:'ку́лля яум', ru:'каждый день', kind:'seed'}
-  ],
-  theory:{
-    title:'Слово-пара и волшебный хвостик -ейн',
-    text:[
-      'Множественное число в арабском причудливо, поэтому уговор такой: каждое слово приходит парой, как неправильный глагол в английском. يوم «день» — أيام «дни». Не правило — пара. Услышали новую пару — положили в копилку.',
-      'А вот подарок, которого нет почти ни в одном языке: двойственное число. «Два дня» — не «иснан яум», а одно слово يومين «яумейн». Хвостик -ейн значит «пара»: ساعتين «два часа», أسبوعين «две недели». Красиво и экономно.',
-      'Врачу это всё нужно для вопроса منذ متى؟ — «как давно?». Ответ: منذ يومين — «уже два дня». Рецепт придёт со словами حبة كل يوم — «по таблетке каждый день».'
+  {
+    n: 9,
+    goal: 'Рассказать о семье по фотографии и правильно обратиться к женщине.',
+    why: 'Первые «человеческие» слова: семья. Здесь же курс впервые честно разделяет мужское и женское — через окончание ة и обращение أنتِ. Дебют хаджи Амины: женская половина аудитории наконец слышит обращение к себе.',
+    vocab: [
+      {
+        ar: 'من هذا؟',
+        tr: 'ман ха́за?',
+        ru: 'кто это? (о мужчине)',
+        kind: 'core',
+        tier: 'A',
+        back: [10, 12, 17, 23, 25]
+      },
+      {
+        ar: 'من هذه؟',
+        tr: 'ман ха́зихи?',
+        ru: 'кто это? (о женщине)',
+        kind: 'core',
+        tier: 'A',
+        back: [10, 12, 17, 25],
+        next: [37]
+      },
+      {
+        ar: 'أب',
+        tr: 'аб',
+        ru: 'отец',
+        kind: 'core',
+        tier: 'B',
+        back: [16, 17, 21, 23]
+      },
+      {
+        ar: 'أم',
+        tr: 'умм',
+        ru: 'мама',
+        kind: 'core',
+        tier: 'B',
+        back: [13, 14, 15, 24, 25, 27, 28, 29, 30]
+      },
+      {
+        ar: 'أخ',
+        tr: 'ах',
+        ru: 'брат',
+        kind: 'core',
+        tier: 'B',
+        back: [20, 26, 30]
+      },
+      {
+        ar: 'أخت',
+        tr: 'ухт',
+        ru: 'сестра',
+        kind: 'core',
+        tier: 'B',
+        back: [11, 16, 24]
+      },
+      {
+        ar: 'صديق',
+        tr: 'сади́к',
+        ru: 'друг',
+        kind: 'core',
+        tier: 'B',
+        back: [11, 16, 21]
+      },
+      {
+        ar: 'صديقة',
+        tr: 'сади́ка',
+        ru: 'подруга',
+        kind: 'core',
+        tier: 'B',
+        back: [12, 16, 21]
+      },
+      {
+        ar: 'جدة',
+        tr: 'джа́дда',
+        ru: 'бабушка',
+        kind: 'seed',
+        tier: 'C',
+        back: [30],
+        act: 25
+      },
+      {
+        ar: 'وأنتِ؟',
+        tr: 'уа а́нти?',
+        ru: 'а ты? (к женщине)',
+        kind: 'seed',
+        tier: 'A',
+        back: [2, 4, 8, 9, 18]
+      }
     ],
-    voice:'Доктор Самир — хороший человек, но вопросы у него всегда одинаковые. Мунзу мата? Как давно? И ты должен ответить точно: мунзу яумейн. Два дня. Слышишь красоту? Не «два дня» двумя словами — одним! Яум-ейн. Хвостик -ейн — и всё удвоилось. У арабов даже число такое есть — специально для пары. Для пары глаз, пары рук и пары дней с больной головой.'
-  },
-  drills:[
-    {type:'match',  task:'Один — много', items:[['يوم','أيام'],['واحد','كثير']]},
-    {type:'gap',    task:'Как давно болит', items:[{text:'___ يومين', options:['منذ','في','إلى'], answer:'منذ'}]},
-    {type:'build',  task:'«Уже два дня»', items:[{target:'منذ يومين', words:['يومين','منذ']}]},
-    {type:'listen', task:'Сколько времени прошло', items:['يومين','أسبوع','أيام']},
-    {type:'say',    task:'Ответь врачу', items:['عندي صداع منذ يومين']},
-    {type:'recall', task:'Из урока 24', items:['عندي صداع','أنا مريض']}
-  ],
-  wrap:[
-    'Множественное — парой к слову: يوم — أيام.',
-    'Хвостик -ейн = «пара»: يومين، أسبوعين.',
-    'منذ متى؟ — «как давно?»; منذ يومين — «уже два дня».'
-  ],
-  phrase:'Скажите по-арабски, сколько дней вы уже учите арабский: منذ...'
-},
-
-/* ============================== УРОК 26 ============================== */
-{
-  n:26,
-  goal:'Пригласить через вопрос, согласиться с радостью и отказаться, не обидев.',
-  why:'Тонкая механика приглашений: تحب...؟ мягче прямого «тааль». Вопрос без вопросительных частиц — интонацией, как решено в курсе с первого дня.',
-  vocab:[
-    {ar:'تحب...؟', tr:'тухи́бб...?', ru:'хочешь...? (буквально: любишь?)', kind:'core'},
-    {ar:'أحب', tr:'ухи́бб', ru:'я люблю, мне нравится', kind:'core'},
-    {ar:'فكرة ممتازة', tr:'фи́кра мумта́за', ru:'отличная идея', kind:'core'},
-    {ar:'ممتاز', tr:'мумта́з', ru:'отлично', kind:'core'},
-    {ar:'ربما', tr:'ру́ббама', ru:'возможно', kind:'seed'},
-    {ar:'وقت آخر', tr:'вакт а́хар', ru:'в другой раз', kind:'seed'}
-  ],
-  theory:{
-    title:'Тухибб? — приглашение вопросом',
-    text:[
-      'تحب شاي؟ — «хочешь чаю?», буквально «любишь чай?». Никакой вопросительной частицы — только интонация, поднятая на конце: так наш курс спрашивает с первого урока. أحب — «я люблю»: أحب الشاي، أحب هذه المدينة.',
-      'Согласие радостью: نعم، أحب! или فكرة ممتازة! — «отличная идея!» (оба слова знакомы: فكرة из восьмого, а ممتاز — новое, но неубиваемо полезное).',
-      'Отказ — всегда мягкий, тремя ступенями: للأسف из семнадцатого урока, ربما «возможно», وقت آخر «в другой раз». Прямое «нет» на приглашение в арабской культуре почти грубость; «в другой раз» — вежливое «нет», и обе стороны это понимают.'
+    theory: {
+      title: 'Та-марбута — буква, которая делает слово женским',
+      text: [
+        'Кружочек с двумя точками на конце слова — ة, «та-марбута» — почти всегда значит женский род: صديق «друг» → صديقة «подруга». Одна буква вместо отдельного слова. Услышали «-а» на конце — скорее всего, речь о женщине.',
+        'Поэтому и «кто это?» раздваивается: من هذا؟ про мужчину, من هذه؟ про женщину. Вы уже знаете هذا со второго урока — هذه его сестра.',
+        'И обещанное с первого урока: к женщине обращаются وأنتِ — «уа анти», с «и» на конце. كيف حالك؟ мужчине звучит «халюк», женщине — «халюки». Разница в один звук, а уважения — на целый разговор.'
+      ],
+      voice: 'Семья, друг мой, это первое, о чём тебя спросят. Не «кем работаешь» — «как мама? как отец? сколько братьев?» Ты покажешь фото и скажешь: хаза аби, хазихи умми. И запомни: соседке сверху, хадже Амине, говорят «уа анти», а не «уа анта». Один звук! Но за этот звук она принесёт тебе поднос с обедом. Проверено.'
+    },
+    drills: [
+      {
+        type: 'match',
+        task: 'Соедини',
+        items: [
+          ['أب', 'отец'],
+          ['أم', 'мама'],
+          ['أخ', 'брат'],
+          ['أخت', 'сестра']
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Спроси про женщину на фото',
+        items: [
+          {
+            text: 'من ___؟',
+            options: ['هذه', 'هذا', 'أنتِ'],
+            answer: 'هذه'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'О ком говорят',
+        items: ['صديق', 'صديقة', 'جدة']
+      },
+      {
+        type: 'build',
+        task: 'Скажи «это моя мама»',
+        items: [
+          {
+            target: 'هذه أمي',
+            words: ['أمي', 'هذه']
+          }
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Спроси у женщины, как дела',
+        items: ['كيف حالكِ؟']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 2, 7',
+        src: [2, 7],
+        items: ['ما هذا؟', 'نعم', 'لا أعرف']
+      }
     ],
-    voice:'Сосед Халед — музыкант. Играет громко, но человек золотой. Вчера спрашивает: тухибб кахва? Хочешь кофе? И я... я сказал даʿ — ошибся, друг, — я сказал: ухибб! Люблю! А я же чайный человек! Но отказать соседу... Выпил. Скажу тебе честно: кахва у Халеда — фикра мумтаза. Только Юнусу не говори. У нас с ним чайная традиция.'
-  },
-  drills:[
-    {type:'build',  task:'Предложи чай вопросом', items:[{target:'تحب شاي؟', words:['شاي','تحب']}]},
-    {type:'gap',    task:'Откажись вежливо', items:[{text:'تحب قهوة؟ — للأسف، ___', options:['وقت آخر','طبعًا','ممتاز'], answer:'وقت آخر'}]},
-    {type:'listen', task:'Согласие или отказ', items:['فكرة ممتازة','ربما','وقت آخر']},
-    {type:'match',  task:'Соедини', items:[['أحب','я люблю'],['ممتاز','отлично'],['ربما','возможно'],['وقت آخر','в другой раз']]},
-    {type:'say',    task:'Согласись с радостью', items:['فكرة ممتازة!']},
-    {type:'recall', task:'Из урока 17', items:['ممكن؟','للأسف، لا']}
-  ],
-  wrap:[
-    'تحب + вещь؟ — приглашение вопросом, интонацией.',
-    'Согласие: فكرة ممتازة! Отказ: للأسف... وقت آخر.',
-    'Прямое «нет» на приглашение — грубость; «в другой раз» — вежливое «нет».'
-  ],
-  phrase:'Предложите кому-нибудь что-то через «тухибб...?» — и посмотрите, как теплеет разговор.'
-},
-
-/* ============================== УРОК 27 ============================== */
-{
-  n:27,
-  goal:'Договориться о встрече полностью: день, час и место одной фразой.',
-  why:'Урок-сборка: нового почти ноль, всё — синтез уроков 11, 14 и 15. Такие уроки дают чувство «я уже умею», которое держит мотивацию лучше нового материала.',
-  vocab:[
-    {ar:'موعد', tr:'ма́уʿид', ru:'встреча, договорённость', kind:'core'},
-    {ar:'إذن', tr:'и́зан', ru:'значит, тогда', kind:'core'},
-    {ar:'اتفقنا', tr:'итта́факна', ru:'договорились!', kind:'core'},
-    {ar:'أمام المقهى', tr:'ама́м аль-ма́кха', ru:'у кафе (перед кафе)', kind:'core'},
-    {ar:'قبل', tr:'кабль', ru:'до, раньше', kind:'seed'},
-    {ar:'بعد', tr:'баʿд', ru:'после', kind:'seed'}
-  ],
-  theory:{
-    title:'Собираем встречу из готовых деталей',
-    text:[
-      'Сегодня почти ничего нового — и это осознанно. Полная договорённость собирается из того, что вы уже умеете: في يوم الجمعة (урок 15) + الساعة الخامسة (урок 14) + أمام المقهى (кафе вы уже знаете). Получилось: موعدنا في يوم الجمعة، الساعة الخامسة، أمام المقهى.',
-      'Новые только связки: إذن «значит» подытоживает («изан, в пятницу в пять»), а اتفقنا — «договорились!» — ставит печать. Услышали «иттафакна» — всё, встреча состоится.',
-      'أمام — «перед»: أمام المقهى «перед кафе». В такси вы уже встречали его родственника — إلى الأمام «вперёд». Одно слово в основе, две работы.'
+    wrap: [
+      'ة на конце — слово женское: صديق → صديقة.',
+      'هذا про мужчину, هذه про женщину.',
+      'К женщине: وأنتِ، كيف حالكِ — «и» на конце.'
     ],
-    voice:'Смотри, друг, что ты уже умеешь — сам, без меня! Фи яум аль-джумʿа — день есть. Ас-саʿа ль-хамиса — час есть. Амам аль-макха — место есть. Изан... иттафакна! Договорились! Целая встреча, настоящая, взрослая — из кусочков, которые ты собирал пятнадцать уроков. Вот так язык и строится: кирпичик к кирпичику, а потом вдруг — дом.'
+    phrase: 'Откройте семейное фото и назовите по-арабски троих: هذا... هذه...',
+    scene: {
+      place: 'в гостях у хаджи Амины, старый альбом',
+      event: 'Кто это?',
+      must: ['عجيب']
+    }
   },
-  drills:[
-    {type:'build',  task:'Собери встречу целиком', items:[{target:'في يوم الجمعة الساعة الخامسة أمام المقهى', words:['أمام المقهى','الساعة الخامسة','في يوم الجمعة']}]},
-    {type:'gap',    task:'Поставь печать', items:[{text:'إذن، غدًا الساعة الخامسة. ___!', options:['اتفقنا','لماذا','ربما'], answer:'اتفقنا'}]},
-    {type:'listen', task:'Когда встреча', items:['في يوم السبت','الساعة ثلاثة','أمام المسجد']},
-    {type:'match',  task:'Соедини', items:[['موعد','встреча'],['إذن','значит'],['قبل','до'],['بعد','после']]},
-    {type:'say',    task:'Подтверди', items:['اتفقنا، إن شاء الله']},
-    {type:'recall', task:'Детали сборки', items:['كم الساعة؟','في يوم الجمعة','أمام']}
-  ],
-  wrap:[
-    'Встреча = день + час + место: все детали у вас давно есть.',
-    'إذن подытоживает, اتفقنا ставит печать.',
-    'أمام — «перед кафе»; إلى الأمام из такси — то же слово в другой работе.'
-  ],
-  phrase:'Назначьте ближайшую реальную встречу по-арабски — день, час, место — и закройте её словом «иттафакна».'
-},
-
-/* ============================== УРОК 28 ============================== */
-{
-  n:28,
-  goal:'Поговорить по телефону: ответить, попросить подождать, объяснить, что человек занят.',
-  why:'Телефон — первый разговор без лица и жестов, чистая проверка слуха. И повод для форм третьего лица: о том, кого нет рядом, говорят «он» и «она».',
-  vocab:[
-    {ar:'ألو', tr:'алю́', ru:'алло', kind:'core'},
-    {ar:'من معي؟', tr:'ман ма́ʿи?', ru:'кто говорит? (кто со мной?)', kind:'core'},
-    {ar:'لحظة من فضلك', tr:'ла́хза мин фа́длик', ru:'секундочку, пожалуйста', kind:'core'},
-    {ar:'يجيب / لا يجيب', tr:'юджи́б / ля юджи́б', ru:'отвечает / не отвечает', kind:'core'},
-    {ar:'مشغول', tr:'машгу́ль', ru:'занят', kind:'core'},
-    {ar:'رقم', tr:'ракм', ru:'номер', kind:'seed'},
-    {ar:'خطأ', tr:'ха́таʼ', ru:'ошибка', kind:'seed'}
-  ],
-  theory:{
-    title:'Он и она на слух: буквы-двигатели работают дальше',
-    text:[
-      'Телефонный ритуал: ألو → من معي؟ «кто говорит?» (буквально «кто со мной» — знакомый хвостик ـي!) → لحظة من فضلك «секундочку». Три реплики — и вы держитесь в разговоре без единого жеста.',
-      'Главная грамматика: говорим о третьем. يجيب «он отвечает» — знакомая ي из двенадцатого урока. Она: تجيب. Стоп, скажете вы, ت же «ты»! Да: буква ت работает дважды — «ты» и «она», а кто именно — подсказывает контекст. Арабский экономен: أحمد لا يجيب «Ахмад не отвечает», أمي لا تجيب «мама не отвечает».',
-      'Не туда попали: الرقم خطأ — «номер ошибочный». Извинились (آسف), положили трубку, ничего страшного.'
+  {
+    n: 10,
+    goal: 'Пригласить к себе, принять приглашение и договориться о времени на слух.',
+    why: 'Финал сезона: Юнус впервые зовёт в гости сам. Ученик закрывает круг «гостеприимства» — от «тафаддаль» первого урока до собственного приглашения. Плюс культурный слой: ин шаа Ллах как грамматика вежливости.',
+    vocab: [
+      {
+        ar: 'تعال',
+        tr: 'таʿа́ль',
+        ru: 'приходи',
+        kind: 'core',
+        tier: 'A',
+        back: [11, 13, 18, 26, 29]
+      },
+      {
+        ar: 'متى؟',
+        tr: 'ма́та?',
+        ru: 'когда?',
+        kind: 'core',
+        tier: 'A',
+        back: [11, 13, 18, 25]
+      },
+      {
+        ar: 'اليوم',
+        tr: 'аль-я́ум',
+        ru: 'сегодня',
+        kind: 'core',
+        tier: 'A',
+        back: [11, 13, 15, 18, 30]
+      },
+      {
+        ar: 'غدًا',
+        tr: 'га́дан',
+        ru: 'завтра',
+        kind: 'core',
+        tier: 'A',
+        back: [11, 13, 15, 18, 27]
+      },
+      {
+        ar: 'بيتي',
+        tr: 'ба́йти',
+        ru: 'мой дом',
+        kind: 'core',
+        tier: 'B',
+        back: [12, 21, 23]
+      },
+      {
+        ar: 'إن شاء الله',
+        tr: 'ин ша́а Лла́х',
+        ru: 'если пожелает Аллах',
+        kind: 'seed',
+        tier: 'A',
+        back: [27],
+        act: 27
+      },
+      {
+        ar: 'مع أخي',
+        tr: 'ма́ʿа а́хи',
+        ru: 'с моим братом',
+        kind: 'seed',
+        tier: 'C',
+        back: [20],
+        act: 18
+      }
     ],
-    voice:'Звоню Юнусу — ля юджиб. Не отвечает! Звоню ещё раз — ля юджиб! Я уже волнуюсь, чайник остывает! Перезваниваю в третий раз... Алю! Ман маʿи?! — кричу. А это не Юнус. Это хаджа Амина. Ракм хатаʼ, говорит, ошибся номером, дорогой. И двадцать минут рассказывала про внуков. Хороший, друг, оказался неправильный номер. Тёплый.'
-  },
-  drills:[
-    {type:'build',  task:'Спроси, кто говорит', items:[{target:'ألو، من معي؟', words:['من معي؟','ألو،']}]},
-    {type:'gap',    task:'Про Юнуса', items:[{text:'يونس لا ___', options:['يجيب','تجيب','أجيب'], answer:'يجيب'}]},
-    {type:'listen', task:'Он или она отвечает', items:['يجيب','تجيب','مشغول']},
-    {type:'match',  task:'Соедини', items:[['لحظة','секундочку'],['مشغول','занят'],['رقم','номер'],['خطأ','ошибка']]},
-    {type:'say',    task:'Попроси подождать', items:['لحظة من فضلك']},
-    {type:'recall', task:'Из урока 12', items:['يذهب','تذهب']}
-  ],
-  wrap:[
-    'Ритуал: ألو → من معي؟ → لحظة من فضلك.',
-    'ي — «он», ت — «ты» и «она»: контекст подскажет.',
-    'الرقم خطأ — «не туда попал»: извинился и всё.'
-  ],
-  phrase:'Следующий телефонный звонок начните про себя с арабского: алю, ман маʿи?'
-},
-
-/* ============================== УРОК 29 ============================== */
-{
-  n:29,
-  goal:'Извиниться, признать вину и принять извинение.',
-  why:'Эмоциональный центр сезона: ссора требует примирения. И первая дверь в прошедшее время — хвостик -ту «я сделал» — открывается в самой человечной точке: «прости, я забыл».',
-  vocab:[
-    {ar:'آسف', tr:'а́сиф', ru:'прости (я сожалею)', kind:'core'},
-    {ar:'سامحني', tr:'са́михни', ru:'прости меня', kind:'core'},
-    {ar:'نسيت', tr:'наси́ту', ru:'я забыл', kind:'core'},
-    {ar:'فعلت', tr:'фаʿа́льту', ru:'я сделал', kind:'core'},
-    {ar:'لا بأس', tr:'ля баʼс', ru:'ничего страшного', kind:'core'},
-    {ar:'كسرت', tr:'каса́рту', ru:'я сломал', kind:'seed'},
-    {ar:'الحق معك', tr:'аль-хакк ма́ʿак', ru:'ты прав (правда с тобой)', kind:'seed'}
-  ],
-  theory:{
-    title:'Хвостик -ту: первая дверь в прошлое',
-    text:[
-      'До сих пор весь курс жил в настоящем. Сегодня — первый шаг назад во времени: نسيت «я забыл», فعلت «я сделал», كسرت «я сломал». Слышите общий хвостик? ـتُ «-ту» на конце глагола значит «я сделал это в прошлом». Настоящее набирается приставками спереди (أ، ت، ي), прошедшее — хвостиками сзади. Пока берём только «я» — остальное подождёт.',
-      'Извинение по-арабски двухэтажное: آسف «сожалею» — состояние, سامحني «прости меня» — просьба (знакомая команда, как قف и تعال, только тёплая). Полная формула: آسف، نسيت — «прости, я забыл».',
-      'Принять извинение — لا بأس «ничего страшного» (буквально «нет беды»). А признать правоту другого — красивейшая идиома الحق معك: «правда с тобой». Не «ты выиграл спор» — правда просто стоит рядом с тобой. После этих слов ссориться уже не о чем.'
+    theory: {
+      title: 'Тааль — и договор, скреплённый «ин шаа Ллах»',
+      text: [
+        'تعال — «приходи». Это команда, но тёплая: в паре с تفضّل она звучит как объятие, а не приказ. تعال إلى بيتي — «приходи ко мне домой». Слово بيتي соберите сами: بيت «дом» плюс знакомый хвостик ـي «мой» из прошлых уроков.',
+        'متى؟ — «когда?». Ответы уже готовы: اليوم «сегодня», غدًا «завтра». Три слова — и договорённость состоялась.',
+        'И главное. На любой план о будущем араб отвечает إن شاء الله — «если пожелает Аллах». Это не «может быть» и не отговорка, как думают туристы. Это уважение к тому, что будущее не в наших руках. Сказали «гадан?» — услышали «ин шаа Ллах» — значит, договорились по-настоящему.'
+      ],
+      voice: 'Юнус сегодня сказал мне: тааль иля байти! Приходи, говорит, ко мне. Я чуть чайник не уронил. Вчера он «салям» выговорить не мог — сегодня зовёт в гости! Я спросил: мата? Он говорит: гадан, ин шаа Ллах. Всё правильно сказал. С «ин шаа Ллах». Потому что будущее — оно у Аллаха, а чай — он сегодня. Аджи-и-иб!'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Пригласи к себе',
+        items: [
+          {
+            target: 'تعال إلى بيتي',
+            words: ['بيتي', 'إلى', 'تعال']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Спроси когда',
+        items: [
+          {
+            text: '___؟ — غدًا',
+            options: ['متى', 'ماذا', 'من'],
+            answer: 'متى'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Когда договорились',
+        items: ['اليوم', 'غدًا']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 7, 9',
+        src: [7, 9],
+        items: ['مرة ثانية', 'من هذا؟', 'من هذه؟']
+      },
+      {
+        type: 'say',
+        task: 'Прими приглашение',
+        items: ['غدًا، إن شاء الله']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 3, 7',
+        src: [3, 7],
+        items: ['شكرًا', 'لا أريد', 'لا أفهم']
+      }
     ],
-    voice:'Поссорились мы с Халедом, друг. Из-за ерунды: он играл на уде в полночь, я сказал слово, он сказал два... Три дня не здоровались. Три дня, представляешь? Соседи! Потом пришёл Билял, мальчишка со двора, посмотрел на нас и говорит: вы оба смешные. И я пошёл к Халеду и сказал: самихни. Асиф. И он сказал: ля баʼс... аль-хакк маʿак, поздно играл. А я говорю: ля, аль-хакк маʿак! И мы спорили, кто прав, что другой прав, пока не остыл чай. Хорошая была ссора. Правильная.'
-  },
-  drills:[
-    {type:'build',  task:'Извинись полностью', items:[{target:'آسف، نسيت', words:['نسيت','آسف،']}]},
-    {type:'gap',    task:'Прими извинение', items:[{text:'سامحني! — ___', options:['لا بأس','لا أفهم','للأسف'], answer:'لا بأس'}]},
-    {type:'listen', task:'Что он сделал', items:['نسيت','كسرت','فعلت']},
-    {type:'match',  task:'Соедини', items:[['آسف','сожалею'],['سامحني','прости меня'],['لا بأس','ничего страшного'],['الحق معك','ты прав']]},
-    {type:'say',    task:'Признай правоту', items:['الحق معك']},
-    {type:'recall', task:'Хвостики и приставки', items:['أفهم','لا أفهم']}
-  ],
-  wrap:[
-    'Хвостик ـتُ = «я сделал»: نسيت، فعلت، كسرت.',
-    'Извинение: آسف + سامحني. Ответ: لا بأس.',
-    'الحق معك — «правда с тобой»: после этого не ссорятся.'
-  ],
-  phrase:'Если есть перед кем — извинитесь сегодня по-арабски: آسف، نسيت. Считается, даже если человек не поймёт слов: тон поймёт.'
-},
-
-/* ============================== УРОК 30 ============================== */
-{
-  n:30,
-  goal:'Рассказать, как было раньше: «был, была» — и закрыть сезон примирением.',
-  why:'Финал третьего сезона. كان — машина времени для именных предложений: всё, что ученик умел говорить о настоящем с первого урока, теперь работает и в прошлом. Один глагол удваивает язык.',
-  vocab:[
-    {ar:'كان', tr:'ка́на', ru:'был', kind:'core'},
-    {ar:'كانت', tr:'ка́нат', ru:'была', kind:'core'},
-    {ar:'أمس', tr:'амс', ru:'вчера', kind:'core'},
-    {ar:'صحيح', tr:'сахи́х', ru:'верно, правда', kind:'core'},
-    {ar:'كنت', tr:'ку́нту', ru:'я был', kind:'seed'},
-    {ar:'زمان', tr:'зама́н', ru:'давно, прежде', kind:'seed'}
-  ],
-  theory:{
-    title:'Кана — машина времени',
-    text:[
-      'Помните первое правило курса: «предложение без глагола» — البيت كبير «дом большой»? Добавьте كان — и оно уехало в прошлое, а описание получило песенку на конце: كان البيتُ كبيرًا «кана ль-байту кабиран» — дом был большим. الشاي ساخن «чай горячий» → كان الشاي ساخنًا «кана ш-шай сахинан». Это фирменный мотив каны: услышали كان в начале — пропойте «-ан» на описании. Почему так — история для куда более позднего уровня; сейчас это просто то, как фраза звучит.',
-      'Женский род — знакомой буквой: كانت — كانت المدينة صغيرة «город был маленьким» (слова на ة звучат как обычно, песенка им не нужна). А хвостик из прошлого урока даёт «я был»: كنت — كنت مريضًا «кунту маридан», я был болен; كنت في السوق «я был на рынке».',
-      'أمس «вчера» — главное слово-спутник прошлого. И слово для финала сезона: صحيح «верно». كان الحق معك — «правда была с тобой». Сезон ссор и примирений закрыт.'
+    wrap: [
+      'تعال — «приходи»; تعال إلى بيتي — полное приглашение.',
+      'متى؟ → اليوم / غدًا — договорённость из трёх слов.',
+      'Планы на будущее скрепляются «إن شاء الله» — и это согласие, а не отговорка.'
     ],
-    voice:'Заман, друг... давно... я был молодой. Кунту сагыран! Кунту тавилян... нет, тавилян я не был, не буду врать. Но послушай, какая это сила: кана. Был. Кана ш-шай сахинан — чай был горячий. Канат аль-мадина сагыра — город был маленький. Одно слово — и ты рассказчик! Вся твоя жизнь, всё «раньше» — открылось. Осторожно с этой силой: старики вроде меня из «кана» не возвращаются.'
+    phrase: 'Пригласите кого-нибудь в гости целой арабской фразой: تعال إلى بيتي غدًا!',
+    scene: {
+      place: 'комнатка Юнуса',
+      event: 'Гость',
+      must: ['المفتاح', 'فكرة', 'أهلاً وسهلاً', 'ضيف']
+    }
   },
-  drills:[
-    {type:'build',  task:'Отправь чай в прошлое', items:[{target:'كان الشاي ساخنًا', words:['ساخنًا','الشاي','كان']}]},
-    {type:'gap',    task:'Про город (женский род!)', items:[{text:'المدينة ___ صغيرة', options:['كانت','كان','كنت'], answer:'كانت'}]},
-    {type:'listen', task:'Сейчас или вчера', items:['البيت كبير','كان البيت كبيرًا','أمس']},
-    {type:'match',  task:'Соедини', items:[['كان','был'],['كانت','была'],['كنت','я был'],['أمس','вчера']]},
-    {type:'say',    task:'Расскажи, где был вчера', items:['أمس كنت في...']},
-    {type:'recall', task:'Из урока 29', items:['نسيت','الحق معك']}
-  ],
-  wrap:[
-    'كان + именное предложение = прошлое, описание поёт «-ан»: كان الشاي ساخنًا.',
-    'كانت — «была», كنت — «я был».',
-    'أمس — «вчера»: главный спутник прошлого.'
-  ],
-  phrase:'Закончите день фразой о нём: كان اليوم... — и добавьте прилагательное, которое заслужил этот день.'
-}
+  {
+    n: 11,
+    goal: 'Сказать, куда идёшь, и спросить об этом собеседника.',
+    why: 'Первый урок второго сезона — выход из дома. Один предлог إلى открывает весь город: рынок, мечеть, работа. Ноль сложности после насыщенного финала первого сезона — намеренно лёгкий вход.',
+    vocab: [
+      {
+        ar: 'إلى أين؟',
+        tr: 'иля а́йна?',
+        ru: 'куда?',
+        kind: 'core',
+        tier: 'A',
+        back: [12, 14, 19, 27],
+        next: [32]
+      },
+      {
+        ar: 'أذهب إلى',
+        tr: 'а́зхаб и́ля',
+        ru: 'я иду в',
+        kind: 'core',
+        tier: 'A',
+        back: [12, 14, 19, 27],
+        next: [32]
+      },
+      {
+        ar: 'السوق',
+        tr: 'ас-сук',
+        ru: 'рынок',
+        kind: 'core',
+        tier: 'B',
+        back: [12, 13, 30]
+      },
+      {
+        ar: 'المسجد',
+        tr: 'аль-ма́сджид',
+        ru: 'мечеть',
+        kind: 'core',
+        tier: 'B',
+        back: [13, 19, 27]
+      },
+      {
+        ar: 'البيت',
+        tr: 'аль-байт',
+        ru: 'дом',
+        kind: 'core',
+        tier: 'B',
+        back: [13, 15, 30]
+      },
+      {
+        ar: 'العمل',
+        tr: 'аль-ʿа́маль',
+        ru: 'работа',
+        kind: 'seed',
+        tier: 'C',
+        back: [12],
+        act: 18
+      },
+      {
+        ar: 'المقهى',
+        tr: 'аль-ма́кха',
+        ru: 'кафе',
+        kind: 'seed',
+        tier: 'C',
+        back: [27],
+        act: 27
+      }
+    ],
+    theory: {
+      title: 'Иля — стрелка направления',
+      text: [
+        'إلى — предлог «в, к», стрелка движения: أذهب إلى السوق — «я иду на рынок». Вопрос собирается из знакомых деталей: إلى أين؟ — «куда?», буквально «к где».',
+        'Обратите внимание: все места идут с الـ — السوق، البيت، المسجد. Помните «тот самый» из четвёртого урока? Когда говоришь «иду на рынок», имеешь в виду свой, известный рынок — поэтому артикль здесь живёт постоянно.',
+        'أذهب — «я иду». Пока это просто слово-ярлык. В следующем уроке оно окажется дверью в целую систему — но не будем забегать.'
+      ],
+      voice: 'Иля айна, друг? Куда идёшь? Это первый вопрос улицы. И смотри, какой простой ответ: азхаб иля с-сук. Иду на рынок. Азхаб иля ль-масджид. Азхаб иля ль-байт. Одна стрелочка «иля» — и весь город твой. Куда я иду? В магазин. За финиками. Опять. Анза съела прошлые.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Скажи, что идёшь домой',
+        items: [
+          {
+            target: 'أذهب إلى البيت',
+            words: ['البيت', 'إلى', 'أذهب']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Спроси куда',
+        items: [
+          {
+            text: 'إلى ___؟',
+            options: ['أين', 'متى', 'من'],
+            answer: 'أين'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Куда идёт Аджибус',
+        items: ['السوق', 'المسجد', 'البيت']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 8, 10',
+        src: [8, 10],
+        items: ['ماذا عندك؟', 'اليوم', 'غدًا']
+      },
+      {
+        type: 'say',
+        task: 'Ответь на вопрос улицы',
+        items: ['أذهب إلى السوق']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 4, 8',
+        src: [4, 8],
+        items: ['هنا', 'هناك', 'عندك']
+      }
+    ],
+    wrap: [
+      'إلى — «в, к»: стрелка направления.',
+      'إلى أين؟ — «куда?»; ответ: أذهب إلى + место.',
+      'Места ходят с الـ: السوق، البيت، المسجد.'
+    ],
+    phrase: 'Выходя сегодня из дома, скажите себе вслух, куда идёте: أذهب إلى...',
+    scene: {
+      place: 'подъезд, улица',
+      event: 'Куда?',
+      must: ['غالي', 'رخيص', 'أخت', 'صديق']
+    }
+  },
+  {
+    n: 12,
+    goal: 'Сказать, что делаешь сейчас — про себя, собеседника и третьего человека.',
+    why: 'Самый важный грамматический урок сезона: три буквы-двигателя настоящего времени. Даём их не таблицей, а тремя словами — но после этого урока любой глагол курса утраивается бесплатно.',
+    vocab: [
+      {
+        ar: 'أذهب',
+        tr: 'а́зхаб',
+        ru: 'я иду',
+        kind: 'core',
+        tier: 'A',
+        back: [13, 16, 21, 28],
+        next: [33]
+      },
+      {
+        ar: 'تذهب',
+        tr: 'та́зхаб',
+        ru: 'ты идёшь',
+        kind: 'core',
+        tier: 'A',
+        back: [13, 16, 21, 28]
+      },
+      {
+        ar: 'يذهب',
+        tr: 'я́зхаб',
+        ru: 'он идёт',
+        kind: 'core',
+        tier: 'A',
+        back: [13, 16, 21, 28]
+      },
+      {
+        ar: 'أعمل',
+        tr: 'а́ʿмаль',
+        ru: 'я работаю',
+        kind: 'core',
+        tier: 'B',
+        back: [15, 20, 27]
+      },
+      {
+        ar: 'أشرب',
+        tr: 'а́шраб',
+        ru: 'я пью',
+        kind: 'core',
+        tier: 'B',
+        back: [15, 20, 27]
+      },
+      {
+        ar: 'ماذا تفعل؟',
+        tr: 'ма́за та́фʿаль?',
+        ru: 'что ты делаешь?',
+        kind: 'seed',
+        tier: 'C',
+        back: [20],
+        act: 18
+      },
+      {
+        ar: 'الآن',
+        tr: 'аль-а́н',
+        ru: 'сейчас',
+        kind: 'seed',
+        tier: 'C',
+        back: [15],
+        act: 14
+      }
+    ],
+    theory: {
+      title: 'Три буквы-двигателя: أ، ت، ي',
+      text: [
+        'Посмотрите на три слова: أذهب، تذهب، يذهب. Корень один — ذهب «идти». Меняется только первая буква: أ значит «я», ت значит «ты», ي значит «он». Это не таблица спряжения — это три наклейки на один глагол.',
+        'И теперь фокус: наклейки работают на любом глаголе. أشرب «я пью» → تشرب «ты пьёшь» → يشرب «он пьёт». أعمل → تعمل → يعمل. Один раз поняли — получили три формы каждого глагола курса бесплатно.',
+        'Знакомое أريد из третьего урока — из той же семьи: أ +ريد. Вы спрягали глаголы с третьего урока и не знали об этом.'
+      ],
+      voice: 'Открою тебе секрет, друг. Ты думаешь, арабские глаголы — это страшно? Смотри. Азхаб — я иду. Тазхаб — ты идёшь. Язхаб — он идёт. Алиф — это я. Та — это ты. Йа — это он. Три буквы! Я тридцать лет пью чай — ашраб. Ты пьёшь — ташраб. Юнус пьёт — яшраб. Даже Анза... нет, Анза не пьёт чай. Анза ест мои финики.'
+    },
+    drills: [
+      {
+        type: 'recall',
+        task: 'Из уроков 6, 9',
+        src: [6, 9],
+        items: ['من هذا؟', 'من هذه؟', 'اثنان']
+      },
+      {
+        type: 'gap',
+        task: 'Про Юнуса',
+        items: [
+          {
+            text: 'يونس ___ إلى العمل',
+            options: ['يذهب', 'أذهب', 'تذهب'],
+            answer: 'يذهب'
+          }
+        ]
+      },
+      {
+        type: 'build',
+        task: 'Скажи «я пью чай»',
+        items: [
+          {
+            target: 'أشرب شاي',
+            words: ['شاي', 'أشرب']
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Я, ты или он?',
+        items: ['أعمل', 'تعمل', 'يعمل']
+      },
+      {
+        type: 'say',
+        task: 'Ответь: что делаешь?',
+        items: ['أشرب شاي الآن']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 5, 7, 9',
+        src: [5, 7, 9],
+        items: ['صديقة', 'بكم؟', 'ببطء']
+      }
+    ],
+    wrap: [
+      'أ = я, ت = ты, ي = он — первая буква глагола называет деятеля.',
+      'Наклейки работают на любом глаголе: أشرب → تشرب → يشرب.',
+      'أريد из урока 3 — та же система: вы давно спрягаете.'
+    ],
+    phrase: 'Возьмите глагол «пить» и проспрягайте вслух на живых людях: я пью, ты пьёшь, он пьёт.',
+    scene: {
+      place: 'улица',
+      event: 'Я иду',
+      must: ['أربعة', 'خمسة', 'عشرة', 'بيتي']
+    }
+  },
+  {
+    n: 13,
+    goal: 'Выжить в такси: назвать адрес, командовать «направо, налево, прямо» и остановить где нужно.',
+    why: 'Самый практичный урок сезона — готовый сценарий целиком, от посадки до «сдачи не надо». Повелительное наклонение даём как набор готовых команд, а не как грамматическую тему.',
+    vocab: [
+      {
+        ar: 'يمين',
+        tr: 'ями́н',
+        ru: 'направо',
+        kind: 'core',
+        tier: 'A',
+        back: [14, 17, 22, 30],
+        next: [34]
+      },
+      {
+        ar: 'يسار',
+        tr: 'яса́р',
+        ru: 'налево',
+        kind: 'core',
+        tier: 'A',
+        back: [14, 17, 22, 30],
+        next: [34]
+      },
+      {
+        ar: 'إلى الأمام',
+        tr: 'и́ля ль-ама́м',
+        ru: 'прямо, вперёд',
+        kind: 'core',
+        tier: 'A',
+        back: [14, 17, 22, 27, 30]
+      },
+      {
+        ar: 'قف',
+        tr: 'киф',
+        ru: 'стоп, остановись',
+        kind: 'core',
+        tier: 'A',
+        back: [15, 17, 22, 29, 30]
+      },
+      {
+        ar: 'هنا من فضلك',
+        tr: 'ху́на мин фа́длик',
+        ru: 'здесь, пожалуйста',
+        kind: 'core',
+        tier: 'B',
+        back: [16, 21, 29]
+      },
+      {
+        ar: 'شارع',
+        tr: 'ша́риʿ',
+        ru: 'улица',
+        kind: 'seed',
+        tier: 'C',
+        back: [20],
+        act: 18
+      },
+      {
+        ar: 'قريب',
+        tr: 'кари́б',
+        ru: 'близко',
+        kind: 'seed',
+        tier: 'C',
+        back: [20],
+        act: 18
+      },
+      {
+        ar: 'بعيد',
+        tr: 'баʿи́д',
+        ru: 'далеко',
+        kind: 'seed',
+        tier: 'C',
+        back: [20],
+        act: 18
+      },
+      {
+        ar: 'ثم',
+        tr: 'су́мма',
+        ru: 'затем, потом',
+        kind: 'seed',
+        tier: 'C',
+        act: 27,
+        next: [33]
+      }
+    ],
+    theory: {
+      title: 'Команды-слова: повелительное без правил',
+      text: [
+        'В такси не спрягают — в такси командуют. يمين «направо», يسار «налево», إلى الأمام «прямо», قف «стой». Это повелительное наклонение, но учить его как тему не нужно: четыре команды покрывают всю дорогу.',
+        'Вежливость обязательна: голая команда звучит резко, поэтому قف هنا من فضلك — «остановите здесь, пожалуйста». Формула «команда + мин фадлик» превращает приказ в просьбу.',
+        'Знакомое تعال из десятого урока — тоже команда, «приди». Вы уже пользуетесь повелительным: تفضّل، تعال، قف. Система соберётся сама, слово за словом.'
+      ],
+      voice: 'Такси — это театр, друг. Ты садишься и говоришь: иля с-сук, мин фадлик. Дальше три слова решают всё: ямин! ясар! иля ль-амам! И финал: киф хуна. Стоп здесь. Всё! Ты доехал. Карим-таксист скажет тебе «машаллах, откуда арабский?» — а ты гордо: мин Аджибус. Нет, так не говори. Просто улыбнись.'
+    },
+    drills: [
+      {
+        type: 'listen',
+        task: 'Куда поворачиваем',
+        items: ['يمين', 'يسار', 'إلى الأمام']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 7, 11, 12',
+        src: [7, 11, 12],
+        items: ['تذهب', 'لا أعرف', 'السوق']
+      },
+      {
+        type: 'build',
+        task: 'Останови такси вежливо',
+        items: [
+          {
+            target: 'قف هنا من فضلك',
+            words: ['من فضلك', 'هنا', 'قف']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Это близко?',
+        options: null,
+        items: [
+          {
+            text: 'البيت ___',
+            options: ['قريب', 'بعيد', 'يمين'],
+            answer: 'قريب'
+          }
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Скомандуй маршрут',
+        items: ['يمين، ثم يسار، ثم إلى الأمام']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 10',
+        src: [10],
+        items: ['متى؟', 'اليوم', 'غدًا']
+      }
+    ],
+    wrap: [
+      'يمين، يسار، إلى الأمام، قف — четыре слова ведут любую машину.',
+      'Команда + من فضلك = вежливая просьба.',
+      'تفضّل и تعال — вы уже давно говорите в повелительном.'
+    ],
+    phrase: 'По дороге сегодня комментируйте повороты вслух: ямин... ясар... иля ль-амам.',
+    scene: {
+      place: 'такси Карима',
+      event: 'Такси',
+      must: ['المسجد', 'قلم', 'قطّ']
+    }
+  },
+  {
+    n: 14,
+    goal: 'Спросить и назвать время, договориться о часе встречи.',
+    why: 'Время — вторая ось города после направления. Числа из урока 6 получают главную работу: теперь они называют часы.',
+    vocab: [
+      {
+        ar: 'كم الساعة؟',
+        tr: 'кам ас-са́ʿа?',
+        ru: 'который час?',
+        kind: 'core',
+        tier: 'A',
+        back: [15, 18, 20, 23, 27]
+      },
+      {
+        ar: 'الساعة الخامسة',
+        tr: 'ас-са́ʿа ль-ха́миса',
+        ru: 'пять часов',
+        kind: 'core',
+        tier: 'B',
+        back: [15, 17, 27]
+      },
+      {
+        ar: 'والنصف',
+        tr: 'уа-н-нисф',
+        ru: 'с половиной',
+        kind: 'core',
+        tier: 'B',
+        back: [18, 22],
+        next: [31]
+      },
+      {
+        ar: 'صباحًا',
+        tr: 'саба́хан',
+        ru: 'утра',
+        kind: 'core',
+        tier: 'B',
+        back: [18, 23],
+        next: [31]
+      },
+      {
+        ar: 'مساءً',
+        tr: 'маса́ʼан',
+        ru: 'вечера',
+        kind: 'core',
+        tier: 'B',
+        back: [18, 23],
+        next: [31]
+      },
+      {
+        ar: 'دقيقة',
+        tr: 'даки́ка',
+        ru: 'минута',
+        kind: 'seed',
+        tier: 'C',
+        back: [30],
+        act: 25
+      },
+      {
+        ar: 'متأخر',
+        tr: 'мутаа́ххир',
+        ru: 'опаздывающий, поздно',
+        kind: 'seed',
+        tier: 'C',
+        back: [20],
+        act: 20
+      },
+      {
+        ar: 'الساعة الثالثة',
+        tr: 'ас-са́ʿа с-са́лиса',
+        ru: 'три часа',
+        kind: 'seed',
+        tier: 'C',
+        back: [17],
+        act: 15
+      },
+      {
+        ar: 'الساعة العاشرة',
+        tr: 'ас-са́ʿа ль-ʿа́шира',
+        ru: 'десять часов',
+        kind: 'seed',
+        tier: 'C',
+        act: 27,
+        next: [33]
+      }
+    ],
+    theory: {
+      title: 'Ас-саʿа + число — и время готово',
+      text: [
+        'كم الساعة؟ — «который час?», дословно «сколько часов?» — старое доброе كم из шестого урока. Ответ: الساعة الخامسة — «час пятый». У каждого часа есть имя-ярлык, собранное из знакомого числа: الواحدة «час», الثانية «два», الثالثة «три», الخامسة «пять». Учим их как ярлыки — так же, как выучим дни недели, — без грамматики числительных.',
+        'Половина — والنصف: الساعة الخامسة والنصف — «пять с половиной». Сначала целый час, потом половинка сверху: честная арифметика. Утро и вечер — хвостики صباحًا и مساءً.',
+        'На улице вам прилетит и сокращение الساعة خمسة — «час пять». Понимать его нужно, а отвечать — полной формой: наш курс говорит на фусхе везде, и الساعة الخامسة правильна в любой стране и в любой книге.'
+      ],
+      voice: 'Кам ас-саʿа, друг? Не знаешь? А Юнус теперь знает! Ас-саʿа ль-хамиса — пять часов. Ас-саʿа ль-хамиса ва-н-нисф — пять с половиной. Смотри, как честно: сначала целый час, потом половинка сверху. Никаких «половин чего-то, чего ещё нет». Арабская точность. Чай, кстати, заваривается ровно четыре дакика. Это тоже точность.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Спроси время',
+        items: [
+          {
+            target: 'كم الساعة؟',
+            words: ['الساعة', 'كم']
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Сколько времени назвали',
+        items: ['الساعة الثالثة', 'الساعة الخامسة', 'الساعة العاشرة']
+      },
+      {
+        type: 'gap',
+        task: 'Полшестого по-арабски',
+        items: [
+          {
+            text: 'الساعة الخامسة ___',
+            options: ['والنصف', 'صباحًا', 'دقيقة'],
+            answer: 'والنصف'
+          }
+        ]
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 7, 11',
+        src: [7, 11],
+        items: ['لا أفهم', 'مرة ثانية', 'إلى أين؟']
+      },
+      {
+        type: 'say',
+        task: 'Назначь время',
+        items: ['الساعة الخامسة مساءً']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 1',
+        src: [1],
+        items: ['السلام عليكم', 'وعليكم السلام', 'مع السلامة']
+      }
+    ],
+    wrap: [
+      'كم الساعة؟ — «который час?»; ответ: الساعة الخامسة — часы-ярлыки из чисел.',
+      'والنصف — «с половиной»; صباحًا / مساءً — утра / вечера.',
+      'Уличное «الساعة خمسة» — понимать; отвечать полной формой фусхи.'
+    ],
+    phrase: 'Трижды за день ответьте себе вслух на вопрос «кам ас-саʿа?» — по-арабски.',
+    scene: {
+      place: 'кафе',
+      event: 'Который час?',
+      must: ['أذهب إلى', 'يمين', 'يسار', 'إلى الأمام']
+    }
+  },
+  {
+    n: 15,
+    goal: 'Назвать дни недели и договориться о встрече на конкретный день.',
+    why: 'Пять дней недели ученик получает бесплатно: арабские дни — это числа из урока 6. Лучшая иллюстрация принципа «сначала заплати мало, потом получи много».',
+    vocab: [
+      {
+        ar: 'يوم',
+        tr: 'яум',
+        ru: 'день',
+        kind: 'core',
+        tier: 'B',
+        back: [20, 25, 27, 30]
+      },
+      {
+        ar: 'الجمعة',
+        tr: 'аль-джу́мʿа',
+        ru: 'пятница',
+        kind: 'core',
+        tier: 'B',
+        back: [19, 20, 27]
+      },
+      {
+        ar: 'السبت',
+        tr: 'ас-сабт',
+        ru: 'суббота',
+        kind: 'core',
+        tier: 'B',
+        back: [19, 24, 27]
+      },
+      {
+        ar: 'الأحد',
+        tr: 'аль-а́хад',
+        ru: 'воскресенье',
+        kind: 'core',
+        tier: 'B',
+        back: [19, 24],
+        next: [32]
+      },
+      {
+        ar: 'الاثنين',
+        tr: 'аль-исна́йн',
+        ru: 'понедельник',
+        kind: 'core',
+        tier: 'B',
+        back: [19, 24],
+        next: [32]
+      },
+      {
+        ar: 'في',
+        tr: 'фи',
+        ru: 'в (о времени и месте)',
+        kind: 'core',
+        tier: 'A',
+        back: [16, 18, 20, 25, 27, 30]
+      },
+      {
+        ar: 'الثلاثاء',
+        tr: 'ас-суляса́',
+        ru: 'вторник',
+        kind: 'seed',
+        tier: 'C',
+        act: 27,
+        next: [33]
+      },
+      {
+        ar: 'الأربعاء',
+        tr: 'аль-арбиʿа́',
+        ru: 'среда',
+        kind: 'seed',
+        tier: 'C',
+        act: 27,
+        next: [33]
+      },
+      {
+        ar: 'الخميس',
+        tr: 'аль-хами́с',
+        ru: 'четверг',
+        kind: 'seed',
+        tier: 'C',
+        act: 27,
+        next: [33]
+      }
+    ],
+    theory: {
+      title: 'Дни недели — это числа, которые вы уже знаете',
+      text: [
+        'Смотрите внимательно: الأحد «воскресенье» — от واحد «один». الاثنين «понедельник» — от اثنان «два». الثلاثاء — от ثلاثة «три», الأربعاء — «четыре», الخميس — «пять». Арабская неделя просто пронумерована! Вы выучили дни недели ещё в шестом уроке — просто не знали об этом.',
+        'Особые только два: الجمعة «пятница» — день сбора (от того же корня, что «собрание»), главный день недели. И السبت «суббота» — день покоя, родственник слова «шаббат».',
+        'Предлог في ставит всё это во время: في يوم الجمعة — «в пятницу». Тот же في скажет и «в доме» — предлог один на место и время.'
+      ],
+      voice: 'А теперь фокус, друг! Ты знаешь дни недели. Не веришь? Ахад — что это? Вахид, один! Первый день. Иснайн — иснан, два! Суляса — саляса! Арабы не мучились с названиями: пронумеровали и пошли пить чай. Только пятница особенная — джумʿа, день, когда все собираются. И суббота — сабт, отдых. Пять дней даром, друг. Даром!'
+    },
+    drills: [
+      {
+        type: 'match',
+        task: 'День ↔ число',
+        items: [
+          ['الأحد', 'واحد'],
+          ['الاثنين', 'اثنان'],
+          ['الثلاثاء', 'ثلاثة'],
+          ['الخميس', 'خمسة']
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Встреча в пятницу',
+        items: [
+          {
+            text: 'موعدنا ___ يوم الجمعة',
+            options: ['في', 'إلى', 'من'],
+            answer: 'في'
+          }
+        ]
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 3, 6, 12',
+        src: [3, 6, 12],
+        items: ['أشرب', 'لذيذ', 'ستة']
+      },
+      {
+        type: 'build',
+        task: '«В субботу»',
+        items: [
+          {
+            target: 'في يوم السبت',
+            words: ['السبت', 'يوم', 'في']
+          }
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Назови сегодняшний день',
+        items: ['اليوم يوم...']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 8, 12, 13',
+        src: [8, 12, 13],
+        items: ['قف', 'فكرة', 'أعمل']
+      }
+    ],
+    wrap: [
+      'Дни недели — номера: الأحد=1, الاثنين=2, الثلاثاء=3...',
+      'Особые: الجمعة — день сбора, السبت — день покоя.',
+      'في — «в»: في يوم الجمعة، في البيت.'
+    ],
+    phrase: 'Назовите вслух сегодняшний день и завтрашний: اليوم... غدًا...',
+    scene: {
+      place: 'площадь у мечети после пятничной молитвы',
+      event: 'Дни недели',
+      must: ['سبعة', 'الآن', 'ما هذا؟', 'نعم']
+    }
+  },
+  {
+    n: 16,
+    goal: 'Сделать полный вежливый заказ в кафе и попросить счёт.',
+    why: 'Кафе — сцена, где встречаются все предыдущие навыки: уриду, числа, вежливость. Плюс подарок-когнат سكر, который аудитория уже знает из родного языка.',
+    vocab: [
+      {
+        ar: 'من فضلك',
+        tr: 'мин фа́длик',
+        ru: 'пожалуйста (просьба)',
+        kind: 'core',
+        tier: 'A',
+        back: [13, 16, 17, 28],
+        act: 16
+      },
+      {
+        ar: 'عصير',
+        tr: 'ʿаси́р',
+        ru: 'сок',
+        kind: 'core',
+        tier: 'C',
+        back: [23],
+        next: [34]
+      },
+      {
+        ar: 'الحساب',
+        tr: 'аль-хиса́б',
+        ru: 'счёт',
+        kind: 'core',
+        tier: 'B',
+        back: [17, 20, 26]
+      },
+      {
+        ar: 'سكر',
+        tr: 'су́ккар',
+        ru: 'сахар',
+        kind: 'core',
+        tier: 'C',
+        back: [23],
+        next: [34]
+      },
+      {
+        ar: 'بدون',
+        tr: 'биду́н',
+        ru: 'без',
+        kind: 'core',
+        tier: 'C',
+        back: [23],
+        next: [34]
+      },
+      {
+        ar: 'حلو',
+        tr: 'ху́льв',
+        ru: 'сладкий',
+        kind: 'seed',
+        tier: 'C',
+        act: 26,
+        next: [31]
+      },
+      {
+        ar: 'ساخن',
+        tr: 'са́хин',
+        ru: 'горячий',
+        kind: 'seed',
+        tier: 'C',
+        back: [30],
+        act: 24
+      },
+      {
+        ar: 'بارد',
+        tr: 'ба́рид',
+        ru: 'холодный',
+        kind: 'seed',
+        tier: 'C',
+        back: [28],
+        act: 24
+      }
+    ],
+    theory: {
+      title: 'Мин фадлик открывает любую дверь',
+      text: [
+        'من فضلك — «пожалуйста», дословно «из твоей милости». Формула заказа: сначала что, потом волшебное слово: عصير من فضلك — «сок, пожалуйста». شاي من فضلك. الحساب من فضلك — «счёт, пожалуйста» — фраза, которой заканчивается любое кафе мира.',
+        'بدون — «без»: شاي بدون سكر «чай без сахара». Одно слово — и заказ стал точным. Кстати, سكر — предок слова «сахар» почти во всех языках мира: sugar, Zucker, şeker — все пришли из арабского. Вы знали это слово всю жизнь.',
+        'К женщине-официантке: من فضلكِ «мин фадлики» — знакомое «и» из девятого урока работает и здесь.'
+      ],
+      voice: 'В кафе, друг, тебя выдаёт не акцент. Тебя выдаёт грубость! Никогда просто «шай!». Всегда: шай мин фадлик. Захотел без сахара — шай бидун суккар. Кстати, суккар... сахар... слышишь? Это мы вам его подарили, вместе со словом! Пейте на здоровье. А счёт — аль-хисаб, мин фадлик. И улыбка. Улыбка — это половина арабского языка.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Закажи сок вежливо',
+        items: [
+          {
+            target: 'عصير من فضلك',
+            words: ['من فضلك', 'عصير']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Чай без сахара',
+        items: [
+          {
+            text: 'شاي ___ سكر',
+            options: ['بدون', 'مع', 'في'],
+            answer: 'بدون'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Что заказали',
+        items: ['عصير', 'شاي بدون سكر', 'قهوة']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 9, 12',
+        src: [9, 12],
+        items: ['تذهب', 'يذهب', 'أخت']
+      },
+      {
+        type: 'say',
+        task: 'Попроси счёт',
+        items: ['الحساب من فضلك']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 8, 12',
+        src: [8, 12],
+        items: ['عندك', 'ماذا عندك؟', 'أذهب']
+      }
+    ],
+    wrap: [
+      'Заказ = что + من فضلك: عصير من فضلك.',
+      'بدون — «без»: شاي بدون سكر.',
+      'الحساب من فضلك — так заканчивается любое кафе.'
+    ],
+    phrase: 'Сделайте сегодняшний заказ — хотя бы мысленно — целиком по-арабски, с «мин фадлик» в конце.',
+    scene: {
+      place: 'кафе',
+      event: 'В кафе',
+      must: ['صديق', 'صديقة', 'هنا من فضلك', 'ثمانية']
+    }
+  },
+  {
+    n: 17,
+    goal: 'Попросить разрешение, услугу или вещь одним словом — и понять ответ.',
+    why: 'ممكن — слово-суперсила: один фрейм закрывает сотню ситуаций от «можно воды» до «можно фото». Самое частотное слово вежливой просьбы в арабском мире.',
+    vocab: [
+      {
+        ar: 'ممكن؟',
+        tr: 'му́мкин?',
+        ru: 'можно?',
+        kind: 'core',
+        tier: 'A',
+        back: [19, 22, 26, 27],
+        next: [37]
+      },
+      {
+        ar: 'ممكن ماء؟',
+        tr: 'му́мкин ма́ʼ?',
+        ru: 'можно воды?',
+        kind: 'core',
+        tier: 'B',
+        back: [21, 26],
+        next: [35]
+      },
+      {
+        ar: 'صورة',
+        tr: 'су́ра',
+        ru: 'фото, картинка',
+        kind: 'core',
+        tier: 'C',
+        back: [25],
+        next: [35]
+      },
+      {
+        ar: 'طبعًا',
+        tr: 'та́бʿан',
+        ru: 'конечно',
+        kind: 'core',
+        tier: 'A',
+        back: [20, 22, 24, 26],
+        next: [37]
+      },
+      {
+        ar: 'للأسف، لا',
+        tr: 'лиль-а́саф, ля',
+        ru: 'к сожалению, нет',
+        kind: 'core',
+        tier: 'B',
+        back: [21, 22, 26]
+      },
+      {
+        ar: 'لحظة',
+        tr: 'ла́хза',
+        ru: 'секундочку',
+        kind: 'seed',
+        tier: 'C',
+        back: [28],
+        act: 28
+      },
+      {
+        ar: 'مساعدة',
+        tr: 'мусаʿа́да',
+        ru: 'помощь',
+        kind: 'seed',
+        tier: 'C',
+        back: [22],
+        act: 19
+      }
+    ],
+    theory: {
+      title: 'Мумкин — швейцарский нож просьбы',
+      text: [
+        'ممكن означает «возможно» — и в вопросе превращается в универсальное «можно?». Формула проще некуда: ممكن + что хотите. ممكن ماء؟ — можно воды? ممكن صورة؟ — можно фото? ممكن هنا؟ — можно здесь? Существительное, место, что угодно.',
+        'Ответы приходят парой: طبعًا — «конечно» (услышите чаще всего: арабская вежливость щедра), и للأسف، لا — «к сожалению, нет» (отказ всегда смягчают).',
+        'Чем ممكن отличается от أريد? «Уриду» заявляет желание, «мумкин» спрашивает разрешения. Первое — про вас, второе — про собеседника. Поэтому «мумкин» звучит мягче и открывает больше дверей.'
+      ],
+      voice: 'Если бы меня заставили оставить ученику одно слово — только одно! — я бы оставил «мумкин». Мумкин маʼ? Можно воды? Мумкин сура? Можно фото? Мумкин хуна? Можно тут присесть? Одно слово — и весь мир тебе отвечает: табʿан! Конечно! Арабы редко говорят «нет», друг. А если говорят — то «лиль-асаф, ля». С сожалением. Потому что отказывать гостю больно.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Попроси воды одним словом',
+        items: [
+          {
+            target: 'ممكن ماء؟',
+            words: ['ماء', 'ممكن']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Разреши с радостью',
+        items: [
+          {
+            text: 'ممكن صورة؟ — ___!',
+            options: ['طبعًا', 'للأسف', 'لحظة'],
+            answer: 'طبعًا'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Разрешили или нет',
+        items: ['طبعًا', 'للأسف، لا', 'لحظة']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 9, 13',
+        src: [9, 13],
+        items: ['من هذا؟', 'من هذه؟', 'يمين']
+      },
+      {
+        type: 'say',
+        task: 'Попроси помощи',
+        items: ['ممكن مساعدة؟']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 3, 6, 14',
+        src: [3, 6, 14],
+        items: ['تسعة', 'الساعة الثالثة', 'شكرًا']
+      }
+    ],
+    wrap: [
+      'ممكن + слово = любая просьба: ممكن ماء؟ ممكن صورة؟',
+      'Ответы: طبعًا «конечно» / للأسف، لا «к сожалению, нет».',
+      'أريد — желание, ممكن — разрешение. Второе мягче.'
+    ],
+    phrase: 'Попросите сегодня о чём-нибудь через «мумкин» — и посчитайте, сколько раз услышите «табʿан».',
+    scene: {
+      place: 'торговый центр',
+      event: 'Можно?',
+      must: ['يسار', 'إلى الأمام', 'قف', 'الساعة الخامسة']
+    }
+  },
+  {
+    n: 18,
+    goal: 'Рассказать, где живёшь и откуда ты, и спросить об этом собеседника.',
+    why: 'Первый связный мини-рассказ о себе: имя (урок 1) + город + страна. Разговор со случайным человеком на скамейке — самый человечный сценарий сезона.',
+    vocab: [
+      {
+        ar: 'أسكن في',
+        tr: 'а́скун фи',
+        ru: 'я живу в',
+        kind: 'core',
+        tier: 'A',
+        back: [21, 24, 28],
+        next: [31, 39]
+      },
+      {
+        ar: 'أين تسكن؟',
+        tr: 'а́йна та́скун?',
+        ru: 'где ты живёшь?',
+        kind: 'core',
+        tier: 'B',
+        back: [23, 28],
+        next: [37]
+      },
+      {
+        ar: 'من أين أنت؟',
+        tr: 'мин а́йна а́нта?',
+        ru: 'откуда ты?',
+        kind: 'core',
+        tier: 'A',
+        back: [21, 24, 28],
+        next: [31, 39]
+      },
+      {
+        ar: 'أنا من',
+        tr: 'а́на мин',
+        ru: 'я из',
+        kind: 'core',
+        tier: 'A',
+        back: [21, 24, 28],
+        next: [31, 39]
+      },
+      {
+        ar: 'مدينة',
+        tr: 'мади́на',
+        ru: 'город',
+        kind: 'core',
+        tier: 'B',
+        back: [21, 26, 30]
+      },
+      {
+        ar: 'قرية',
+        tr: 'ка́рья',
+        ru: 'деревня',
+        kind: 'seed',
+        tier: 'C',
+        back: [26],
+        act: 22
+      },
+      {
+        ar: 'حي',
+        tr: 'хай',
+        ru: 'район',
+        kind: 'seed',
+        tier: 'C',
+        back: [23, 30],
+        act: 22
+      }
+    ],
+    theory: {
+      title: 'Глагол и предлог ходят парой',
+      text: [
+        'أسكن في — «я живу в»: глагол سكن всегда берёт с собой предлог في. Учите их одним куском, как одно длинное слово: أسكن في المدينة — «я живу в городе». Знакомая ت из двенадцатого урока даёт вопрос: أين تسكن؟ — «где ты живёшь?»',
+        'Происхождение — через من «из»: من أين أنت؟ «откуда ты?», دословно «из где ты». Ответ: أنا من + страна — названия стран в арабском звучат почти как в вашем родном языке, это подарок.',
+        'Соберём рассказ о себе из трёх уроков: أنا يونس. أنا من موسكو. أسكن في القاهرة. Три предложения — и незнакомец на скамейке уже ваш собеседник.'
+      ],
+      voice: 'Мин айна анта, друг? Откуда ты? Этот вопрос тебе зададут тысячу раз. И смотри, какой красивый ответ ты теперь умеешь: ана мин Русия. Аскун фи ль-Кахира. Я из России, живу в Каире. Всё! Старик на скамейке уже наливает тебе чай из термоса и рассказывает про своих внуков. Три предложения открывают сердца, друг.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Скажи, где живёшь',
+        items: [
+          {
+            target: 'أسكن في المدينة',
+            words: ['المدينة', 'في', 'أسكن']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Спроси откуда',
+        items: [
+          {
+            text: 'من ___ أنت؟',
+            options: ['أين', 'متى', 'ماذا'],
+            answer: 'أين'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Город или деревня',
+        items: ['مدينة', 'قرية', 'حي']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 4, 10',
+        src: [4, 10],
+        items: ['هناك', 'تعال', 'متى؟']
+      },
+      {
+        type: 'say',
+        task: 'Расскажи о себе три предложения',
+        items: ['أنا... أنا من... أسكن في...']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 14',
+        src: [14],
+        items: ['والنصف', 'صباحًا', 'مساءً']
+      }
+    ],
+    wrap: [
+      'أسكن في — учим куском: глагол + предлог.',
+      'من أين أنت؟ → أنا من + страна.',
+      'Три предложения о себе: имя, откуда, где живу.'
+    ],
+    phrase: 'Соберите свой рассказ о себе — имя, страна, город — и произнесите одним куском, без пауз.',
+    scene: {
+      place: 'парк, нарды хаджа Ибрахима',
+      event: 'Где ты живёшь?',
+      must: ['اليوم', 'غدًا', 'كم الساعة؟', 'رخيص']
+    }
+  },
+  {
+    n: 19,
+    goal: 'Заплатить, спросить сдачу и честно признаться, что денег нет.',
+    why: 'Дырка в грамматике, которую пора закрыть: отрицание عندي — не «ля», а «ма». Плюс комедийное золото: Аджибус забыл кошелёк, и платит гордый Юнус.',
+    vocab: [
+      {
+        ar: 'نقود',
+        tr: 'нуку́д',
+        ru: 'деньги',
+        kind: 'core',
+        tier: 'B',
+        back: [24, 29],
+        next: [31]
+      },
+      {
+        ar: 'ما عندي',
+        tr: 'ма ʿи́нди',
+        ru: 'у меня нет',
+        kind: 'core',
+        tier: 'A',
+        back: [22, 24, 25],
+        next: [32, 31]
+      },
+      {
+        ar: 'الباقي',
+        tr: 'аль-ба́ки',
+        ru: 'сдача',
+        kind: 'core',
+        tier: 'B',
+        back: [25, 29],
+        next: [31]
+      },
+      {
+        ar: 'أدفع',
+        tr: 'а́дфаʿ',
+        ru: 'я плачу',
+        kind: 'core',
+        tier: 'B',
+        back: [25, 29],
+        next: [31]
+      },
+      {
+        ar: 'بطاقة',
+        tr: 'бита́ка',
+        ru: 'карта',
+        kind: 'seed',
+        tier: 'C',
+        back: [30],
+        act: 25
+      },
+      {
+        ar: 'مجانًا',
+        tr: 'маджа́нан',
+        ru: 'бесплатно',
+        kind: 'seed',
+        tier: 'C',
+        act: 26,
+        next: [31]
+      },
+      {
+        ar: 'لك',
+        tr: 'ля́кя',
+        ru: 'тебе',
+        kind: 'seed',
+        tier: 'C',
+        back: [20, 28],
+        act: 23
+      }
+    ],
+    theory: {
+      title: 'Ма ʿинди — особое «нет»',
+      text: [
+        'В седьмом уроке мы отрицали глаголы через لا: لا أريد، لا أفهم. Но عندي — не глагол, это «у меня» (помните: в этой фразе глагола вообще нет). Поэтому и отрицание у него своё: ما عندي — «у меня нет». ما عندي نقود — «у меня нет денег». ما عندي وقت — «нет времени».',
+        'Правило простое: لا — для глаголов, ما — для عندي. Два «нет» на два случая, и путать их арабское ухо не позволит: «ля ʿинди» звучит так же странно, как «не у меня есть».',
+        'Касса словами: أدفع — «я плачу» (знакомая أ!), الباقي — «сдача», буквально «остаток». الباقي لك — «сдачи не надо», дословно «остаток тебе» — фраза, которая делает вас щедрым человеком за одну секунду.'
+      ],
+      voice: 'Случилась беда, друг. Стою на кассе, полная корзина фиников, тянусь за кошельком — а его нет! И я говорю честно, громко, как мужчина: ма ʿинди нукуд! Нет у меня денег! И тут Юнус — мой Юнус! — достаёт кошелёк и говорит: ана адфаʿ. Я плачу. Ученик платит за учителя! Я чуть не заплакал. Потом вспомнил: это же мои деньги, я ему вчера одолжил. Ну и пусть. Красиво было.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Признайся честно',
+        items: [
+          {
+            target: 'ما عندي نقود',
+            words: ['نقود', 'عندي', 'ما']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Выбери правильное «нет»',
+        items: [
+          {
+            text: '___ عندي وقت',
+            options: ['ما', 'لا', 'لن'],
+            answer: 'ما'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Что происходит на кассе',
+        items: ['أدفع', 'الباقي', 'بطاقة']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 7, 15',
+        src: [7, 15],
+        items: ['الأحد', 'الاثنين', 'ما معنى...؟']
+      },
+      {
+        type: 'say',
+        task: 'Будь щедрым',
+        items: ['الباقي لك']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 11, 15',
+        src: [11, 15],
+        items: ['المسجد', 'الجمعة', 'السبت']
+      }
+    ],
+    wrap: [
+      'لا — для глаголов, ما — для عندي: ما عندي نقود.',
+      'أدفع — «я плачу», الباقي — «сдача».',
+      'الباقي لك — «сдачи не надо»: щедрость за секунду.'
+    ],
+    phrase: 'Проверьте карманы и скажите правду по-арабски: عندي نقود — или ما عندي.',
+    scene: {
+      place: 'кафе, касса',
+      event: 'Нет денег!',
+      must: ['بكم؟', 'إلى أين؟', 'أذهب إلى', 'ممكن؟']
+    }
+  },
+  {
+    n: 20,
+    goal: 'Объяснить причину: ответить на «почему?» полной фразой.',
+    why: 'Финал сезона. لأن — первый союз, склеивающий два предложения: речь перестаёт быть телеграфом. И сюжетная развязка: почему опоздали? Из-за козы, конечно.',
+    vocab: [
+      {
+        ar: 'لماذا؟',
+        tr: 'лима́за?',
+        ru: 'почему?',
+        kind: 'core',
+        tier: 'A',
+        back: [24, 26, 27],
+        next: [33, 41]
+      },
+      {
+        ar: 'لأن',
+        tr: 'ли-а́нна',
+        ru: 'потому что',
+        kind: 'core',
+        tier: 'A',
+        back: [22, 24, 26],
+        next: [33, 32]
+      },
+      {
+        ar: 'متأخر',
+        tr: 'мутаа́ххир',
+        ru: 'опоздавший',
+        kind: 'core',
+        tier: 'C',
+        back: [20],
+        act: 20
+      },
+      {
+        ar: 'الحافلة',
+        tr: 'аль-ха́филя',
+        ru: 'автобус',
+        kind: 'core',
+        tier: 'B',
+        back: [26],
+        next: [32, 31]
+      },
+      {
+        ar: 'آسف',
+        tr: 'а́сиф',
+        ru: 'прости, сожалею',
+        kind: 'seed',
+        tier: 'A',
+        back: [22, 26, 28, 29],
+        act: 29
+      },
+      {
+        ar: 'مشغول',
+        tr: 'машгу́ль',
+        ru: 'занят',
+        kind: 'seed',
+        tier: 'C',
+        back: [28],
+        act: 28
+      }
+    ],
+    theory: {
+      title: 'Лианна склеивает два предложения',
+      text: [
+        'لماذا؟ — «почему?». До этого урока на него можно было только виновато молчать. Теперь есть لأن — «потому что»: أنا متأخر لأن الحافلة متأخرة — «я опоздал, потому что автобус опоздал». Две мысли стали одной фразой — это первый сложный синтаксис курса.',
+        'Заметьте пару متأخر / متأخرة: про мужчину и про автобус (слово حافلة женское — вон она, ة!). Девятый урок работает.',
+        'آسف — «прости» — пока просто вежливое слово рядом с опозданием. Полноценное извинение с прошедшим временем будет отдельным уроком: посеяли — вырастет.'
+      ],
+      voice: 'Лимаза, спрашивает хаджа Амина, лимаза мутааххир?! Почему опоздал?! И тут, друг, нельзя молчать. Молчание — это вина. Говори: ли-анна! Потому что! Ли-анна ль-хафиля мутааххира! Автобус опоздал! Ли-анна Анза... нет, про Анзу не говори. Про козу никто не верит. Хотя это всегда коза.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Объясни причину',
+        items: [
+          {
+            target: 'أنا متأخر لأن الحافلة متأخرة',
+            words: ['متأخرة', 'الحافلة', 'لأن', 'متأخر', 'أنا']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Ответь почему',
+        items: [
+          {
+            text: 'لماذا؟ — ___ أنا مشغول',
+            options: ['لأن', 'لكن', 'ما'],
+            answer: 'لأن'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Причина или вопрос',
+        items: ['لماذا؟', 'لأن', 'آسف']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 10, 12, 16',
+        src: [10, 12, 16],
+        items: ['أشرب', 'الحساب', 'مع أخي']
+      },
+      {
+        type: 'say',
+        task: 'Извинись с причиной',
+        items: ['آسف، أنا متأخر لأن الحافلة متأخرة']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 6, 12, 17',
+        src: [6, 12, 17],
+        items: ['طبعًا', 'أربعة', 'أعمل']
+      }
+    ],
+    wrap: [
+      'لماذا؟ — «почему?», لأن — «потому что».',
+      'لأن склеивает два предложения в одно — первая сложная фраза.',
+      'متأخر / متأخرة — согласование по роду уже работает само.'
+    ],
+    phrase: 'Сегодняшнее «потому что» скажите по-арабски: لأن... — хоть про погоду, хоть про пробки.',
+    scene: {
+      place: 'автобус',
+      event: 'Опоздали',
+      must: ['ماذا تفعل؟', 'شارع', 'قريب', 'بعيد']
+    }
+  },
+  {
+    n: 21,
+    goal: 'Описать предмет и человека: большой, маленький, новый, старый, красивый.',
+    why: 'Открытие третьего сезона — сезона людей. Прилагательные превращают телеграф в речь: не «дом», а «большой красивый дом». Одно правило: описание идёт после предмета.',
+    vocab: [
+      {
+        ar: 'كبير',
+        tr: 'каби́р',
+        ru: 'большой',
+        kind: 'core',
+        tier: 'A',
+        back: [22, 27, 30],
+        next: [34]
+      },
+      {
+        ar: 'صغير',
+        tr: 'саги́р',
+        ru: 'маленький',
+        kind: 'core',
+        tier: 'A',
+        back: [25, 27, 30],
+        next: [34]
+      },
+      {
+        ar: 'جديد',
+        tr: 'джади́д',
+        ru: 'новый',
+        kind: 'core',
+        tier: 'B',
+        back: [27],
+        next: [33, 32]
+      },
+      {
+        ar: 'قديم',
+        tr: 'кади́м',
+        ru: 'старый',
+        kind: 'core',
+        tier: 'B',
+        back: [27],
+        next: [33]
+      },
+      {
+        ar: 'جميل',
+        tr: 'джами́ль',
+        ru: 'красивый',
+        kind: 'core',
+        tier: 'A',
+        back: [22, 27],
+        next: [34, 42]
+      },
+      {
+        ar: 'طويل',
+        tr: 'тави́ль',
+        ru: 'длинный, высокий',
+        kind: 'seed',
+        tier: 'C',
+        back: [26],
+        act: 22
+      },
+      {
+        ar: 'قصير',
+        tr: 'касы́р',
+        ru: 'короткий, низкий',
+        kind: 'seed',
+        tier: 'C',
+        back: [26],
+        act: 22
+      }
+    ],
+    theory: {
+      title: 'Сначала что, потом какой',
+      text: [
+        'Порядок слов обратный привычному: بيت كبير — буквально «дом большой». Сначала предмет, потом описание. Всегда. К этому привыкаешь за день, потому что порядок железный, без исключений.',
+        'Прилагательное подстраивается под род: بيت كبير «большой дом», но مدينة كبيرة «большой город» — слово مدينة женское, и прилагательное берёт ة вслед за ним. Знакомая та-марбута из девятого урока теперь работает на согласовании.',
+        'И пары для памяти: كبير/صغير، جديد/قديم، طويل/قصير. Прилагательные живут парами противоположностей — учите двойками, вспоминается вдвое легче.'
+      ],
+      voice: 'Юнус купил куртку, друг. Приходит, спрашивает: как? А я смотрю — куртка джадида, джамиля... но кабира! Большая! Он в ней как я в палатке. И я говорю честно: аль-джакет джамиль... уа кабир. Красивая и большая. Честность, друг, — тоже часть языка. Он теперь носит её с ремнём. Тайиб. Главное — тепло.'
+    },
+    drills: [
+      {
+        type: 'match',
+        task: 'Пары противоположностей',
+        items: [
+          ['كبير', 'صغير'],
+          ['جديد', 'قديم'],
+          ['طويل', 'قصير']
+        ]
+      },
+      {
+        type: 'build',
+        task: '«Большой дом» по-арабски',
+        items: [
+          {
+            target: 'بيت كبير',
+            words: ['كبير', 'بيت']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Согласуй с городом',
+        items: [
+          {
+            text: 'مدينة ___',
+            options: ['كبيرة', 'كبير', 'كبار'],
+            answer: 'كبيرة'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Какой он',
+        items: ['كبير', 'صغير', 'جميل', 'قديم']
+      },
+      {
+        type: 'say',
+        task: 'Опиши свой дом',
+        items: ['بيتي صغير وجميل']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 12',
+        src: [12],
+        items: ['أذهب', 'تذهب', 'يذهب']
+      }
+    ],
+    wrap: [
+      'Порядок железный: сначала предмет, потом описание — بيت كبير.',
+      'Женскому слову — женское прилагательное: مدينة كبيرة.',
+      'Учите прилагательные парами противоположностей.'
+    ],
+    phrase: 'Опишите три вещи вокруг по формуле «что + какой»: كتاب قديم، بيت كبير...',
+    scene: {
+      place: 'рынок',
+      event: 'Какой он?',
+      must: ['لا أعرف', 'هنا من فضلك', 'ممكن ماء؟', 'للأسف، لا', 'أسكن في', 'من أين أنت؟', 'أنا من']
+    }
+  },
+  {
+    n: 22,
+    goal: 'Восхититься вслух — по-арабски и от души.',
+    why: 'Урок-передышка после грамматики 21-го: одна конструкция, большой эффект. «Ма аджмаль!» — фраза, которая делает из туриста желанного гостя.',
+    vocab: [
+      {
+        ar: 'ما أجمل...!',
+        tr: 'ма а́джмаль...!',
+        ru: 'как красиво...!',
+        kind: 'core',
+        tier: 'B',
+        back: [28],
+        next: [34]
+      },
+      {
+        ar: 'منظر',
+        tr: 'ма́нзар',
+        ru: 'вид',
+        kind: 'core',
+        tier: 'C',
+        next: [33, 32]
+      },
+      {
+        ar: 'بحر',
+        tr: 'бахр',
+        ru: 'море',
+        kind: 'core',
+        tier: 'C',
+        next: [33, 32]
+      },
+      {
+        ar: 'سماء',
+        tr: 'сама́',
+        ru: 'небо',
+        kind: 'core',
+        tier: 'C',
+        next: [33, 32]
+      },
+      {
+        ar: 'ما شاء الله',
+        tr: 'ма ша́а Лла́х',
+        ru: 'машаллах (восхищение без сглаза)',
+        kind: 'core',
+        tier: 'A',
+        back: [24, 26, 29],
+        next: [35]
+      },
+      {
+        ar: 'نجوم',
+        tr: 'нуджу́м',
+        ru: 'звёзды',
+        kind: 'seed',
+        tier: 'C',
+        act: 30,
+        next: [38]
+      },
+      {
+        ar: 'قمر',
+        tr: 'ка́мар',
+        ru: 'луна',
+        kind: 'seed',
+        tier: 'C',
+        act: 30,
+        next: [38]
+      }
+    ],
+    theory: {
+      title: 'Ма аджмаль — формула восторга',
+      text: [
+        'ما أجمل + вещь = «как прекрасно...!»: ما أجمل المنظر! — «какой вид!» ما أجمل البحر! — «какое море!» Узнаёте أجمل? Это جميل «красивый» из прошлого урока в особой форме. Одна формула — бесконечные восторги.',
+        'И слово, которое вы знали до курса: ما شاء الله — «так пожелал Аллах». Его говорят, восхищаясь, — детьми, домом, успехом — чтобы восхищение было благословением, а не сглазом. Хвалите чьего-то ребёнка — обязательно добавьте машаллах: это не суеверие, это забота.',
+        'Грамматики сегодня ноль — и это осознанно. После двадцати одного урока подряд вы заслужили урок, где надо только восхищаться.'
+      ],
+      voice: 'Поднялись мы с Юнусом на крышу соседнего дома. Закат. Город золотой. И Юнус — сам, я не подсказывал! — говорит: ма аджмаль аль-манзар... И тихо так: ма шаа Ллах. И вот тут, друг, я понял: всё. Человек заговорил. Не словами заговорил — сердцем. Грамматику можно выучить. Восхищение — только почувствовать.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Восхитись видом',
+        items: [
+          {
+            target: 'ما أجمل المنظر!',
+            words: ['المنظر', 'أجمل', 'ما']
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Чем восхищаются',
+        items: ['البحر', 'السماء', 'النجوم']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 13',
+        src: [13],
+        items: ['يسار', 'إلى الأمام', 'قف']
+      },
+      {
+        type: 'gap',
+        task: 'Похвали без сглаза',
+        items: [
+          {
+            text: 'بيتك جميل، ___!',
+            options: ['ما شاء الله', 'للأسف', 'لأن'],
+            answer: 'ما شاء الله'
+          }
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Восхитись небом',
+        items: ['ما أجمل السماء!']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 7, 13, 17',
+        src: [7, 13, 17],
+        items: ['مساعدة', 'مرة ثانية', 'يمين']
+      }
+    ],
+    wrap: [
+      'ما أجمل + вещь = «как прекрасно!»',
+      'Хвалишь чьё-то — добавь ما شاء الله: восхищение без сглаза.',
+      'Сегодня без грамматики — заслужили.'
+    ],
+    phrase: 'Найдите сегодня один красивый момент и скажите ему вслух: ما أجمل...!',
+    scene: {
+      place: 'свадьба во дворе: гирлянды, уд, подносы',
+      event: 'Как красиво!',
+      must: ['ممكن؟', 'طبعًا', 'ما عندي', 'والنصف']
+    }
+  },
+  {
+    n: 23,
+    goal: 'Сказать, чьё это: мой, твой, его, её — одним звуком на конце слова.',
+    why: 'Хвостики ـي и ـك ученик уже встречал в عندي и عندك — теперь система раскрывается целиком. Спор о вещах во дворе — идеальная сцена для «моё!» и «твоё!».',
+    vocab: [
+      {
+        ar: 'كتابي',
+        tr: 'кита́би',
+        ru: 'моя книга',
+        kind: 'core',
+        tier: 'B',
+        back: [29],
+        next: [35, 36]
+      },
+      {
+        ar: 'كتابك',
+        tr: 'кита́бук',
+        ru: 'твоя книга',
+        kind: 'core',
+        tier: 'B',
+        back: [29],
+        next: [35, 36]
+      },
+      {
+        ar: 'كتابه',
+        tr: 'кита́бух',
+        ru: 'его книга',
+        kind: 'core',
+        tier: 'B',
+        back: [29],
+        next: [35, 36]
+      },
+      {
+        ar: 'كتابها',
+        tr: 'кита́буха',
+        ru: 'её книга',
+        kind: 'core',
+        tier: 'B',
+        back: [29],
+        next: [35, 36]
+      },
+      {
+        ar: 'هذا لي',
+        tr: 'ха́за ли',
+        ru: 'это моё',
+        kind: 'core',
+        tier: 'B',
+        back: [29],
+        next: [35, 36]
+      },
+      {
+        ar: 'لمن هذا؟',
+        tr: 'ли-ман ха́за?',
+        ru: 'чьё это?',
+        kind: 'seed',
+        tier: 'C',
+        act: 27,
+        next: [34]
+      },
+      {
+        ar: 'مفتاحي',
+        tr: 'мифта́хи',
+        ru: 'мой ключ',
+        kind: 'seed',
+        tier: 'C',
+        back: [30],
+        act: 25
+      }
+    ],
+    theory: {
+      title: 'Одна буква вместо слова «мой»',
+      text: [
+        'Там, где другим языкам нужно отдельное слово «мой», арабскому хватает одного звука на конце: كتابي «китаби». ـي это «мой», ـك «твой», ـه «его», ـها «её». Книга одна, хвостики меняются: كتابي، كتابك، كتابه، كتابها.',
+        'И вот момент, ради которого мы сеяли: عندي و عندك из восьмого урока — это ЖЕ хвостики! عند+ي «у меня», عند+ك «у тебя». بيتي из десятого — بيت+ي. Вы пользуетесь этой системой уже пятнадцать уроков. Сегодня просто узнали её в лицо.',
+        'Быстрый спор о вещах: لمن هذا؟ «чьё это?» — هذا لي «это моё» — لا، هذا لي! «нет, это моё!» Дальше пусть решает хаджа Амина.'
+      ],
+      voice: 'Во дворе скандал, друг! Билял кричит: аль-кура ли! Мяч мой! Другой кричит: ля, хази курати! И тут выхожу я и говорю мудро: лиман хазихи ль-кура? Чей мяч? И оба замолчали. Потому что мяч, друг... мяч оказался Анзы. Она его уже ела. Мораль: пока спорите о хвостиках «мой-твой», коза решает вопрос по существу.'
+    },
+    drills: [
+      {
+        type: 'match',
+        task: 'Чья книга',
+        items: [
+          ['كتابي', 'моя'],
+          ['كتابك', 'твоя'],
+          ['كتابه', 'его'],
+          ['كتابها', 'её']
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Про Амину',
+        items: [
+          {
+            text: 'هذا بيت___',
+            options: ['ها', 'ي', 'ك'],
+            answer: 'ها'
+          }
+        ]
+      },
+      {
+        type: 'build',
+        task: 'Заяви права',
+        items: [
+          {
+            target: 'هذا كتابي',
+            words: ['كتابي', 'هذا']
+          }
+        ]
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 8, 16',
+        src: [8, 16],
+        items: ['مشكلة', 'عصير', 'سكر']
+      },
+      {
+        type: 'say',
+        task: 'Спроси чьё',
+        items: ['لمن هذا؟']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 14, 18',
+        src: [14, 18],
+        items: ['صباحًا', 'مساءً', 'أين تسكن؟']
+      }
+    ],
+    wrap: [
+      'ـي мой, ـك твой, ـه его, ـها её — хвостики вместо слов.',
+      'عندي и بيتي — та же система: вы в ней с восьмого урока.',
+      'لمن هذا؟ — هذا لي: спор о вещах за два слова.'
+    ],
+    phrase: 'Пройдитесь по комнате и назовите пять вещей с хвостиком: كتابي، مفتاحي، بيتي...',
+    scene: {
+      place: 'двор',
+      event: 'Мой и твой',
+      must: ['بدون', 'عندك', 'ماذا عندك؟', 'كم الساعة؟']
+    }
+  },
+  {
+    n: 24,
+    goal: 'Пожаловаться на самочувствие и понять жалобу другого.',
+    why: 'Здоровье — вторая после семьи тема арабского смолтока. Знакомое عندي берёт новую работу: болезни по-арабски «имеются». Готовит визит к врачу в следующем уроке.',
+    vocab: [
+      {
+        ar: 'رأس',
+        tr: 'раʼс',
+        ru: 'голова',
+        kind: 'core',
+        tier: 'C',
+        next: [35]
+      },
+      {
+        ar: 'بطن',
+        tr: 'батн',
+        ru: 'живот',
+        kind: 'core',
+        tier: 'C',
+        next: [35]
+      },
+      {
+        ar: 'عندي صداع',
+        tr: 'ʿи́нди суда́ʿ',
+        ru: 'у меня болит голова',
+        kind: 'core',
+        tier: 'B',
+        back: [25],
+        next: [31, 37]
+      },
+      {
+        ar: 'أنا مريض',
+        tr: 'а́на мари́д',
+        ru: 'я болен',
+        kind: 'core',
+        tier: 'B',
+        back: [25],
+        next: [31, 37]
+      },
+      {
+        ar: 'كيف صحتك؟',
+        tr: 'ка́йфа сы́ххатук?',
+        ru: 'как здоровье?',
+        kind: 'core',
+        tier: 'B',
+        next: [36, 31]
+      },
+      {
+        ar: 'دواء',
+        tr: 'дава́ʼ',
+        ru: 'лекарство',
+        kind: 'seed',
+        tier: 'C',
+        back: [30],
+        act: 25
+      },
+      {
+        ar: 'سلامتك',
+        tr: 'сала́мтук',
+        ru: 'выздоравливай',
+        kind: 'seed',
+        tier: 'C',
+        act: 29,
+        next: [36]
+      }
+    ],
+    theory: {
+      title: 'Болезни «имеются»: ʿинди снова в деле',
+      text: [
+        'По-арабски боль не «болит» — она «есть у тебя»: عندي صداع — «у меня головная боль». Знакомая конструкция из восьмого урока просто взяла новую работу. عندي زكام — «у меня простуда». Схема одна, слова меняются.',
+        'Состояние целиком — через знакомое именное предложение: أنا مريض «я болен» (женщина скажет مريضة — ة на посту). Спросить о здоровье: كيف صحتك؟ — родной брат «кайфа халюк» из второго урока.',
+        'И культурная жемчужина: услышав о болезни, араб отвечает سلامتك — «твоего здоровья», пожелание выздоровления. Ответ на него — الله يسلمك. Пара, как салям: жалоба без «саламтак» в ответ — как приветствие без ответа.'
+      ],
+      voice: 'Кайфа сыххатук, друг? Как здоровье? Если хорошо — альхамдулиллях! Если плохо — говори прямо: ʿинди судаʿ. Голова болит. И тебе сразу скажут: саламтук! Выздоравливай! И принесут чай с имбирём, и мёд, и ещё чай, и хаджа Амина принесёт суп... Болеть в арабском доме, друг, — это почти праздник. Почти. Лучше не болей.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Пожалуйся на голову',
+        items: [
+          {
+            target: 'عندي صداع',
+            words: ['صداع', 'عندي']
+          }
+        ]
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 9, 20',
+        src: [9, 20],
+        items: ['لماذا؟', 'لأن', 'أخت']
+      },
+      {
+        type: 'gap',
+        task: 'Пожелай здоровья',
+        items: [
+          {
+            text: 'عندي صداع — ___!',
+            options: ['سلامتك', 'طبعًا', 'ما شاء الله'],
+            answer: 'سلامتك'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Что болит',
+        items: ['رأس', 'بطن', 'عندي صداع']
+      },
+      {
+        type: 'say',
+        task: 'Спроси о здоровье',
+        items: ['كيف صحتك؟', 'أنا مريض']
+      },
+      {
+        type: 'recall',
+        task: 'Из урока 18',
+        src: [18],
+        items: ['أسكن في', 'من أين أنت؟', 'أنا من']
+      }
+    ],
+    wrap: [
+      'Боль «имеется»: عندي صداع.',
+      'أنا مريض / مريضة — состояние именным предложением.',
+      'На жалобу отвечают سلامتك — «выздоравливай».'
+    ],
+    phrase: 'Спросите сегодня кого-нибудь «كيف صحتك؟» — и выслушайте ответ до конца.',
+    scene: {
+      place: 'квартира',
+      event: 'Что болит?',
+      must: ['السبت', 'الأحد', 'الاثنين', 'نقود']
+    }
+  },
+  {
+    n: 25,
+    goal: 'Объяснить врачу, что случилось и как давно; понять слова «больше одного».',
+    why: 'Приём у доктора Самира — первый разговор с профессионалом. Здесь же множественное число — парами, как решено на уровне курса, плюс арабский бонус: двойственное.',
+    vocab: [
+      {
+        ar: 'يوم — أيام',
+        tr: 'яум — айя́м',
+        ru: 'день — дни',
+        kind: 'core',
+        tier: 'B',
+        next: [31, 37]
+      },
+      {
+        ar: 'أسبوع',
+        tr: 'усбу́ʿ',
+        ru: 'неделя',
+        kind: 'core',
+        tier: 'B',
+        next: [31, 37]
+      },
+      {
+        ar: 'منذ',
+        tr: 'му́нзу',
+        ru: 'с, уже (о времени)',
+        kind: 'core',
+        tier: 'B',
+        next: [31, 37]
+      },
+      {
+        ar: 'يومين',
+        tr: 'яуме́йн',
+        ru: 'два дня',
+        kind: 'core',
+        tier: 'B',
+        next: [31, 37]
+      },
+      {
+        ar: 'حبة',
+        tr: 'ха́бба',
+        ru: 'таблетка',
+        kind: 'seed',
+        tier: 'C',
+        act: 31,
+        next: [31]
+      },
+      {
+        ar: 'كل يوم',
+        tr: 'ку́лля яум',
+        ru: 'каждый день',
+        kind: 'seed',
+        tier: 'C',
+        act: 26,
+        next: [32]
+      }
+    ],
+    theory: {
+      title: 'Слово-пара и волшебный хвостик -ейн',
+      text: [
+        'Множественное число в арабском причудливо, поэтому уговор такой: каждое слово приходит парой, как неправильный глагол в английском. يوم «день» — أيام «дни». Не правило — пара. Услышали новую пару — положили в копилку.',
+        'А вот подарок, которого нет почти ни в одном языке: двойственное число. «Два дня» — не «иснан яум», а одно слово يومين «яумейн». Хвостик -ейн значит «пара»: ساعتين «два часа», أسبوعين «две недели». Красиво и экономно.',
+        'Врачу это всё нужно для вопроса منذ متى؟ — «как давно?». Ответ: منذ يومين — «уже два дня». Рецепт придёт со словами حبة كل يوم — «по таблетке каждый день».'
+      ],
+      voice: 'Доктор Самир — хороший человек, но вопросы у него всегда одинаковые. Мунзу мата? Как давно? И ты должен ответить точно: мунзу яумейн. Два дня. Слышишь красоту? Не «два дня» двумя словами — одним! Яум-ейн. Хвостик -ейн — и всё удвоилось. У арабов даже число такое есть — специально для пары. Для пары глаз, пары рук и пары дней с больной головой.'
+    },
+    drills: [
+      {
+        type: 'recall',
+        task: 'Из уроков 1, 17',
+        src: [1, 17],
+        items: ['صورة', 'وعليكم السلام', 'مع السلامة']
+      },
+      {
+        type: 'gap',
+        task: 'Как давно болит',
+        items: [
+          {
+            text: '___ يومين',
+            options: ['منذ', 'في', 'إلى'],
+            answer: 'منذ'
+          }
+        ]
+      },
+      {
+        type: 'build',
+        task: '«Уже два дня»',
+        items: [
+          {
+            target: 'منذ يومين',
+            words: ['يومين', 'منذ']
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Сколько времени прошло',
+        items: ['يومين', 'أسبوع', 'أيام']
+      },
+      {
+        type: 'say',
+        task: 'Ответь врачу',
+        items: ['عندي صداع منذ يومين']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 4, 19',
+        src: [4, 19],
+        items: ['الباقي', 'أدفع', 'نظّارة']
+      }
+    ],
+    wrap: [
+      'Множественное — парой к слову: يوم — أيام.',
+      'Хвостик -ейн = «пара»: يومين، أسبوعين.',
+      'منذ متى؟ — «как давно?»; منذ يومين — «уже два дня».'
+    ],
+    phrase: 'Скажите по-арабски, сколько дней вы уже учите арабский: منذ...',
+    scene: {
+      place: 'поликлиника',
+      event: 'У врача',
+      must: ['من هذا؟', 'من هذه؟', 'ما عندي', 'صغير']
+    }
+  },
+  {
+    n: 26,
+    goal: 'Пригласить через вопрос, согласиться с радостью и отказаться, не обидев.',
+    why: 'Тонкая механика приглашений: تحب...؟ мягче прямого «тааль». Вопрос без вопросительных частиц — интонацией, как решено в курсе с первого дня.',
+    vocab: [
+      {
+        ar: 'تحب...؟',
+        tr: 'тухи́бб...?',
+        ru: 'хочешь...? (буквально: любишь?)',
+        kind: 'core',
+        tier: 'A',
+        next: [33, 39]
+      },
+      {
+        ar: 'أحب',
+        tr: 'ухи́бб',
+        ru: 'я люблю, мне нравится',
+        kind: 'core',
+        tier: 'A',
+        next: [33, 39]
+      },
+      {
+        ar: 'فكرة ممتازة',
+        tr: 'фи́кра мумта́за',
+        ru: 'отличная идея',
+        kind: 'core',
+        tier: 'B',
+        next: [32, 38]
+      },
+      {
+        ar: 'ممتاز',
+        tr: 'мумта́з',
+        ru: 'отлично',
+        kind: 'core',
+        tier: 'B',
+        next: [32, 38]
+      },
+      {
+        ar: 'ربما',
+        tr: 'ру́ббама',
+        ru: 'возможно',
+        kind: 'seed',
+        tier: 'C',
+        back: [27],
+        act: 29
+      },
+      {
+        ar: 'وقت آخر',
+        tr: 'вакт а́хар',
+        ru: 'в другой раз',
+        kind: 'seed',
+        tier: 'C',
+        act: 29,
+        next: [36]
+      }
+    ],
+    theory: {
+      title: 'Тухибб? — приглашение вопросом',
+      text: [
+        'تحب شاي؟ — «хочешь чаю?», буквально «любишь чай?». Никакой вопросительной частицы — только интонация, поднятая на конце: так наш курс спрашивает с первого урока. أحب — «я люблю»: أحب الشاي، أحب هذه المدينة.',
+        'Согласие радостью: نعم، أحب! или فكرة ممتازة! — «отличная идея!» (оба слова знакомы: فكرة из восьмого, а ممتاز — новое, но неубиваемо полезное).',
+        'Отказ — всегда мягкий, тремя ступенями: للأسف из семнадцатого урока, ربما «возможно», وقت آخر «в другой раз». Прямое «нет» на приглашение в арабской культуре почти грубость; «в другой раз» — вежливое «нет», и обе стороны это понимают.'
+      ],
+      voice: 'Сосед Халед — музыкант. Играет громко, но человек золотой. Вчера спрашивает: тухибб кахва? Хочешь кофе? И я... я сказал даʿ — ошибся, друг, — я сказал: ухибб! Люблю! А я же чайный человек! Но отказать соседу... Выпил. Скажу тебе честно: кахва у Халеда — фикра мумтаза. Только Юнусу не говори. У нас с ним чайная традиция.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Предложи чай вопросом',
+        items: [
+          {
+            target: 'تحب شاي؟',
+            words: ['شاي', 'تحب']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Откажись вежливо',
+        items: [
+          {
+            text: 'تحب قهوة؟ — للأسف، ___',
+            options: ['وقت آخر', 'طبعًا', 'ممتاز'],
+            answer: 'وقت آخر'
+          }
+        ]
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 10, 21',
+        src: [10, 21],
+        items: ['طويل', 'قصير', 'تعال']
+      },
+      {
+        type: 'match',
+        task: 'Соедини',
+        items: [
+          ['أحب', 'я люблю'],
+          ['ممتاز', 'отлично'],
+          ['ربما', 'возможно'],
+          ['وقت آخر', 'в другой раз']
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Согласись с радостью',
+        items: ['فكرة ممتازة!']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 16, 18, 20',
+        src: [16, 18, 20],
+        items: ['الحساب', 'الحافلة', 'قرية']
+      }
+    ],
+    wrap: [
+      'تحب + вещь؟ — приглашение вопросом, интонацией.',
+      'Согласие: فكرة ممتازة! Отказ: للأسف... وقت آخر.',
+      'Прямое «нет» на приглашение — грубость; «в другой раз» — вежливое «нет».'
+    ],
+    phrase: 'Предложите кому-нибудь что-то через «тухибб...?» — и посмотрите, как теплеет разговор.',
+    scene: {
+      place: 'квартира соседа',
+      event: 'Приглашаю',
+      must: ['لماذا؟', 'لأن', 'ما شاء الله', 'ممكن ماء؟']
+    }
+  },
+  {
+    n: 27,
+    goal: 'Договориться о встрече полностью: день, час и место одной фразой.',
+    why: 'Урок-сборка: нового почти ноль, всё — синтез уроков 11, 14 и 15. Такие уроки дают чувство «я уже умею», которое держит мотивацию лучше нового материала.',
+    vocab: [
+      {
+        ar: 'موعد',
+        tr: 'ма́уʿид',
+        ru: 'встреча, договорённость',
+        kind: 'core',
+        tier: 'B',
+        next: [33, 39]
+      },
+      {
+        ar: 'إذن',
+        tr: 'и́зан',
+        ru: 'значит, тогда',
+        kind: 'core',
+        tier: 'B',
+        next: [33, 39]
+      },
+      {
+        ar: 'اتفقنا',
+        tr: 'итта́факна',
+        ru: 'договорились!',
+        kind: 'core',
+        tier: 'A',
+        next: [34, 40]
+      },
+      {
+        ar: 'أمام المقهى',
+        tr: 'ама́м аль-ма́кха',
+        ru: 'у кафе (перед кафе)',
+        kind: 'core',
+        tier: 'B',
+        next: [33, 39]
+      },
+      {
+        ar: 'قبل',
+        tr: 'кабль',
+        ru: 'до, раньше',
+        kind: 'seed',
+        tier: 'C',
+        act: 30,
+        next: [38]
+      },
+      {
+        ar: 'بعد',
+        tr: 'баʿд',
+        ru: 'после',
+        kind: 'seed',
+        tier: 'C',
+        act: 30,
+        next: [38]
+      }
+    ],
+    theory: {
+      title: 'Собираем встречу из готовых деталей',
+      text: [
+        'Сегодня почти ничего нового — и это осознанно. Полная договорённость собирается из того, что вы уже умеете: في يوم الجمعة (урок 15) + الساعة الخامسة (урок 14) + أمام المقهى (кафе вы уже знаете). Получилось: موعدنا في يوم الجمعة، الساعة الخامسة، أمام المقهى.',
+        'Новые только связки: إذن «значит» подытоживает («изан, в пятницу в пять»), а اتفقنا — «договорились!» — ставит печать. Услышали «иттафакна» — всё, встреча состоится.',
+        'أمام — «перед»: أمام المقهى «перед кафе». В такси вы уже встречали его родственника — إلى الأمام «вперёд». Одно слово в основе, две работы.'
+      ],
+      voice: 'Смотри, друг, что ты уже умеешь — сам, без меня! Фи яум аль-джумʿа — день есть. Ас-саʿа ль-хамиса — час есть. Амам аль-макха — место есть. Изан... иттафакна! Договорились! Целая встреча, настоящая, взрослая — из кусочков, которые ты собирал пятнадцать уроков. Вот так язык и строится: кирпичик к кирпичику, а потом вдруг — дом.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Собери встречу целиком',
+        items: [
+          {
+            target: 'في يوم الجمعة الساعة الخامسة أمام المقهى',
+            words: ['أمام المقهى', 'الساعة الخامسة', 'في يوم الجمعة']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Поставь печать',
+        items: [
+          {
+            text: 'إذن، غدًا الساعة الخامسة. ___!',
+            options: ['اتفقنا', 'لماذا', 'ربما'],
+            answer: 'اتفقنا'
+          }
+        ]
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 11, 17, 21',
+        src: [11, 17, 21],
+        items: ['أذهب إلى', 'ممكن؟', 'كبير']
+      },
+      {
+        type: 'match',
+        task: 'Соедини',
+        items: [
+          ['موعد', 'встреча'],
+          ['إذن', 'значит'],
+          ['قبل', 'до'],
+          ['بعد', 'после']
+        ]
+      },
+      {
+        type: 'say',
+        task: 'Подтверди',
+        items: ['اتفقنا، إن شاء الله']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 11, 21',
+        src: [11, 21],
+        items: ['جديد', 'قديم', 'إلى أين؟']
+      }
+    ],
+    wrap: [
+      'Встреча = день + час + место: все детали у вас давно есть.',
+      'إذن подытоживает, اتفقنا ставит печать.',
+      'أمام — «перед кафе»; إلى الأمام из такси — то же слово в другой работе.'
+    ],
+    phrase: 'Назначьте ближайшую реальную встречу по-арабски — день, час, место — и закройте её словом «иттафакна».',
+    scene: {
+      place: 'кафе',
+      event: 'Договорились',
+      must: ['صغير', 'جميل', 'أعمل', 'أشرب']
+    }
+  },
+  {
+    n: 28,
+    goal: 'Поговорить по телефону: ответить, попросить подождать, объяснить, что человек занят.',
+    why: 'Телефон — первый разговор без лица и жестов, чистая проверка слуха. И повод для форм третьего лица: о том, кого нет рядом, говорят «он» и «она».',
+    vocab: [
+      {
+        ar: 'ألو',
+        tr: 'алю́',
+        ru: 'алло',
+        kind: 'core',
+        tier: 'B',
+        next: [34, 40]
+      },
+      {
+        ar: 'من معي؟',
+        tr: 'ман ма́ʿи?',
+        ru: 'кто говорит? (кто со мной?)',
+        kind: 'core',
+        tier: 'B',
+        next: [34, 40]
+      },
+      {
+        ar: 'لحظة من فضلك',
+        tr: 'ла́хза мин фа́длик',
+        ru: 'секундочку, пожалуйста',
+        kind: 'core',
+        tier: 'B',
+        next: [34, 40]
+      },
+      {
+        ar: 'يجيب / لا يجيب',
+        tr: 'юджи́б / ля юджи́б',
+        ru: 'отвечает / не отвечает',
+        kind: 'core',
+        tier: 'B',
+        next: [34, 40]
+      },
+      {
+        ar: 'مشغول',
+        tr: 'машгу́ль',
+        ru: 'занят',
+        kind: 'core',
+        tier: 'C',
+        back: [28],
+        act: 28
+      },
+      {
+        ar: 'رقم',
+        tr: 'ракм',
+        ru: 'номер',
+        kind: 'seed',
+        tier: 'C',
+        act: 30,
+        next: [38]
+      },
+      {
+        ar: 'خطأ',
+        tr: 'ха́таʼ',
+        ru: 'ошибка',
+        kind: 'seed',
+        tier: 'C',
+        act: 29,
+        next: [37]
+      }
+    ],
+    theory: {
+      title: 'Он и она на слух: буквы-двигатели работают дальше',
+      text: [
+        'Телефонный ритуал: ألو → من معي؟ «кто говорит?» (буквально «кто со мной» — знакомый хвостик ـي!) → لحظة من فضلك «секундочку». Три реплики — и вы держитесь в разговоре без единого жеста.',
+        'Главная грамматика: говорим о третьем. يجيب «он отвечает» — знакомая ي из двенадцатого урока. Она: تجيب. Стоп, скажете вы, ت же «ты»! Да: буква ت работает дважды — «ты» и «она», а кто именно — подсказывает контекст. Арабский экономен: أحمد لا يجيب «Ахмад не отвечает», أمي لا تجيب «мама не отвечает».',
+        'Не туда попали: الرقم خطأ — «номер ошибочный». Извинились (آسف), положили трубку, ничего страшного.'
+      ],
+      voice: 'Звоню Юнусу — ля юджиб. Не отвечает! Звоню ещё раз — ля юджиб! Я уже волнуюсь, чайник остывает! Перезваниваю в третий раз... Алю! Ман маʿи?! — кричу. А это не Юнус. Это хаджа Амина. Ракм хатаʼ, говорит, ошибся номером, дорогой. И двадцать минут рассказывала про внуков. Хороший, друг, оказался неправильный номер. Тёплый.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Спроси, кто говорит',
+        items: [
+          {
+            target: 'ألو، من معي؟',
+            words: ['من معي؟', 'ألو،']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Про Юнуса',
+        items: [
+          {
+            text: 'يونس لا ___',
+            options: ['يجيب', 'تجيب', 'أجيب'],
+            answer: 'يجيب'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Он или она отвечает',
+        items: ['يجيب', 'تجيب', 'مشغول']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 4, 12',
+        src: [4, 12],
+        items: ['هناك', 'أذهب', 'تذهب']
+      },
+      {
+        type: 'say',
+        task: 'Попроси подождать',
+        items: ['لحظة من فضلك']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 16, 18, 22',
+        src: [16, 18, 22],
+        items: ['أين تسكن؟', 'ما أجمل...!', 'بارد']
+      }
+    ],
+    wrap: [
+      'Ритуал: ألو → من معي؟ → لحظة من فضلك.',
+      'ي — «он», ت — «ты» и «она»: контекст подскажет.',
+      'الرقم خطأ — «не туда попал»: извинился и всё.'
+    ],
+    phrase: 'Следующий телефонный звонок начните про себя с арабского: алю, ман маʿи?',
+    scene: {
+      place: 'улица',
+      event: 'Алло',
+      must: ['يذهب', 'أسكن في', 'من أين أنت؟', 'أنا من']
+    }
+  },
+  {
+    n: 29,
+    goal: 'Извиниться, признать вину и принять извинение.',
+    why: 'Эмоциональный центр сезона: ссора требует примирения. И первая дверь в прошедшее время — хвостик -ту «я сделал» — открывается в самой человечной точке: «прости, я забыл».',
+    vocab: [
+      {
+        ar: 'آسف',
+        tr: 'а́сиф',
+        ru: 'прости (я сожалею)',
+        kind: 'core',
+        tier: 'A',
+        back: [22, 26, 28, 29],
+        act: 29
+      },
+      {
+        ar: 'سامحني',
+        tr: 'са́михни',
+        ru: 'прости меня',
+        kind: 'core',
+        tier: 'B',
+        next: [31, 35]
+      },
+      {
+        ar: 'نسيت',
+        tr: 'наси́ту',
+        ru: 'я забыл',
+        kind: 'core',
+        tier: 'B',
+        back: [30],
+        next: [31, 35]
+      },
+      {
+        ar: 'فعلت',
+        tr: 'фаʿа́льту',
+        ru: 'я сделал',
+        kind: 'core',
+        tier: 'B',
+        next: [31, 35]
+      },
+      {
+        ar: 'لا بأس',
+        tr: 'ля баʼс',
+        ru: 'ничего страшного',
+        kind: 'core',
+        tier: 'A',
+        next: [32, 36]
+      },
+      {
+        ar: 'كسرت',
+        tr: 'каса́рту',
+        ru: 'я сломал',
+        kind: 'seed',
+        tier: 'C',
+        act: 30,
+        next: [38]
+      },
+      {
+        ar: 'الحق معك',
+        tr: 'аль-хакк ма́ʿак',
+        ru: 'ты прав (правда с тобой)',
+        kind: 'seed',
+        tier: 'C',
+        back: [30],
+        act: 30
+      }
+    ],
+    theory: {
+      title: 'Хвостик -ту: первая дверь в прошлое',
+      text: [
+        'До сих пор весь курс жил в настоящем. Сегодня — первый шаг назад во времени: نسيت «я забыл», فعلت «я сделал», كسرت «я сломал». Слышите общий хвостик? ـتُ «-ту» на конце глагола значит «я сделал это в прошлом». Настоящее набирается приставками спереди (أ، ت، ي), прошедшее — хвостиками сзади. Пока берём только «я» — остальное подождёт.',
+        'Извинение по-арабски двухэтажное: آسف «сожалею» — состояние, سامحني «прости меня» — просьба (знакомая команда, как قف и تعال, только тёплая). Полная формула: آسف، نسيت — «прости, я забыл».',
+        'Принять извинение — لا بأس «ничего страшного» (буквально «нет беды»). А признать правоту другого — красивейшая идиома الحق معك: «правда с тобой». Не «ты выиграл спор» — правда просто стоит рядом с тобой. После этих слов ссориться уже не о чем.'
+      ],
+      voice: 'Поссорились мы с Халедом, друг. Из-за ерунды: он играл на уде в полночь, я сказал слово, он сказал два... Три дня не здоровались. Три дня, представляешь? Соседи! Потом пришёл Билял, мальчишка со двора, посмотрел на нас и говорит: вы оба смешные. И я пошёл к Халеду и сказал: самихни. Асиф. И он сказал: ля баʼс... аль-хакк маʿак, поздно играл. А я говорю: ля, аль-хакк маʿак! И мы спорили, кто прав, что другой прав, пока не остыл чай. Хорошая была ссора. Правильная.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Извинись полностью',
+        items: [
+          {
+            target: 'آسف، نسيت',
+            words: ['نسيت', 'آسف،']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Прими извинение',
+        items: [
+          {
+            text: 'سامحني! — ___',
+            options: ['لا بأس', 'لا أفهم', 'للأسف'],
+            answer: 'لا بأس'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Что он сделал',
+        items: ['نسيت', 'كسرت', 'فعلت']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 19, 23',
+        src: [19, 23],
+        items: ['الباقي', 'أدفع', 'كتابي']
+      },
+      {
+        type: 'say',
+        task: 'Признай правоту',
+        items: ['الحق معك']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 13, 19, 22',
+        src: [13, 19, 22],
+        items: ['ما شاء الله', 'هنا من فضلك', 'نقود']
+      }
+    ],
+    wrap: [
+      'Хвостик ـتُ = «я сделал»: نسيت، فعلت، كسرت.',
+      'Извинение: آسف + سامحني. Ответ: لا بأس.',
+      'الحق معك — «правда с тобой»: после этого не ссорятся.'
+    ],
+    phrase: 'Если есть перед кем — извинитесь сегодня по-арабски: آسف، نسيت. Считается, даже если человек не поймёт слов: тон поймёт.',
+    scene: {
+      place: 'двор',
+      event: 'Прости',
+      must: ['كتابك', 'كتابه', 'كتابها', 'هذا لي']
+    }
+  },
+  {
+    n: 30,
+    goal: 'Рассказать, как было раньше: «был, была» — и закрыть сезон примирением.',
+    why: 'Финал третьего сезона. كان — машина времени для именных предложений: всё, что ученик умел говорить о настоящем с первого урока, теперь работает и в прошлом. Один глагол удваивает язык.',
+    vocab: [
+      {
+        ar: 'كان',
+        tr: 'ка́на',
+        ru: 'был',
+        kind: 'core',
+        tier: 'A',
+        next: [31, 33]
+      },
+      {
+        ar: 'كانت',
+        tr: 'ка́нат',
+        ru: 'была',
+        kind: 'core',
+        tier: 'A',
+        next: [31, 33]
+      },
+      {
+        ar: 'أمس',
+        tr: 'амс',
+        ru: 'вчера',
+        kind: 'core',
+        tier: 'A',
+        next: [31, 33]
+      },
+      {
+        ar: 'صحيح',
+        tr: 'сахи́х',
+        ru: 'верно, правда',
+        kind: 'core',
+        tier: 'B',
+        next: [32, 36]
+      },
+      {
+        ar: 'كنت',
+        tr: 'ку́нту',
+        ru: 'я был',
+        kind: 'seed',
+        tier: 'C',
+        act: 31,
+        next: [31]
+      },
+      {
+        ar: 'زمان',
+        tr: 'зама́н',
+        ru: 'давно, прежде',
+        kind: 'seed',
+        tier: 'C',
+        act: 31,
+        next: [31]
+      }
+    ],
+    theory: {
+      title: 'Кана — машина времени',
+      text: [
+        'Помните первое правило курса: «предложение без глагола» — البيت كبير «дом большой»? Добавьте كان — и оно уехало в прошлое, а описание получило песенку на конце: كان البيتُ كبيرًا «кана ль-байту кабиран» — дом был большим. الشاي ساخن «чай горячий» → كان الشاي ساخنًا «кана ш-шай сахинан». Это фирменный мотив каны: услышали كان в начале — пропойте «-ан» на описании. Почему так — история для куда более позднего уровня; сейчас это просто то, как фраза звучит.',
+        'Женский род — знакомой буквой: كانت — كانت المدينة صغيرة «город был маленьким» (слова на ة звучат как обычно, песенка им не нужна). А хвостик из прошлого урока даёт «я был»: كنت — كنت مريضًا «кунту маридан», я был болен; كنت في السوق «я был на рынке».',
+        'أمس «вчера» — главное слово-спутник прошлого. И слово для финала сезона: صحيح «верно». كان الحق معك — «правда была с тобой». Сезон ссор и примирений закрыт.'
+      ],
+      voice: 'Заман, друг... давно... я был молодой. Кунту сагыран! Кунту тавилян... нет, тавилян я не был, не буду врать. Но послушай, какая это сила: кана. Был. Кана ш-шай сахинан — чай был горячий. Канат аль-мадина сагыра — город был маленький. Одно слово — и ты рассказчик! Вся твоя жизнь, всё «раньше» — открылось. Осторожно с этой силой: старики вроде меня из «кана» не возвращаются.'
+    },
+    drills: [
+      {
+        type: 'build',
+        task: 'Отправь чай в прошлое',
+        items: [
+          {
+            target: 'كان الشاي ساخنًا',
+            words: ['ساخنًا', 'الشاي', 'كان']
+          }
+        ]
+      },
+      {
+        type: 'gap',
+        task: 'Про город (женский род!)',
+        items: [
+          {
+            text: 'المدينة ___ صغيرة',
+            options: ['كانت', 'كان', 'كنت'],
+            answer: 'كانت'
+          }
+        ]
+      },
+      {
+        type: 'listen',
+        task: 'Сейчас или вчера',
+        items: ['البيت كبير', 'كان البيت كبيرًا', 'أمس', 'صحيح']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 5, 23, 24',
+        src: [5, 23, 24],
+        items: ['مفتاحي', 'دواء', 'بكم؟']
+      },
+      {
+        type: 'say',
+        task: 'Расскажи, где был вчера',
+        items: ['أمس كنت في...']
+      },
+      {
+        type: 'recall',
+        task: 'Из уроков 9, 14, 19',
+        src: [9, 14, 19],
+        items: ['جدة', 'دقيقة', 'بطاقة']
+      }
+    ],
+    wrap: [
+      'كان + именное предложение = прошлое, описание поёт «-ан»: كان الشاي ساخنًا.',
+      'كانت — «была», كنت — «я был».',
+      'أمس — «вчера»: главный спутник прошлого.'
+    ],
+    phrase: 'Закончите день фразой о нём: كان اليوم... — и добавьте прилагательное, которое заслужил этот день.',
+    scene: {
+      place: 'рынок',
+      event: 'Кто был прав',
+      must: ['يمين', 'يسار', 'إلى الأمام', 'قف']
+    }
+  }
 ];
-
