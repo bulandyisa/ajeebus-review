@@ -146,6 +146,7 @@
   .shotlabel{grid-column:1/-1;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin:8px 0 -3px;padding-top:6px;border-top:1px dashed var(--line)}
   .shotlabel:first-child{border-top:0;padding-top:0;margin-top:0}
   .shotlabel b{color:var(--saffron);font-weight:650}
+  .lbtn.noshots .lc{color:var(--faint)}
   .rtbl{width:100%;border-collapse:collapse;font-size:12.5px}
   .rtbl th{text-align:left;font-weight:600;color:var(--dim);font-size:11px;letter-spacing:.06em;
     text-transform:uppercase;padding:7px 9px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel)}
@@ -1013,20 +1014,37 @@ function takesOfShot(l,s){
 }
 const HOOK=/^(КРЮЧОК|ФИНАЛ СЕЗОНА|ЧЕХОВСКОЕ РУЖЬЁ)/;
 
+/* все уроки: со снятой раскадровкой (data.js) и те, у которых пока только программа */
+function lessonsAll(){
+  const byN=new Map((AJ.lessons||[]).map(l=>[l.n,l]));
+  const rows=new Map();
+  (AJ.seasons||[]).forEach(S=>(S.items||[]).forEach(it=>rows.set(it[0],it)));
+  const ns=[...new Set([...(AJ.lessons||[]).map(l=>l.n),...(AJ.program||[]).map(p=>p.n)])].sort((a,b)=>a-b);
+  return ns.map(n=>{
+    if(byN.has(n)) return byN.get(n);
+    const P=(AJ.program||[]).find(p=>p.n===n)||{}, r=rows.get(n)||[];
+    return {n:n, title:r[1]||('Урок '+n), skill:P.goal||r[2]||'', shots:[], draft:false, noshots:true,
+      core:(P.vocab||[]).filter(v=>v.kind==='core').map(v=>v.ar),
+      seeds:(P.vocab||[]).filter(v=>v.kind==='seed').map(v=>v.ar)};
+  });
+}
+
 function renderLessons(){
   const el=$('#p-lessons');
-  const L=AJ.lessons.find(l=>l.n===curLesson)||AJ.lessons[0];
+  const ALL=lessonsAll();
+  const L=ALL.find(l=>l.n===curLesson)||ALL[0];
+  const view = L.noshots ? 'prog' : lessonView;
 
   /* переключатель уроков */
-  const picker=AJ.lessons.map(x=>{
+  const picker=ALL.map(x=>{
     const done=x.shots.filter(s=>takesOfShot(x.n,s.n).length).length;
     const ok=x.shots.filter(s=>takesOfShot(x.n,s.n).some(t=>t.status==='accepted'||t.status==='canon')).length;
-    const pct=Math.round(done/x.shots.length*100);
-    return `<button class="lbtn ${x.draft?'draft':''}" data-lesson="${x.n}" aria-pressed="${x.n===L.n}">
+    const pct=x.shots.length?Math.round(done/x.shots.length*100):0;
+    return `<button class="lbtn ${x.draft?'draft':''} ${x.noshots?'noshots':''}" data-lesson="${x.n}" aria-pressed="${x.n===L.n}">
       <div class="ln">УРОК ${x.n}${x.draft?' · черновик':''}</div>
       <div class="lt">${esc(x.title)}</div>
-      <div class="lc">снято ${done} из ${x.shots.length}${ok?` · принято ${ok}`:''}</div>
-      <span class="lbar"><i style="width:${pct}%"></i></span>
+      <div class="lc">${x.noshots?'только программа':`снято ${done} из ${x.shots.length}${ok?` · принято ${ok}`:''}`}</div>
+      ${x.noshots?'':`<span class="lbar"><i style="width:${pct}%"></i></span>`}
     </button>`;}).join('');
 
   /* строки шотов */
@@ -1099,8 +1117,8 @@ function renderLessons(){
 
   const board=rows||'<div class="empty">По этому фильтру шотов нет</div>';
   const body=
-    lessonView==='prog'  ? progHTML(L) :
-    lessonView==='board' ? board :
+    view==='prog'  ? progHTML(L) :
+    view==='board' ? board :
     `<div class="lsplit">
        <div class="script">
          <div class="shd"><b>Сценарий целиком</b><span class="spacer"></span>
@@ -1116,17 +1134,20 @@ function renderLessons(){
       <h2>Урок ${L.n}. ${esc(L.title)}</h2>
       <div class="lskill">${esc(L.skill)}</div>
       <div class="cores">${L.core.map(c=>`<span class="core">${esc(c)}</span>`).join('')}${L.seeds.map(s=>`<span class="seed">посев: ${esc(s)}</span>`).join('')}</div>
+      ${L.shots.length?`
       <div class="meter" style="margin-top:11px"><i style="width:${Math.round(shotsWith/L.shots.length*100)}%"></i></div>
-      <div class="mlabel">${shotsWith} из ${L.shots.length} шотов со снятым материалом${missing.length?` · не снято: ${missing.join(', ')}`:' · снято всё'}</div>
+      <div class="mlabel">${shotsWith} из ${L.shots.length} шотов со снятым материалом${missing.length?` · не снято: ${missing.join(', ')}`:' · снято всё'}</div>`
+      :`<div class="mlabel" style="margin-top:11px">Раскадровки ещё нет — урок написан текстом: лексика, теория, задания, итог.</div>`}
       ${L.draft?`<div class="bhint" style="margin-top:8px;color:var(--clay)">Раскадровка черновая — ${L.shots.length} битов вместо 12 шотов.</div>`:''}
     </div>
     <div class="sfilters">
       <div class="seg" id="viewSeg">
-        <button data-lv="split" aria-pressed="${lessonView==='split'}">Сценарий и раскадровка</button>
-        <button data-lv="board" aria-pressed="${lessonView==='board'}">Только раскадровка</button>
-        <button data-lv="prog"  aria-pressed="${lessonView==='prog'}">Программа урока</button>
+        ${L.noshots?'':`
+        <button data-lv="split" aria-pressed="${view==='split'}">Сценарий и раскадровка</button>
+        <button data-lv="board" aria-pressed="${view==='board'}">Только раскадровка</button>`}
+        <button data-lv="prog"  aria-pressed="${view==='prog'}">Программа урока</button>
       </div>
-      ${lessonView==='prog'?'':`
+      ${view==='prog'?'':`
       <div class="seg" id="shotSeg">
         <button data-sf="all" aria-pressed="${shotFilter==='all'}">Все шоты</button>
         <button data-sf="missing" aria-pressed="${shotFilter==='missing'}">Не снятые</button>
