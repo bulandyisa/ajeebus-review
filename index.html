@@ -64,6 +64,9 @@
   .tabs{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:14px;flex-wrap:wrap}
   .tabs button{padding:9px 16px;border-radius:9px;font-size:13.5px;color:var(--dim);font-weight:500}
   .tabs button[aria-selected="true"]{background:var(--panel-2);color:var(--ink);font-weight:600}
+  .tabs .tablink{margin-left:auto;align-self:center;padding:9px 14px;border-radius:9px;font-size:13px;
+    color:var(--emerald-ink);text-decoration:none;border:1px solid var(--line);white-space:nowrap}
+  .tabs .tablink:hover{border-color:var(--emerald);background:var(--hover)}
   .page{display:none} .page.on{display:block}
 
   .btn{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:500;transition:.15s;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
@@ -499,6 +502,7 @@
   <button role="tab" data-p="recycle" aria-selected="false">Повторяемость</button>
   <button role="tab" data-p="canon"  aria-selected="false">Канон</button>
   <button role="tab" data-p="calls"  aria-selected="false">Решения и правила</button>
+  <a class="tablink" href="program.html" target="_blank" rel="noopener" title="Все 30 уроков подряд: слова и правила, как их видит ученик">Читать уровень подряд ↗</a>
 </div>
 
 <!-- ================= УРОКИ ================= -->
